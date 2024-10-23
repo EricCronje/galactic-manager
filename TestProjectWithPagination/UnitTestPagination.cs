@@ -1,0 +1,28 @@
+using MBR = ArchCorpUtilities.Models.MockBuildingsRepository;
+
+using System.Text;
+using P = Pagina.Pagina;
+namespace TestProjectWithPagination
+{
+    public class UnitTestPagination
+    {
+        [Fact]
+        public void ValidPagination()
+        {
+            //Get list of buildings
+            MBR mockBuildingsRepository = new();
+            UInt32 MaxItems = Convert.ToUInt32(mockBuildingsRepository?.AllBuildings()?.ToList().Count);
+            UInt32 PageSize = 2;
+            P pagina = new(PageSize, MaxItems);
+            pagina.GoToLastPage();
+            var PaginizedBuildings = mockBuildingsRepository?.AllBuildings()?.ToList().GetRange(Convert.ToInt32(pagina.GetFirstItemNumberOnPage0Based()), Convert.ToInt32(pagina.GetItemCountOnPage()));
+            Assert.True(PaginizedBuildings?.Count == 1);
+            Assert.Equal("Dragon One", PaginizedBuildings[0].Name);
+            pagina.GetPreviousPage();
+            PaginizedBuildings = mockBuildingsRepository?.AllBuildings()?.ToList().GetRange(Convert.ToInt32(pagina.GetFirstItemNumberOnPage0Based()), Convert.ToInt32(pagina.GetItemCountOnPage()));
+            Assert.True(PaginizedBuildings?.Count == 2);
+            Assert.Equal("Alpha", PaginizedBuildings[0].Name);
+            Assert.Equal("Beta", PaginizedBuildings[1].Name);
+        }
+    }
+}

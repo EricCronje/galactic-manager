@@ -1,0 +1,188 @@
+
+BUILDING MANAGER GALACTIC                                          For Arch Corp Galaxy Ltd. (Fictional)
+ABSTRACT
+Arch Corp Galaxy Ltd. Is a fictional corporation that requested an application to assist them with managing their building operations across the stars. They are building new buildings on Maximus Seven in the ninth dimension. They need to be able to add, remove, save, export and view building information on a digital platform. Hence "Building Manager Galactic"
+Eric Cronje
+ Document: Version 1.0.1
+
+                                       
+BUILDING MANAGER GALACTIC                                          For Arch Corp Galaxy Ltd. (Fictional)
+ABSTRACT
+Arch Corp Galaxy Ltd. Is a fictional corporation that requested an application to assist them with managing their building operations across the stars. They are building new buildings on Maximus Seven in the ninth dimension. They need to be able to add, remove, save, export and view building information on a digital platform. Hence "Building Manager Galactic"
+Eric Cronje
+ Document: Version 1.0.1
+
+Building Manager Menu (Main menu)
+
+Main menu for "Building Manager" (Page 1)
+
+Figure 1
+
+Number
+Display name
+Description
+1
+List buildings
+Lists the buildings
+2
+Add buildings
+A place to add new buildings
+3
+Remove buildings
+Remove buildings from the list
+4
+Edit building names
+Edit a building name
+5
+Save buildings
+Save  the buildings to a file
+6
+Load buildings
+Load the buildings from a file
+7
+Exit
+Exit the program
+Table 1
+
+List Buildings
+
+To view the buildings in the system, select "List Buildings". In figure 2 it is option 1.
+Enter the number "1" in the choice and press <Enter>.
+
+
+Figure 2
+Figure 3 below shows the flow to get to the building list screen.
+ On the main menu screen as per figure 3. (Screen A)
+ Enter the number "1" as the choice. Then press <Enter>.
+ The "Building List" screen will show. (Screen B)
+ When on the building list screen. (Screen B)
+ To refresh the building list. Enter the number 1 then press the <Enter> key on the keyboard.
+ To navigate back to the main building screen. Enter the number 2. (Screen A) below in figure 3.
+
+
+Figure 3
+The building list show in Figure 3 shows all the buildings that are loaded in the system at the point when the screen shot was taken. With the "View  -  Sub menu" options below as per figure 4. 
+
+Figure 4
+
+Choices on the View  -  Sub Menu:
+Number
+Display name
+Description
+1
+View Building
+Lists the buildings. (Refreshes the screen).
+2
+Back to main menu
+Navigates back to the main screen.
+Table 2
+
+Add buildings
+
+At some point a new building need to be added. To perform this task to load a single building. From the main menu as shown in figure 5. 
+ Enter the choice "2" then press <Enter>
+ A prompt will be shown (screen B). Asking for the building name. Enter the building name and then press <Enter>.
+ In the case where the building does not exist the system will respond "Building added successfully" as per figure 6.
+
+
+Figure 5
+
+Choices on the Add  -  Sub Menu
+Number
+Display name
+Description
+1
+Add Building
+Adds a single building.
+2
+Back to main menu
+Navigates back to the main screen.
+Table 3
+
+Another scenario might be when loading a building the person decide not to continue to add a new building. In that case on the add building screen press the <Enter> or x without adding a building name. If the building name has been entered already  -  clear it by using backspace.
+That will show the navigation menu as described in table 3; to either load a building or go back to the main menu.
+
+Figure 6
+Remove Buildings
+
+In some case a building needs to be removed. On the main menu. Enter the choice "3" to remove a building as shown in figure 8.
+After entering the choice 3 then the building list will appear as seen below; with a prompt to select the building number to be removed. (figure 9  -  screen B).
+In the case below number 8 was selected, and a prompt was received "Building removed" with the building name.
+
+
+Figure 7
+
+Edit Building Names
+
+To change the name of a single building at a time the "Edit" functionality can be utilized. It is located on the main menu. 
+Select the option by entering the menu number on the left, e.g. 4 in this case. 
+ Select a building to edit (screen B).
+ Enter a new building name (screen C)
+ The system will show "Building updated from <old name> to <New Name> "
+ When done; then go back to the main menu.  (Screen D and E)
+
+
+Options on the Edit  -  Sub Menu screen:
+Number
+Display name
+Description
+1
+Edit Building
+Edits a single building.
+2
+Back to main menu
+Navigates back to the main screen.
+
+Save buildings
+
+There is a way to save the buildings to a file called "Buildings.txt". The menu option is on the main menu.
+
+Use the option number 5. Then the message will appear that the file was saved (screen B) as seen in figure 8 below.
+
+
+Figure 8
+
+
+
+
+
+
+
+
+Load buildings
+
+To load the buildings from a file. Place a file in the system directory. The file is called "Buildings.txt". This functionality will only add new buildings. It will not override the current buildings.
+
+Select the Load Buildings then the screen will show as per figure 9  -  screen B.
+
+
+Figure 9
+
+Save and load file format (Buidlings.txt)
+
+The expected format of the "Building.txt" (Pipe delimited file):
+Number
+Field
+Description
+Type
+1
+BuidlingID
+Internal identification number
+Integer
+2
+BuidldingDisplayId
+External identification number that is displayed and used to select the building.
+Integer
+3
+BuidlingName
+Name of the building
+String (500)
+
+Sample contents of the load and save file
+
+BuidlingID|BuidldingDisplayId|BuidlingName
+1|1|Alpha
+2|2|Beta
+3|3|Dragon One
+
+

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchCorpUtilities", "ArchCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectArchProject", "TestProjectArchProject\TestProjectArchProject.csproj", "{1B6B9E3F-4E45-40BA-B652-658A79ADC212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectSimulation", "TestProjectSimulation\TestProjectSimulation.csproj", "{DF2E3484-977A-485F-AF59-846F649094D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectSimulation", "TestProjectSimulation\TestProjectSimulation.csproj", "{DF2E3484-977A-485F-AF59-846F649094D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectWithPagination", "TestProjectWithPagination\TestProjectWithPagination.csproj", "{35748C7D-26D8-4B6E-BA9A-97C341F6C69A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DF2E3484-977A-485F-AF59-846F649094D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF2E3484-977A-485F-AF59-846F649094D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF2E3484-977A-485F-AF59-846F649094D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35748C7D-26D8-4B6E-BA9A-97C341F6C69A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35748C7D-26D8-4B6E-BA9A-97C341F6C69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35748C7D-26D8-4B6E-BA9A-97C341F6C69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35748C7D-26D8-4B6E-BA9A-97C341F6C69A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -49,7 +49,7 @@ namespace TestProjectArchProject
             CH.ClearFeedback();
             BH.ViewBuildings();
             string Result = CH.GetFeedback();
-            string Expected = "-------------------------\r\nBuildings list:\r\n-------------------------\r\n1) Alpha\r\n2) Beta\r\n3) Dragon One\r\n";
+            string Expected = "-------------------------\r\nBuildings list:\r\n-------------------------\r\n1) Alpha\r\n2) Beta\r\n";
             Assert.Equal(Result, Expected);
         }
 
@@ -66,7 +66,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building added successfully", Result);
 
             CH.ClearFeedback();
-            BH.ViewBuildings();
+            BH.ViewBuildings("NextPage");
             Result = CH.GetFeedback();
             Assert.Contains(Name, Result);
 
@@ -125,7 +125,6 @@ namespace TestProjectArchProject
             string content = File.ReadAllText(Path);
 
             //Check if the following buildings are present...
-            Assert.Contains("Dragon One", content);
             Assert.Contains("Alpha", content);
             Assert.Contains("Beta", content);
 

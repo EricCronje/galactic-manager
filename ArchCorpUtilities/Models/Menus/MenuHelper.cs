@@ -35,7 +35,13 @@ namespace ArchCorpUtilities.Models.Menus
             PageHeading = "View - Sub Menu";
             var pageNumber = 5;
             list.Add(new MenuItem("View Building", 1, 10, pageNumber, PageHeading, 0, false, 0, "ViewBuilding", false, true));
-            list.Add(new MenuItem("Back to Main Menu", 2, 20, pageNumber, PageHeading, 1, false, 1, "None", true));
+            
+            list.Add(new MenuItem("Next Page", 2, 20, pageNumber, PageHeading, 0, false, 0, "NextPage", false, true, "LastPage"));
+            list.Add(new MenuItem("Previous Page", 3, 30, pageNumber, PageHeading, 0, false, 0, "PreviousPage", false, true, "FirstPage"));
+            list.Add(new MenuItem("First Page", 4, 40, pageNumber, PageHeading, 0, false, 0, "FirstPage", false, true, "FirstPage"));
+            list.Add(new MenuItem("Last Page", 5, 50, pageNumber, PageHeading, 0, false, 0, "LastPage", false, true, "LastPage"));
+            
+            list.Add(new MenuItem("Back to Main Menu", 6, 60, pageNumber, PageHeading, 1, false, 1, "None", true));
 
             //Edit Buildings
             PageHeading = "Edit - Sub Menu";
@@ -86,9 +92,12 @@ namespace ArchCorpUtilities.Models.Menus
             _menuItemsSB.AppendLine(ShowHeading(menuHeading));
             if (page != null)
             {
-                foreach (MenuItem item in CurrentMenuPage.OrderBy(c => c.Index).Where(p => p.Page.Equals(page.Value)).ToList())
+                int Index = 1;
+                foreach (MenuItem item in CurrentMenuPage.OrderBy(c => c.Index).Where(p => p.Page.Equals(page.Value) && p.IsHidden == false).ToList())
                 {
-                    _menuItemsSB.AppendLine($"{item.DisplayMenuItem}");
+                    item.DisplayNumber = Index;
+                    _menuItemsSB.AppendLine($"{item.DisplayNumber} {item.DisplayName}");
+                    Index++;
                 }
                 _menuItemsSB.AppendLine(Line);
                 _menuItemsSB.Append("Choice:");

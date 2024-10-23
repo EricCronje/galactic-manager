@@ -2,6 +2,7 @@
 using AM = ArchCorpUtilities.Models.Menus.MenuHelper;
 using AR = ArchCorpUtilities.Models.MockBuildingsRepository;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
+using Page = Pagina.Pagina;
 
 namespace ArchCorpUtilities.Models.Buildings
 {
@@ -28,6 +29,9 @@ namespace ArchCorpUtilities.Models.Buildings
         {
             Buildings = [];
             Buildings = aR.AllBuildings()?.ToList();
+            _PageSize = 2;
+            _MaxItems = Convert.ToUInt32(Buildings?.Count);
+            _Page = new(_PageSize, _MaxItems);
         }
 
         public static void ReIndexDisplayId()
@@ -40,15 +44,50 @@ namespace ArchCorpUtilities.Models.Buildings
                 }
         }
 
-        public static void ViewBuildings()
+        static UInt32 _PageSize = 2;
+        static UInt32 _MaxItems = Convert.ToUInt32(Buildings?.Count);
+        static Page _Page = new(_PageSize, _MaxItems);
+
+        public static void ViewBuildings(string navigation = "FirstPage", int GoToPageNumber = -1)
         {
             if (Buildings?.Count > 0)
             {
-                CH.Feedback(AM.ShowHeading(Resource.BuildingListPrompt));
-                foreach (var building in Buildings.OrderBy(c => c.Name))
+                if (GoToPageNumber < 0)
                 {
-                    CH.Feedback($"{building.DisplayId}) {building.Name}");
+                    switch (navigation)
+                    {
+                        case "FirstPage":
+                            _Page.GoToFirstPage();
+                            break;
+                        case "LastPage":
+                            _Page.GoToLastPage();
+                            break;
+                        case "NextPage":
+                            _Page.GetNextPage();
+                            break;
+                        case "PreviousPage":
+                            _Page.GetPreviousPage();
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                else
+                {
+                    _Page.GoToPage(Convert.ToUInt32(GoToPageNumber));
+                }
+                var PaginizedBuildings = Buildings?.GetRange(Convert.ToInt32(_Page.GetFirstItemNumberOnPage0Based()), Convert.ToInt32(_Page.GetItemCountOnPage()));
+
+                if (PaginizedBuildings != null && PaginizedBuildings.Count > 0)
+                {
+                    CH.Feedback(AM.ShowHeading(Resource.BuildingListPrompt));
+                    foreach (var building in PaginizedBuildings.OrderBy(c => c.Name))
+                    {
+                        CH.Feedback($"{building.DisplayId}) {building.Name}");
+                    }
+                }
+                else
+                    CH.Feedback($"{Resource.NoBuildingsToList}\n");
             }
             else
                 CH.Feedback($"{Resource.NoBuildingsToList}\n");
@@ -232,7 +271,11 @@ namespace ArchCorpUtilities.Models.Buildings
             if (isSamePage) { defaultChoice = choice; }
             // For simulation only
 
-            var TargetTask = AM.CurrentMenuPage?.FirstOrDefault(c => c.Page == page && c.DisplayNumber == defaultChoice)?.TargetTask;
+
+ 
+
+
+            var TargetTask = AM.CurrentMenuPage?.FirstOrDefault(c => c.Page == page && c.DisplayNumber == defaultChoice && c.IsHidden == false)?.TargetTask;
 
             switch (TargetTask)
             {
@@ -246,6 +289,22 @@ namespace ArchCorpUtilities.Models.Buildings
 
                 case "ViewBuilding":
                     ViewBuildings();
+                    break;
+
+                case "FirstPage":
+                    ViewBuildings("FirstPage");
+                    break;
+
+                case "LastPage":
+                    ViewBuildings("LastPage");
+                    break;
+
+                case "NextPage":
+                    ViewBuildings("NextPage");
+                    break;
+
+                case "PreviousPage":
+                    ViewBuildings("PreviousPage");
                     break;
 
                 case "EditBuilding":
