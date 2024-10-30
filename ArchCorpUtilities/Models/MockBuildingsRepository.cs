@@ -1,5 +1,5 @@
 ﻿using ArchCorpUtilities.Models.Buildings;
-using AC = ArchCorpUtilities.Models.Buildings.BuildingHelper;
+using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 
 namespace ArchCorpUtilities.Models
 {
@@ -7,15 +7,15 @@ namespace ArchCorpUtilities.Models
     {
         public IEnumerable<Building>? AllBuildings()
         {
-            if (AC.Buildings != null)
+            if (BH.Buildings != null)
             {
-                if (AC.Buildings.Count == 0)
+                if (BH.Buildings.Count == 0)
                 {
-                    AC.Buildings.Add(new("Alpha", 1));
-                    AC.Buildings.Add(new("Beta", 2));
-                    AC.Buildings.Add(new("Dragon One", 3));
+                    BH.Buildings.Add(new("Alpha", 1));
+                    BH.Buildings.Add(new("Beta", 2));
+                    BH.Buildings.Add(new("Dragon One", 3));
                 }
-                return AC.Buildings;
+                return BH.Buildings;
             }
             return null;
         }

@@ -3,7 +3,7 @@
     public class Building
     {
         public string? Name { get; }
-        public int Id { get; }
+        public int Id { get; set; }
         public int DisplayId { get; internal set; }
 
         public Building(string? buildingName, int id)

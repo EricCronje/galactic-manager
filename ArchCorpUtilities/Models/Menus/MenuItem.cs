@@ -19,6 +19,9 @@
         public string? HideRule { get; }
 
         public bool IsHidden { get; set; }
+        public bool IsPagination { get; set; }
+
+        public string? Source { get;}
 
         public MenuItem(
             string displayName,
@@ -32,11 +35,22 @@
             string targetTask = "None",
             bool isBack = false,
             bool isDefaultChoice = false,
-            string? hideRule = "None", 
-            bool isHidden = false
+            string? hideRule = "None",
+            bool isHidden = false,
+            bool isPagination = false,
+            string? source = "Internal",
+            string? idGuidMenu = null 
             )
         {
-            IDGUIDMenu = Guid.NewGuid().ToString();
+            if (string.IsNullOrWhiteSpace(idGuidMenu))
+            {
+                IDGUIDMenu = Guid.NewGuid().ToString();
+            }
+            else
+            {
+                IDGUIDMenu = idGuidMenu;
+            }
+            
             DisplayNumber = displayNumber;
             DisplayName = displayName;
             DisplayMenuItem = $"{DisplayNumber}) {DisplayName}";
@@ -51,6 +65,8 @@
             IsDefaultChoice = isDefaultChoice;
             HideRule = hideRule;
             IsHidden = isHidden;
+            IsPagination = isPagination;
+            Source = source;
         }
     }
 }

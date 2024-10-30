@@ -137,6 +137,9 @@
   <data name="BuildingListPrompt" xml:space="preserve">
     <value>Buildings list:</value>
   </data>
+  <data name="BuildingNameSearch" xml:space="preserve">
+    <value>Please enter a building name to search for:</value>
+  </data>
   <data name="BuildingRemoved" xml:space="preserve">
     <value>Building removed</value>
   </data>
@@ -161,8 +164,14 @@
   <data name="FailedToAddBuildingNameInvalid" xml:space="preserve">
     <value>The building name is invalid or empty.</value>
   </data>
+  <data name="FailedToEditBuilding" xml:space="preserve">
+    <value>Failed to edit the buidling</value>
+  </data>
   <data name="HorizontalLine" xml:space="preserve">
     <value>-------------------------</value>
+  </data>
+  <data name="InvalidBuildingNameEntered" xml:space="preserve">
+    <value>Building name was invalid - please re-enter.</value>
   </data>
   <data name="NoBuildingNameEntered" xml:space="preserve">
     <value>No building name entered</value>
@@ -187,6 +196,9 @@
   </data>
   <data name="SaveBuidlingSuccess" xml:space="preserve">
     <value>Saved to file</value>
+  </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Search Results:</value>
   </data>
   <data name="SelectABuildingToEditPrompt" xml:space="preserve">
     <value>Select a building to edit:</value>

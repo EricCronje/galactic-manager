@@ -1,23 +1,32 @@
 ﻿using ArchCorpUtilities.Utilities;
-using AM = ArchCorpUtilities.Models.Menus.MenuHelper;
+using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-
+using L = Logger.Logger;
 namespace ArchCorpUtilities.Models
 {
     public static class ArchLoader
     {
 
+        public static string SessionID { get; }
 
-        public static void RunArch(List<Command>? commands = null)
+        static ArchLoader()
         {
+            SessionID = Guid.NewGuid().ToString();
+            MH.SessionID = SessionID;
+            BH.SessionID = SessionID;
+        }
+
+        public static void RunArch(List<Command>? commands = null, int logLevel = 1)
+        {
+            L.CurrentLevel = logLevel;
+            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             int? SimChoice = null;
             string? SimInput = null;
 
             if (commands == null || commands.Count == 0)
             {
                 CH.IsSimulate = false;
-                CH.Feedback(Resource.SimulationNotSet);
             }
             if (commands != null)
             {
@@ -29,14 +38,15 @@ namespace ArchCorpUtilities.Models
 
             int? TargetPage = 1;
             var PrevPagenumber = TargetPage;
-            var PageHeading = AM.CurrentMenuPage?.FirstOrDefault(c => c.Page == TargetPage)?.PageHeading;
+            var PageHeading = MH.CurrentMenuPage?.FirstOrDefault(c => c.Page == TargetPage)?.PageHeading;
 
 
             int Choice = ShowMenu(TargetPage, PageHeading, SimChoice);
 
 
-            var ExitOption = AM.CurrentMenuPage?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
+            var ExitOption = MH.CurrentMenuPage?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
 
+            L.Log($"Before loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 0);
 
             int Counter = 0;
             while (Choice != ExitOption)
@@ -49,17 +59,23 @@ namespace ArchCorpUtilities.Models
                         Choice = SimChoice.Value;
                     CH.Feedback($"Simulate: {SimInput} -- {SimChoice}");
                     Counter++;
+                    L.Log($"Inside loop - Simulation - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
                 }
+
+                
 
                 if (!CH.IsSimulate) { Console.Clear(); }
                 if (CH.IsSimulate) { CH.Feedback(Resource.ClearConsoleMessage); }
 
-                var menuItem = AM.CurrentMenuPage?.FirstOrDefault(c => c.DisplayNumber == Choice && c.Page == TargetPage);
+                var menuItem = MH.CurrentMenuPage?.FirstOrDefault(c => c.DisplayNumber == Choice && c.Page == TargetPage && c.IsHidden == false);
 
                 if (menuItem != null && menuItem.TargetPage != 0) { TargetPage = menuItem.TargetPage; }
 
-                PageHeading = AM.CurrentMenuPage?.FirstOrDefault(c => c.Page == TargetPage.Value)?.PageHeading;
-                ExitOption = AM.CurrentMenuPage?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage.Value)?.DisplayNumber;
+                PageHeading = MH.CurrentMenuPage?.FirstOrDefault(c => c.Page == TargetPage.Value)?.PageHeading;
+
+                ExitOption = MH.CurrentMenuPage?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage.Value)?.DisplayNumber;
+
+                L.Log($"Inside loop - Before PerformDefaultTasks - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
 
                 BH.PerformDefaultTasks(TargetPage.Value, PrevPagenumber.Value, Choice, SimChoice, SimInput);
 
@@ -70,13 +86,14 @@ namespace ArchCorpUtilities.Models
                 if (Counter == commands?.Count)
                     ExitOption = Choice;
             }
+            L.Log($"After loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
         }
 
 
 
         static int ShowMenu(int? page, string? menuHeading, int? simChoice = null)
         {
-            CH.Feedback(AM.ShowMenu(menuHeading, page));
+            CH.Feedback(MH.ShowMenu(menuHeading, page));
 
             if (simChoice == null)
             {

@@ -1,0 +1,8 @@
+BuidlingID|BuidldingDisplayId|BuidlingName
+1|1|Alpha
+2|2|Beta
+7|3|BrenOne
+3|4|Dragon One
+6|5|LosAngelos
+4|6|RMac
+5|7|Trbo

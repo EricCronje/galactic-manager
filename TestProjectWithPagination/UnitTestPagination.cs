@@ -1,7 +1,5 @@
 using MBR = ArchCorpUtilities.Models.MockBuildingsRepository;
-
-using System.Text;
-using P = Pagina.Pagina;
+using P = Patina.Patina;
 namespace TestProjectWithPagination
 {
     public class UnitTestPagination

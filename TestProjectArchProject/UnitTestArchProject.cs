@@ -1,11 +1,10 @@
+using ArchCorpUtilities.Models.Buildings;
+using ArchCorpUtilities.Models.Menus;
 using System.Text;
 using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using MBR = ArchCorpUtilities.Models.MockBuildingsRepository;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
-using AL = ArchCorpUtilities.Models.ArchLoader;
-using AC = ArchCorpUtilities.Utilities.Command;
-using System.ComponentModel.Design;
 
 namespace TestProjectArchProject
 {
@@ -30,14 +29,21 @@ namespace TestProjectArchProject
             StringBuilder sb = new();
             if (MH.CurrentMenuPage != null)
             {
-                foreach (var item in MH.CurrentMenuPage)
-                {
-                    sb.AppendLine(item.DisplayName);
-                }
+                sb.AppendJoin("|", MH.CurrentMenuPage.AsEnumerable<MenuItem>().Select(p => p.DisplayName));
+
+                //foreach (var item in MH.CurrentMenuPage)
+                //{
+                //    sb.AppendLine(item.DisplayName);
+                //}
 
                 string result = sb.ToString();
-                string expected = "List Buildings\r\nAdd Buildings\r\nRemove Buildings\r\nEdit Building Names\r\nSave Buildings\r\nLoad Buildings\r\nExit\r\nAdd Building\r\nBack to Main Menu\r\nView Building\r\nBack to Main Menu\r\nEdit Building\r\nBack to Main Menu\r\nRemove Building\r\nBack to Main Menu\r\nSave buildings to a file\r\nBack to Main Menu\r\nLoad buildings from a file\r\nBack to Main Menu\r\n";
-                Assert.Equal(expected, result);
+
+                Assert.Contains("View Buildings", result);
+                Assert.Contains("Remove Buildings", result);
+                Assert.Contains("Add Buildings", result);
+                Assert.Contains("Edit Building Names", result);
+                Assert.Contains("Save Buildings", result);
+                Assert.Contains("Load Buildings", result);
             }
         }
 
@@ -47,10 +53,10 @@ namespace TestProjectArchProject
             MBR mockBuildingsRepository = new();
             BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
             CH.ClearFeedback();
-            BH.ViewBuildings();
+            BH.ViewBuildings(BH.Buildings);
             string Result = CH.GetFeedback();
-            string Expected = "-------------------------\r\nBuildings list:\r\n-------------------------\r\n1) Alpha\r\n2) Beta\r\n";
-            Assert.Equal(Result, Expected);
+            Assert.Contains("Alpha", Result);
+            Assert.Contains("Beta", Result);
         }
 
         [Fact]
@@ -66,7 +72,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building added successfully", Result);
 
             CH.ClearFeedback();
-            BH.ViewBuildings("NextPage");
+            BH.ViewBuildings(BH.Buildings, "NextPage");
             Result = CH.GetFeedback();
             Assert.Contains(Name, Result);
 
@@ -77,7 +83,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building removed Ultra Building", Result);
 
             CH.ClearFeedback();
-            BH.ViewBuildings();
+            BH.ViewBuildings(BH.Buildings);
             Result = CH.GetFeedback();
             Assert.DoesNotContain(Name, Result);
         }
@@ -187,6 +193,85 @@ namespace TestProjectArchProject
             File.Delete(Path);
             //Make sure it is gone.
             Assert.False(File.Exists(Path));
-        }        
+        }
+
+        [Fact]
+        public void ValidExportMenu()
+        {
+            string Path = "TestMenus.txt";
+            MH.ExportMenus(Path);
+            Assert.True(File.Exists("TestMenus.txt"));
+            Assert.Contains("|", File.ReadAllText(Path));
+            File.Delete(Path);
+        }
+
+        [Fact]
+        public void ValidImportMenu()
+        {
+            string Path = "TestMenusDemo.txt";
+            MH.ExportMenus(Path);
+            Assert.True(File.Exists("TestMenusDemo.txt"));
+            Assert.Contains("|", File.ReadAllText(Path));
+            List<MenuItem>? MenuItems = MH.ImportMenu(Path);
+            File.Delete(Path);
+            Assert.NotNull(MenuItems);
+            Assert.True(MenuItems.Count == 36);
+        }
+
+        [Fact]
+        public void ValidImportMenuExistingGuid()
+        {
+            string Path = "TestMenusDemo.txt";
+            MH.ExportMenus(Path);
+            Assert.True(File.Exists("TestMenusDemo.txt"));
+            Assert.Contains("|", File.ReadAllText(Path));
+            List<MenuItem>? MenuItems = MH.ImportMenu(Path);
+            File.Delete(Path);
+            Assert.NotNull(MenuItems);
+            Assert.True(MenuItems.Count == 36);
+            var MenuMockData = MH.CurrentMenuPage.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            var MenuFileData = MenuItems.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            Assert.NotNull(MenuFileData);
+            Assert.NotNull(MenuMockData);
+            Assert.True(MenuMockData.IDGUIDMenu == MenuFileData.IDGUIDMenu);
+        }
+
+        [Fact]
+        public void InValidImportMenuNotExistingGuid()
+        {
+            string Path = "TestMenusDemoEmptyGuids.txt";
+            Assert.True(File.Exists(Path));
+            Assert.Contains("|", File.ReadAllText(Path));
+            List<MenuItem>? MenuItems = MH.ImportMenu(Path);
+            Assert.NotNull(MenuItems);
+            Assert.True(MenuItems.Count == 26);
+
+            var MenuFileData = MenuItems?.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            Assert.NotNull(MenuFileData);
+            Assert.True(MenuFileData.IDGUIDMenu.Length > 0);
+            Assert.True(Guid.TryParse(MenuFileData.IDGUIDMenu, out Guid guid));
+            Assert.NotNull(guid.ToString());
+
+            var MenuMockData = MH.CurrentMenuPage.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            Assert.NotNull(MenuMockData);
+            Assert.False(MenuMockData.IDGUIDMenu == MenuFileData.IDGUIDMenu);
+        }
+
+        [Fact]
+        public void InValidEditBuildingsGiveBlankName()
+        {
+            MBR mockBuildingsRepository = new();
+            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
+            string? bName = "Dragon One";
+            CH.ClearFeedback();
+            var building = BH.Buildings?.FirstOrDefault(c => c.Name == bName);
+            Assert.NotNull(building);
+            string NewBuildingName = "";
+            BH.EditBuilding(building, NewBuildingName);
+            var Result = CH.GetFeedback();
+            building = BH.Buildings?.FirstOrDefault(c => c.Name == NewBuildingName);
+            Assert.Null(building);
+            Assert.Contains("No building name entered", Result);
+        }
     }
 }

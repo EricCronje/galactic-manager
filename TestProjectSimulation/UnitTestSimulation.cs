@@ -1,13 +1,6 @@
-using System.Text;
-using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
-using MBR = ArchCorpUtilities.Models.MockBuildingsRepository;
-using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-
-using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
-using AL = ArchCorpUtilities.Models.ArchLoader;
 using AC = ArchCorpUtilities.Utilities.Command;
-using ArchCorpUtilities.Models.Buildings;
-using System.Collections.Generic;
+using AL = ArchCorpUtilities.Models.ArchLoader;
+using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 
 
 namespace TestProjectSimulation
@@ -48,7 +41,11 @@ namespace TestProjectSimulation
             Assert.Contains("TestOne", Result);
         }
 
-
+        [Fact]
+        public void ValidCheckSessionIDOnArchRun()
+        {
+            Assert.True(AL.SessionID.Length > 0);
+        }
 
     }
 }

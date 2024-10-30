@@ -115,6 +115,15 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a building name to search for:.
+        /// </summary>
+        internal static string BuildingNameSearch {
+            get {
+                return ResourceManager.GetString("BuildingNameSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Building removed.
         /// </summary>
         internal static string BuildingRemoved {
@@ -187,11 +196,29 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to edit the buidling.
+        /// </summary>
+        internal static string FailedToEditBuilding {
+            get {
+                return ResourceManager.GetString("FailedToEditBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -------------------------.
         /// </summary>
         internal static string HorizontalLine {
             get {
                 return ResourceManager.GetString("HorizontalLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building name was invalid - please re-enter..
+        /// </summary>
+        internal static string InvalidBuildingNameEntered {
+            get {
+                return ResourceManager.GetString("InvalidBuildingNameEntered", resourceCulture);
             }
         }
         
@@ -264,6 +291,15 @@ namespace ArchCorpUtilities {
         internal static string SaveBuidlingSuccess {
             get {
                 return ResourceManager.GetString("SaveBuidlingSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Results:.
+        /// </summary>
+        internal static string SearchResults {
+            get {
+                return ResourceManager.GetString("SearchResults", resourceCulture);
             }
         }
         
