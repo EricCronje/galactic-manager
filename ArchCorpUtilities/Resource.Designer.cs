@@ -79,6 +79,15 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing building name different GUID.
+        /// </summary>
+        internal static string BuildingAlreadyExistInSystemNoActionPerformed {
+            get {
+                return ResourceManager.GetString("BuildingAlreadyExistInSystemNoActionPerformed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading buildings from.
         /// </summary>
         internal static string BuildingFileImportCompletionSuccessMessage {
@@ -88,7 +97,7 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existing building:.
+        ///   Looks up a localized string similar to Existing building.
         /// </summary>
         internal static string BuildingFileImportProgressFailedMessage {
             get {
@@ -102,6 +111,15 @@ namespace ArchCorpUtilities {
         internal static string BuildingFileImportProgressSuccessMessage {
             get {
                 return ResourceManager.GetString("BuildingFileImportProgressSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find the import file specified..
+        /// </summary>
+        internal static string BuildingImportFileNotFound {
+            get {
+                return ResourceManager.GetString("BuildingImportFileNotFound", resourceCulture);
             }
         }
         
@@ -336,6 +354,15 @@ namespace ArchCorpUtilities {
         internal static string TargetPageNotSet {
             get {
                 return ResourceManager.GetString("TargetPageNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import failed.
+        /// </summary>
+        internal static string UnexpectedImportFail {
+            get {
+                return ResourceManager.GetString("UnexpectedImportFail", resourceCulture);
             }
         }
     }

@@ -242,10 +242,10 @@ namespace ArchCorpUtilities.Models.Buildings
                 StringBuilder sb = new();
                 try
                 {
-                    sb.AppendLine($"BuidlingID|BuidldingDisplayId|BuidlingName");
+                    sb.AppendLine($"BuidlingID|BuidldingDisplayId|BuidlingName|BuildingGuid");
                     foreach (var item in Buildings.OrderBy(c => c.Name))
                     {
-                        sb.AppendLine($"{item.Id}|{item.DisplayId}|{item.Name}");
+                        sb.AppendLine($"{item.Id}|{item.DisplayId}|{item.Name}|{item.BuildingGuid}");
                     }
 
                     if (File.Exists(path))
@@ -275,41 +275,57 @@ namespace ArchCorpUtilities.Models.Buildings
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             try
             {
-
-                CH.Feedback($"{Resource.BuildingFileImportCompletionSuccessMessage} {path}");
-
-                string FileInput = File.ReadAllText(path);
-                bool SkipFirstLine = true;
-                foreach (string line in FileInput.Split("\r\n"))
+                if (File.Exists (path))
                 {
-                    if (!SkipFirstLine)
+                    CH.Feedback($"{Resource.BuildingFileImportCompletionSuccessMessage} {path}");
+
+                    string FileInput = File.ReadAllText(path);
+                    bool SkipFirstLine = true;
+                    foreach (string line in FileInput.Split("\r\n"))
                     {
-                        string[] LineItem = line.Split("|");
-                        if (LineItem.Length > 0 && LineItem.Length > 2)
+                        if (!SkipFirstLine)
                         {
-                            _ = int.TryParse(LineItem[0].Trim(), out int id);
-                            _ = int.TryParse(LineItem[1].Trim(), out int displayId);
-                            string BuildingName = LineItem[2].Trim();
-                            var building = Buildings?.FirstOrDefault(c => c.Id == id);
-                            if (building == null)
+                            string[] LineItem = line.Split("|");
+                            if (LineItem.Length > 0 && LineItem.Length > 2)
                             {
-                                Buildings?.Add(new Building(BuildingName, id));
-                                CH.Feedback($"{Resource.BuildingFileImportProgressSuccessMessage} - {BuildingName} - {id} - {displayId}");
+                                _ = int.TryParse(LineItem[0].Trim(), out int Id);
+                                _ = int.TryParse(LineItem[1].Trim(), out int DisplayId);
+                                string BuildingName = LineItem[2].Trim();
+                                string BuildingGuid = LineItem[3].Trim();
+                                var Building = Buildings?.FirstOrDefault(c => c.BuildingGuid == BuildingGuid);
+                                if (Building == null)
+                                {
+                                    var BuidlingNameItem = Buildings?.FirstOrDefault(c => c.Name == BuildingName);
+                                    if (BuidlingNameItem != null)
+                                    {
+                                        CH.Feedback($"{Resource.BuildingAlreadyExistInSystemNoActionPerformed} - No action performed - Old building item: {BuidlingNameItem.Name} - {BuidlingNameItem.BuildingGuid} - New Item: {BuildingName} - {BuildingGuid}");
+                                    }
+                                    else
+                                    {
+                                        Buildings?.Add(new Building(BuildingName, Id, BuildingGuid));
+                                        CH.Feedback($"{Resource.BuildingFileImportProgressSuccessMessage} - New Item : {BuildingName} - {BuildingGuid}");
+                                    }
+                                }
+                                else
+                                    CH.Feedback($"{Resource.BuildingFileImportProgressFailedMessage} - No action performed - Old building item: {Building.Name} - {Building.BuildingGuid} - New Item: {BuildingName} - {BuildingGuid}");
                             }
-                            else
-                                CH.Feedback($"{Resource.BuildingFileImportProgressFailedMessage} {building.Name} - {building.Id} - {building.DisplayId} -->{BuildingName} - {id} - {displayId}");
                         }
+                        SkipFirstLine = false;
                     }
-                    SkipFirstLine = false;
+
+                    ResetBuildingOnPage();
+                    ReIndexDisplayId(true, Buildings);
                 }
-
-                ResetBuildingOnPage();
-                ReIndexDisplayId(true, Buildings);
+                else
+                {
+                    L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - Error - Import file not found", SessionID, 8);
+                    CH.Feedback($"{Resource.BuildingImportFileNotFound} {path}");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - Error message - {ex.Message}", SessionID, 9);
+                CH.Feedback($"{Resource.UnexpectedImportFail} {path}");
             }
 
         }

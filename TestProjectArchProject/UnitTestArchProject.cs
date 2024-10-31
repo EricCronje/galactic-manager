@@ -135,7 +135,7 @@ namespace TestProjectArchProject
             Assert.Contains("Beta", content);
 
             //Make sure that there are no duplicates - if the length is bigger than this...
-            Assert.True(content.Length == 81);
+            Assert.True(content.Length == 205);
 
             //Make sure there are five lines. (Last line is empty...
             int Lines = content.Split('\n').Length;

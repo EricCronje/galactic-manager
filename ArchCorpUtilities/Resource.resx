@@ -123,16 +123,22 @@
   <data name="BuildingAdded" xml:space="preserve">
     <value>Building added successfully</value>
   </data>
+  <data name="BuildingAlreadyExistInSystemNoActionPerformed" xml:space="preserve">
+    <value>Existing building name different GUID</value>
+  </data>
   <data name="BuildingFileImportCompletionSuccessMessage" xml:space="preserve">
     <value>Loading buildings from</value>
     <comment>On completion of loading the building file.</comment>
   </data>
   <data name="BuildingFileImportProgressFailedMessage" xml:space="preserve">
-    <value>Existing building:</value>
+    <value>Existing building</value>
   </data>
   <data name="BuildingFileImportProgressSuccessMessage" xml:space="preserve">
     <value>Added the building - </value>
     <comment>Shown when successful - giving progress to the client</comment>
+  </data>
+  <data name="BuildingImportFileNotFound" xml:space="preserve">
+    <value>Could not find the import file specified.</value>
   </data>
   <data name="BuildingListPrompt" xml:space="preserve">
     <value>Buildings list:</value>
@@ -211,5 +217,8 @@
   </data>
   <data name="TargetPageNotSet" xml:space="preserve">
     <value>Target page not set - contact admins</value>
+  </data>
+  <data name="UnexpectedImportFail" xml:space="preserve">
+    <value>Import failed</value>
   </data>
 </root>

@@ -96,3 +96,54 @@
 2024/10/31 06:16:27|0d2ddf54-2285-487c-aef7-d5c0726276a5|Inside loop - Before PerformDefaultTasks - Choice: 6 TargetPage: 7|2
 2024/10/31 06:16:27|0d2ddf54-2285-487c-aef7-d5c0726276a5|LoadBuilding|1
 2024/10/31 06:16:45|0d2ddf54-2285-487c-aef7-d5c0726276a5|After loop - Choice: 3 TargetPage: 7|2
+2024/10/31 06:26:57||MockGetMenuItems|0
+2024/10/31 06:26:57|None|.cctor|0
+2024/10/31 06:27:00|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 1|2
+2024/10/31 06:27:02|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 5|2
+2024/10/31 06:27:02|254d7046-6090-4562-982a-38607d89e04e|ViewBuilding|1
+2024/10/31 06:27:05|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 5 TargetPage: 1|2
+2024/10/31 06:27:46|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 7 TargetPage: 9|2
+2024/10/31 06:29:28|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 1|2
+2024/10/31 06:29:31|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 7 TargetPage: 9|2
+2024/10/31 06:29:42|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 1|2
+2024/10/31 06:29:46|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 1|2
+2024/10/31 06:29:47|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 7 TargetPage: 9|2
+2024/10/31 06:29:49|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:29:49|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:29:50|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:29:50|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:29:52|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 1|2
+2024/10/31 06:29:53|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 1|2
+2024/10/31 06:29:53|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 1|2
+2024/10/31 06:29:54|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 1|2
+2024/10/31 06:29:55|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 5|2
+2024/10/31 06:29:55|254d7046-6090-4562-982a-38607d89e04e|ViewBuilding|1
+2024/10/31 06:29:55|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 5|2
+2024/10/31 06:29:56|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 5|2
+2024/10/31 06:29:59|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 5|2
+2024/10/31 06:29:59|254d7046-6090-4562-982a-38607d89e04e|ViewBuilding|1
+2024/10/31 06:30:00|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 5|2
+2024/10/31 06:30:02|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 5|2
+2024/10/31 06:30:03|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 5|2
+2024/10/31 06:30:03|254d7046-6090-4562-982a-38607d89e04e|ViewBuilding|1
+2024/10/31 06:30:06|254d7046-6090-4562-982a-38607d89e04e|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 5|2
+2024/10/31 06:30:06|254d7046-6090-4562-982a-38607d89e04e|ViewBuilding|1
+2024/10/31 06:30:13|254d7046-6090-4562-982a-38607d89e04e|After loop - Choice: 6 TargetPage: 5|2
+2024/10/31 06:38:55||MockGetMenuItems|0
+2024/10/31 06:38:55|None|.cctor|0
+2024/10/31 06:40:39|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:39|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:41|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:41|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:42|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:45|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:47|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:49|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:50|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 0 TargetPage: 9|2
+2024/10/31 06:40:52|f72a1fc1-bca8-4789-9814-425425a4b974|Inside loop - Before PerformDefaultTasks - Choice: 213 TargetPage: 9|2
+2024/10/31 06:40:55|f72a1fc1-bca8-4789-9814-425425a4b974|After loop - Choice: 2 TargetPage: 9|2
+2024/10/31 06:42:39||MockGetMenuItems|0
+2024/10/31 06:42:39|None|.cctor|0
+2024/10/31 06:43:25|6e5e97fd-992b-454a-8055-249ac9f811d5|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 1|2
+2024/10/31 06:43:36|6e5e97fd-992b-454a-8055-249ac9f811d5|Inside loop - Before PerformDefaultTasks - Choice: 7 TargetPage: 9|2
+2024/10/31 06:45:47|6e5e97fd-992b-454a-8055-249ac9f811d5|After loop - Choice: 2 TargetPage: 9|2
