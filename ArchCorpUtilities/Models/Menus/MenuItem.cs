@@ -21,7 +21,9 @@
         public bool IsHidden { get; set; }
         public bool IsPagination { get; set; }
 
-        public string? Source { get;}
+        public string? Source { get; }
+
+        public bool IsStartPage { get; }
 
         public MenuItem(
             string displayName,
@@ -39,7 +41,8 @@
             bool isHidden = false,
             bool isPagination = false,
             string? source = "Internal",
-            string? idGuidMenu = null 
+            string? idGuidMenu = null,
+            bool isStartPage = false
             )
         {
             if (string.IsNullOrWhiteSpace(idGuidMenu))
@@ -67,6 +70,8 @@
             IsHidden = isHidden;
             IsPagination = isPagination;
             Source = source;
+            IsStartPage = isStartPage;
+
         }
     }
 }

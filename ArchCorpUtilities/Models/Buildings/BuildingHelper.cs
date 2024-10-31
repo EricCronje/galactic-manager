@@ -303,8 +303,8 @@ namespace ArchCorpUtilities.Models.Buildings
                     SkipFirstLine = false;
                 }
 
-                ReIndexDisplayId(true, Buildings); ;
-
+                ResetBuildingOnPage();
+                ReIndexDisplayId(true, Buildings);
             }
             catch (Exception)
             {
@@ -320,7 +320,7 @@ namespace ArchCorpUtilities.Models.Buildings
             // if simulation use the simChoice
             if (simChoice != null) { choice = simChoice.Value; }
 
-            int? defaultChoice = AM.CurrentMenuPage?.FirstOrDefault(c => c.IsDefaultChoice && c.Page == page)?.DisplayNumber;
+            int? defaultChoice = AM.Menus?.FirstOrDefault(c => c.IsDefaultChoice && c.Page == page)?.DisplayNumber;
             bool isSamePage = page.Equals(prevPage);
 
             if (isSamePage) { defaultChoice = choice; }
@@ -338,7 +338,7 @@ namespace ArchCorpUtilities.Models.Buildings
         public static void DefaultTasks(int page, int? simChoice, string? simInput, int? defaultChoice)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            var MenuItem = AM.CurrentMenuPage?.FirstOrDefault(c => c.Page == page && c.DisplayNumber == defaultChoice && c.IsHidden == false);
+            var MenuItem = AM.Menus?.FirstOrDefault(c => c.Page == page && c.DisplayNumber == defaultChoice && c.IsHidden == false);
 
             
 
@@ -484,10 +484,10 @@ namespace ArchCorpUtilities.Models.Buildings
         public static void ApplyHiddenRules()
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (AM.CurrentMenuPage != null)
+            if (AM.Menus != null)
             {
                 bool ResetPage = false;
-                foreach (var item in AM.CurrentMenuPage.Where(p => p.HideRule != "None"))
+                foreach (var item in AM.Menus.Where(p => p.HideRule != "None"))
                 {
                     switch (item.HideRule)
                     {
@@ -527,9 +527,9 @@ namespace ArchCorpUtilities.Models.Buildings
         public static void ResetIsHidden()
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (AM.CurrentMenuPage != null)
+            if (AM.Menus != null)
             {
-                foreach (var item in AM.CurrentMenuPage.Where(p => p.IsHidden == true))
+                foreach (var item in AM.Menus.Where(p => p.IsHidden == true))
                 {
                     item.IsHidden = false;
                 }

@@ -209,4 +209,7 @@
   <data name="SimulationNotSet" xml:space="preserve">
     <value>Simulation is not set</value>
   </data>
+  <data name="TargetPageNotSet" xml:space="preserve">
+    <value>Target page not set - contact admins</value>
+  </data>
 </root>

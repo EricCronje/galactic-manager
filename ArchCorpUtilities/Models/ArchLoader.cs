@@ -35,58 +35,75 @@ namespace ArchCorpUtilities.Models
                 SimChoice = 1; // just to get in the loop
                 SimInput = "";
             }
-
-            int? TargetPage = 1;
-            var PrevPagenumber = TargetPage;
-            var PageHeading = MH.CurrentMenuPage?.FirstOrDefault(c => c.Page == TargetPage)?.PageHeading;
-
-
-            int Choice = ShowMenu(TargetPage, PageHeading, SimChoice);
-
-
-            var ExitOption = MH.CurrentMenuPage?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
-
-            L.Log($"Before loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 0);
-
-            int Counter = 0;
-            while (Choice != ExitOption)
+            //Retrieve starting page
+            int? TargetPage = MH.Menus?.FirstOrDefault(c => c.IsStartPage == true)?.Page;
+            
+            if (TargetPage != null)
             {
-                if (CH.IsSimulate && commands != null && Counter < commands?.Count)
+                var PrevPagenumber = TargetPage;
+                var PageHeading = MH.Menus?.FirstOrDefault(c => c.Page == TargetPage)?.PageHeading;
+
+
+                int Choice = ShowMenu(TargetPage, PageHeading, SimChoice);
+
+
+                var ExitOption = MH.Menus?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
+
+                L.Log($"Before loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 0);
+
+                int Counter = 0;
+                while (Choice != ExitOption)
                 {
-                    SimInput = commands[Counter].Value;
-                    SimChoice = commands[Counter].Choice;
-                    if (SimChoice != null)
-                        Choice = SimChoice.Value;
-                    CH.Feedback($"Simulate: {SimInput} -- {SimChoice}");
-                    Counter++;
-                    L.Log($"Inside loop - Simulation - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
+
+                    if (CH.IsSimulate && commands != null && Counter < commands?.Count)
+                    {
+                        SimInput = commands[Counter].Value;
+                        SimChoice = commands[Counter].Choice;
+                        if (SimChoice != null)
+                            Choice = SimChoice.Value;
+                        CH.Feedback($"Simulate: {SimInput} -- {SimChoice}");
+                        Counter++;
+                        L.Log($"Inside loop - Simulation - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
+                    }
+
+
+
+                    if (!CH.IsSimulate) { Console.Clear(); }
+                    if (CH.IsSimulate) { CH.Feedback(Resource.ClearConsoleMessage); }
+
+                    var menuItem = MH.Menus?.FirstOrDefault(c => c.DisplayNumber == Choice && c.Page == TargetPage && c.IsHidden == false);
+
+                    if (menuItem != null && menuItem.TargetPage != 0) { TargetPage = menuItem.TargetPage; }
+
+                    PageHeading = MH.Menus?.FirstOrDefault(c => c.Page == TargetPage.Value)?.PageHeading;
+
+                    ExitOption = MH.Menus?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage.Value)?.DisplayNumber;
+
+                    L.Log($"Inside loop - Before PerformDefaultTasks - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
+
+
+                    BH.PerformDefaultTasks(TargetPage.Value, PrevPagenumber.Value, Choice, SimChoice, SimInput);
+
+                    Choice = ShowMenu(TargetPage.Value, PageHeading, SimChoice);
+
+                    PrevPagenumber = TargetPage.Value;
+
+                    if (Counter == commands?.Count)
+                    {
+                        ExitOption = Choice;
+                    }
+                    else
+                    {
+                        ExitOption = MH.Menus?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
+                    }
                 }
-
-                
-
-                if (!CH.IsSimulate) { Console.Clear(); }
-                if (CH.IsSimulate) { CH.Feedback(Resource.ClearConsoleMessage); }
-
-                var menuItem = MH.CurrentMenuPage?.FirstOrDefault(c => c.DisplayNumber == Choice && c.Page == TargetPage && c.IsHidden == false);
-
-                if (menuItem != null && menuItem.TargetPage != 0) { TargetPage = menuItem.TargetPage; }
-
-                PageHeading = MH.CurrentMenuPage?.FirstOrDefault(c => c.Page == TargetPage.Value)?.PageHeading;
-
-                ExitOption = MH.CurrentMenuPage?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage.Value)?.DisplayNumber;
-
-                L.Log($"Inside loop - Before PerformDefaultTasks - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
-
-                BH.PerformDefaultTasks(TargetPage.Value, PrevPagenumber.Value, Choice, SimChoice, SimInput);
-
-                Choice = ShowMenu(TargetPage.Value, PageHeading, SimChoice);
-
-                PrevPagenumber = TargetPage.Value;
-
-                if (Counter == commands?.Count)
-                    ExitOption = Choice;
+                L.Log($"After loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
             }
-            L.Log($"After loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
+            else
+            {
+                CH.Feedback(Resource.TargetPageNotSet);
+                L.Log($"TargetPage is not marked - fix the menu structure", SessionID, 9);
+            }
         }
 
 

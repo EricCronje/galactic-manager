@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectSimulation", "Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectWithPagination", "TestProjectWithPagination\TestProjectWithPagination.csproj", "{35748C7D-26D8-4B6E-BA9A-97C341F6C69A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{81C5D2C7-70DA-41A8-9296-B1A802943F34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csproj", "{81C5D2C7-70DA-41A8-9296-B1A802943F34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectLogging", "TestProjectLogging\TestProjectLogging.csproj", "{1707E6EA-920C-4F04-A416-2FF177C55E3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectLogging", "TestProjectLogging\TestProjectLogging.csproj", "{1707E6EA-920C-4F04-A416-2FF177C55E3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMenus", "TestProjectMenus\TestProjectMenus.csproj", "{89574BF1-82FF-4BDF-8781-D72C798C392D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{1707E6EA-920C-4F04-A416-2FF177C55E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1707E6EA-920C-4F04-A416-2FF177C55E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1707E6EA-920C-4F04-A416-2FF177C55E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89574BF1-82FF-4BDF-8781-D72C798C392D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89574BF1-82FF-4BDF-8781-D72C798C392D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89574BF1-82FF-4BDF-8781-D72C798C392D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89574BF1-82FF-4BDF-8781-D72C798C392D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

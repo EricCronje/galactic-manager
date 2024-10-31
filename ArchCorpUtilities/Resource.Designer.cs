@@ -329,5 +329,14 @@ namespace ArchCorpUtilities {
                 return ResourceManager.GetString("SimulationNotSet", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target page not set - contact admins.
+        /// </summary>
+        internal static string TargetPageNotSet {
+            get {
+                return ResourceManager.GetString("TargetPageNotSet", resourceCulture);
+            }
+        }
     }
 }

@@ -25,11 +25,11 @@ namespace TestProjectArchProject
         [Fact]
         public void ValidCheckMenuItems()
         {
-            Assert.False(MH.CurrentMenuPage == null);
+            Assert.False(MH.Menus == null);
             StringBuilder sb = new();
-            if (MH.CurrentMenuPage != null)
+            if (MH.Menus != null)
             {
-                sb.AppendJoin("|", MH.CurrentMenuPage.AsEnumerable<MenuItem>().Select(p => p.DisplayName));
+                sb.AppendJoin("|", MH.Menus.AsEnumerable<MenuItem>().Select(p => p.DisplayName));
 
                 //foreach (var item in MH.CurrentMenuPage)
                 //{
@@ -215,7 +215,7 @@ namespace TestProjectArchProject
             List<MenuItem>? MenuItems = MH.ImportMenu(Path);
             File.Delete(Path);
             Assert.NotNull(MenuItems);
-            Assert.True(MenuItems.Count == 36);
+            Assert.True(MenuItems.Count == 46);
         }
 
         [Fact]
@@ -228,8 +228,8 @@ namespace TestProjectArchProject
             List<MenuItem>? MenuItems = MH.ImportMenu(Path);
             File.Delete(Path);
             Assert.NotNull(MenuItems);
-            Assert.True(MenuItems.Count == 36);
-            var MenuMockData = MH.CurrentMenuPage.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            Assert.True(MenuItems.Count == 46);
+            var MenuMockData = MH.Menus.FirstOrDefault(p => p.DisplayName == "View Buildings");
             var MenuFileData = MenuItems.FirstOrDefault(p => p.DisplayName == "View Buildings");
             Assert.NotNull(MenuFileData);
             Assert.NotNull(MenuMockData);
@@ -252,7 +252,7 @@ namespace TestProjectArchProject
             Assert.True(Guid.TryParse(MenuFileData.IDGUIDMenu, out Guid guid));
             Assert.NotNull(guid.ToString());
 
-            var MenuMockData = MH.CurrentMenuPage.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            var MenuMockData = MH.Menus.FirstOrDefault(p => p.DisplayName == "View Buildings");
             Assert.NotNull(MenuMockData);
             Assert.False(MenuMockData.IDGUIDMenu == MenuFileData.IDGUIDMenu);
         }

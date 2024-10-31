@@ -14,7 +14,11 @@ namespace TestProjectSimulation
             // Choice 2 with value TestOne - Add - TestOne
             // Choice 2 - Back to Main Menu
             List<AC> commands =
-                [new AC(2, "TestOne"),
+                [
+                new AC(1, ""),
+                new AC(2, "TestOne"),
+                new AC(2, ""),
+                new AC(7, ""),
                 new AC(2, "")
                 ];
             CH.ClearFeedback();
