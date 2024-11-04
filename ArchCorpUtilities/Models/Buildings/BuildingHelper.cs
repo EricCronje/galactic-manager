@@ -1,9 +1,13 @@
 ﻿using System.Text;
-using AM = ArchCorpUtilities.Models.Menus.MenuHelper;
+using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using AR = ArchCorpUtilities.Models.MockBuildingsRepository;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using Page = Patina.Patina;
 using L = Logger.Logger;
+using MMH = ArchCorpUtilities.Models.Menus.MenuMaintenanceHelper;
+
+using ArchCorpUtilities.Models.Menus;
+using System;
 
 
 namespace ArchCorpUtilities.Models.Buildings
@@ -17,7 +21,7 @@ namespace ArchCorpUtilities.Models.Buildings
 
         static readonly UInt32 _PageSize;
         static UInt32 _MaxItems = Convert.ToUInt32(Buildings?.Count);
-        static Page _Page;
+        public static Page Page { get; internal set; }
 
         //public static int? GetMaxBuildingId()
         //{
@@ -42,12 +46,12 @@ namespace ArchCorpUtilities.Models.Buildings
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             Buildings = [];
             Buildings = aR.AllBuildings()?.ToList();
-            _PageSize = 2;
+            _PageSize = 5;
             _MaxItems = Convert.ToUInt32(Buildings?.Count);
-            _Page = new(_PageSize, _MaxItems);
+            Page = new(_PageSize, _MaxItems);
         }
 
-        public static void ReIndexDisplayId(bool renewPage = true, List<Building>? buildings = null)
+        public static void ReIndexDisplayId(List<Building>? buildings = null)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             int counter = 1;
@@ -58,64 +62,66 @@ namespace ArchCorpUtilities.Models.Buildings
                     item.DisplayId = counter++;
                     item.Id = item.DisplayId;
                 }
-
-                if (renewPage)
-                {
-                    _MaxItems = Convert.ToUInt32(buildings?.Count);
-                    _Page = new(_PageSize, _MaxItems);
-                }
             }
         }
 
-        public static List<Building>? ViewBuildings(List<Building>? buildings ,string navigation = "FirstPage", int GoToPageNumber = -1)
+        public static List<T>? ViewWithPagination<T>(string heading, Patina.Patina page, List<T>? modelList ,Navigation navigation = Navigation.FirstPage, int GoToPageNumber = -1)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            List<Building>? paginatedBuildings = GetPagination(buildings, navigation, GoToPageNumber);
+            List<T>? paginated = GetPaginatedList(modelList, navigation, page, GoToPageNumber);
 
-            ShowBuildings(paginatedBuildings);
+            if (paginated != null)
+                ViewGen(paginated, page, heading);
 
-            return paginatedBuildings;
+            return paginated;
         }
 
-        private static void ShowBuildings(List<Building>? paginatedBuildings)
+        public static void ViewGen<T>(IEnumerable<T> modelList, Patina.Patina page, string heading)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (paginatedBuildings != null && paginatedBuildings.Count > 0)
+            if (modelList != null && modelList.Any())
             {
-                CH.Feedback(AM.ShowHeading(Resource.BuildingListPrompt));
-                foreach (var building in paginatedBuildings.OrderBy(c => c.Name))
+                CH.Feedback(MH.ShowHeading(heading));
+                foreach (var item in modelList)
                 {
-                    CH.Feedback($"{building.DisplayId}) {building.Name}");
+                    CH.Feedback(item?.ToString());
                 }
                 CH.Feedback(Resource.HorizontalLine);
-                CH.Feedback($"Pages : {_Page.GetPageNumberCaption()}");
+                CH.Feedback($"Pages : {page.GetPageNumberCaption()}");
             }
             else
-                CH.Feedback($"{Resource.NoBuildingsToList}\n");
+                CH.Feedback($"{Resource.NoData}\n");
         }
 
-        private static List<Building>? GetPagination(List<Building>? buildings, string navigation, int GoToPageNumber)
+        public enum Navigation
+        {
+            FirstPage,
+            LastPage,
+            NextPage,
+            PreviousPage,
+        }
+
+        public static List<T>? GetPaginatedList <T>(List<T>? items, Navigation navigation, Patina.Patina page , int GoToPageNumber = 0)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            List<Building>? paginatedBuildings = null;
-            var OrderdBuildings = buildings?.OrderBy(p => p.Name).ToList();
-            if (OrderdBuildings?.Count > 0)
+            List<T>? paginatedList = null;
+            if (items?.Count > 0)
             {
                 if (GoToPageNumber < 0)
                 {
                     switch (navigation)
                     {
-                        case "FirstPage":
-                            _Page.GoToFirstPage();
+                        case Navigation.FirstPage:
+                            page.GoToFirstPage();
                             break;
-                        case "LastPage":
-                            _Page.GoToLastPage();
+                        case Navigation.LastPage:
+                            page.GoToLastPage();
                             break;
-                        case "NextPage":
-                            _Page.GetNextPage();
+                        case Navigation.NextPage:
+                            page.GetNextPage();
                             break;
-                        case "PreviousPage":
-                            _Page.GetPreviousPage();
+                        case Navigation.PreviousPage:
+                            page.GetPreviousPage();
                             break;
                         default:
                             break;
@@ -123,81 +129,57 @@ namespace ArchCorpUtilities.Models.Buildings
                 }
                 else
                 {
-                    _Page.GoToPage(Convert.ToUInt32(GoToPageNumber));
+                    page.GoToPage(Convert.ToUInt32(GoToPageNumber));
                 }
-                paginatedBuildings = OrderdBuildings?.GetRange(Convert.ToInt32(_Page.GetFirstItemNumberOnPage0Based()), Convert.ToInt32(_Page.GetItemCountOnPage()));
+                paginatedList = items?.GetRange(Convert.ToInt32(page.GetFirstItemNumberOnPage0Based()), Convert.ToInt32(page.GetItemCountOnPage()));
 
             }
             else
-                CH.Feedback($"{Resource.NoBuildingsToList}\n");
-            return paginatedBuildings;
+                CH.Feedback($"{Resource.NoItemsToList}\n");
+            return paginatedList;
         }
 
-        public static void AddBuilding(string? bName)
+        public static bool AddBuilding(string? bName)
         {
-            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (bName != null)
+            if (bName != null && !bName.Equals("x") && !string.IsNullOrWhiteSpace(bName) && !IsDuplicateEntry(bName))
             {
+                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
                 int? Id = GetNextBuildingId();
                 if (Id != null && Id.HasValue)
                 {
-                    if (!bName.Equals("x") && !string.IsNullOrWhiteSpace(bName) && !IsDuplicateEntry(bName))
-                    {
-                        Buildings?.Add(new Building(bName, Id.Value));
-                        CH.Feedback(Resource.BuildingAdded);
-                        ReIndexDisplayId(true, Buildings);
-                    }
-                    else
-                        CH.Feedback(Resource.NoBuildingsAdded);
+
+                    Buildings?.Add(new Building(bName, Id.Value));
+                    CH.Feedback(Resource.BuildingAdded);
+                    ReIndexDisplayId(Buildings);
+                    ResetBuidlingPagination(Buildings);
+                    return true;
                 }
                 else
                 {
                     CH.Feedback(Resource.FailedToAddBuilding);
+                    L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - Error - Could not get Id for the building.", SessionID, 9);
+                    return false;
                 }
             }
             else
-                CH.Feedback(Resource.FailedToAddBuildingNameInvalid);
+            {
+                CH.Feedback(Resource.NoBuildingNameEntered);
+                L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - No Building name selected or entered.", SessionID, 7);
+                return false;
+            }                
         }
 
         public static void EditBuilding(Building? building, string newBuildingName)
         {
-            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (Buildings?.Count > 0)
+            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);            
+            if(AddBuilding(newBuildingName))
             {
                 if (building != null)
-                {
-                    if (newBuildingName != null && newBuildingName.Length > 0)
-                    {
-                        if (!IsDuplicateEntry(newBuildingName))
-                        {
-                            if (building != null)
-                            {
-                                Buildings?.Remove(building);
-                                int? Id = GetNextBuildingId();
-                                if (Id != null && Id.HasValue)
-                                {
-                                    Buildings?.Add(new Building(newBuildingName, Id.Value));
-                                    ReIndexDisplayId(true, Buildings); ;
-                                }
-                                CH.Feedback($"{Resource.BuildingUpdatedFromPrompt} {building.Name} to {newBuildingName}");
-                                ResetBuildingOnPage();
-                            }
-                        }
-                        else
-                        {
-                            CH.Feedback(Resource.DuplicateEntryMessage);
-                        }
-                    }
-                    else
-                    {
-                        CH.Feedback(Resource.NoBuildingNameEntered);
-                    }
-                }
+                    RemoveBuilding(building);
                 else
-                {
-                    CH.Feedback(Resource.NoBuildingNameSelected);
-                }
+                    CH.Feedback(Resource.NoBuildingRemovedPrompt);
             }
+                
         }
 
         public static Building? GetCurrentBuilding(List<Building>? buildings,string? simChoice = null)
@@ -208,7 +190,7 @@ namespace ArchCorpUtilities.Models.Buildings
             return building;
         }
 
-        public static void RemoveBuilding(Building? building)
+        public static void RemoveBuilding (Building building)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             if (Buildings?.Count > 0)
@@ -217,8 +199,9 @@ namespace ArchCorpUtilities.Models.Buildings
                 {
                     Buildings?.Remove(building);
                     CH.Feedback($"{Resource.BuildingRemoved} {building.Name}");
-                    ReIndexDisplayId(true, Buildings);
+                    ReIndexDisplayId(Buildings);
                     ResetBuildingOnPage();
+                    ResetBuidlingPagination(Buildings);
                 }
                 else
                 {
@@ -314,7 +297,7 @@ namespace ArchCorpUtilities.Models.Buildings
                     }
 
                     ResetBuildingOnPage();
-                    ReIndexDisplayId(true, Buildings);
+                    ReIndexDisplayId(Buildings);
                 }
                 else
                 {
@@ -329,160 +312,9 @@ namespace ArchCorpUtilities.Models.Buildings
             }
 
         }
-
-        public static void PerformDefaultTasks(int page, int prevPage, int choice, int? simChoice = null, string? simInput = null)
-        {
-            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            // if simulation use the simChoice
-            if (simChoice != null) { choice = simChoice.Value; }
-
-            int? defaultChoice = AM.Menus?.FirstOrDefault(c => c.IsDefaultChoice && c.Page == page)?.DisplayNumber;
-            bool isSamePage = page.Equals(prevPage);
-
-            if (isSamePage) { defaultChoice = choice; }
-            // For simulation only
-
-            DefaultTasks(page, simChoice, simInput, defaultChoice);
-
-            ResetIsHidden();
-            ApplyHiddenRules();
-
-        }
-
-        static List<Building>? BuildingsOnThePage = null;
-
-        public static void DefaultTasks(int page, int? simChoice, string? simInput, int? defaultChoice)
-        {
-            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            var MenuItem = AM.Menus?.FirstOrDefault(c => c.Page == page && c.DisplayNumber == defaultChoice && c.IsHidden == false);
-
-            
-
-            var TargetTask = MenuItem?.TargetTask;
-
-            switch (TargetTask)
-            {
-                case "AddBuilding":
-                    L.Log("AddBuilding", SessionID, 1);
-                    CH.Feedback(Resource.AddBuildingHint);
-                    CH.Feedback(Resource.EnterBuildingNamePrompt);
-                    string? BuildingName = CH.GetInput(simInput);
-
-                    AddBuilding(BuildingName);
-                    break;
-
-                case "ViewBuilding":
-                    L.Log("ViewBuilding", SessionID, 1);
-                    BuildingsOnThePage = ViewBuildings(Buildings, "FirstPage");
-                    break;
-
-                case "FirstPage":
-                    L.Log("ViewBuilding-FirstPage", SessionID, 1);
-                    BuildingsOnThePage = ViewBuildings(Buildings, "FirstPage");
-                    break;
-
-                case "LastPage":
-                    L.Log("ViewBuilding-LastPage", SessionID, 1);
-                    BuildingsOnThePage = ViewBuildings(Buildings, "LastPage");
-                    break;
-
-                case "NextPage":
-                    L.Log("ViewBuilding-NextPage", SessionID, 1);
-                    BuildingsOnThePage = ViewBuildings(Buildings, "NextPage");
-                    break;
-
-                case "PreviousPage":
-                    L.Log("ViewBuilding-PreviousPage", SessionID, 1);
-                    BuildingsOnThePage = ViewBuildings(Buildings, "PreviousPage");
-                    break;
-
-                case "EditBuilding":
-                    L.Log("EditBuilding", SessionID, 1);
-                    List<Building>? buildingsOnThePage = null;
-                    if (BuildingsOnThePage != null) 
-                    {
-                        buildingsOnThePage = BuildingsOnThePage;
-                        ShowBuildings(buildingsOnThePage);
-                    }
-                    else
-                    {
-                        buildingsOnThePage = ViewBuildings(Buildings);
-                    }
-                    
-                    CH.Feedback(Resource.HorizontalLine);
-                    CH.Feedback(Resource.SelectABuildingToEditPrompt);
-                    Building? building = GetCurrentBuilding(buildingsOnThePage, Convert.ToString(simChoice));
-                    if (building != null)
-                    {
-                        CH.Feedback(Resource.EnterANewBuildingNamePrompt);
-                        string? NewBuidlingName = CH.GetInput(simInput);
-                        EditBuilding(building, NewBuidlingName);
-                    }
-                    else
-                        CH.Feedback(Resource.FailedToEditBuilding);
-                    break;
-
-                case "RemoveBuilding":
-                    L.Log("RemoveBuilding", SessionID, 1);
-                    if (BuildingsOnThePage != null)
-                    {
-                        buildingsOnThePage = BuildingsOnThePage;
-                        ShowBuildings(buildingsOnThePage);
-                    }
-                    else
-                    {
-                        buildingsOnThePage = ViewBuildings(Buildings);
-                    }                    
-                    CH.Feedback(Resource.HorizontalLine);
-                    CH.Feedback(Resource.SelectABuildingToRemove);
-                    CH.Feedback(Resource.HorizontalLine);
-                    building = GetCurrentBuilding(buildingsOnThePage, Convert.ToString(simChoice));
-                    RemoveBuilding(building);
-                    break;
-
-                case "SaveBuildings":
-                    L.Log("SaveBuilding", SessionID, 1);
-                    SaveBuildings();
-                    break;
-
-                case "LoadBuildings":
-                    L.Log("LoadBuilding", SessionID, 1);
-                    LoadBuildings();
-                    break;
-
-                case "SearchBuildings":
-                    L.Log("SearchBuilding", SessionID, 1);
-                    CH.Feedback(Resource.HorizontalLine);
-                    CH.Feedback(Resource.BuildingNameSearch);
-
-                    string InputBuildingName = CH.GetInput();
-                    CH.Feedback(Resource.HorizontalLine);
-                    CH.Feedback(Resource.SearchResults);
-                    CH.Feedback(Resource.HorizontalLine);
-                    BuildingsOnThePage = SearchBuildings(InputBuildingName);
-                    var buildings = BuildingsOnThePage;
-
-                    ReIndexDisplayId(true, buildings);
-
-                    if (buildings != null && buildings.Count > 0)
-                    {
-                        foreach (var item in buildings)
-                        {
-                            CH.Feedback($"{item.DisplayId} {item.Name}");
-                        }
-                    }
-                    else
-                        CH.Feedback($"Could not find a building(s) by the name {InputBuildingName}");
-
-                    ReIndexDisplayId(true, Buildings);
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
+               
+        static List<Building>? BuildingsOnThePage = null;        
+        
         private static List<Building>? SearchBuildings(string inputBuildingName)
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
@@ -497,60 +329,116 @@ namespace ArchCorpUtilities.Models.Buildings
             return buildings;
         }
 
-        public static void ApplyHiddenRules()
+        private static void ResetBuidlingPagination(List<Building>? buildings)
         {
-            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (AM.Menus != null)
-            {
-                bool ResetPage = false;
-                foreach (var item in AM.Menus.Where(p => p.HideRule != "None"))
-                {
-                    switch (item.HideRule)
-                    {
-                        case "FirstPage":
-                            if (_Page.IsFirstPage())
-                            {
-                                item.IsHidden = true;
-                                ResetPage = true;
-                            }
-                            break;
-                        case "LastPage":
-                            if (_Page.IsLastPage())
-                            {
-                                item.IsHidden = true;
-                                ResetPage = true;
-                            }
-                            break;
-                        case "NoBuildings":
-                            if (BuildingsOnThePage == null || (BuildingsOnThePage != null && BuildingsOnThePage.Count == 0))
-                            {
-                                item.IsHidden = true;
-                                ResetPage = true;
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-                if (ResetPage)
-                {
-                    ReIndexDisplayId(false, Buildings);
-                }
-            }
+            _MaxItems = Convert.ToUInt32(buildings?.Count);
+            Page = new(_PageSize, _MaxItems);
         }
 
-        public static void ResetIsHidden()
+        internal static void Search()
         {
-            L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            if (AM.Menus != null)
+            L.Log("SearchBuilding", SessionID, 1);
+            CH.Feedback(Resource.HorizontalLine);
+            CH.Feedback(Resource.BuildingNameSearch);
+
+            string InputBuildingName = CH.GetInput();
+            CH.Feedback(Resource.HorizontalLine);
+            CH.Feedback(Resource.SearchResults);
+            CH.Feedback(Resource.HorizontalLine);
+            BuildingsOnThePage = SearchBuildings(InputBuildingName);
+            var buildings = BuildingsOnThePage;
+
+            ReIndexDisplayId(buildings);
+
+            if (buildings != null && buildings.Count > 0)
             {
-                foreach (var item in AM.Menus.Where(p => p.IsHidden == true))
+                foreach (var item in buildings)
                 {
-                    item.IsHidden = false;
+                    CH.Feedback($"{item.DisplayId} {item.Name}");
                 }
             }
+            else
+                CH.Feedback($"Could not find a building(s) by the name {InputBuildingName}");
+
+            ReIndexDisplayId(Buildings);
+            ResetBuidlingPagination(buildings);
         }
+
+        internal static void Load()
+        {
+            L.Log("LoadBuilding", SessionID, 1);
+            LoadBuildings();
+        }
+
+        internal static void Save()
+        {
+            L.Log("SaveBuilding", SessionID, 1);
+            SaveBuildings();
+        }
+
+        internal static void Remove(int? simChoice)
+        {
+            L.Log("RemoveBuilding", SessionID, 1);
+            Building? building = ViewAndSelectBuilding(simChoice);
+            if (building != null)
+                RemoveBuilding(building);
+        }
+
+        internal static void Edit(int? simChoice, string? simInput)
+        {
+            L.Log("EditBuilding", SessionID, 1);
+            Building? building = ViewAndSelectBuilding(simChoice);
+            if (building != null)
+            {
+                CH.Feedback(Resource.EnterANewBuildingNamePrompt);
+                string? NewBuildingName = CH.GetInput(simInput);
+                EditBuilding(building, NewBuildingName);
+            }
+            else
+                CH.Feedback(Resource.FailedToEditBuilding);
+        }
+
+        private static Building? ViewAndSelectBuilding(int? simChoice)
+        {
+            var OrderedBuildings = BuildingsOnThePage ?? Buildings?.OrderBy(p => p.Name).ToList();
+            BuildingsOnThePage = ViewWithPagination(Resource.BuildingListPrompt, Page, OrderedBuildings);
+
+            CH.Feedback(Resource.HorizontalLine);
+            CH.Feedback(Resource.SelectABuildingToEditPrompt);
+            Building? building = GetCurrentBuilding(BuildingsOnThePage, Convert.ToString(simChoice));
+            return building;
+        }
+
+        internal static void View(Navigation navigation = Navigation.FirstPage)
+        {
+            L.Log("ViewBuilding-FirstPage", SessionID, 1);
+            var OrderedBuildings = Buildings?.OrderBy(p => p.Name).ToList();
+            BuildingsOnThePage = ViewWithPagination(Resource.BuildingListPrompt, Page,OrderedBuildings, navigation);
+        }
+
+        internal static void InitialView()
+        {
+            Page = new Page(5, Convert.ToUInt16(Buildings?.Count));
+            L.Log("ViewBuilding", SessionID, 1);
+            var OrderedBuildings = Buildings?.OrderBy(p => p.Name).ToList();
+            BuildingsOnThePage = ViewWithPagination(Resource.BuildingListPrompt, Page,OrderedBuildings, Navigation.FirstPage);
+        }
+
+        internal static void Add(string? simInput)
+        {
+            L.Log("AddBuilding", SessionID, 1);
+            CH.Feedback(Resource.AddBuildingHint);
+            CH.Feedback(Resource.EnterBuildingNamePrompt);
+            string? BuildingName = CH.GetInput(simInput);
+
+            AddBuilding(BuildingName);
+        }
+
+        internal static bool IsBuildingsOnThePage()
+        {
+            return !(BuildingsOnThePage == null || (BuildingsOnThePage != null && BuildingsOnThePage.Count == 0));
+        }
+
+     
     }
-
 }

@@ -1,5 +1,6 @@
 using ArchCorpUtilities.Models.Buildings;
 using ArchCorpUtilities.Models.Menus;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using System.Text;
 using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -10,26 +11,16 @@ namespace TestProjectArchProject
 {
     public class UnitTestArchProject
     {
-        [Fact]
-        public void ValidCheckIntro()
-        {
-            Assert.Equal("Building Manager - Main Menu - V1.0.0", MH.StartingPageHeading);
-            Assert.Equal("-------------------------", MH.Line);
-        }
-        [Fact]
-        public void ValidCheckLine()
-        {
-            Assert.Equal("-------------------------", MH.Line);
-        }
+        private const int MaxMenuCountV = 70;
 
         [Fact]
         public void ValidCheckMenuItems()
         {
-            Assert.False(MH.Menus == null);
+            Assert.False(MH.Menu == null);
             StringBuilder sb = new();
-            if (MH.Menus != null)
+            if (MH.Menu != null)
             {
-                sb.AppendJoin("|", MH.Menus.AsEnumerable<MenuItem>().Select(p => p.DisplayName));
+                sb.AppendJoin("|", MH.Menu.AsEnumerable<MenuItem>().Select(p => p.DisplayName));
 
                 //foreach (var item in MH.CurrentMenuPage)
                 //{
@@ -53,7 +44,7 @@ namespace TestProjectArchProject
             MBR mockBuildingsRepository = new();
             BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
             CH.ClearFeedback();
-            BH.ViewBuildings(BH.Buildings);
+            BH.ViewWithPagination("Building List", BH.Page, BH.Buildings);
             string Result = CH.GetFeedback();
             Assert.Contains("Alpha", Result);
             Assert.Contains("Beta", Result);
@@ -72,7 +63,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building added successfully", Result);
 
             CH.ClearFeedback();
-            BH.ViewBuildings(BH.Buildings, "NextPage");
+            BH.ViewWithPagination("Building List", BH.Page, BH.Buildings, BH.Navigation.NextPage);
             Result = CH.GetFeedback();
             Assert.Contains(Name, Result);
 
@@ -83,7 +74,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building removed Ultra Building", Result);
 
             CH.ClearFeedback();
-            BH.ViewBuildings(BH.Buildings);
+            BH.ViewWithPagination("Building List", BH.Page, BH.Buildings);
             Result = CH.GetFeedback();
             Assert.DoesNotContain(Name, Result);
         }
@@ -215,7 +206,7 @@ namespace TestProjectArchProject
             List<MenuItem>? MenuItems = MH.ImportMenu(Path);
             File.Delete(Path);
             Assert.NotNull(MenuItems);
-            Assert.True(MenuItems.Count == 46);
+            Assert.True(MenuItems.Count == MaxMenuCountV);
         }
 
         [Fact]
@@ -228,8 +219,8 @@ namespace TestProjectArchProject
             List<MenuItem>? MenuItems = MH.ImportMenu(Path);
             File.Delete(Path);
             Assert.NotNull(MenuItems);
-            Assert.True(MenuItems.Count == 46);
-            var MenuMockData = MH.Menus.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            Assert.True(MenuItems.Count == MaxMenuCountV);
+            var MenuMockData = MH.Menu.FirstOrDefault(p => p.DisplayName == "View Buildings");
             var MenuFileData = MenuItems.FirstOrDefault(p => p.DisplayName == "View Buildings");
             Assert.NotNull(MenuFileData);
             Assert.NotNull(MenuMockData);
@@ -252,7 +243,7 @@ namespace TestProjectArchProject
             Assert.True(Guid.TryParse(MenuFileData.IDGUIDMenu, out Guid guid));
             Assert.NotNull(guid.ToString());
 
-            var MenuMockData = MH.Menus.FirstOrDefault(p => p.DisplayName == "View Buildings");
+            var MenuMockData = MH.Menu.FirstOrDefault(p => p.DisplayName == "View Buildings");
             Assert.NotNull(MenuMockData);
             Assert.False(MenuMockData.IDGUIDMenu == MenuFileData.IDGUIDMenu);
         }

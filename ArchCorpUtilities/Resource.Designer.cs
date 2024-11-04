@@ -160,11 +160,38 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choice:.
+        /// </summary>
+        internal static string ChoicePrompt {
+            get {
+                return ResourceManager.GetString("ChoicePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;ClearConsole&gt;.
         /// </summary>
         internal static string ClearConsoleMessage {
             get {
                 return ResourceManager.GetString("ClearConsoleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current menu structure.
+        /// </summary>
+        internal static string CurrentMenuStructure {
+            get {
+                return ResourceManager.GetString("CurrentMenuStructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a display name for the new menu option.
+        /// </summary>
+        internal static string DisplayNamePrompt {
+            get {
+                return ResourceManager.GetString("DisplayNamePrompt", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace ArchCorpUtilities {
         internal static string EnterBuildingNamePrompt {
             get {
                 return ResourceManager.GetString("EnterBuildingNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the item name only - which will be a post fix to View ..., Add ... etc..
+        /// </summary>
+        internal static string EnterItemPrompt {
+            get {
+                return ResourceManager.GetString("EnterItemPrompt", resourceCulture);
             }
         }
         
@@ -286,11 +322,65 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Data.
+        /// </summary>
+        internal static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No data saved..
         /// </summary>
         internal static string NoDataSaved {
             get {
                 return ResourceManager.GetString("NoDataSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No display name provided.
+        /// </summary>
+        internal static string NoDisplayNameProvided {
+            get {
+                return ResourceManager.GetString("NoDisplayNameProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Item name was provided..
+        /// </summary>
+        internal static string NoItemNameProvided {
+            get {
+                return ResourceManager.GetString("NoItemNameProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Items to show.
+        /// </summary>
+        internal static string NoItemsToList {
+            get {
+                return ResourceManager.GetString("NoItemsToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Menu Item selected..
+        /// </summary>
+        internal static string NoMenuItemSelected {
+            get {
+                return ResourceManager.GetString("NoMenuItemSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please refresh manually to see the changes.
+        /// </summary>
+        internal static string RefreshPrompt {
+            get {
+                return ResourceManager.GetString("RefreshPrompt", resourceCulture);
             }
         }
         
@@ -336,6 +426,15 @@ namespace ArchCorpUtilities {
         internal static string SelectABuildingToRemove {
             get {
                 return ResourceManager.GetString("SelectABuildingToRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a menu item..
+        /// </summary>
+        internal static string SelectMenuItem {
+            get {
+                return ResourceManager.GetString("SelectMenuItem", resourceCulture);
             }
         }
         

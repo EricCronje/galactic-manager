@@ -3,6 +3,9 @@ using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
+using MMH = ArchCorpUtilities.Models.Menus.MenuMaintenanceHelper;
+
+using ArchCorpUtilities.Models.Menus;
 namespace ArchCorpUtilities.Models
 {
     public static class ArchLoader
@@ -15,6 +18,7 @@ namespace ArchCorpUtilities.Models
             SessionID = Guid.NewGuid().ToString();
             MH.SessionID = SessionID;
             BH.SessionID = SessionID;
+            MMH.SessionID = SessionID;
         }
 
         public static void RunArch(List<Command>? commands = null, int logLevel = 1)
@@ -36,18 +40,18 @@ namespace ArchCorpUtilities.Models
                 SimInput = "";
             }
             //Retrieve starting page
-            int? TargetPage = MH.Menus?.FirstOrDefault(c => c.IsStartPage == true)?.Page;
+            int? TargetPage = MH.Menu?.FirstOrDefault(c => c.IsStartPage == true)?.Page;
             
             if (TargetPage != null)
             {
                 var PrevPagenumber = TargetPage;
-                var PageHeading = MH.Menus?.FirstOrDefault(c => c.Page == TargetPage)?.PageHeading;
+                var PageHeading = MH.Menu?.FirstOrDefault(c => c.Page == TargetPage)?.PageHeading;
 
 
                 int Choice = ShowMenu(TargetPage, PageHeading, SimChoice);
 
 
-                var ExitOption = MH.Menus?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
+                var ExitOption = MH.Menu?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
 
                 L.Log($"Before loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 0);
 
@@ -71,19 +75,19 @@ namespace ArchCorpUtilities.Models
                     if (!CH.IsSimulate) { Console.Clear(); }
                     if (CH.IsSimulate) { CH.Feedback(Resource.ClearConsoleMessage); }
 
-                    var menuItem = MH.Menus?.FirstOrDefault(c => c.DisplayNumber == Choice && c.Page == TargetPage && c.IsHidden == false);
+                    var menuItem = MH.Menu?.FirstOrDefault(c => c.DisplayNumber == Choice && c.Page == TargetPage && c.IsHidden == false);
 
                     if (menuItem != null && menuItem.TargetPage != 0) { TargetPage = menuItem.TargetPage; }
 
-                    PageHeading = MH.Menus?.FirstOrDefault(c => c.Page == TargetPage.Value)?.PageHeading;
+                    PageHeading = MH.Menu?.FirstOrDefault(c => c.Page == TargetPage.Value)?.PageHeading;
 
-                    ExitOption = MH.Menus?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage.Value)?.DisplayNumber;
+                    ExitOption = MH.Menu?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage.Value)?.DisplayNumber;
 
                     L.Log($"Inside loop - Before PerformDefaultTasks - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);
 
 
-                    BH.PerformDefaultTasks(TargetPage.Value, PrevPagenumber.Value, Choice, SimChoice, SimInput);
-
+                    MH.PerformDefaultTasks(TargetPage.Value, PrevPagenumber.Value, Choice, SimChoice, SimInput);
+                                      
                     Choice = ShowMenu(TargetPage.Value, PageHeading, SimChoice);
 
                     PrevPagenumber = TargetPage.Value;
@@ -94,7 +98,7 @@ namespace ArchCorpUtilities.Models
                     }
                     else
                     {
-                        ExitOption = MH.Menus?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
+                        ExitOption = MH.Menu?.FirstOrDefault(c => c.IsExitOption && c.Page == TargetPage)?.DisplayNumber;
                     }
                 }
                 L.Log($"After loop - Choice: {Choice} TargetPage: {TargetPage.Value}", SessionID, 2);

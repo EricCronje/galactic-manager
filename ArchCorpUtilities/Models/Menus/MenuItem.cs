@@ -3,9 +3,9 @@
     public class MenuItem
     {
         public string IDGUIDMenu { get; }
-        public string DisplayMenuItem { get; }
+        public string DisplayMenuItem { get; set; }
         public bool IsExitOption { get; }
-        public int Index { get; }
+        public int Index { get; set; }
         public int ParentPage { get; }
         public int Page { get; }
         public int DisplayNumber { get; set; }
@@ -25,6 +25,17 @@
 
         public bool IsStartPage { get; }
 
+        public enum MenuDomain
+        {
+            None,
+            Menu,
+            Building
+        }
+
+        public MenuDomain Domain { get; set; }
+
+        public int Level { get; set; }
+
         public MenuItem(
             string displayName,
             int displayNumber,
@@ -42,7 +53,9 @@
             bool isPagination = false,
             string? source = "Internal",
             string? idGuidMenu = null,
-            bool isStartPage = false
+            bool isStartPage = false,
+            MenuDomain domain = MenuDomain.None,
+            int level = 0
             )
         {
             if (string.IsNullOrWhiteSpace(idGuidMenu))
@@ -71,7 +84,13 @@
             IsPagination = isPagination;
             Source = source;
             IsStartPage = isStartPage;
+            Domain = domain;
+            Level = level;
+        }
 
+        public override string ToString()
+        {
+            return $"{DisplayMenuItem}) {DisplayName}";
         }
     }
 }

@@ -27,5 +27,10 @@
             DisplayId = displayId;
         }
 
+        public override string ToString()
+        {
+            return $"{DisplayId}) {Name}";
+        }
+
     }
 }

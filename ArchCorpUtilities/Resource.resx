@@ -152,8 +152,17 @@
   <data name="BuildingUpdatedFromPrompt" xml:space="preserve">
     <value>Building updated from</value>
   </data>
+  <data name="ChoicePrompt" xml:space="preserve">
+    <value>Choice:</value>
+  </data>
   <data name="ClearConsoleMessage" xml:space="preserve">
     <value>&lt;ClearConsole&gt;</value>
+  </data>
+  <data name="CurrentMenuStructure" xml:space="preserve">
+    <value>Current menu structure</value>
+  </data>
+  <data name="DisplayNamePrompt" xml:space="preserve">
+    <value>Please provide a display name for the new menu option</value>
   </data>
   <data name="DuplicateEntryMessage" xml:space="preserve">
     <value>Duplicate entry</value>
@@ -163,6 +172,9 @@
   </data>
   <data name="EnterBuildingNamePrompt" xml:space="preserve">
     <value>Enter the building name:</value>
+  </data>
+  <data name="EnterItemPrompt" xml:space="preserve">
+    <value>Enter the item name only - which will be a post fix to View ..., Add ... etc.</value>
   </data>
   <data name="FailedToAddBuilding" xml:space="preserve">
     <value>Failed to add the building.</value>
@@ -194,8 +206,26 @@
   <data name="NoBuildingsToList" xml:space="preserve">
     <value>No buildings to list</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No Data</value>
+  </data>
   <data name="NoDataSaved" xml:space="preserve">
     <value>No data saved.</value>
+  </data>
+  <data name="NoDisplayNameProvided" xml:space="preserve">
+    <value>No display name provided</value>
+  </data>
+  <data name="NoItemNameProvided" xml:space="preserve">
+    <value>No Item name was provided.</value>
+  </data>
+  <data name="NoItemsToList" xml:space="preserve">
+    <value>No Items to show</value>
+  </data>
+  <data name="NoMenuItemSelected" xml:space="preserve">
+    <value>No Menu Item selected.</value>
+  </data>
+  <data name="RefreshPrompt" xml:space="preserve">
+    <value>Please refresh manually to see the changes</value>
   </data>
   <data name="SaveBuidlingsError" xml:space="preserve">
     <value>Error -</value>
@@ -211,6 +241,9 @@
   </data>
   <data name="SelectABuildingToRemove" xml:space="preserve">
     <value>Select a building to remove:</value>
+  </data>
+  <data name="SelectMenuItem" xml:space="preserve">
+    <value>Select a menu item.</value>
   </data>
   <data name="SimulationNotSet" xml:space="preserve">
     <value>Simulation is not set</value>
