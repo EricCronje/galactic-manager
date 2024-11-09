@@ -1,4 +1,6 @@
-﻿namespace ArchCorpUtilities.Models.Menus
+﻿using ArchCorpUtilities.Utilities;
+
+namespace ArchCorpUtilities.Models.Menus
 {
     public class MenuItem
     {
@@ -9,7 +11,7 @@
         public int ParentPage { get; }
         public int Page { get; }
         public int DisplayNumber { get; set; }
-        public string DisplayName { get; }
+        public string DisplayName { get; set; }
         public string PageHeading { get; }
         public int TargetPage { get; }
         public string TargetTask { get; }
@@ -25,24 +27,16 @@
 
         public bool IsStartPage { get; }
 
-        public enum MenuDomain
-        {
-            None,
-            Menu,
-            Building
-        }
 
-        public MenuDomain Domain { get; set; }
+        
+        public UniversalUtilities.MenuDomain Domain { get; set; }
 
         public int Level { get; set; }
 
         public MenuItem(
             string displayName,
-            int displayNumber,
-            int index,
             int page,
             string pageHeading,
-            int parentPage = 0,
             bool isExitOption = false,
             int targetPage = 0,
             string targetTask = "None",
@@ -50,11 +44,10 @@
             bool isDefaultChoice = false,
             string? hideRule = "None",
             bool isHidden = false,
-            bool isPagination = false,
             string? source = "Internal",
             string? idGuidMenu = null,
+            UniversalUtilities.MenuDomain domain = UniversalUtilities.MenuDomain.None,
             bool isStartPage = false,
-            MenuDomain domain = MenuDomain.None,
             int level = 0
             )
         {
@@ -67,12 +60,9 @@
                 IDGUIDMenu = idGuidMenu;
             }
             
-            DisplayNumber = displayNumber;
             DisplayName = displayName;
             DisplayMenuItem = $"{DisplayNumber}) {DisplayName}";
             IsExitOption = isExitOption;
-            Index = index;
-            ParentPage = parentPage;
             Page = page;
             PageHeading = pageHeading;
             TargetPage = targetPage;
@@ -81,7 +71,6 @@
             IsDefaultChoice = isDefaultChoice;
             HideRule = hideRule;
             IsHidden = isHidden;
-            IsPagination = isPagination;
             Source = source;
             IsStartPage = isStartPage;
             Domain = domain;

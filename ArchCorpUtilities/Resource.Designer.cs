@@ -88,6 +88,24 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to Edit the building.
+        /// </summary>
+        internal static string BuildingEditedFail {
+            get {
+                return ResourceManager.GetString("BuildingEditedFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building Edited Successfully.
+        /// </summary>
+        internal static string BuildingEditedSuccess {
+            get {
+                return ResourceManager.GetString("BuildingEditedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading buildings from.
         /// </summary>
         internal static string BuildingFileImportCompletionSuccessMessage {
@@ -178,6 +196,15 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not locate the search key - CodeGen (No Changes made)..
+        /// </summary>
+        internal static string CouldNotLocateTheSearchKey {
+            get {
+                return ResourceManager.GetString("CouldNotLocateTheSearchKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current menu structure.
         /// </summary>
         internal static string CurrentMenuStructure {
@@ -214,6 +241,15 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter a new menu name.
+        /// </summary>
+        internal static string EnterANewMenuNamePrompt {
+            get {
+                return ResourceManager.GetString("EnterANewMenuNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the building name:.
         /// </summary>
         internal static string EnterBuildingNamePrompt {
@@ -228,6 +264,15 @@ namespace ArchCorpUtilities {
         internal static string EnterItemPrompt {
             get {
                 return ResourceManager.GetString("EnterItemPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ProgramExited&gt;.
+        /// </summary>
+        internal static string ExitIndicator {
+            get {
+                return ResourceManager.GetString("ExitIndicator", resourceCulture);
             }
         }
         
@@ -259,6 +304,15 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to save.
+        /// </summary>
+        internal static string FailedToSave {
+            get {
+                return ResourceManager.GetString("FailedToSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -------------------------.
         /// </summary>
         internal static string HorizontalLine {
@@ -277,11 +331,101 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;LoadMenuDefaults&gt;.
+        /// </summary>
+        internal static string LoadMenuDefaults {
+            get {
+                return ResourceManager.GetString("LoadMenuDefaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load the menus.
+        /// </summary>
+        internal static string LoadMenusFailed {
+            get {
+                return ResourceManager.GetString("LoadMenusFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded the menus successfully.
+        /// </summary>
+        internal static string LoadMenusSuccess {
+            get {
+                return ResourceManager.GetString("LoadMenusSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu Edited Successfull.
+        /// </summary>
+        internal static string MenuEditedSuccess {
+            get {
+                return ResourceManager.GetString("MenuEditedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not remove the menu Item..
+        /// </summary>
+        internal static string MenuItemRemovedFail {
+            get {
+                return ResourceManager.GetString("MenuItemRemovedFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu Item Removed Successfully.
+        /// </summary>
+        internal static string MenuItemRemovedSuccess {
+            get {
+                return ResourceManager.GetString("MenuItemRemovedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu Items Created successfully.
+        /// </summary>
+        internal static string MenuItemsCreatedSuccess {
+            get {
+                return ResourceManager.GetString("MenuItemsCreatedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model file created successfully..
+        /// </summary>
+        internal static string ModelFileCreated {
+            get {
+                return ResourceManager.GetString("ModelFileCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model file not created. The Item name was empty..
+        /// </summary>
+        internal static string ModelFileNotCreated {
+            get {
+                return ResourceManager.GetString("ModelFileNotCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No building name entered.
         /// </summary>
         internal static string NoBuildingNameEntered {
             get {
                 return ResourceManager.GetString("NoBuildingNameEntered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No building name entered or duplicate building name.
+        /// </summary>
+        internal static string NoBuildingNameEnteredOrDuplicateName {
+            get {
+                return ResourceManager.GetString("NoBuildingNameEnteredOrDuplicateName", resourceCulture);
             }
         }
         
@@ -358,6 +502,15 @@ namespace ArchCorpUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Item removed.
+        /// </summary>
+        internal static string NoItemRemovedPrompt {
+            get {
+                return ResourceManager.GetString("NoItemRemovedPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Items to show.
         /// </summary>
         internal static string NoItemsToList {
@@ -372,6 +525,15 @@ namespace ArchCorpUtilities {
         internal static string NoMenuItemSelected {
             get {
                 return ResourceManager.GetString("NoMenuItemSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Menu Name Entered.
+        /// </summary>
+        internal static string NoMenuNameEntered {
+            get {
+                return ResourceManager.GetString("NoMenuNameEntered", resourceCulture);
             }
         }
         
@@ -399,6 +561,15 @@ namespace ArchCorpUtilities {
         internal static string SaveBuidlingSuccess {
             get {
                 return ResourceManager.GetString("SaveBuidlingSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved the menus successfully.
+        /// </summary>
+        internal static string SaveMenusSuccess {
+            get {
+                return ResourceManager.GetString("SaveMenusSuccess", resourceCulture);
             }
         }
         

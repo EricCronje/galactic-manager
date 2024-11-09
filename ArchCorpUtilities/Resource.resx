@@ -126,6 +126,12 @@
   <data name="BuildingAlreadyExistInSystemNoActionPerformed" xml:space="preserve">
     <value>Existing building name different GUID</value>
   </data>
+  <data name="BuildingEditedFail" xml:space="preserve">
+    <value>Failed to Edit the building</value>
+  </data>
+  <data name="BuildingEditedSuccess" xml:space="preserve">
+    <value>Building Edited Successfully</value>
+  </data>
   <data name="BuildingFileImportCompletionSuccessMessage" xml:space="preserve">
     <value>Loading buildings from</value>
     <comment>On completion of loading the building file.</comment>
@@ -158,6 +164,9 @@
   <data name="ClearConsoleMessage" xml:space="preserve">
     <value>&lt;ClearConsole&gt;</value>
   </data>
+  <data name="CouldNotLocateTheSearchKey" xml:space="preserve">
+    <value>Could not locate the search key - CodeGen (No Changes made).</value>
+  </data>
   <data name="CurrentMenuStructure" xml:space="preserve">
     <value>Current menu structure</value>
   </data>
@@ -170,11 +179,17 @@
   <data name="EnterANewBuildingNamePrompt" xml:space="preserve">
     <value>Enter a new building name:</value>
   </data>
+  <data name="EnterANewMenuNamePrompt" xml:space="preserve">
+    <value>Enter a new menu name</value>
+  </data>
   <data name="EnterBuildingNamePrompt" xml:space="preserve">
     <value>Enter the building name:</value>
   </data>
   <data name="EnterItemPrompt" xml:space="preserve">
     <value>Enter the item name only - which will be a post fix to View ..., Add ... etc.</value>
+  </data>
+  <data name="ExitIndicator" xml:space="preserve">
+    <value>&lt;ProgramExited&gt;</value>
   </data>
   <data name="FailedToAddBuilding" xml:space="preserve">
     <value>Failed to add the building.</value>
@@ -185,14 +200,47 @@
   <data name="FailedToEditBuilding" xml:space="preserve">
     <value>Failed to edit the buidling</value>
   </data>
+  <data name="FailedToSave" xml:space="preserve">
+    <value>Failed to save</value>
+  </data>
   <data name="HorizontalLine" xml:space="preserve">
     <value>-------------------------</value>
   </data>
   <data name="InvalidBuildingNameEntered" xml:space="preserve">
     <value>Building name was invalid - please re-enter.</value>
   </data>
+  <data name="LoadMenuDefaults" xml:space="preserve">
+    <value>&lt;LoadMenuDefaults&gt;</value>
+  </data>
+  <data name="LoadMenusFailed" xml:space="preserve">
+    <value>Failed to load the menus</value>
+  </data>
+  <data name="LoadMenusSuccess" xml:space="preserve">
+    <value>Loaded the menus successfully</value>
+  </data>
+  <data name="MenuEditedSuccess" xml:space="preserve">
+    <value>Menu Edited Successfull</value>
+  </data>
+  <data name="MenuItemRemovedFail" xml:space="preserve">
+    <value>Could not remove the menu Item.</value>
+  </data>
+  <data name="MenuItemRemovedSuccess" xml:space="preserve">
+    <value>Menu Item Removed Successfully</value>
+  </data>
+  <data name="MenuItemsCreatedSuccess" xml:space="preserve">
+    <value>Menu Items Created successfully</value>
+  </data>
+  <data name="ModelFileCreated" xml:space="preserve">
+    <value>Model file created successfully.</value>
+  </data>
+  <data name="ModelFileNotCreated" xml:space="preserve">
+    <value>Model file not created. The Item name was empty.</value>
+  </data>
   <data name="NoBuildingNameEntered" xml:space="preserve">
     <value>No building name entered</value>
+  </data>
+  <data name="NoBuildingNameEnteredOrDuplicateName" xml:space="preserve">
+    <value>No building name entered or duplicate building name</value>
   </data>
   <data name="NoBuildingNameSelected" xml:space="preserve">
     <value>No building selected.</value>
@@ -218,11 +266,17 @@
   <data name="NoItemNameProvided" xml:space="preserve">
     <value>No Item name was provided.</value>
   </data>
+  <data name="NoItemRemovedPrompt" xml:space="preserve">
+    <value>No Item removed</value>
+  </data>
   <data name="NoItemsToList" xml:space="preserve">
     <value>No Items to show</value>
   </data>
   <data name="NoMenuItemSelected" xml:space="preserve">
     <value>No Menu Item selected.</value>
+  </data>
+  <data name="NoMenuNameEntered" xml:space="preserve">
+    <value>No Menu Name Entered</value>
   </data>
   <data name="RefreshPrompt" xml:space="preserve">
     <value>Please refresh manually to see the changes</value>
@@ -232,6 +286,9 @@
   </data>
   <data name="SaveBuidlingSuccess" xml:space="preserve">
     <value>Saved to file</value>
+  </data>
+  <data name="SaveMenusSuccess" xml:space="preserve">
+    <value>Saved the menus successfully</value>
   </data>
   <data name="SearchResults" xml:space="preserve">
     <value>Search Results:</value>

@@ -4,14 +4,15 @@ using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using System.Text;
 using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-using MBR = ArchCorpUtilities.Models.MockBuildingsRepository;
+using MBR = ArchCorpUtilities.Models.Buildings.MockBuildingsRepository;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace TestProjectArchProject
 {
     public class UnitTestArchProject
     {
-        private const int MaxMenuCountV = 70;
+        private const int MaxMenuCountV = 92;
 
         [Fact]
         public void ValidCheckMenuItems()
@@ -21,11 +22,6 @@ namespace TestProjectArchProject
             if (MH.Menu != null)
             {
                 sb.AppendJoin("|", MH.Menu.AsEnumerable<MenuItem>().Select(p => p.DisplayName));
-
-                //foreach (var item in MH.CurrentMenuPage)
-                //{
-                //    sb.AppendLine(item.DisplayName);
-                //}
 
                 string result = sb.ToString();
 
@@ -42,9 +38,9 @@ namespace TestProjectArchProject
         public void ValidListBuildings()
         {
             MBR mockBuildingsRepository = new();
-            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
+            BH.Buildings = mockBuildingsRepository.All()?.ToList();
             CH.ClearFeedback();
-            BH.ViewWithPagination("Building List", BH.Page, BH.Buildings);
+            U.ViewWithPagination("Building List", BH.Page, BH.Buildings);
             string Result = CH.GetFeedback();
             Assert.Contains("Alpha", Result);
             Assert.Contains("Beta", Result);
@@ -55,7 +51,6 @@ namespace TestProjectArchProject
         {
 
             MBR mockBuildingsRepository = new();
-            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
             string? Name = "Ultra Building";
             CH.ClearFeedback();
             BH.AddBuilding(Name);
@@ -63,7 +58,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building added successfully", Result);
 
             CH.ClearFeedback();
-            BH.ViewWithPagination("Building List", BH.Page, BH.Buildings, BH.Navigation.NextPage);
+            U.ViewWithPagination("Building List", BH.Page, BH.Buildings, U.Navigation.NextPage);
             Result = CH.GetFeedback();
             Assert.Contains(Name, Result);
 
@@ -74,7 +69,7 @@ namespace TestProjectArchProject
             Assert.Contains("Building removed Ultra Building", Result);
 
             CH.ClearFeedback();
-            BH.ViewWithPagination("Building List", BH.Page, BH.Buildings);
+            U.ViewWithPagination("Building List", BH.Page, BH.Buildings);
             Result = CH.GetFeedback();
             Assert.DoesNotContain(Name, Result);
         }
@@ -82,20 +77,22 @@ namespace TestProjectArchProject
         [Fact]
         public void ValidEditBuildings()
         {
-            MBR mockBuildingsRepository = new();
-            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
             string? bName = "Dragon One";
             CH.ClearFeedback();
-            var building = BH.Buildings?.FirstOrDefault(c => c.Name == bName);
+            var building = BH.Repository.GetByName(bName)?.ToList()[0];
             Assert.NotNull(building);
             string NewBuildingName = "Bob One";
             BH.EditBuilding(building, NewBuildingName);
             var Result = CH.GetFeedback();
-            Assert.Contains(bName, Result);
-            building = BH.Buildings?.FirstOrDefault(c => c.Name == NewBuildingName);
+            Assert.Contains("Building Edited Successfully", Result);
+            building = BH.Repository.GetByName(NewBuildingName)?.ToList()[0];            
             Assert.NotNull(building);
+            Assert.Contains(NewBuildingName, building.Name);
             BH.EditBuilding(building, bName);
-            Assert.Contains(bName, Result);
+            Assert.Contains("Building Edited Successfully", Result);
+            building = BH.Repository.GetByName(bName)?.ToList()[0];
+            Assert.NotNull(building);
+            Assert.Contains(bName, building.Name);
         }
 
         [Fact]
@@ -104,7 +101,7 @@ namespace TestProjectArchProject
             // Setup the mock data
             MBR mockBuildingsRepository = new();
             //Load the mock data.
-            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
+            BH.Buildings = mockBuildingsRepository.All()?.ToList();
 
             string Path = "TestBuildingSaveOne.txt";
             // If the file exists for some reason ... Failed attempt ...
@@ -144,7 +141,7 @@ namespace TestProjectArchProject
             // Prepare the mock data
             MBR mockBuildingsRepository = new();
             // Load the buildings with the mock data
-            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
+            BH.Buildings = mockBuildingsRepository.All()?.ToList();
 
             string Path = "TestBuildingSaveTwo.txt";
             // Remove the file if it exists
@@ -235,7 +232,7 @@ namespace TestProjectArchProject
             Assert.Contains("|", File.ReadAllText(Path));
             List<MenuItem>? MenuItems = MH.ImportMenu(Path);
             Assert.NotNull(MenuItems);
-            Assert.True(MenuItems.Count == 26);
+            Assert.True(MenuItems.Count == 89);
 
             var MenuFileData = MenuItems?.FirstOrDefault(p => p.DisplayName == "View Buildings");
             Assert.NotNull(MenuFileData);
@@ -251,11 +248,10 @@ namespace TestProjectArchProject
         [Fact]
         public void InValidEditBuildingsGiveBlankName()
         {
-            MBR mockBuildingsRepository = new();
-            BH.Buildings = mockBuildingsRepository.AllBuildings()?.ToList();
+            MBR Repository = new();
             string? bName = "Dragon One";
             CH.ClearFeedback();
-            var building = BH.Buildings?.FirstOrDefault(c => c.Name == bName);
+            var building = Repository.GetByName(bName)?.ToList()[0];
             Assert.NotNull(building);
             string NewBuildingName = "";
             BH.EditBuilding(building, NewBuildingName);
@@ -263,6 +259,17 @@ namespace TestProjectArchProject
             building = BH.Buildings?.FirstOrDefault(c => c.Name == NewBuildingName);
             Assert.Null(building);
             Assert.Contains("No building name entered", Result);
+        }
+
+        [Fact]
+        public void InvalidDuplicateBuildingName()
+        {
+            string? bName = "Dragon One";
+            CH.ClearFeedback();
+            BH.AddBuilding(bName);
+            var Result = CH.GetFeedback();
+            Assert.Contains("No building name entered or duplicate building name", Result);
+
         }
     }
 }
