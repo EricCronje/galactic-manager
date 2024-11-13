@@ -1,4 +1,4 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+// Generated Code - Version: 14.11.22 - 2024/11/12 15:23:07 - {b8a2c482-4992-45c4-84df-80204f82066f}
 
 using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
@@ -46,9 +46,18 @@ namespace ArchCorpUtilities.Models
 
         public static void RunArch(List<Command>? commands = null, int logLevel = 1)
         {
-            if (commands != null || commands?.Count > 0)
+            int? SimChoice = null;
+            string? SimInput = null;
+            string[]? SimInputValues = null;
+
+            CH.IsSimulate = true;
+            if (commands == null || commands.Count == 0)
+                CH.IsSimulate = false;
+            else
             {
-                CH.IsSimulate = true;
+                SimChoice = 1; // just to get in the loop
+                SimInput = "";
+                SimInputValues = null;
             }
 
             //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
@@ -61,22 +70,7 @@ namespace ArchCorpUtilities.Models
 			
             L.CurrentLevel = logLevel;
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            int? SimChoice = null;
-            string? SimInput = null;
-            string[]? SimInputValues = null;
 
-            if (commands == null || commands.Count == 0)
-            {
-                CH.IsSimulate = false;
-            }
-            if (commands != null)
-            {
-                CH.IsSimulate = true;
-                //Simulate
-                SimChoice = 1; // just to get in the loop
-                SimInput = "";
-                SimInputValues = null;
-            }
             //Retrieve starting page
             int? TargetPage = MH.Menu?.FirstOrDefault(c => c.IsStartPage == true)?.Page;
             

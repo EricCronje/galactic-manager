@@ -1,4 +1,4 @@
-// Generated Code - Version: 14.11.22 - 2024/11/12 15:23:07 - {b8a2c482-4992-45c4-84df-80204f82066f}
+// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
 
 using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
@@ -46,6 +46,11 @@ namespace ArchCorpUtilities.Models
 
         public static void RunArch(List<Command>? commands = null, int logLevel = 1)
         {
+            if (commands != null || commands?.Count > 0)
+            {
+                CH.IsSimulate = true;
+            }
+
             //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
             BuildingsHelper?.LoadDefaults();
             BeaconsHelper?.LoadDefaults();

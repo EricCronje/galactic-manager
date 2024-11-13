@@ -18,7 +18,7 @@ public static class CodeGenHelper
     {
         WorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen";
         TargetWorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities";
-        Version = "17.11.23";
+        Version = "21.11.25";
         CurrentGuid = "{744852ea-d309-4f87-bbd2-03fe76ba877b}";
         BackupFolder = $"\\Backup\\{CurrentGuid}";
     }
@@ -251,6 +251,9 @@ public static class CodeGenHelper
             stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
             stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);");
             stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"            if (EntitiesOnThePage == null)");
+            stringBuilder.AppendLine($"                return null;");
+            stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"            CH.Feedback(heading);");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"            string ItemInput = CH.GetInput(simInput);");
@@ -259,7 +262,7 @@ public static class CodeGenHelper
             stringBuilder.AppendLine($"            {{");
             stringBuilder.AppendLine($"                _ = Int32.TryParse(ItemInput, out int Choice);");
             stringBuilder.AppendLine($"                //If item selected");
-            stringBuilder.AppendLine($"                {entity}? SelectedEntity = Items?.FirstOrDefault(p => p.DisplayId == Choice);");
+            stringBuilder.AppendLine($"                {entity}? SelectedEntity = EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);");
             stringBuilder.AppendLine($"                if (SelectedEntity != null)");
             stringBuilder.AppendLine($"                {{");
             stringBuilder.AppendLine($"                    return SelectedEntity;");
@@ -282,9 +285,19 @@ public static class CodeGenHelper
             stringBuilder.AppendLine($"            Items = MockData();");
             stringBuilder.AppendLine($"            return true;");
             stringBuilder.AppendLine($"        }}");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"        private bool DuplicateFound(string Input)");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            var DuplicateFound = Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input));");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"            if (DuplicateFound != null)");
+            stringBuilder.AppendLine($"                return true;");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"            return false;");
+            stringBuilder.AppendLine($"        }}");
+            stringBuilder.AppendLine($"");
             stringBuilder.AppendLine("    }");
             stringBuilder.AppendLine("}");
-
 
 
             return stringBuilder.ToString();
@@ -503,6 +516,9 @@ public static class CodeGenHelper
         stringBuilder.AppendLine($"\t                        Items?.Remove(Entity);");
         stringBuilder.AppendLine($"\t                        Page = new Patina.Patina(1, 1);");
         stringBuilder.AppendLine($"\t                        EntitiesOnThePage = [new(Input, 0)];");
+        stringBuilder.AppendLine($"\t                        ResetPageMaxCount();");
+        stringBuilder.AppendLine($"\t                        ReIndexDisplayId();");
+        stringBuilder.AppendLine($"\t                        ResetEntitiesOnThePage();");
         stringBuilder.AppendLine($"\t                        CH.Feedback(\"Item was modified\");");
         stringBuilder.AppendLine($"\t                        return true;");
         stringBuilder.AppendLine($"\t                    }}");
@@ -513,7 +529,10 @@ public static class CodeGenHelper
         stringBuilder.AppendLine($"\t                    CH.Feedback(\"No name entered\");");
         stringBuilder.AppendLine($"\t            }}");
         stringBuilder.AppendLine($"\t            else");
-        stringBuilder.AppendLine($"\t                CH.Feedback(\"No Item selected\");");
+        stringBuilder.AppendLine($"\t                {{");
+        stringBuilder.AppendLine($"\t                if (EntitiesOnThePage != null)");
+        stringBuilder.AppendLine($"\t                    CH.Feedback(\"No Item selected\");");
+        stringBuilder.AppendLine($"\t                }}");
         stringBuilder.AppendLine($"\t");
         stringBuilder.AppendLine($"\t            ResetPageMaxCount();");
         stringBuilder.AppendLine($"\t            ReIndexDisplayId();");
@@ -547,7 +566,10 @@ public static class CodeGenHelper
         stringBuilder.AppendLine($"                else");
         stringBuilder.AppendLine($"                    CH.Feedback(\"Item was not removed.\");");
         stringBuilder.AppendLine($"            else");
-        stringBuilder.AppendLine($"                CH.Feedback(\"Nothing selected.\");");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                if (EntitiesOnThePage != null)");
+        stringBuilder.AppendLine($"                    CH.Feedback(\"Nothing selected.\");");
+        stringBuilder.AppendLine($"                }}");
         stringBuilder.AppendLine($"");
         stringBuilder.AppendLine($"            ReIndexDisplayId();");
         stringBuilder.AppendLine($"            ResetPageMaxCount();");
@@ -562,6 +584,13 @@ public static class CodeGenHelper
         stringBuilder.AppendLine("            var Input = CH.GetInput(simInput?[0]);");
         stringBuilder.AppendLine("            if(!string.IsNullOrWhiteSpace(Input))");
         stringBuilder.AppendLine("            {");
+        stringBuilder.AppendLine("");
+        stringBuilder.AppendLine("                if (DuplicateFound(Input))");
+        stringBuilder.AppendLine("                {");
+        stringBuilder.AppendLine("                    CH.Feedback(\"Duplicate entry found - operation aborted.\");");
+        stringBuilder.AppendLine("                    return false;");
+        stringBuilder.AppendLine("                }");
+        stringBuilder.AppendLine("");
         stringBuilder.AppendLine("                Items?.Add(new(Input, 0));");
         stringBuilder.AppendLine("                CH.Feedback(\"Item added.\");");
         stringBuilder.AppendLine("                ResetPageMaxCount();");

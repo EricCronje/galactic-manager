@@ -1,0 +1,34 @@
+2024/11/13 19:28:10||MockGetMenuItems|0
+2024/11/13 19:32:11||MockGetMenuItems|0
+2024/11/13 19:32:13|258db8a4-7bee-436e-aa8f-408e8acad0f6|After loop - Choice: 2 TargetPage: 9|2
+2024/11/13 19:34:34||MockGetMenuItems|0
+2024/11/13 19:34:34|8a510a74-2a22-49d6-8e29-b59362ba7a3f|ImportMenu|0
+2024/11/13 19:34:38|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 17|2
+2024/11/13 19:35:02|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 3 TargetPage: 20|2
+2024/11/13 19:35:02|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:05|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:07|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:07|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:07|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:08|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:08|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:09|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:10|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:10|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:10|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:11|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:11|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:12|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:13|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:13|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:14|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:14|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:14|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:15|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:15|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:15|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:16|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:18|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Inside loop - Before PerformDefaultTasks - Choice: 1 TargetPage: 20|2
+2024/11/13 19:35:18|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Buildings-Remove|1
+2024/11/13 19:35:18|8a510a74-2a22-49d6-8e29-b59362ba7a3f|Entities was reset.|4
+2024/11/13 19:35:22|8a510a74-2a22-49d6-8e29-b59362ba7a3f|After loop - Choice: 3 TargetPage: 20|2

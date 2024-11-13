@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArchCorpUtilities\ArchCorpUtilities.csproj" />
+    <ProjectReference Include="..\Logger\Logger.csproj" />
   </ItemGroup>
 
   <ItemGroup>

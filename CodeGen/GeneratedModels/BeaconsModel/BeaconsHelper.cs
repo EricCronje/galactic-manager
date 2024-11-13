@@ -1,6 +1,5 @@
-// Generated Code - Version: 17.11.23 - 2024/11/13 16:44:39 - {0128554b-597f-455e-9d87-af816a144663}
-
-
+// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -58,6 +57,13 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
             var Input = CH.GetInput(simInput?[0]);
             if(!string.IsNullOrWhiteSpace(Input))
             {
+
+                if (DuplicateFound(Input))
+                {
+                    CH.Feedback("Duplicate entry found - operation aborted.");
+                    return false;
+                }
+
                 Items?.Add(new(Input, 0));
                 CH.Feedback("Item added.");
                 ResetPageMaxCount();
@@ -100,6 +106,9 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
 	                        Items?.Remove(Entity);
 	                        Page = new Patina.Patina(1, 1);
 	                        EntitiesOnThePage = [new(Input, 0)];
+	                        ResetPageMaxCount();
+	                        ReIndexDisplayId();
+	                        ResetEntitiesOnThePage();
 	                        CH.Feedback("Item was modified");
 	                        return true;
 	                    }
@@ -110,7 +119,10 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
 	                    CH.Feedback("No name entered");
 	            }
 	            else
-	                CH.Feedback("No Item selected");
+	                {
+	                if (EntitiesOnThePage != null)
+	                    CH.Feedback("No Item selected");
+	                }
 	
 	            ResetPageMaxCount();
 	            ReIndexDisplayId();
@@ -204,7 +216,10 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
                 else
                     CH.Feedback("Item was not removed.");
             else
-                CH.Feedback("Nothing selected.");
+                {
+                if (EntitiesOnThePage != null)
+                    CH.Feedback("Nothing selected.");
+                }
 
             ReIndexDisplayId();
             ResetPageMaxCount();
@@ -278,34 +293,34 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
 	                    if (!SkipFirstLine)
 	                    {
 	                        string[] LineItem = line.Split("|");
-	                        if (LineItem.Length > 0 && LineItem.Length > 1)
+							if (LineItem.Length > 0 && LineItem.Length > 1)
 	                        {
 	                            string Name = LineItem[0].Trim();
 	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[1].Trim();
 	                            var Entity = Items?.FirstOrDefault(c => c.BeaconsGuid == GUID);
 	                            var EntityItem = Items?.FirstOrDefault(c => c.Name == Name);
-                                var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.BeaconsGuid;
+								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.BeaconsGuid;
 
-                                if (Entity == null)
-                                    {
-                                        if (EntityItem != null)
-                                        {
-                                            CH.Feedback($"Item Exists - No action - Old item: { EntityItem.Name} - {OldGUID} - New Item: {Name} - {GUID}");
-                                        }
-                                        else
-                                        {
-                                        if (SessionID != null)
-                                                L.Log($"Item found - {Name}", SessionID);
-                                            Items?.Add(new Beacons(Name, 0, GUID));
-                                            CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
-                                            ReIndexDisplayId();
-                                            ResetPageMaxCount();
-                                            ResetEntitiesOnThePage();
-                                            return true;
-                                        }
-                                    }
-                                    else
-                                        CH.Feedback($"No action - Old item : {EntityItem?.Name} - {OldGUID} - New Item: {Name} - {GUID}");
+								if (Entity == null)
+								{
+									if (EntityItem != null)
+									{
+										CH.Feedback($"Item Exists - No action - Old item: { EntityItem.Name} - {OldGUID} - New Item: {Name} - {GUID}");
+									}
+									else
+									{
+									if (SessionID != null)
+										L.Log($"Item found - {Name}", SessionID);
+									Items?.Add(new Beacons(Name, 0, GUID));
+									CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
+									ReIndexDisplayId();
+									ResetPageMaxCount();
+									ResetEntitiesOnThePage();
+									return true;
+									}
+								}
+								else
+									CH.Feedback($"No action - Old item : {EntityItem?.Name} - {OldGUID} - New Item: {Name} - {GUID}");
 	                        }
 	                    }
 	                    SkipFirstLine = false;
@@ -361,6 +376,9 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);
 
+            if (EntitiesOnThePage == null)
+                return null;
+
             CH.Feedback(heading);
 
             string ItemInput = CH.GetInput(simInput);
@@ -369,7 +387,7 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
             {
                 _ = Int32.TryParse(ItemInput, out int Choice);
                 //If item selected
-                Beacons? SelectedEntity = Items?.FirstOrDefault(p => p.DisplayId == Choice);
+                Beacons? SelectedEntity = EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
                 if (SelectedEntity != null)
                 {
                     return SelectedEntity;
@@ -392,5 +410,16 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
             Items = MockData();
             return true;
         }
+
+        private bool DuplicateFound(string Input)
+        {
+            var DuplicateFound = Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input));
+
+            if (DuplicateFound != null)
+                return true;
+
+            return false;
+        }
+
     }
 }

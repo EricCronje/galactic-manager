@@ -1,6 +1,5 @@
-// Generated Code - Version: 17.11.23 - 2024/11/13 16:36:49 - {1b17a421-2756-4978-aa59-8e0a01171811}
-
-
+// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -58,6 +57,13 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
             var Input = CH.GetInput(simInput?[0]);
             if(!string.IsNullOrWhiteSpace(Input))
             {
+
+                if (DuplicateFound(Input))
+                {
+                    CH.Feedback("Duplicate entry found - operation aborted.");
+                    return false;
+                }
+
                 Items?.Add(new(Input, 0));
                 CH.Feedback("Item added.");
                 ResetPageMaxCount();
@@ -100,6 +106,9 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	                        Items?.Remove(Entity);
 	                        Page = new Patina.Patina(1, 1);
 	                        EntitiesOnThePage = [new(Input, 0)];
+	                        ResetPageMaxCount();
+	                        ReIndexDisplayId();
+	                        ResetEntitiesOnThePage();
 	                        CH.Feedback("Item was modified");
 	                        return true;
 	                    }
@@ -110,7 +119,10 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	                    CH.Feedback("No name entered");
 	            }
 	            else
-	                CH.Feedback("No Item selected");
+	                {
+	                if (EntitiesOnThePage != null)
+	                    CH.Feedback("No Item selected");
+	                }
 	
 	            ResetPageMaxCount();
 	            ReIndexDisplayId();
@@ -204,7 +216,10 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
                 else
                     CH.Feedback("Item was not removed.");
             else
-                CH.Feedback("Nothing selected.");
+                {
+                if (EntitiesOnThePage != null)
+                    CH.Feedback("Nothing selected.");
+                }
 
             ReIndexDisplayId();
             ResetPageMaxCount();
@@ -278,35 +293,35 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	                    if (!SkipFirstLine)
 	                    {
 	                        string[] LineItem = line.Split("|");
-	                        if (LineItem.Length > 0 && LineItem.Length > 1)
+							if (LineItem.Length > 0 && LineItem.Length > 1)
 	                        {
 	                            string Name = LineItem[0].Trim();
 	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[1].Trim();
 	                            var Entity = Items?.FirstOrDefault(c => c.BuildingsGuid == GUID);
 	                            var EntityItem = Items?.FirstOrDefault(c => c.Name == Name);
-                                var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.BuildingsGuid;
+								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.BuildingsGuid;
 
-                                if (Entity == null)
-                                    {
-                                        if (EntityItem != null)
-                                        {
-                                            CH.Feedback($"Item Exists - No action - Old item: { EntityItem.Name} - {OldGUID} - New Item: {Name} - {GUID}");
-                                        }
-                                        else
-                                        {
-                                        if (SessionID != null)
-                                            L.Log($"Item found - {Name}", SessionID);
-                                            Items?.Add(new Buildings(Name, 0, GUID));
-                                            CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
-                                            ReIndexDisplayId();
-                                            ResetPageMaxCount();
-                                            ResetEntitiesOnThePage();
-                                            return true;
-                                        }
-                                    }
-                                    else
-                                        CH.Feedback($"No action - Old item : {EntityItem?.Name} - {OldGUID} - New Item: {Name} - {GUID}");
-                            }
+								if (Entity == null)
+								{
+									if (EntityItem != null)
+									{
+										CH.Feedback($"Item Exists - No action - Old item: { EntityItem.Name} - {OldGUID} - New Item: {Name} - {GUID}");
+									}
+									else
+									{
+									if (SessionID != null)
+										L.Log($"Item found - {Name}", SessionID);
+									Items?.Add(new Buildings(Name, 0, GUID));
+									CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
+									ReIndexDisplayId();
+									ResetPageMaxCount();
+									ResetEntitiesOnThePage();
+									return true;
+									}
+								}
+								else
+									CH.Feedback($"No action - Old item : {EntityItem?.Name} - {OldGUID} - New Item: {Name} - {GUID}");
+	                        }
 	                    }
 	                    SkipFirstLine = false;
 	                }
@@ -361,6 +376,9 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);
 
+            if (EntitiesOnThePage == null)
+                return null;
+
             CH.Feedback(heading);
 
             string ItemInput = CH.GetInput(simInput);
@@ -369,7 +387,7 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
             {
                 _ = Int32.TryParse(ItemInput, out int Choice);
                 //If item selected
-                Buildings? SelectedEntity = Items?.FirstOrDefault(p => p.DisplayId == Choice);
+                Buildings? SelectedEntity = EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
                 if (SelectedEntity != null)
                 {
                     return SelectedEntity;
@@ -392,5 +410,16 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
             Items = MockData();
             return true;
         }
+
+        private bool DuplicateFound(string Input)
+        {
+            var DuplicateFound = Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input));
+
+            if (DuplicateFound != null)
+                return true;
+
+            return false;
+        }
+
     }
 }
