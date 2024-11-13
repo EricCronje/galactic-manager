@@ -4,29 +4,16 @@ using L = Logger.Logger;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
-    public abstract class CodePart
+    public abstract class CodePart(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID)
     {
-        
-        public CodePart(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID)
-        {
-            BaseFolder = baseFolder;
-            TargetFile = targetFile;
-            Entity = entity;
-            SearchString = searchString;
-            WorkingFolder = workingFolder;
-            Heading = heading;
-            Tabs = searchStringPostPart;
-            SessionID = sessionID;
-        }
-
-        public string BaseFolder { get; }
-        public string TargetFile { get; }
-        public string Entity { get; }
-        public string SearchString { get; }
-        public string WorkingFolder { get; }
-        public string Heading { get; }
-        public string Tabs { get; }
-        public string SessionID { get; }
+        public string BaseFolder { get; } = baseFolder;
+        public string TargetFile { get; } = targetFile;
+        public string Entity { get; } = entity;
+        public string SearchString { get; } = searchString;
+        public string WorkingFolder { get; } = workingFolder;
+        public string Heading { get; } = heading;
+        public string Tabs { get; } = searchStringPostPart;
+        public string SessionID { get; } = sessionID;
 
         public bool AlterCode()
         {

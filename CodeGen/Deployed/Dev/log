@@ -1,0 +1,6 @@
+2024/11/13 13:10:36||MockGetMenuItems|0
+2024/11/13 13:10:36|210389be-f2b6-4d3f-8665-d292b5c59e40|ImportMenu|0
+2024/11/13 13:10:38|210389be-f2b6-4d3f-8665-d292b5c59e40|Inside loop - Before PerformDefaultTasks - Choice: 2 TargetPage: 24|2
+2024/11/13 13:10:39|210389be-f2b6-4d3f-8665-d292b5c59e40|Inside loop - Before PerformDefaultTasks - Choice: 2 TargetPage: 26|2
+2024/11/13 13:10:39|210389be-f2b6-4d3f-8665-d292b5c59e40|Beacons-Add|1
+2024/11/13 13:10:49|210389be-f2b6-4d3f-8665-d292b5c59e40|Inside loop - Before PerformDefaultTasks - Choice: 2 TargetPage: 24|2

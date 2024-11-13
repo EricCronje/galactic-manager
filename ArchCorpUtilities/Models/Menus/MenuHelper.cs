@@ -3,10 +3,10 @@
 using L = Logger.Logger;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 
-using static ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using System.Runtime.InteropServices;
 using ArchCorpUtilities.Utilities;
 using System.Runtime.Versioning;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -80,95 +80,14 @@ namespace ArchCorpUtilities.Models.Menus
         private static List<MenuItem> MockGetMenuItems()
         {
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-            string PageHeading = "Galaxy Manager - Main Menu - V1.0.0";
+            string PageHeading = "Galaxy Manager - Main Menu";
             int PageNumber = 9;
 
             List<MenuItem> list =
             [
-                new MenuItem("Manage Buildings", PageNumber, PageHeading, false, 1, "None", false,false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building, true),
-                new MenuItem("Manage Menus", PageNumber, PageHeading, false, 10, "None", false, false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu),
+                new MenuItem("Manage Menus", PageNumber, PageHeading, false, 10, "None", false, false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu, true),
                 new MenuItem("Exit", PageNumber, PageHeading, true),
             ];
-
-            PageHeading = "Manage Buildings";
-            PageNumber = 1;
-
-            list.Add(new MenuItem("View Buildings",PageNumber, PageHeading, false, 5));
-            list.Add(new MenuItem("Add Buildings", PageNumber, PageHeading, false, 2));
-            list.Add(new MenuItem("Remove Buildings", PageNumber, PageHeading, false, 4));
-            list.Add(new MenuItem("Edit Building Names", PageNumber, PageHeading, false, 3));
-            list.Add(new MenuItem("Save Buildings", PageNumber, PageHeading, false, 6));
-            list.Add(new MenuItem("Load Buildings", PageNumber, PageHeading, false, 7));
-            list.Add(new MenuItem("Back to Main Menu", PageNumber, PageHeading, false, 9, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //Add Options
-            PageHeading = "Add Buildings - Sub Menu";
-            PageNumber = 2;
-
-            list.Add(new MenuItem("Add Building", PageNumber, PageHeading, false, 0, "Add", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            var TargetPage = 1;
-            list.Add(new MenuItem("Back to Manage Buildings", PageNumber, PageHeading, false, TargetPage, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //View Buildings
-            PageHeading = "View Buildings - Sub Menu";
-            PageNumber = 5;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "View", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            TargetPage = 8;
-            list.Add(new MenuItem("Search", PageNumber, PageHeading, false, TargetPage, "Search", false, false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true,  "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Back to Manage Buildings", PageNumber, PageHeading, false, 1, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //Edit Buildings
-            PageHeading = "Edit Building Names- Sub Menu";
-            PageNumber = 3;
-            list.Add(new MenuItem("Edit Building", PageNumber, PageHeading, false, 0, "Edit", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Back to Manage Buildings", PageNumber, PageHeading, false, 1, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //Remove Buildings
-            PageHeading = "Remove Buildings - Sub Menu";
-            PageNumber = 4;
-            list.Add(new MenuItem("Remove Building", PageNumber, PageHeading, false, 0, "Remove", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null,  UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Back to Manage Buildings", PageNumber, PageHeading, false, 1, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //Save to a file
-            PageHeading = "Save Buildings - Sub Menu";
-            PageNumber = 6;
-            list.Add(new MenuItem("Save buildings to a file", PageNumber, PageHeading, false, 0, "Save", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Back to Manage Buildings", PageNumber, PageHeading, false, 1, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //Load from a file
-            PageHeading = "Load Buildings - Sub Menu";
-            PageNumber = 7;
-            list.Add(new MenuItem("Load buildings from a file",PageNumber, PageHeading, false, 0, "Load", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Back to Manage Buildings", PageNumber, PageHeading, false, 1, "None", true));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
-            //Search
-            PageHeading = "View Buildings - Search - Sub Menu";
-            PageNumber = 8;
-            list.Add(new MenuItem("Search Again", PageNumber, PageHeading, false, 0, "Search", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Remove Building", PageNumber, PageHeading, false, 0, "Remove", false, true,"NoData", false, "None", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Edit Building", PageNumber, PageHeading, false, 0, "Edit", false, true,"NoData", false, "None", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Back to the Building List menu", PageNumber, PageHeading, false, 5, "None", true, false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Building));
-            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
-
 
             PageHeading = "Manage Menus";
             PageNumber = 10;
@@ -256,7 +175,8 @@ namespace ArchCorpUtilities.Models.Menus
             StringBuilder sb = new();
             sb.AppendLine(Line);
             if (heading != null)
-                sb.AppendLine(heading.ToString());
+                sb.Append(heading.ToString());
+                sb.AppendLine($" - {U.GetVersion()}");
 
             sb.Append(Line);
 
@@ -353,7 +273,7 @@ namespace ArchCorpUtilities.Models.Menus
         {
             var MenuItems = menus.Where(p => p.Page == page);
             var Index = 1;
-            
+            int InternalCounter = 0;
             foreach (var item in MenuItems)
             {
                 
@@ -364,11 +284,13 @@ namespace ArchCorpUtilities.Models.Menus
                 MenuItem? Menu = menus.FirstOrDefault(p => p.IDGUIDMenu == item.IDGUIDMenu);
                 if (Menu != null)
                 {
+                    InternalCounter++;
                     //_Counter++;
                     _Counter++;
                     Menu.Index = _Counter;
                     Menu.DisplayMenuItem = TempPrefix;
                     Menu.Level = level;
+                    Menu.DisplayNumber = InternalCounter;
                 }
                 
                 if (item.TargetPage > 0 && item.IsBack == false)

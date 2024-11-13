@@ -1,7 +1,7 @@
-// Generated Code - Version: 1.0.0 - 2024/11/09 22:15:42 - {2991c9ad-4969-45a7-87cc-0857a2dd7797} 
-using ArchCorpUtilities.Utilities;
+// Generated Code - Version: 14.11.22 - 2024/11/12 15:23:07 - {b8a2c482-4992-45c4-84df-80204f82066f}
+
+using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
-using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
 using MMH = ArchCorpUtilities.Models.Menus.MenuMaintenanceHelper;
@@ -11,7 +11,7 @@ using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 using BeaconsHelper = ArchCorpUtilities.GeneratedModels.BeaconsModel.BeaconsHelper;
-using ArchCorpUtilities.Models.BeaconsModel.Beacons;
+using BuildingsHelper = ArchCorpUtilities.GeneratedModels.BuildingsModel.BuildingsHelper;
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 
 using ArchCorpUtilities.Models.Menus;
@@ -24,14 +24,14 @@ namespace ArchCorpUtilities.Models
         public static string SessionID { get; }
 
         //{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
-        public static BeaconsHelper? BeaconsHelper = null;
+        internal static BeaconsHelper BeaconsHelper;
+		internal static BuildingsHelper? BuildingsHelper = null;
 		//{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
 
         static ArchLoader()
         {
             SessionID = Guid.NewGuid().ToString();
             MH.SessionID = SessionID;
-            BH.SessionID = SessionID;
             MMH.SessionID = SessionID;
             U.SessionID = SessionID;
             TTH.SessionID = SessionID;
@@ -39,12 +39,21 @@ namespace ArchCorpUtilities.Models
 
             //{9ED7AF33-DE0E-45C3-821F-4669558AD744}
             BeaconsHelper = new(SessionID);
+			BuildingsHelper = new(SessionID);
 			//{9ED7AF33-DE0E-45C3-821F-4669558AD744}
 
         }
 
         public static void RunArch(List<Command>? commands = null, int logLevel = 1)
         {
+            //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
+            BuildingsHelper?.LoadDefaults();
+            BeaconsHelper?.LoadDefaults();
+            //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
+
+            if (File.Exists(CodeGenHelper.CurrentGuid))
+                MMH.Load(CodeGenHelper.CurrentGuid);
+			
             L.CurrentLevel = logLevel;
             L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             int? SimChoice = null;

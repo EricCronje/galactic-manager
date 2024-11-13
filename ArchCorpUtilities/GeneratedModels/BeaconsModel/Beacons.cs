@@ -1,5 +1,5 @@
-// Generated Code - Version: 1.0.0 - 2024/11/09 22:15:42 - {2991c9ad-4969-45a7-87cc-0857a2dd7797} 
-//Generated code : 2024/11/09 22:15:42 - Session : 2991c9ad-4969-45a7-87cc-0857a2dd7797
+// Generated Code - Version: 15.11.22 - 2024/11/12 15:35:47 - {14854933-58be-4cba-af9e-d6d346aefeec}
+
 namespace ArchCorpUtilities.Models.BeaconsModel.Beacons;
 public class Beacons
 {

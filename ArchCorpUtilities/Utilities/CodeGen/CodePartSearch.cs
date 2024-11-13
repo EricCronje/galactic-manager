@@ -16,7 +16,7 @@ public class CodePartSearch : CodePart
         stringBuilder.Append(CodeToAlter.AsSpan(2));
         stringBuilder.AppendLine($"case U.MenuDomain.{Entity}:");
         stringBuilder.AppendLine($"{Tabs}\tL.Log(\"{Entity}-Search\", SessionID, 1);");
-        stringBuilder.AppendLine($"{Tabs}\tA.{Entity}Helper?.Search();");
+        stringBuilder.AppendLine($"{Tabs}\tA.{Entity}Helper?.Search(simChoice, simInputValues);");
         stringBuilder.AppendLine($"{Tabs}\tbreak;");
         var CodeAltered = stringBuilder.ToString();
         stringBuilder.Clear();

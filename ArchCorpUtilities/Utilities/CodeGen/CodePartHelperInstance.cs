@@ -17,7 +17,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             StringBuilder stringBuilder = new();
             var CodeToAlterLineFeedsAtTheEnd = CodeToAlter.Replace("\r\n", "").Replace(";", ";\r\n");
             stringBuilder.Append(CodeToAlterLineFeedsAtTheEnd);
-            stringBuilder.AppendLine($"public static {Entity}Helper? {Entity}Helper = null;");
+            stringBuilder.AppendLine($"internal static {Entity}Helper? {Entity}Helper = null;");
             var AlteredCode = stringBuilder.ToString();
             stringBuilder.Clear();
             return AlteredCode;

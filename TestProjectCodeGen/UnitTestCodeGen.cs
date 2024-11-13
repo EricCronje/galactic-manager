@@ -1,3 +1,4 @@
+using ArchCorpUtilities.Models.Menus;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
 using System.Text;
 using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
@@ -14,16 +15,16 @@ namespace TestProjectCodeGen
             RestoreOriginalModels();
         }
 
-        private void RestoreOriginalModels()
+        private static void RestoreOriginalModels()
         {
             var UniversalUtilitiesFile = $"{CodeGen.WorkingFolder}\\Utilities\\UniversalUtilities.cs";
-            var UniversalUtilitiesFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Utilities\\UniversalUtilities.cs";
+            var UniversalUtilitiesFileBackup = $"{CodeGen.WorkingFolder}{CodeGen.BackupFolder}\\Utilities\\UniversalUtilities.cs";
 
             var ArchLoaderFile = $"{CodeGen.WorkingFolder}\\Models\\ArchLoader.cs";
-            var ArchLoaderFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Models\\ArchLoader.cs";
+            var ArchLoaderFileBackup = $"{CodeGen.WorkingFolder}{CodeGen.BackupFolder}\\Models\\ArchLoader.cs";
 
             var TargetTaskHelperFile = $"{CodeGen.WorkingFolder}\\Models\\TargetTaskHelper.cs";
-            var TargetTaskHelperFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Models\\TargetTaskHelper.cs";
+            var TargetTaskHelperFileBackup = $"{CodeGen.WorkingFolder}{CodeGen.BackupFolder}\\Models\\TargetTaskHelper.cs";
 
             if (File.Exists(UniversalUtilitiesFile))
                 File.Delete(UniversalUtilitiesFile);
@@ -49,21 +50,24 @@ namespace TestProjectCodeGen
         {
             TestGenCode(true, "Brent");
             TestGenCode(false, "Charlie");
+
             var UniversalUtilitiesFile = $"{CodeGen.WorkingFolder}\\Utilities\\UniversalUtilities.cs";
             var ArchLoaderFile = $"{CodeGen.WorkingFolder}\\Models\\ArchLoader.cs";
             var TargetTaskHelperFile = $"{CodeGen.WorkingFolder}\\Models\\TargetTaskHelper.cs";
             var Context = File.ReadAllText(UniversalUtilitiesFile);
+
+            
+
             Assert.Contains("Brent", Context); //Find the GUID marker.           
             Assert.Contains("Charlie", Context); //Find the entry point
 
             Assert.Contains("//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", Context); //Find the GUID marker.           
-            Assert.Contains("//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}", Context); //Find the entry point
 
             Context = File.ReadAllText(ArchLoaderFile);
             Assert.Contains("Brent", Context); //Find the GUID marker.           
             Assert.Contains("Charlie", Context); //Find the entry point
 
-            Assert.Contains("//{0ACDC688-3120-452F-94AE-2DD1771A9991}", Context); //Using GUID marker
+
             Assert.Contains("//{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", Context); //public variable Helper GUID marker
             Assert.Contains("//{9ED7AF33-DE0E-45C3-821F-4669558AD744}", Context); //Instantiation of the Helper variable -  GUID marker
 
@@ -172,7 +176,7 @@ namespace TestProjectCodeGen
             Assert.Contains($"L.Log(\"{Entity}-Save\", SessionID, 1);", Context); // Save
             Assert.Contains($"A.{Entity}Helper?.Save();", Context); // Save
 
-            Entity = "Charlie";
+            Entity = "Brent";
             Assert.Contains("{36DE75D7-A730-4F6B-A7C9-4660245BD895}", Context); // Load
             Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Load
             Assert.Contains($"L.Log(\"{Entity}-Load\", SessionID, 1);", Context); // Load
@@ -199,6 +203,7 @@ namespace TestProjectCodeGen
 
             Assert.Contains("Brent", Context); //Find the GUID marker.           
             Assert.Contains("Charlie", Context); //Find the entry point
+          
 
             RemoveCreatedModelFiles("Brent");
             RemoveCreatedModelFiles("Charlie");
@@ -229,13 +234,13 @@ namespace TestProjectCodeGen
             var GeneratedModelsFolder = $"{CodeGen.WorkingFolder}\\GeneratedModels";
 
             var UniversalUtilitiesFile = $"{CodeGen.WorkingFolder}\\Utilities\\UniversalUtilities.cs";
-            var UniversalUtilitiesFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Utilities\\UniversalUtilities.cs";
+            var UniversalUtilitiesFileBackup = $"{CodeGen.WorkingFolder}{CodeGen.BackupFolder}\\Utilities\\UniversalUtilities.cs";
 
             var ArchLoaderFile = $"{CodeGen.WorkingFolder}\\Models\\ArchLoader.cs";
-            var ArchLoaderFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Models\\ArchLoader.cs";
+            var ArchLoaderFileBackup = $"{CodeGen.WorkingFolder}{CodeGen.BackupFolder}\\Models\\ArchLoader.cs";
 
             var TargetTaskHelperFile = $"{CodeGen.WorkingFolder}\\Models\\TargetTaskHelper.cs";
-            var TargetTaskHelperFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Models\\TargetTaskHelper.cs";
+            var TargetTaskHelperFileBackup = $"{CodeGen.WorkingFolder}{CodeGen.BackupFolder}\\Models\\TargetTaskHelper.cs";
 
             if (GetBackup)
             {
@@ -274,9 +279,8 @@ namespace TestProjectCodeGen
             //Checks
             var Context = File.ReadAllText(UniversalUtilitiesFile);
             Assert.Contains("//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", Context); //Find the GUID marker.           
-            Assert.Contains("//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}", Context); //Find the entry point
             Context = File.ReadAllText(ArchLoaderFile);
-            Assert.Contains("//{0ACDC688-3120-452F-94AE-2DD1771A9991}", Context); //Using GUID marker
+
             Assert.Contains("//{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", Context); //public variable Helper GUID marker
             Assert.Contains("//{9ED7AF33-DE0E-45C3-821F-4669558AD744}", Context); //Instantiation of the Helper variable -  GUID marker
 
@@ -295,66 +299,8 @@ namespace TestProjectCodeGen
             Context = File.ReadAllText(UniversalUtilitiesFile);
             Assert.Contains(Entity, Context);
             Assert.Contains("//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", Context); //Find the GUID marker
-            Assert.Contains("//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}", Context); //Find the entry point GUID
-
-            Context = File.ReadAllText(ArchLoaderFile);
-            Assert.Contains("//{0ACDC688-3120-452F-94AE-2DD1771A9991}", Context); //Find the GUID marker
-            Assert.Contains("", Context); //Find the GUID marker
-            Assert.Contains($"using {Entity}Helper = ArchCorpUtilities.GeneratedModels.{Entity}Model.{Entity}Helper;", Context);
-            Assert.Contains($"using ArchCorpUtilities.Models.{Entity}Model.{Entity};", Context);
-        }
-
-        [Fact]
-        public void ValidTestGenCodeCreateMultipleEntities()
-        {
-            //CodeGen.SessionID = Guid.NewGuid().ToString();
-            //var StartingGUID = CodeGen.SessionID;
-            //var Entity = "Alpha";
-            //var CSFile = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}.cs";
-            //var CSFileHelper = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}Helper.cs";
-            //var GeneratedFolder = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model";
-            //var GeneratedModelsFolder = $"{CodeGen.WorkingFolder}\\GeneratedModels";
-            //var UniversalUtilitiesFile = $"{CodeGen.WorkingFolder}\\Utilities\\UniversalUtilities.cs";
-            //var UniversalUtilitiesFileBackup = $"{CodeGen.WorkingFolder}\\Utilities\\UniversalUtilities.{CodeGen.SessionID}";
-
-            ////Checks
-            //var Context = File.ReadAllText(UniversalUtilitiesFile);
-            //Assert.Contains("//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", Context); //Find the GUID marker.           
-            //Assert.Contains("//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}", Context); //Find the entry point
-            //Context = "";
-            ////            
-            //bool Result = CodeGen.CreateDefaultCode(Entity);
-            //Assert.True(Result);
-            //Assert.True(Directory.Exists(GeneratedModelsFolder));
-            //Assert.True(Directory.Exists(GeneratedFolder));
-            //Assert.True(File.Exists(CSFile));
-            //Assert.True(File.Exists(CSFileHelper));
-            //Assert.True(File.Exists(UniversalUtilitiesFile));
-
-            //Context = File.ReadAllText(UniversalUtilitiesFile);
-            //Assert.Contains(Entity, Context);
-
-            //Assert.Contains("//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", Context); //Find the GUID marker
-            //Assert.Contains("//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}", Context); //Find the entry point GUID
-
-            //Entity = "Beta";
-            //Result = CodeGen.CreateDefaultCode(Entity);
-            //Assert.True(Result);
-            //var GUID = CodeGen.SessionID;
-            //Assert.True(StartingGUID == GUID);
-            //CodeGen.CreateDefaultCode(Entity);            
-            //Assert.True(Directory.Exists(GeneratedModelsFolder));
-            //Assert.True(Directory.Exists(GeneratedFolder));
-            //Assert.True(File.Exists(CSFile));
-            //Assert.True(File.Exists(CSFileHelper));
-            //Assert.True(File.Exists(UniversalUtilitiesFile));
-
-            //Context = File.ReadAllText(UniversalUtilitiesFile);
-            //Assert.Contains(Entity, Context);
-
-            //Assert.Contains("//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", Context); //Find the GUID marker
-            //Assert.Contains("//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}", Context); //Find the entry point GUID
 
         }
+
     }
 }

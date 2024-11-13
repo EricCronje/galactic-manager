@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectLogging", "TestP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectMenus", "TestProjectMenus\TestProjectMenus.csproj", "{89574BF1-82FF-4BDF-8781-D72C798C392D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectCodeGen", "TestProjectCodeGen\TestProjectCodeGen.csproj", "{FF64B407-E0BB-4EAD-BFDE-88963FDF21D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectCodeGen", "TestProjectCodeGen\TestProjectCodeGen.csproj", "{FF64B407-E0BB-4EAD-BFDE-88963FDF21D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProj", "TestProj\TestProj.csproj", "{D3359582-0721-450C-AFB5-2067D8AF11BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{FF64B407-E0BB-4EAD-BFDE-88963FDF21D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF64B407-E0BB-4EAD-BFDE-88963FDF21D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF64B407-E0BB-4EAD-BFDE-88963FDF21D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3359582-0721-450C-AFB5-2067D8AF11BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3359582-0721-450C-AFB5-2067D8AF11BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3359582-0721-450C-AFB5-2067D8AF11BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3359582-0721-450C-AFB5-2067D8AF11BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

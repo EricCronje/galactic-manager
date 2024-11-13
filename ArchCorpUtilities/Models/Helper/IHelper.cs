@@ -1,5 +1,4 @@
-﻿using static ArchCorpUtilities.Models.Buildings.BuildingHelper;
-using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+﻿using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Models.Helper
 {

@@ -1,7 +1,5 @@
-﻿using ArchCorpUtilities.Models.Helper;
-using ArchCorpUtilities.Utilities.CodeGen;
-
-//using ArchCorpUtilities.Models.SitesModel.Sites;
+﻿using ArchCorpUtilities.Utilities.CodeGen;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using System.Text;
 using L = Logger.Logger;
 
@@ -13,12 +11,16 @@ public static class CodeGenHelper
     public static string WorkingFolder { get; set; }
     public static string TargetWorkingFolder { get; set; }
     public static string Version { get; set; }
+    public static string BackupFolder{ get; set; }
+    public static string CurrentGuid { get; set; }
 
     static CodeGenHelper()
     {
         WorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen";
         TargetWorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities";
-        Version = "1.0.0";
+        Version = "17.11.23";
+        CurrentGuid = "{744852ea-d309-4f87-bbd2-03fe76ba877b}";
+        BackupFolder = $"\\Backup\\{CurrentGuid}";
     }
 
     private static readonly List<CodeTemplate> Repository = GetMockData();
@@ -126,34 +128,29 @@ public static class CodeGenHelper
 
         try
         {
-            AddGenerationComment(stringBuilder);
-            stringBuilder.AppendLine("using ArchCorpUtilities.Models.Helper;");
-            stringBuilder.AppendLine($"using ArchCorpUtilities.GeneratedModels.{folderName};");
-            stringBuilder.AppendLine("using ArchCorpUtilities.Utilities;");
-            stringBuilder.AppendLine($"using ArchCorpUtilities.Models.{entity}Model.{entity};");
-            AddDefaultUsingStatments(stringBuilder);
-            stringBuilder.AppendLine("");
+            EmptyLineLogic(stringBuilder);
+            DefaultUsingLogic(stringBuilder, entity);
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine($"namespace ArchCorpUtilities.GeneratedModels.{folderName}");
-            stringBuilder.AppendLine("{");
+            ScopeStartLogic(stringBuilder, "");
             stringBuilder.AppendLine($"    public class {entity}Helper : IHelper<{entity}>, IDisposable");
-            stringBuilder.AppendLine("    {");
+            ScopeStartLogic(stringBuilder, "\t");
             stringBuilder.AppendLine("        public string? SessionID { get; set; }");
             stringBuilder.AppendLine("        public List<" + entity + ">? Items { get; set; }");
             stringBuilder.AppendLine("        public List<" + entity + ">? EntitiesOnThePage { get; set; }");
             stringBuilder.AppendLine("        public Patina.Patina Page { get; set; }");
-            stringBuilder.AppendLine("");
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine($"       public {entity}Helper(string? sessionID)");
-            stringBuilder.AppendLine("        {");
+            ScopeStartLogic(stringBuilder, "\t\t");
             stringBuilder.AppendLine("            SessionID = sessionID;");
             stringBuilder.AppendLine("            Items = MockData();");
             stringBuilder.AppendLine("            Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Items?.Count));");
-            stringBuilder.AppendLine("        }");
-
+            ScopeEndLogic(stringBuilder, "\t\t");
             stringBuilder.AppendLine($"        private List<{entity}>? MockData()");
-            stringBuilder.AppendLine("        {");
+            ScopeStartLogic(stringBuilder, "\t\t\t");
             stringBuilder.AppendLine("            if (Items == null || Items.Count == 0)");
             stringBuilder.AppendLine("                Items = [];");
-            stringBuilder.AppendLine("        ");
+            stringBuilder.AppendLine("");
             stringBuilder.AppendLine($"            Items.Add(new {entity}(\"Alpha-{entity}\", 1));");
             stringBuilder.AppendLine($"            Items.Add(new {entity}(\"Beta-{entity}\", 2));");
             stringBuilder.AppendLine($"            Items.Add(new {entity}(\"Charlie-{entity}\", 3));");
@@ -163,94 +160,132 @@ public static class CodeGenHelper
             stringBuilder.AppendLine($"            Items.Add(new {entity}(\"Golf-{entity}\", 3));");
             stringBuilder.AppendLine($"            Items.Add(new {entity}(\"Hotel-{entity}\", 3));");
             stringBuilder.AppendLine("            return Items;");
-            stringBuilder.AppendLine("        }");
+            ScopeEndLogic(stringBuilder, "\t\t\t");
 
-            stringBuilder.AppendLine("");
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine("        public bool View(U.Navigation navigate = U.Navigation.FirstPage)");
-            stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            ViewDefaultCode(stringBuilder, entity);
-            stringBuilder.AppendLine("        }");
+            ScopeStartLogic(stringBuilder, "\t\t\t");
+            LoggingLogic(stringBuilder);
+            ViewLogic(stringBuilder, entity);
+            ScopeEndLogic(stringBuilder, "\t\t\t");
 
-            stringBuilder.AppendLine("");
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine("        public bool Add(int? simChoice = null, string[]? simInput = null)");
             stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
-            stringBuilder.AppendLine("            return true;");
+            LoggingLogic(stringBuilder);
+            AddLogic(stringBuilder);
             stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
+
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine("        public void Dispose()");
             stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
+            LoggingLogic(stringBuilder);
+            stringBuilder.AppendLine("            GC.SuppressFinalize(this);");
             stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
+
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine("        public bool Edit(int? simChoice, string[]? simInput)");
             stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
-            stringBuilder.AppendLine("            return true;");
+            LoggingLogic(stringBuilder);
+            EditLogic(stringBuilder, entity);
             stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
+
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine("        public bool IsItemsOnThePage()");
             stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
+            LoggingLogic(stringBuilder);
             stringBuilder.AppendLine("            return !(EntitiesOnThePage == null || (EntitiesOnThePage != null && EntitiesOnThePage.Count == 0));");
             stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("        public bool Load(int? simChoice = null, string[]? simInput = null)");
-            stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
-            stringBuilder.AppendLine("            return true;");
-            stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
+
+            EmptyLineLogic(stringBuilder);
+            MethodDeclarationLogic("Search", stringBuilder);
+            ScopeStartLogic(stringBuilder, "\t\t\t");
+            LoggingLogic(stringBuilder);
+            SearchLogic(stringBuilder, entity);            
+            ScopeEndLogic(stringBuilder, "\t\t\t");
+
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine($"        public bool Refresh(List<{entity}> modelList, U.Navigation navigate = U.Navigation.FirstPage)");
             stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            RefreshDefaultCode(stringBuilder, entity);
+            LoggingLogic(stringBuilder);
+            RefreshLogic(stringBuilder, entity);
             stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("        public bool Remove(int? simChoice = null, string[]? simInput = null)");
-            stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
-            stringBuilder.AppendLine("            return true;");
-            stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("        public bool Save(int? simChoice = null, string[]? simInput = null)");
-            stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
-            stringBuilder.AppendLine("            return true;");
-            stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("        public bool Search(int? simChoice = null, string[]? simInput = null)");
-            stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            UnderConstructionMessage(stringBuilder);
-            stringBuilder.AppendLine("            return true;");
-            stringBuilder.AppendLine("        }");
-            stringBuilder.AppendLine("");
+
+            EmptyLineLogic(stringBuilder);
+            MethodDeclarationLogic("Remove", stringBuilder);
+            ScopeStartLogic(stringBuilder, "\t\t\t");
+            LoggingLogic(stringBuilder);
+            RemoveLogic(stringBuilder, entity);
+            ScopeEndLogic(stringBuilder, "\t\t\t");
+
+            EmptyLineLogic(stringBuilder);
+            MethodDeclarationLogic("Save", stringBuilder);
+            ScopeStartLogic(stringBuilder, "\t\t\t");
+            LoggingLogic(stringBuilder);
+            SaveLogic(stringBuilder, entity);
+            ScopeEndLogic(stringBuilder, "\t\t\t");
+
+            EmptyLineLogic(stringBuilder);
+            MethodDeclarationLogic("Load", stringBuilder);
+            ScopeStartLogic(stringBuilder, "\t\t\t");
+            LoggingLogic(stringBuilder);
+            LoadLogic(stringBuilder, entity);
+            ScopeEndLogic(stringBuilder, "\t\t\t");
+
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine("        public void ReIndexDisplayId()");
             stringBuilder.AppendLine("        {");
-            AddLoggingForMethod(stringBuilder);
-            stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("            var sites = Items?.OrderBy(c => c.Name).ToList();");
-            stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("            int counter = 1;");
-            stringBuilder.AppendLine("            if (sites != null)");
-            stringBuilder.AppendLine("            {");
-            stringBuilder.AppendLine("                foreach (var item in sites)");
-            stringBuilder.AppendLine("                {");
-            stringBuilder.AppendLine("                    item.DisplayId = counter++;");
-            stringBuilder.AppendLine("                    item.Id = item.DisplayId;");
-            stringBuilder.AppendLine("                }");
-            stringBuilder.AppendLine("            }");
+            LoggingLogic(stringBuilder);
+            ReIndexLogic(stringBuilder);
             stringBuilder.AppendLine("        }");
+
+            EmptyLineLogic(stringBuilder);
+            stringBuilder.AppendLine("        public void ResetPageMaxCount()");
+            stringBuilder.AppendLine("        {");
+            stringBuilder.AppendLine("            Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));");
+            stringBuilder.AppendLine("        }");
+
+            stringBuilder.AppendLine($"        private {entity}? ViewAndSelectItem(string? simInput, string heading)");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();");
+            stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
+            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"            CH.Feedback(heading);");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"            string ItemInput = CH.GetInput(simInput);");
+            stringBuilder.AppendLine($"            //If none selected - do nothing");
+            stringBuilder.AppendLine($"            if (!string.IsNullOrWhiteSpace(ItemInput))");
+            stringBuilder.AppendLine($"            {{");
+            stringBuilder.AppendLine($"                _ = Int32.TryParse(ItemInput, out int Choice);");
+            stringBuilder.AppendLine($"                //If item selected");
+            stringBuilder.AppendLine($"                {entity}? SelectedEntity = Items?.FirstOrDefault(p => p.DisplayId == Choice);");
+            stringBuilder.AppendLine($"                if (SelectedEntity != null)");
+            stringBuilder.AppendLine($"                {{");
+            stringBuilder.AppendLine($"                    return SelectedEntity;");
+            stringBuilder.AppendLine($"                }}");
+            stringBuilder.AppendLine($"            }}");
+            stringBuilder.AppendLine($"            return null;");
+            stringBuilder.AppendLine($"        }}");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"        private void ResetEntitiesOnThePage()");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            if (SessionID != null)");
+            stringBuilder.AppendLine($"                L.Log(\"Entities was reset.\", SessionID, 4);");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"            EntitiesOnThePage = null;");
+            stringBuilder.AppendLine($"        }}");
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"        public bool LoadDefaults()");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            Items?.Clear();");
+            stringBuilder.AppendLine($"            Items = MockData();");
+            stringBuilder.AppendLine($"            return true;");
+            stringBuilder.AppendLine($"        }}");
             stringBuilder.AppendLine("    }");
             stringBuilder.AppendLine("}");
+
+
 
             return stringBuilder.ToString();
         }
@@ -266,37 +301,310 @@ public static class CodeGenHelper
         }
     }
 
-    private static void UnderConstructionMessage(StringBuilder stringBuilder)
+    private static void SearchLogic(StringBuilder stringBuilder, string entity)
     {
-        stringBuilder.AppendLine("            CH.Feedback(\"Under Construction\");");
+        stringBuilder.AppendLine($"            CH.Feedback(\"Enter an item name to search for\");");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            var Input = CH.GetInput(simInput?[0]);");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            if (string.IsNullOrWhiteSpace(Input))");
+        stringBuilder.AppendLine($"                CH.Feedback(\"No Items Name Was Entered\");");
+        stringBuilder.AppendLine($"            else ");
+        stringBuilder.AppendLine($"            {{");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"                List<{entity}>? Entities = Items?.Where(c => c.Name != null && c.Name.ToUpper().Contains(Input.ToUpper(), StringComparison.CurrentCultureIgnoreCase)).ToList<{entity}>();");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"                if (Entities != null && Entities.Count > 0)");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                    Page = new Patina.Patina(5, Convert.ToUInt32(Entities.Count));");
+        stringBuilder.AppendLine($"                    EntitiesOnThePage = U.ViewWithPagination(\"Search Items\", Page, Entities);");
+        stringBuilder.AppendLine($"                    return true;");
+        stringBuilder.AppendLine($"                }}");
+        stringBuilder.AppendLine($"                else ");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                    CH.Feedback(\"No Items Was Found\");");
+        stringBuilder.AppendLine($"                    EntitiesOnThePage = [new {entity}(\"None\", 1)];");
+        stringBuilder.AppendLine($"                    Page = new Patina.Patina(1, 1);");
+        stringBuilder.AppendLine($"                    return false;");
+        stringBuilder.AppendLine($"                }}");
+        stringBuilder.AppendLine($"            }}");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            ReIndexDisplayId();");
+        stringBuilder.AppendLine($"            ResetPageMaxCount();");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            return false;");
     }
 
-    private static void ViewDefaultCode(StringBuilder stringBuilder, string entity)
+    private static void LoadLogic(StringBuilder stringBuilder, string entity)
+    {
+        stringBuilder.AppendLine($"            if (SessionID != null)");
+        stringBuilder.AppendLine($"                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"	        var path = \"{entity}\";");
+        stringBuilder.AppendLine($"	        try");
+        stringBuilder.AppendLine($"	        {{");
+        stringBuilder.AppendLine($"	            if (File.Exists(path))");
+        stringBuilder.AppendLine($"	            {{");
+        stringBuilder.AppendLine($"	                CH.Feedback($\"Items Loaded Successfully {{path}} - {{U.GetCurrentDate()}}\");");
+        stringBuilder.AppendLine($"	");
+        stringBuilder.AppendLine($"	                string FileInput = File.ReadAllText(path);");
+        stringBuilder.AppendLine($"	                bool SkipFirstLine = true;");
+        stringBuilder.AppendLine($"	                foreach (string line in FileInput.Split(\"\\r\\n\"))");
+        stringBuilder.AppendLine($"	                {{");
+        stringBuilder.AppendLine($"	                    if (!SkipFirstLine)");
+        stringBuilder.AppendLine($"	                    {{");
+        stringBuilder.AppendLine($"	                        string[] LineItem = line.Split(\"|\");");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\tif (LineItem.Length > 0 && LineItem.Length > 1)");
+        stringBuilder.AppendLine($"	                        {{");
+        stringBuilder.AppendLine($"	                            string Name = LineItem[0].Trim();");
+        stringBuilder.AppendLine($"	                            string GUID = CH.IsSimulate ? \"<GUID>\" : LineItem[1].Trim();");
+        stringBuilder.AppendLine($"	                            var Entity = Items?.FirstOrDefault(c => c.{entity}Guid == GUID);");
+        stringBuilder.AppendLine($"	                            var EntityItem = Items?.FirstOrDefault(c => c.Name == Name);");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\tvar OldGUID = CH.IsSimulate ? \"<GUID>\" : EntityItem?.{entity}Guid;");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\tif (Entity == null)");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t{{");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tif (EntityItem != null)");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t{{");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t\tCH.Feedback($\"Item Exists - No action - Old item: {{ EntityItem.Name}} - {{OldGUID}} - New Item: {{Name}} - {{GUID}}\");");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t}}");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\telse");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t{{");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tif (SessionID != null)");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t\tL.Log($\"Item found - {{Name}}\", SessionID);");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tItems?.Add(new {entity}(Name, 0, GUID));");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tCH.Feedback($\"Item Added - New Item: {{Name}} - {{GUID}}\");");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tReIndexDisplayId();");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tResetPageMaxCount();");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tResetEntitiesOnThePage();");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\treturn true;");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t}}");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t}}");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\telse");
+        stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tCH.Feedback($\"No action - Old item : {{EntityItem?.Name}} - {{OldGUID}} - New Item: {{Name}} - {{GUID}}\");");
+        stringBuilder.AppendLine($"	                        }}");
+        stringBuilder.AppendLine($"	                    }}");
+        stringBuilder.AppendLine($"	                    SkipFirstLine = false;");
+        stringBuilder.AppendLine($"	                }}");
+        stringBuilder.AppendLine($"	");
+        stringBuilder.AppendLine($"	                ReIndexDisplayId();");
+        stringBuilder.AppendLine($"	                ResetPageMaxCount();");
+        stringBuilder.AppendLine($"	                ResetEntitiesOnThePage();");
+        stringBuilder.AppendLine($"	            }}");
+        stringBuilder.AppendLine($"	            else");
+        stringBuilder.AppendLine($"	            {{");
+        stringBuilder.AppendLine($"                    if (SessionID != null)");
+        stringBuilder.AppendLine($"	                    L.Log($\"{{System.Reflection.MethodBase.GetCurrentMethod()?.Name}} - Error - Import file not found\", SessionID, 8);");
+        stringBuilder.AppendLine($"	                CH.Feedback($\"Loading The Items Failed - {{path}}\");");
+        stringBuilder.AppendLine($"	            }}");
+        stringBuilder.AppendLine($"	        }}");
+        stringBuilder.AppendLine($"	        catch (Exception ex)");
+        stringBuilder.AppendLine($"	        {{");
+        stringBuilder.AppendLine($"                if (SessionID != null)");
+        stringBuilder.AppendLine($"	                L.Log($\"{{System.Reflection.MethodBase.GetCurrentMethod()?.Name}} - Error message - {{ex.Message}}\", SessionID, 9);");
+        stringBuilder.AppendLine($"	            CH.Feedback($\"Error in the loading of the items {{ex.Message}} {{path}}\");");
+        stringBuilder.AppendLine($"	        }}");
+        stringBuilder.AppendLine($"	        return false;");
+    }
+
+    private static void MethodDeclarationLogic(string methodName, StringBuilder stringBuilder)
+    {
+        stringBuilder.AppendLine($"        public bool {methodName}(int? simChoice = null, string[]? simInput = null)");
+    }
+
+    private static void ScopeEndLogic(StringBuilder stringBuilder, string tabs)
+    {
+        stringBuilder.AppendLine($"{tabs}}}");
+    }
+
+    private static void ScopeStartLogic(StringBuilder stringBuilder, string tabs)
+    {
+        stringBuilder.AppendLine($"{tabs}{{");
+    }
+
+    private static void EmptyLineLogic(StringBuilder stringBuilder)
+    {
+        stringBuilder.AppendLine($"");
+    }
+
+    private static void ReIndexLogic(StringBuilder stringBuilder)
+    {
+        EmptyLineLogic(stringBuilder);
+        stringBuilder.AppendLine("            var OrderedModels = Items?.OrderBy(c => c.Name).ToList();");
+        EmptyLineLogic(stringBuilder);
+        stringBuilder.AppendLine("            int counter = 1;");
+        stringBuilder.AppendLine("            if (OrderedModels != null)");
+        stringBuilder.AppendLine("            {");
+        stringBuilder.AppendLine("                foreach (var item in OrderedModels)");
+        stringBuilder.AppendLine("                {");
+        stringBuilder.AppendLine("                    item.DisplayId = counter++;");
+        stringBuilder.AppendLine("                    item.Id = item.DisplayId;");
+        stringBuilder.AppendLine("                    item.Index = item.DisplayId;");
+        stringBuilder.AppendLine("                }");
+        stringBuilder.AppendLine("            }");
+    }
+
+    private static void SaveLogic(StringBuilder stringBuilder, string entity)
+    {
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            var Path = \"{entity}\";");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            if (Items != null && Items.Count > 0)");
+        stringBuilder.AppendLine($"            {{");
+        stringBuilder.AppendLine($"                StringBuilder sb = new();");
+        stringBuilder.AppendLine($"                try");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                    sb.AppendLine($\"{entity}Name|{entity}Guid\");");
+        stringBuilder.AppendLine($"                    foreach (var item in Items.OrderBy(c => c.Name))");
+        stringBuilder.AppendLine($"                    {{");
+        stringBuilder.AppendLine($"                        sb.AppendLine($\"{{ item.Name}}|{{ item.{entity}Guid}}\");");
+        stringBuilder.AppendLine($"                    }}");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"                    if (File.Exists(Path))");
+        stringBuilder.AppendLine($"                        File.Delete(Path);");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"                    File.AppendAllText(Path, sb.ToString());");
+        stringBuilder.AppendLine($"                    CH.Feedback($\"Saved the item successfully - {{U.GetCurrentDate()}}\");");
+        stringBuilder.AppendLine($"                    return true;");
+        stringBuilder.AppendLine($"                }}");
+        stringBuilder.AppendLine($"                catch (Exception ex)");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                    CH.Feedback($\"Items was not saved. - Error {{ex.Message}}\");");
+        stringBuilder.AppendLine($"                    return false;");
+        stringBuilder.AppendLine($"                }}");
+        stringBuilder.AppendLine($"                finally");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                    sb?.Clear();");
+        stringBuilder.AppendLine($"                }}");
+        stringBuilder.AppendLine($"            }}");
+        stringBuilder.AppendLine($"            else");
+        stringBuilder.AppendLine($"            {{");
+        stringBuilder.AppendLine($"                CH.Feedback(\"No data to save\");");
+        stringBuilder.AppendLine($"            }}");
+        stringBuilder.AppendLine($"            return false;");        
+    }
+
+    private static void EditLogic(StringBuilder stringBuilder, string entity)
+    {
+        stringBuilder.AppendLine($"\t        try");
+        stringBuilder.AppendLine($"\t        {{");
+        stringBuilder.AppendLine($"\t            {entity}? Entity = ViewAndSelectItem(simInput?[0], \"Select an item to edit\");");
+        stringBuilder.AppendLine($"\t");
+        stringBuilder.AppendLine($"\t            if (Entity != null)");
+        stringBuilder.AppendLine($"\t            {{");
+        stringBuilder.AppendLine($"\t                CH.Feedback(\"Please enter a new name\");");
+        stringBuilder.AppendLine($"\t                var Input = CH.GetInput(simInput?[1]);");
+        stringBuilder.AppendLine($"\t                if (!string.IsNullOrWhiteSpace(Input))");
+        stringBuilder.AppendLine($"\t                {{");
+        stringBuilder.AppendLine($"\t                    var NotFound = Items?.FirstOrDefault(i => (i.Name != null && i.Name.Equals(Input, StringComparison.CurrentCultureIgnoreCase)));");
+        stringBuilder.AppendLine($"\t                    if (NotFound == null)");
+        stringBuilder.AppendLine($"\t                    {{");
+        stringBuilder.AppendLine($"\t                        Items?.Add(new(Input, 0));");
+        stringBuilder.AppendLine($"\t                        Items?.Remove(Entity);");
+        stringBuilder.AppendLine($"\t                        Page = new Patina.Patina(1, 1);");
+        stringBuilder.AppendLine($"\t                        EntitiesOnThePage = [new(Input, 0)];");
+        stringBuilder.AppendLine($"\t                        CH.Feedback(\"Item was modified\");");
+        stringBuilder.AppendLine($"\t                        return true;");
+        stringBuilder.AppendLine($"\t                    }}");
+        stringBuilder.AppendLine($"\t                    else");
+        stringBuilder.AppendLine($"\t                        CH.Feedback(\"Duplicate entry found - operation aborted.\");");
+        stringBuilder.AppendLine($"\t                }}");
+        stringBuilder.AppendLine($"\t                else");
+        stringBuilder.AppendLine($"\t                    CH.Feedback(\"No name entered\");");
+        stringBuilder.AppendLine($"\t            }}");
+        stringBuilder.AppendLine($"\t            else");
+        stringBuilder.AppendLine($"\t                CH.Feedback(\"No Item selected\");");
+        stringBuilder.AppendLine($"\t");
+        stringBuilder.AppendLine($"\t            ResetPageMaxCount();");
+        stringBuilder.AppendLine($"\t            ReIndexDisplayId();");
+        stringBuilder.AppendLine($"\t            ResetEntitiesOnThePage();");
+        stringBuilder.AppendLine($"\t");
+        stringBuilder.AppendLine($"\t            return false;");
+        stringBuilder.AppendLine($"\t");
+        stringBuilder.AppendLine($"\t        }}");
+        stringBuilder.AppendLine($"\t        catch (Exception err)");
+        stringBuilder.AppendLine($"\t        {{");
+        stringBuilder.AppendLine($"\t            L.Log($\"Error - Edit an Item Helper -- {{err.Message}} --- {{err.InnerException?.Message}}\");");
+        stringBuilder.AppendLine($"\t            return false;");
+        stringBuilder.AppendLine($"\t        }}");
+    }
+
+    private static void RemoveLogic(StringBuilder stringBuilder, string entity)
+    {
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            //List the items");
+        stringBuilder.AppendLine($"            var Current{entity} = ViewAndSelectItem(simInput?[0], \"Select the item to remove\");");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            if (Items != null && Current{entity} != null)");
+        stringBuilder.AppendLine($"                if (Items.Remove(Current{entity}))");
+        stringBuilder.AppendLine($"                {{");
+        stringBuilder.AppendLine($"                    CH.Feedback(\"Item removed.\");");
+        stringBuilder.AppendLine($"                    ResetPageMaxCount();");
+        stringBuilder.AppendLine($"                    ReIndexDisplayId();");
+        stringBuilder.AppendLine($"                    ResetEntitiesOnThePage();");
+        stringBuilder.AppendLine($"                    return true;");
+        stringBuilder.AppendLine($"                }}");
+        stringBuilder.AppendLine($"                else");
+        stringBuilder.AppendLine($"                    CH.Feedback(\"Item was not removed.\");");
+        stringBuilder.AppendLine($"            else");
+        stringBuilder.AppendLine($"                CH.Feedback(\"Nothing selected.\");");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            ReIndexDisplayId();");
+        stringBuilder.AppendLine($"            ResetPageMaxCount();");
+        stringBuilder.AppendLine($"            ResetEntitiesOnThePage();");
+        stringBuilder.AppendLine($"");
+        stringBuilder.AppendLine($"            return false;");
+    }
+
+    private static void AddLogic(StringBuilder stringBuilder)
+    {
+        stringBuilder.AppendLine("            CH.Feedback(\"Please provide the item name: \");");
+        stringBuilder.AppendLine("            var Input = CH.GetInput(simInput?[0]);");
+        stringBuilder.AppendLine("            if(!string.IsNullOrWhiteSpace(Input))");
+        stringBuilder.AppendLine("            {");
+        stringBuilder.AppendLine("                Items?.Add(new(Input, 0));");
+        stringBuilder.AppendLine("                CH.Feedback(\"Item added.\");");
+        stringBuilder.AppendLine("                ResetPageMaxCount();");
+        stringBuilder.AppendLine("                ReIndexDisplayId();");
+        stringBuilder.AppendLine("                return true;");
+        stringBuilder.AppendLine("            }");
+        stringBuilder.AppendLine("            else");
+        stringBuilder.AppendLine("                CH.Feedback(\"Invalid Name or empty - No item added.\");");
+        EmptyLineLogic(stringBuilder);
+        stringBuilder.AppendLine("            return false;");
+    }
+
+    private static void ViewLogic(StringBuilder stringBuilder, string entity)
     {
         stringBuilder.AppendLine("            var orderedEntities = Items?.OrderBy(p => p.Index).ToList();");
         stringBuilder.AppendLine($"           EntitiesOnThePage = U.ViewWithPagination(\"{entity}\", Page, orderedEntities, navigate);");
         stringBuilder.AppendLine("            return true;");
     }
 
-    private static void RefreshDefaultCode(StringBuilder stringBuilder, string entity)
+    private static void RefreshLogic(StringBuilder stringBuilder, string entity)
     {
+        stringBuilder.AppendLine("            ReIndexDisplayId();");
+        stringBuilder.AppendLine("            ResetPageMaxCount();");
         stringBuilder.AppendLine("            var orderedEntities = modelList?.OrderBy(p => p.Index).ToList();");
         stringBuilder.AppendLine($"           EntitiesOnThePage = U.ViewWithPagination(\"{entity}\", Page, orderedEntities, navigate);");
         stringBuilder.AppendLine("            return true;");
     }
 
-    private static void AddDefaultUsingStatments(StringBuilder stringBuilder)
+    private static void DefaultUsingLogic(StringBuilder stringBuilder, string entity)
     {
         stringBuilder.AppendLine("using L = Logger.Logger;");
         stringBuilder.AppendLine("using U = ArchCorpUtilities.Utilities.UniversalUtilities;");
         stringBuilder.AppendLine("using CH = ArchCorpUtilities.Utilities.ConsoleHelper;");
+        stringBuilder.AppendLine($"using ArchCorpUtilities.Models.{entity}Model.{entity};");
+        stringBuilder.AppendLine("using ArchCorpUtilities.Models.Helper;");
+        stringBuilder.AppendLine("using System.Text;");
     }
 
-    private static void AddLoggingForMethod(StringBuilder stringBuilder)
+    private static void LoggingLogic(StringBuilder stringBuilder)
     {
         stringBuilder.AppendLine("            if (SessionID != null)");
         stringBuilder.AppendLine("                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);");
-        stringBuilder.AppendLine("");
+        EmptyLineLogic(stringBuilder);
     }
 
     private static string PocoCodeTemplate(string folderName, string entity)
@@ -308,7 +616,7 @@ public static class CodeGenHelper
 
         try
         {
-            AddGenerationComment(stringBuilder);
+            EmptyLineLogic(stringBuilder);
             stringBuilder.AppendLine($"namespace ArchCorpUtilities.Models.{folderName}.{entity};");
             stringBuilder.AppendLine($"public class {entity}");
             stringBuilder.AppendLine("{");
@@ -350,11 +658,6 @@ public static class CodeGenHelper
 
     }
 
-    private static void AddGenerationComment(StringBuilder stringBuilder)
-    {
-        stringBuilder.AppendLine($"//Generated code : {DateTime.Now} - Session : {SessionID}");
-    }
-
     private static string GetEntityPath(CodeTemplateEnum codeTemplate, string entity, string baseFolder)
     {
         var PrePath = $"{WorkingFolder}{baseFolder}\\{entity}Model\\{entity}";
@@ -377,20 +680,17 @@ public static class CodeGenHelper
         if (IsCreated)
             IsCreated = CreateCode(CodeTemplateEnum.Helper, entity, BaseFolder);
 
-        BaseFolder = "\\Utilities";
-        var TargetFile = "UniversalUtilities.cs";
-        if (IsCreated)
-            IsCreated = AlterCode(entity, BaseFolder, TargetFile, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", "//{E401C6FC-99B7-41B0-A612-8DABFE8734C3}");
-
         if (IsCreated)
         {
-
             List<CodePart> codeVault = [];
             var Header = GetGeneratedCodeHeader();
-            
-            CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");            
+
+            CodePartMenuEnum codePartMenuEnum = new("\\Utilities", "UniversalUtilities.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePartMenuEnum);
+
+            CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
             codeVault.Add(codePart);
-            
+
             CodePartHelperInstance codePartHelperInstance = new("\\Models", "ArchLoader.cs", entity, "{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartHelperInstance);
 
@@ -445,6 +745,9 @@ public static class CodeGenHelper
             CodePartHiddenRules codePartHiddenRules = new("\\Models", "TargetTaskHelper.cs", entity, "{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}", WorkingFolder, "", "\t\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartHiddenRules);
 
+            CodePartLoadDefaults codePartLoadDefaults = new("\\Models", "ArchLoader.cs", entity, "{E4C217C0-AC0D-4571-95E4-16CE056F35A5}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartLoadDefaults);
+
             int Counter = 0;
             foreach (var item in codeVault)
             {
@@ -456,71 +759,11 @@ public static class CodeGenHelper
             IsCreated = (Counter == codeVault.Count);
         }
 
+        if (IsCreated)
+            IsCreated = ClearGeneratedHeaders();
+
         return IsCreated;
 
-    }
-
-    private static bool AlterCode(string entity, string baseFolder, string targetFile, string searchString, string entryPoint)
-    {
-        var TargetPath = $"{WorkingFolder}{baseFolder}\\{targetFile}";
-
-        try
-        {
-            if (File.Exists(TargetPath))
-            {
-                var Context = File.ReadAllText(TargetPath);
-                if (string.IsNullOrWhiteSpace(Context))
-                    return false;
-                else
-                {
-                    var SelectedContext = Context.Split($"//{searchString}");
-                    if (SelectedContext.Length is > 0 and 3)
-                    {
-                        var CodeToAlter = SelectedContext[1];
-                        // Only alter the code if the entity in question does not exist.
-                        if (!CodeToAlter.Contains(entity))
-                        {
-                            StringBuilder stringBuilder = new();
-                            var PlaceHolder = $"\r\n            {entryPoint}";
-                            var CloseBracketPart = "\r\n        }\r\n        ";
-
-                            stringBuilder.Append($"//{searchString}");
-                            stringBuilder.Append(SelectedContext[1].Replace(PlaceHolder, "").Replace(CloseBracketPart, ""));
-                            stringBuilder.Append($",\r\n            {entity}{PlaceHolder}{CloseBracketPart}");
-                            stringBuilder.Append($"//{searchString}");
-
-                            var CodeAltered = stringBuilder.ToString();
-
-                            stringBuilder.Clear();
-                            stringBuilder.Append(GetGeneratedCodeHeader());
-                            stringBuilder.Append(SelectedContext[0]);
-                            stringBuilder.Append(CodeAltered);
-                            stringBuilder.Append(SelectedContext[2]);
-                            var AlteredFile = stringBuilder.ToString();
-                            stringBuilder.Clear();
-                            
-                            if (File.Exists(targetFile))
-                                File.Delete(TargetPath);
-
-                            File.WriteAllText(TargetPath, AlteredFile);
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-        ////Check to find two of them.
-
-
-
-        //// Add the domain if it does not exist.
-        ////Domain GUID : { F8FE36D7 - 3F08 - 48BA - 9CAB - FBAA102C8149}
-        //if (SessionID != null)
-        //    L.Log("Domain GUID : {F8FE36D7 - 3F08 - 48BA - 9CAB - FBAA102C8149}", SessionID);
     }
 
     private static bool CreateCode(CodeTemplateEnum codeTemplate, string entity, string basePath)
@@ -531,7 +774,7 @@ public static class CodeGenHelper
             var EntityFile = GetEntityPath(codeTemplate, entity, basePath);
 
             if (File.Exists(EntityFile))
-                File.Delete(EntityFile);
+                File.Delete(EntityFile);             
 
             TemplateCode = GetGeneratedCodeHeader() + TemplateCode;
 
@@ -544,59 +787,58 @@ public static class CodeGenHelper
 
     private static string GetGeneratedCodeHeader()
     {
-        return $"// Generated Code - Version: {Version} - {DateTime.Now} - {{{SessionID}}} \n\r";
+        return $"// Generated Code - Version: {U.GetVersion()} - {U.GetCurrentDate()} - {{{SessionID}}}\n\r";
     }
 
-    //public static bool RollBack(string entity)
-    //{
-    //    try
-    //    {
-    //        var EntityFile = GetEntityPath(CodeTemplateEnum.Helper, entity, "\\GeneratedModels");
-    //        if (File.Exists(EntityFile))
-    //            File.Delete(EntityFile);
-    //        EntityFile = GetEntityPath(CodeTemplateEnum.POCO, entity, "\\GeneratedModels");
-    //        if (File.Exists(EntityFile))
-    //            File.Delete(EntityFile);
-    //        var ModelFolder = $"{TargetWorkingFolder}\\GeneratedModels\\{entity}Model";
-    //        if (Directory.Exists(ModelFolder))
-    //            Directory.Delete(ModelFolder);
+    public static bool ClearGeneratedHeaders()
+    {
 
-    //        var Result = RollBackAlteredCode("\\Utilities", "UniversalUtilities.cs");
+        List<string> HeaderSources = [];
 
-    //        return Result;
-    //    }
-    //    catch (Exception)
-    //    {
+        try
+        {
+            HeaderSources.Add("\\Models\\TargetTaskHelper.cs");
+            HeaderSources.Add("\\Models\\ArchLoader.cs");
+            HeaderSources.Add("\\Utilities\\UniversalUtilities.cs");
 
-    //        return false;
-    //    }
+            foreach (var item in HeaderSources)
+            {
+                var Path = $"{WorkingFolder}\\{item}";
+                if (File.Exists(Path))
+                {
+                    var Content = File.ReadAllText(Path);
+                    var SplitContent = Content.Split("\n\r");
+                    StringBuilder stringBuilder = new();
+                    var Counter = 0;
+                    foreach (string v in SplitContent)
+                    {
 
-    //}
+                        if (v.Length > 0)
+                        {
+                            if (v.Contains("Generated"))
+                                Counter++;
+                            else
+                                break;
+                        }
+                    }
+                    stringBuilder.Append(GetGeneratedCodeHeader());
+                    stringBuilder.AppendJoin("\n\r", SplitContent.ToList().GetRange(Counter, SplitContent.Length - Counter)).ToString();
+                    var Output = stringBuilder.ToString();
+                    stringBuilder.Clear();
+                    File.Delete(Path);
+                    File.WriteAllText(Path, Output);
+                }
+            }
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+            throw;
+        }
 
-    //private static bool RollBackAlteredCode(string baseFolder, string targetFile)
-    //{
-    //    try
-    //    {
-    //        if (SessionID != null)
-    //        {
-    //            var Backup = targetFile.Replace(".cs", $".{SessionID}");
-    //            var Source = $"{WorkingFolder}{baseFolder}\\{Backup}";
-    //            var Target = $"{WorkingFolder}{baseFolder}\\{targetFile}";
-    //            if (File.Exists(Target) && File.Exists(Source))
-    //                File.Delete(Target);
-    //            if (File.Exists(Source))
-    //                File.Copy(Source, Target);
-    //            //File.Delete(Source);
-    //            return true;
-    //        }
-    //        else
-    //            return false;
-    //    }
-    //    catch (Exception)
-    //    {
-    //        return false;
-    //    }
-    //}
+
+    }
 
     #endregion
 }

@@ -1,5 +1,6 @@
-// Generated Code - Version: 1.0.0 - 2024/11/09 22:15:42 - {2991c9ad-4969-45a7-87cc-0857a2dd7797} 
-using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+// Generated Code - Version: 14.11.22 - 2024/11/12 15:23:07 - {b8a2c482-4992-45c4-84df-80204f82066f}
+
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
@@ -11,16 +12,19 @@ namespace ArchCorpUtilities.Utilities
     {
         public static string? SessionID { get; internal set; }
 
-        //{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
+
         public enum MenuDomain
         {
             None,
             Menu,
-            Building,
-            Beacons
-            //{E401C6FC-99B7-41B0-A612-8DABFE8734C3}
+			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
+	
+            Beacons,
+			Buildings
+			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
+	
         }
-        //{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
+
 
         public enum Navigation
         {
@@ -100,6 +104,16 @@ namespace ArchCorpUtilities.Utilities
             else
                 CH.Feedback($"{Resource.NoItemsToList}\n");
             return paginatedList;
+        }
+        
+        internal static object GetCurrentDate()
+        {
+            return CH.IsSimulate ? "<Date>" : DateTime.Now;
+        }
+
+        internal static object GetVersion()
+        {
+            return CH.IsSimulate ? "<Version>" : CodeGenHelper.Version;
         }
 
     }

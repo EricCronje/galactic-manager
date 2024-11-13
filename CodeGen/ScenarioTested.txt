@@ -1,0 +1,31 @@
+            Preperation:
+			Getting the Building and Beacons menu items. 
+			Copying the file {542fcda8-12dd-4fd1-9701-80d61171d215}.
+			
+            Asserting the following: 
+			Is the file {542fcda8-12dd-4fd1-9701-80d61171d215} in place?
+			Does it contain Beacons and Buildings?
+            
+			Steps:
+            1. Create a building - called "TestBuilding".			
+            2. Search for the building called "TestBuilding".
+            3. View the building "TestBuilding".			
+            4. Save the current Buildings.
+            5. Exit.			
+            6. Go back into the system.			
+			7. Search for the building "TestBuilding".
+            8. Load the buildings from the file.            
+            9. Search for the building "TestBuilding". - Found it (But the page navigation is showing!)			
+            10. Edit the building "TestBuilding" change to "EditedTestBuilding"
+            11. Search for "TestBuilding".
+            11. Search for "EditedBuilding".			         
+            13. Remove the Building "EditedTestBuilding".
+            14. Search for "EditedTestBuilding".
+            15. View buildings.
+			
+
+            Cleanup:
+            Removing the Building and Beacons menu items file {542fcda8-12dd-4fd1-9701-80d61171d215}.
+
+            Checking:
+            Asserting if the file {542fcda8-12dd-4fd1-9701-80d61171d215} was removed.

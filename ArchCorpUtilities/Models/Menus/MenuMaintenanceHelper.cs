@@ -1,17 +1,11 @@
 ﻿using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-using BH = ArchCorpUtilities.Models.Buildings.BuildingHelper;
 using Page = Patina.Patina;
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
-
-using static ArchCorpUtilities.Models.Buildings.BuildingHelper;
-using System.Net.NetworkInformation;
-using System.Text;
-using System;
 using ArchCorpUtilities.Utilities;
-using System.Xml.Linq;
+using static ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -79,8 +73,16 @@ namespace ArchCorpUtilities.Models.Menus
 
             if (CurrentMenu != null)
             {
-                CH.Feedback(Resource.DisplayNamePrompt);
-                string DisplayName = CH.GetInput(simInputValues?[1]);
+                string DisplayName = "";
+                string ItemName = "";
+                string Input = "";
+
+                GenerateLastEntityQuestion(simInputValues, ref DisplayName, ref ItemName, ref Input);
+
+                GenerateUsingGUIDMassFile(simInputValues, Input);
+
+                GenerateFileQuestion(simInputValues, ref DisplayName, ref ItemName, ref Input);
+
                 bool IsBack = false;
                 var Page = CurrentMenu.Page;
                 var PageHeading = CurrentMenu.PageHeading;
@@ -88,115 +90,208 @@ namespace ArchCorpUtilities.Models.Menus
                 var IsExitOption = false;
                 var NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
 
-                //Get the IsExit Option for the page on this current menu item
-                var IsExitMenuItem = MH.Menu.FirstOrDefault(p => p.Page == CurrentMenu.Page && p.IsExitOption);
-                if (IsExitMenuItem != null)
-                    MH.Menu.Remove(IsExitMenuItem);
-                //Remove it
-                var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, CurrentMenu.Domain, NewMenuTargetPage);
-                //Re-Add it...
-                if (IsExitMenuItem != null)
-                    MH.Menu.Add(IsExitMenuItem);
-                if (!AddedMenu)
-                    CH.Feedback(Resource.NoDisplayNameProvided);
-
-                if (AddedMenu)
+                if (DisplayName.Length > 0 && ItemName.Length > 0)
                 {
-                    CH.Feedback(Resource.EnterItemPrompt);
+                    if (!string.IsNullOrEmpty(Input) && Input.Equals("Y"))
+                    {
+                        if (CodeGen.CreateDefaultCode(ItemName))
+                        {
+                            CH.Feedback(Resource.ModelFileCreated);
+                            CH.Feedback("In Order for the changes to take affect:\r\nDeploy the code manually.\r\nThen create the menu structure.\r\nPress any key to exit the program.");
+                            var input = CH.GetInput(simInputValues?[0]);
+                            Environment.Exit(0);
+                        }
+                        else
+                            CH.Feedback($"{Resource.ModelFileNotCreated} - {ItemName}");
+                    }
 
-                    /*                        
-                    -------------------------
-                    Manage Buildings
-                    -------------------------
-                    1 View Buildings
-                    2 Add Buildings
-                    3 Remove Buildings
-                    4 Edit Building Names
-                    5 Save Buildings
-                    6 Load Buildings
-                    7 Back to Main Menu
-                    8 Exit
-                    -------------------------
-                    Choice:
-                    */
+                    GenerateMenuItems(CurrentMenu, ref DisplayName, ItemName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage);
 
-                    string ItemName = CH.GetInput(simInputValues?[2]);
-                    string[] DisplayNamesList = ["View", "Add", "Remove", "Edit", "Save", "Load"];
-                    //Create "View", "Add", "Remove", "Edit", "Save", "Load", Back to Main, Exit                    
-                    var result = CreateSubMenusLevel1(CurrentMenu, ref DisplayName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, ref AddedMenu, DisplayNamesList, ItemName);
-
-                    if (result == false)
-                        CH.Feedback(Resource.NoItemNameProvided);
-
-
-                    /*
-                     //Add view part ...
-                    -------------------------
-                    Buildings list:
-                    -------------------------
-                    1) Alpha
-                    2) Beta
-                    3) Dragon One
-                    -------------------------
-                    Pages : 1/1
-                    -------------------------
-                    View Buildings - Sub Menu
-                    -------------------------
-                    1 Refresh
-                    2 Search
-                    3 Back to Manage Buildings
-                    4 Exit
-                    -------------------------
-                    Choice:
-
-                    */
-
-
-                    //Find the view menu - that was created!
-                    var NewViewMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"View {ItemName}");
-                    string[] DisplayNamesListView = ["Refresh", "Search", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(NewViewMenu, DisplayNamesListView, ItemName);
-
-                    //Find the add menu item - that was created
-                    var newAddMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Add {ItemName}");
-                    DisplayNamesListView = [$"Add {ItemName}"];
-                    CreateSubMenuLevel2(newAddMenu, DisplayNamesListView, ItemName);
-
-                    //Find the Remove menu item - that was created
-                    var newRemoveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Remove {ItemName}");
-                    DisplayNamesListView = [$"Remove {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName);
-
-                    //Find the Edit menu item - that was created
-                    var newEditMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Edit {ItemName}");
-                    DisplayNamesListView = [$"Edit {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(newEditMenu, DisplayNamesListView, ItemName);
-
-                    //Find the save menu item - that was created
-                    var newSaveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Save {ItemName}");
-                    DisplayNamesListView = [$"Save {ItemName} to a file"];
-                    CreateSubMenuLevel2(newSaveMenu, DisplayNamesListView, ItemName);
-
-                    //Find the load menu item - that was created
-                    var newLoadMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Load {ItemName}");
-                    DisplayNamesListView = [$"Load {ItemName} from a file"];
-                    CreateSubMenuLevel2(newLoadMenu, DisplayNamesListView, ItemName);
-                    CH.Feedback(Resource.MenuItemsCreatedSuccess);
-
-                    ReIndexDisplayId();
-
-                    #region Generate default code
-                    if (CodeGen.CreateDefaultCode(ItemName))
-                        CH.Feedback(Resource.ModelFileCreated);                          
-                    else
-                        CH.Feedback(Resource.ModelFileNotCreated);
-                    #endregion 
                 }
             }
             else
                 CH.Feedback(Resource.NoMenuItemSelected);
 
             
+        }
+
+        private static void GenerateMenuItems(MenuItem? CurrentMenu, ref string DisplayName, string ItemName, ref bool IsBack, ref int Page, ref string PageHeading, ref int ParentPage, ref bool IsExitOption, ref int NewMenuTargetPage)
+        {
+            //Get the IsExit Option for the page on this current menu item
+            var IsExitMenuItem = MH.Menu.FirstOrDefault(p => p.Page == CurrentMenu.Page && p.IsExitOption);
+            if (IsExitMenuItem != null)
+                MH.Menu.Remove(IsExitMenuItem);
+            //Remove it
+            var Domain = CurrentMenu.Domain;
+            _ = Enum.TryParse(ItemName, out Domain);
+
+            var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, Domain, NewMenuTargetPage);
+            //Re-Add it...
+            if (IsExitMenuItem != null)
+                MH.Menu.Add(IsExitMenuItem);
+            if (!AddedMenu)
+                CH.Feedback(Resource.NoDisplayNameProvided);
+
+            if (AddedMenu)
+            {
+                string[] DisplayNamesList = ["View", "Add", "Remove", "Edit", "Save", "Load"];
+                //Create "View", "Add", "Remove", "Edit", "Save", "Load", Back to Main, Exit                    
+                var result = CreateSubMenusLevel1(CurrentMenu, ref DisplayName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, ref AddedMenu, DisplayNamesList, ItemName);
+
+                if (result == false)
+                    CH.Feedback(Resource.NoItemNameProvided);
+
+                //Find the view menu - that was created!
+                var NewViewMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"View {ItemName}");
+                string[] DisplayNamesListView = ["Refresh", "Search", "Next Page", "Last Page", "First Page", "Previous Page"];
+                CreateSubMenuLevel2(NewViewMenu, DisplayNamesListView, ItemName);
+
+                //Find the add menu item - that was created
+                var newAddMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Add {ItemName}");
+                DisplayNamesListView = [$"Add {ItemName}"];
+                CreateSubMenuLevel2(newAddMenu, DisplayNamesListView, ItemName);
+
+                //Find the Remove menu item - that was created
+                var newRemoveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Remove {ItemName}");
+                DisplayNamesListView = [$"Remove {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
+                CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName);
+
+                //Find the Edit menu item - that was created
+                var newEditMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Edit {ItemName}");
+                DisplayNamesListView = [$"Edit {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
+                CreateSubMenuLevel2(newEditMenu, DisplayNamesListView, ItemName);
+
+                //Find the save menu item - that was created
+                var newSaveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Save {ItemName}");
+                DisplayNamesListView = [$"Save {ItemName} to a file"];
+                CreateSubMenuLevel2(newSaveMenu, DisplayNamesListView, ItemName);
+
+                //Find the load menu item - that was created
+                var newLoadMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Load {ItemName}");
+                DisplayNamesListView = [$"Load {ItemName} from a file"];
+                CreateSubMenuLevel2(newLoadMenu, DisplayNamesListView, ItemName);
+                CH.Feedback(Resource.MenuItemsCreatedSuccess);
+            }
+        }
+
+        private static void GenerateFileQuestion(string[]? simInputValues, ref string DisplayName, ref string ItemName, ref string Input)
+        {
+            if (DisplayName.Length == 0 && ItemName.Length == 0)
+            {
+                CH.Feedback(Resource.DisplayNamePrompt);
+                DisplayName = CH.GetInput(simInputValues?[1]);
+
+                CH.Feedback(Resource.EnterItemPrompt);
+                ItemName = CH.GetInput(simInputValues?[2]);
+
+                CH.Feedback("Do you want to generate the code? (Y/N)");
+                Input = CH.GetInput(simInputValues?[0]);
+
+                if (File.Exists("Last"))
+                    File.Delete("Last");
+
+                File.WriteAllText("Last", $"{DisplayName}|{ItemName}|{Input}");
+            }
+        }
+
+        private static void GenerateLastEntityQuestion(string[]? simInputValues, ref string DisplayName, ref string ItemName, ref string Input)
+        {
+            if (File.Exists("Last"))
+            {
+                var Context = File.ReadAllText("Last");
+                var ContextSplit = Context.Split("|");
+                if (ContextSplit.Length == 3)
+                {
+                    DisplayName = ContextSplit[0];
+                    ItemName = ContextSplit[1];
+
+                    CH.Feedback($"(Last Item Processed) Do you want to continue with DisplayName: {DisplayName} - ItemName: {ItemName} - CreateCode: {ContextSplit[2]}  (Y/N)");
+                    var Continue = CH.GetInput(simInputValues?[0]);
+                    if (!string.IsNullOrWhiteSpace(Continue) && Continue.Equals("N"))
+                    {
+                        DisplayName = "";
+                        ItemName = "";
+                    }
+                    else
+                    {
+                        CH.Feedback("(Last Item Processed) Do you want to generate the code? (Y/N)");
+                        Input = CH.GetInput(simInputValues?[0]);
+                    }
+                }
+            }
+        }
+
+        private static void GenerateUsingGUIDMassFile(string[]? simInputValues, string Input)
+        {
+            var GeneratePath = $"{CodeGenHelper.WorkingFolder}\\Generate\\{CodeGenHelper.CurrentGuid}";
+            if (File.Exists(GeneratePath) && (string.IsNullOrWhiteSpace(Input) || Input.Equals("N")))
+            {
+                if (SessionID != null)
+                    L.Log($"Found a generate file {GeneratePath}", SessionID, 1);
+
+                CH.Feedback($"Do you want to generate the code from {CodeGenHelper.CurrentGuid}? (Y/N)");
+                var InputGen = CH.GetInput(simInputValues?[0]);
+
+                if (!string.IsNullOrWhiteSpace(InputGen) && InputGen.Equals("Y"))
+                {
+                    var Content = File.ReadAllText(GeneratePath);
+                    if (Content != null && Content.Length > 0)
+                    {
+
+                        if (SessionID != null)
+                            L.Log($"Length of {Content.Length}", SessionID, 1);
+
+                        var SplitCommands = Content.Split("\r\n");
+                        foreach (var SplitCommand in SplitCommands)
+                        {
+                            if (SessionID != null)
+                                L.Log($"Found line count of {Content.Length}", SessionID, 1);
+
+                            if (SplitCommand.Length > 0)
+                            {
+                                if (SessionID != null)
+                                    L.Log($"Found command of length {SplitCommand.Length}", SessionID, 1);
+
+                                var SplitLine = SplitCommand.Split("|");
+                                if (SplitLine.Length == 2)
+                                {
+                                    if (SessionID != null)
+                                        L.Log($"Found command of length {SplitCommand.Length}", SessionID, 1);
+                                    var MenuName = SplitLine[0];
+                                    var EntityName = SplitLine[1];
+
+                                    if (CodeGen.CreateDefaultCode(EntityName))
+                                    {
+                                        CH.Feedback($"{Resource.ModelFileCreated} - {EntityName}.");
+                                    }
+                                    else
+                                        CH.Feedback($"{Resource.ModelFileNotCreated} - {EntityName}");
+                                }
+                                else
+                                {
+                                    if (SessionID != null)
+                                        L.Log($"Abort - not enough fields.", SessionID, 1);
+                                }
+                            }
+                            else
+                            {
+                                if (SessionID != null)
+                                    L.Log($"Abort - No lines", SessionID, 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (SessionID != null)
+                            L.Log($"Abort - Empty file.", SessionID, 1);
+                    }
+                }
+
+                CH.Feedback($"Generated - {CodeGenHelper.CurrentGuid}\r\nIn Order for the changes to take affect:\r\nDeploy the code manually.\r\nThen create the menu structure.\r\nPress any key to exit the program.");
+                var input = CH.GetInput(simInputValues?[0]);
+                Environment.Exit(0);
+
+            }
         }
 
         private static void CreateSubMenuLevel2( MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
@@ -208,6 +303,7 @@ namespace ArchCorpUtilities.Models.Menus
             bool IsExitOption;
             int NewMenuTargetPage;
             bool IsDefault = false;
+            U.MenuDomain menuDomain = MenuDomain.None;
 
             if (NewViewMenu != null)
             {
@@ -242,13 +338,13 @@ namespace ArchCorpUtilities.Models.Menus
                             break;
                     }
 
-                    _ = Enum.TryParse(itemName, out U.MenuDomain menuDomain);
+                    _ = Enum.TryParse(itemName, out menuDomain);
                     var TargetTaskSplit = item.Split(' ');
 
                     AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomain, NewMenuTargetPage, HideRule, TargetTaskSplit[0], IsDefault);
                 }
                 Page = NewViewMenu.TargetPage;                
-                CreateBackAndExitMenuOptions(NewViewMenu, Page);
+                CreateBackAndExitMenuOptions(menuDomain , NewViewMenu, Page);
             }
         }
 
@@ -261,6 +357,8 @@ namespace ArchCorpUtilities.Models.Menus
                 ParentPage = Page;
                 IsExitOption = false;
 
+                U.MenuDomain MenuDomainOption = U.MenuDomain.None;
+
                 foreach (var subDisplayName in DisplayNamesList)
                 {
                     if (CurrentMenu != null)
@@ -269,20 +367,20 @@ namespace ArchCorpUtilities.Models.Menus
                         DisplayName = $"{subDisplayName} {itemName}";
                         PageHeading = $"{subDisplayName} {itemName} - Sub Menu";
                         NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
-                        _ = Enum.TryParse(itemName, out U.MenuDomain MenuDomain);
+                        _ = Enum.TryParse(itemName, out MenuDomainOption);
 
-                        AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, MenuDomain, NewMenuTargetPage);
+                        AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, MenuDomainOption, NewMenuTargetPage);
                     }
                 }
                 
-                CreateBackAndExitMenuOptions(CurrentMenu, Page);
+                CreateBackAndExitMenuOptions(MenuDomainOption, CurrentMenu, Page);
                 return true;
             }
             else
                 return false; 
         }
 
-        private static void CreateBackAndExitMenuOptions(MenuItem? CurrentMenu, int Page)
+        private static void CreateBackAndExitMenuOptions(MenuDomain menuDomainOption, MenuItem? CurrentMenu, int Page)
         {
 
             string DisplayName;
@@ -298,13 +396,13 @@ namespace ArchCorpUtilities.Models.Menus
             {
                 NewMenuTargetPage = CurrentMenu.Page;
                 IsBack = true;
-                AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, CurrentMenu.Domain, NewMenuTargetPage);
+                AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomainOption, NewMenuTargetPage);
 
                 DisplayName = "Exit";
                 PageHeading = DisplayName;
                 NewMenuTargetPage = 0;
                 IsExitOption = true;
-                AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, CurrentMenu.Domain, NewMenuTargetPage);
+                AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomainOption, NewMenuTargetPage);
             }
         }
 
@@ -378,27 +476,29 @@ namespace ArchCorpUtilities.Models.Menus
             throw new NotImplementedException();
         }
 
-        internal static void Load()
-        {
-            var Menus  = MH.ImportMenu();
+        internal static void Load(string? path = null)
+        {            
+            var Menus  = MH.ImportMenu(path ?? "Menus.txt");
             if (Menus != null)
             {
                 var Start = Menus.FirstOrDefault(p => p.IsStartPage)?.Page;
                 MH.MapMenus(Menus, Start);
                 MH.Menu.Clear();
                 MH.Menu = Menus;
-                CH.Feedback($"{Resource.LoadMenusSuccess} - {DateTime.Now}");
+                
+                
+                CH.Feedback($"{Resource.LoadMenusSuccess} - {U.GetCurrentDate()}");
 
             }
             else
-                CH.Feedback($"{Resource.LoadMenusFailed} - {DateTime.Now}");
+                CH.Feedback($"{Resource.LoadMenusFailed} - {U.GetCurrentDate()}");
 
         }
 
         internal static void Save()
         {
             if (MH.ExportMenus())
-                CH.Feedback($"{Resource.SaveMenusSuccess} - {DateTime.Now}");
+                CH.Feedback($"{Resource.SaveMenusSuccess} - {U.GetCurrentDate()}");
         }
 
         internal static void Remove(string? simChoice)
@@ -438,5 +538,6 @@ namespace ArchCorpUtilities.Models.Menus
             }
             return null;
         }
+
     }
 }

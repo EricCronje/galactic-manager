@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GeneratedModels\Test\**" />
     <Compile Remove="Gen\**" />
+    <EmbeddedResource Remove="GeneratedModels\Test\**" />
     <EmbeddedResource Remove="Gen\**" />
+    <None Remove="GeneratedModels\Test\**" />
     <None Remove="Gen\**" />
   </ItemGroup>
 
@@ -35,10 +38,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="GeneratedModels\" />
   </ItemGroup>
 
 </Project>

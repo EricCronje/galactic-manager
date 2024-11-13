@@ -1,0 +1,41 @@
+Version 9.10.9		-	Add	-	save logic.																			-	20241111	-	200
+Version 10.10.9		-	Add	-	load logic.																			-	20241111	-	25
+Version 10.10.12	-	Fix	-	Use Items instead on Beacons														-	20241111	-	25
+Version 10.10.13	-	Fix	-	Load logic;not all code returns														-	20241111	-	
+Version 10.10.14	-	Fix	-	Load logic;Beacons - no add use Items												-	20241111	-	
+Version 10.10.15	-	Fix	-	Load logic;BeaconsName - not in scope												-	20241111	-	
+Version 10.10.16	-	Fix	-	Load logic;path;not in scope														-	20241111	-	
+Version 10.10.17	-	Fix	-	Load logic;possible null dereferencing												-	20241111	-	50
+Version 10.10.18	-	Fix -	Load logic;There was a check to see if the items retrieved are more than two from	-	20241111	-	 
+					-		-	the template. The limit was 3 now it is 2.											-	20241111	-	25					
+Version 10.10.19	-	Fix	-	Load logic Possible null dereference; added the null check for Session Id			-	20241111	-	
+Version 10.10.20	-	Fix	-	Load logic; outside of bounds error													-	20241111	-	
+Version 10.10.21	-	Fix	-	Load logic; Removed the unused items; Id & DisplayID; but Id was used. Changed to 0 -	20241111	-	
+					-		-	Changed Id to 0 in the add; the system will allocate an Id							-	20241111	-	75
+Version 10.10.21	-	Mod	-	Load logic; Add the date and time indicator					       					-	20241111	-	<25
+Version 10.10.22	-	Mod	-	Save logic; Add the date and time indicator 										-	20241111	-	<25
+Version 12.10.22	-	Add	-	Search logic;								 										-	20241111	-	<50
+Version 12.11.22	-	Add	-	Search logic;Indicate if the item was not found.									-	20241111	-	<25
+#Moved to backups	-	{f7b9c49a-fce9-4cf1-8e6c-88a7a5432616};	Version 12.11.22; Includes Beacons code.			-	20241111	-	<25
+Version 13.11.22	-	Add -	Buildings and Beacons																-	20241112	-	<25
+#Moved to backups	-	{542fcda8-12dd-4fd1-9701-80d61171d215};	Includes Beacons code & Buildings					-	20241112	-	<25
+#					-	Version 13.11.22; Includes Beacons code & Buildings											-	20241112	-	<25
+#					-	Updated RollBack.bat																		-	20241112	-	<25
+#					-	Updated CurrentGuid = "{542fcda8-12dd-4fd1-9701-80d61171d215}"; CodeGenHelpers.cs			-	20241112	-	<25
+Version 13.11.22	-	Fix -	Buildings;	{542fcda8-12dd-4fd1-9701-80d61171d215}									-	20241112	-	
+					-		 -	1. Add a new building.																-	20241112	-	
+					-		 -	2. Search for it.																	-	20241112	-	
+					-		 -	3. Then view it.																	-	20241112	-	
+					-		 -	Issue is that it does not show all the pages on the view only the last search item.	-	20241112	-	
+					-	Sol	 -	Created a test for the scenario.													-	20241112	-	
+Version 14.11.22	-	Fix	 -	Simulation - The search did not have these parameters simChoice, simInputValues		-	20241112	-
+					-		 -	{F745E72F-A908-4AB1-AF8B-E3FDE13BF46E}; On the TargetTaskHelper.					-	20241112	-
+Version 15.11.22	-	Tag	 -	Made changes - mode to backup. New GUID {744852ea-d309-4f87-bbd2-03fe76ba877b}		-	20241112	-	500
+Version 15.11.23	-	Fix	 -	When searching - old edited item showed!											-	20241113	-	<25
+					-		 -	Steps:																				-	20241113	-	
+					-		 -	Edit an item																		-	20241113	-	
+					-		 -	Then search for the previous item that was changed. It will not be there.			-	20241113	-	
+					-		 -	Shows the previous edit item :(														-	20241113	-	
+Version 16.11.23	-	Mod	 -	If Simulate on the load - changed the GUIDs to <GUID>								-	20241113	-
+Version 17.11.23	-	Mod	 -	Rewrote the load for the helpers													-	20241113	-
+
