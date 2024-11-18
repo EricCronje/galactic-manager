@@ -1,3 +1,6 @@
+git tag -a v1.4 -m "my version 1.4"
+
+
 C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities\Utilities\UniversalUtilities.cs
 
         //{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
