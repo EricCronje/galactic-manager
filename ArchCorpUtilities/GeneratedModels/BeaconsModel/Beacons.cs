@@ -1,4 +1,4 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+// Generated Code - Version: 23.11.25 - 2024/11/14 23:54:43 - {7328f621-8c9b-4ae9-b2c6-e5c96ce8746e}
 
 namespace ArchCorpUtilities.Models.BeaconsModel.Beacons;
 public class Beacons

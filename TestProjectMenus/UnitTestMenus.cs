@@ -180,161 +180,20 @@ namespace TestProjectMenus
         [Fact]
         public void ValidAddMenuMaintenanceAddOperation()
         {
+            string[] values = ["Y"];
             List<AC> commands =
             [
             new AC(1, ""),
             new AC(2, ""), // Add Menu
-            new AC(2, ""), // Add a new menu
+            new AC(2, values), // Add a new menu
             ];
             CH.ClearFeedback();
             AL.RunArch(commands);
 
             string Result = CH.GetFeedback();
-
-            ValidAddMenuMaintenanceAddOperationAssert(Result);
-
+            string Expected = "-------------------------\r\nGalaxy Manager - Main Menu - <Version>\r\n-------------------------\r\n1 Manage Menus\r\n2 Exit\r\n-------------------------\r\nChoice:\r\nSimulate:  -- 1 --- \r\n<ClearConsole>\r\n-------------------------\r\nManage Menus - <Version>\r\n-------------------------\r\n1 View Menus\r\n2 Add Menus\r\n3 Remove Menus\r\n4 Edit Menus\r\n5 Save Menu\r\n6 Load Menu\r\n7 Back to Main Menu\r\n8 Exit\r\n-------------------------\r\nChoice:\r\nSimulate:  -- 2 --- \r\n<ClearConsole>\r\n-------------------------\r\nCurrent menu structure - <Version>\r\n-------------------------\r\n1) Manage Menus\r\n2) Exit\r\n-------------------------\r\nPages : 1/1\r\n-------------------------\r\nAdd Menu - Sub Menu - <Version>\r\n-------------------------\r\n1 Refresh\r\n2 Add a menu item\r\n3 Back to Manage Menus\r\n4 Exit\r\n-------------------------\r\nChoice:\r\nSimulate:  -- 2 --- System.String[]\r\n<ClearConsole>\r\nDo you want to generate the code from {744852ea-d309-4f87-bbd2-03fe76ba877b}? (Y/N)\r\nSimulate: Y\r\nTarget file not altered.         - Buildings - {F8FE36D7-3F08-48BA-9CAB-FBAA102C8149} - UniversalUtilities.cs.\r\nTarget file not altered.         - Buildings - {0ACDC688-3120-452F-94AE-2DD1771A9991} - ArchLoader.cs.\r\nTarget file not altered.         - Buildings - {048A4DD6-2F1B-4178-A732-E3B50D3F0791} - ArchLoader.cs.\r\nTarget file not altered.         - Buildings - {9ED7AF33-DE0E-45C3-821F-4669558AD744} - ArchLoader.cs.\r\nTarget file not altered.         - Buildings - {24D86755-6962-4074-BD9F-73E8FE0A5F68} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {2D8B5F74-6CC5-4C0F-AB99-8E596C463DA0} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {EA6AE6CA-7E51-43DE-95F9-FF66E27AE130} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {A6E3C6F1-D649-45CE-8C05-3A87466618A9} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {B03F74F5-9862-4916-9EF1-82DD253A5BC3} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {ADECB8B3-1779-4107-9DF5-9E250E31AFDD} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {39C53717-4163-4B33-B652-4AA3B4D28C5B} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {BBDE47EF-8937-4545-A019-652A8A306B6E} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {90D2D480-6963-441E-B2C4-E0EADC878A83} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {74A75AB1-1AB2-46C7-B63F-39F52AF0049A} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {11002DF2-E6AB-485E-B896-C3ED92706E30} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {36DE75D7-A730-4F6B-A7C9-4660245BD895} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {BD92B12F-6AB8-420C-9A4B-654233721FB7} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {F745E72F-A908-4AB1-AF8B-E3FDE13BF46E} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {B2FED166-7FCF-4163-8507-EB1CC28B6435} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {5ED05F9F-E960-4964-AD0F-89E21CCCD9F5} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Buildings - {E4C217C0-AC0D-4571-95E4-16CE056F35A5} - ArchLoader.cs.\r\nModel file created successfully. - Buildings.\r\nMenu Items Created successfully\r\nMenus (Add, Remove, Edit, View, Search, import, save etc.) created for - Buildings\r\nMenus exported for - Buildings - C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\CodeGen\\Generate\\{744852ea-d309-4f87-bbd2-03fe76ba877b}\\Menus{744852ea-d309-4f87-bbd2-03fe76ba877b}\r\nTarget file not altered.         - Beacons - {F8FE36D7-3F08-48BA-9CAB-FBAA102C8149} - UniversalUtilities.cs.\r\nTarget file not altered.         - Beacons - {0ACDC688-3120-452F-94AE-2DD1771A9991} - ArchLoader.cs.\r\nTarget file not altered.         - Beacons - {048A4DD6-2F1B-4178-A732-E3B50D3F0791} - ArchLoader.cs.\r\nTarget file not altered.         - Beacons - {9ED7AF33-DE0E-45C3-821F-4669558AD744} - ArchLoader.cs.\r\nTarget file not altered.         - Beacons - {24D86755-6962-4074-BD9F-73E8FE0A5F68} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {2D8B5F74-6CC5-4C0F-AB99-8E596C463DA0} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {EA6AE6CA-7E51-43DE-95F9-FF66E27AE130} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {A6E3C6F1-D649-45CE-8C05-3A87466618A9} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {B03F74F5-9862-4916-9EF1-82DD253A5BC3} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {ADECB8B3-1779-4107-9DF5-9E250E31AFDD} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {39C53717-4163-4B33-B652-4AA3B4D28C5B} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {BBDE47EF-8937-4545-A019-652A8A306B6E} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {90D2D480-6963-441E-B2C4-E0EADC878A83} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {74A75AB1-1AB2-46C7-B63F-39F52AF0049A} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {11002DF2-E6AB-485E-B896-C3ED92706E30} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {36DE75D7-A730-4F6B-A7C9-4660245BD895} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {BD92B12F-6AB8-420C-9A4B-654233721FB7} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {F745E72F-A908-4AB1-AF8B-E3FDE13BF46E} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {B2FED166-7FCF-4163-8507-EB1CC28B6435} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {5ED05F9F-E960-4964-AD0F-89E21CCCD9F5} - TargetTaskHelper.cs.\r\nTarget file not altered.         - Beacons - {E4C217C0-AC0D-4571-95E4-16CE056F35A5} - ArchLoader.cs.\r\nModel file created successfully. - Beacons.\r\nMenu Items Created successfully\r\nMenus (Add, Remove, Edit, View, Search, import, save etc.) created for - Beacons\r\nMenus exported for - Beacons - C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\CodeGen\\Generate\\{744852ea-d309-4f87-bbd2-03fe76ba877b}\\Menus{744852ea-d309-4f87-bbd2-03fe76ba877b}\r\nGenerated - {744852ea-d309-4f87-bbd2-03fe76ba877b}\r\nIn Order for the changes to take affect:\r\nDeploy the code manually.\r\nThen create the menu structure.\r\nPress any key to exit the program.\r\nSimulate: Y\r\n<Exit System>\r\n-------------------------\r\nAdd Menu - Sub Menu - <Version>\r\n-------------------------\r\n1 Refresh\r\n2 Add a menu item\r\n3 Back to Manage Menus\r\n4 Exit\r\n-------------------------\r\nChoice:\r\n<ProgramExited>\r\n";
+            Assert.Equal(Result, Expected);
         }
 
-        private static void ValidAddMenuMaintenanceAddOperationAssert(string Result)
-        {
-            Assert.Contains("-------------------------", Result);
-            Assert.Contains("Current menu structure", Result);
-            Assert.Contains("1) Manage Menus", Result);
-            Assert.Contains("2) Exit", Result);
-            Assert.Contains("Pages : 1/1", Result);
-            Assert.Contains("Select a menu item.", Result);
-            Assert.Contains("Choice:", Result);
-        }
-
-        //[Fact]
-        //public void ValidAddMenuMaintenanceAddOperationPartTwo()
-        //{
-        //    string[] Values = ["1", "", ""];
-        //    List<AC> commands =
-        //    [
-        //    new AC(1, ""),
-        //    new AC(2, ""), // Add Menu
-        //    new AC(2, Values) // Add a new menu
-
-        //    ];
-        //    CH.ClearFeedback();
-        //    AL.RunArch(commands);
-
-        //    string Result = CH.GetFeedback();
-            
-        //    ValidAddMenuMaintenanceAddOperationPartTwoAssert(Result);
-
-        //}
-
-        //private static void ValidAddMenuMaintenanceAddOperationPartTwoAssert(string Result)
-        //{
-        //    Assert.Contains("Current menu structure", Result);
-        //    Assert.Contains("1) Manage Menus", Result);
-        //    Assert.Contains("2) Exit", Result);
-        //    Assert.Contains("-------------------------", Result);
-        //    Assert.Contains("Pages : 1/1", Result);
-        //    Assert.Contains("Select a menu item.", Result);
-        //    Assert.Contains("Choice:", Result);
-        //    Assert.Contains("1", Result);
-        //    Assert.Contains("Please provide a display name for the new menu option", Result);
-        //}
-
-        //[Fact]
-        //public void ValidAddMenuMaintenanceAddOperationPartThree()
-        //{
-        //    string[] Values = ["1", "Manage Sites", "Sites" ];
-        //    List<AC> commands =
-        //    [
-        //    new AC(1, ""),
-        //    new AC(2, ""), // Add Menu
-        //    new AC(2, Values)
-        //    ];
-        //    CH.ClearFeedback();
-        //    AL.RunArch(commands);
-
-        //    string Result = CH.GetFeedback();
-
-        //    ValidAddMenuMaintenanceAddOperationPartThreeAssert(Result);
-
-        //    Assert.Contains("<ProgramExited>", Result);
-        //    //Then remove it.
-        //    MH.LoadDefaults();
-        //    RemoveCreatedModelFiles("Sites");
-        //    RestoreOriginalModels();
-        //}
-
-        //private static void RemoveCreatedModelFiles(string Entity)
-        //{
-        //    var CSFile = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}.cs";
-        //    var CSFileHelper = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}Helper.cs";
-        //    var GeneratedFolder = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model";
-
-        //    if (File.Exists(CSFile))
-        //        File.Delete(CSFile);
-        //    if (File.Exists(CSFileHelper))
-        //        File.Delete(CSFileHelper);
-        //    if (Directory.Exists(GeneratedFolder))
-        //        Directory.Delete(GeneratedFolder);
-
-        //}
-
-        //private static void RestoreOriginalModels()
-        //{
-        //    var UniversalUtilitiesFile = $"{CodeGen.WorkingFolder}\\Utilities\\UniversalUtilities.cs";
-        //    var UniversalUtilitiesFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Utilities\\UniversalUtilities.cs";
-
-        //    var ArchLoaderFile = $"{CodeGen.WorkingFolder}\\Models\\ArchLoader.cs";
-        //    var ArchLoaderFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Models\\ArchLoader.cs";
-
-        //    var TargetTaskHelperFile = $"{CodeGen.WorkingFolder}\\Models\\TargetTaskHelper.cs";
-        //    var TargetTaskHelperFileBackup = $"{CodeGen.WorkingFolder}\\Backup\\Models\\TargetTaskHelper.cs";
-
-        //    if (File.Exists(UniversalUtilitiesFile))
-        //        File.Delete(UniversalUtilitiesFile);
-
-        //    if (File.Exists(TargetTaskHelperFile))
-        //        File.Delete(TargetTaskHelperFile);
-
-        //    if (File.Exists(ArchLoaderFile))
-        //        File.Delete(ArchLoaderFile);
-
-        //    if (File.Exists(UniversalUtilitiesFileBackup))
-        //        File.Copy(UniversalUtilitiesFileBackup, UniversalUtilitiesFile);
-
-        //    if (File.Exists(ArchLoaderFileBackup))
-        //        File.Copy(ArchLoaderFileBackup, ArchLoaderFile);
-
-        //    if (File.Exists(TargetTaskHelperFileBackup))
-        //        File.Copy(TargetTaskHelperFileBackup, TargetTaskHelperFile);
-        //}
-
-        //private static void ValidAddMenuMaintenanceAddOperationPartThreeAssert(string result)
-        //{
-        //    Assert.Contains("-------------------------", result);
-        //    Assert.Contains("Current menu structure", result);
-        //    Assert.Contains("-------------------------", result);
-        //    Assert.Contains("1) Manage Menus", result);
-        //    Assert.Contains("2) Exit", result);
-        //    Assert.Contains("-------------------------", result);
-        //    Assert.Contains("Pages : 1/1", result);
-        //    Assert.Contains("Select a menu item.", result);
-        //    Assert.Contains("Choice:", result);
-        //    Assert.Contains("1", result);
-        //    Assert.Contains("Please provide a display name for the new menu option", result);
-        //    Assert.Contains("Manage Sites", result);
-        //    Assert.Contains("Enter the item name only - which will be a post fix to View ..., Add ... etc.", result);
-        //    Assert.Contains("Sites", result);
-        //    Assert.Contains("Menu Items Created successfully", result);
-        //    Assert.Contains("Model file created successfully.", result);
-        //    Assert.Contains("-------------------------", result);
-        //    Assert.Contains("Add Menu - Sub Menu", result);
-        //    Assert.Contains("-------------------------", result);
-        //    Assert.Contains("1 Refresh", result);
-        //    Assert.Contains("2 Add a menu item", result);
-        //    Assert.Contains("3 Back to Manage Menus", result);
-        //    Assert.Contains("4 Exit", result);
-        //    Assert.Contains("-------------------------", result);
-        //    Assert.Contains("Choice:", result);
-        //}
     }
 }

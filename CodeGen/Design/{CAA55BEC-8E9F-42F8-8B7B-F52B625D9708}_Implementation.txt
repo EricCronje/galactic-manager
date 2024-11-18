@@ -1,0 +1,81 @@
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities\Utilities\UniversalUtilities.cs
+
+        //{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+        public static string? ValidateInput(string? input)
+        {
+            if (input == null)
+                return null;
+            
+            IC? InvalidCharacters = null;
+
+            try
+            {                
+                InvalidCharacters = new IC();
+                return InvalidCharacters.Result(input);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                InvalidCharacters?.Dispose();
+            }
+        }
+        //{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+
+
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities\Utilities\ConsoleHelper.cs
+
+    //{BC02EA7E-D281-4C03-90A8-7720501E5F80}
+    using U = UniversalUtilities;
+    //{BC02EA7E-D281-4C03-90A8-7720501E5F80}
+	
+
+        //{0EC6AB48-9FF0-4465-B084-FAA2589B1207}
+        public static string GetInput(string? simInput = null)
+        {
+            var input = InternalGetInput(simInput);
+
+            if (U.ValidateInput(input) != null)
+            {
+                FeedbackSB.AppendLine($"Invalid Input received: {input}");
+                return string.Empty;
+            }
+
+            return input;
+        }
+        //{0EC6AB48-9FF0-4465-B084-FAA2589B1207}
+	
+        //{87EF7E35-47F0-4483-A92B-914466E545D7}
+        private static string InternalGetInput(string? simInput)
+        {
+            if (!IsSimulate)
+            {
+                string? input;
+                input = Console.ReadLine();
+
+                if (input != null)
+                {
+                    FeedbackSB.AppendLine($"Input received: {input}");
+                    return input;
+                }
+            }
+            if (IsSimulate && simInput != null)
+            {
+                FeedbackSB.AppendLine($"Simulate: {simInput}");
+                return simInput;
+            }
+
+            return string.Empty;
+        }
+        //{87EF7E35-47F0-4483-A92B-914466E545D7}	
+		
+		
+		
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\InvalidCharacters\InvalidCharacters.csproj
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\InvalidCharacters\IInvalidCharacters.cs
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\InvalidCharacters\InvalidCharacters.cs
+
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\TestInvalidCharacters\TestInvalidCharacters.csproj
+C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\TestInvalidCharacters\InvalidCharacters.cs		

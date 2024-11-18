@@ -1,9 +1,10 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+// Generated Code - Version: 20.11.25 - 2024/11/14 21:07:34 - {7551f151-70ea-48bd-855a-c58b13ad8090}
 
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
+using IC = InvalidCharacters.InvalidCharacters;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -116,5 +117,28 @@ namespace ArchCorpUtilities.Utilities
             return CH.IsSimulate ? "<Version>" : CodeGenHelper.Version;
         }
 
+        //{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+        public static string? ValidateInput(string? input)
+        {
+            if (input == null)
+                return null;
+            
+            IC? InvalidCharacters = null;
+
+            try
+            {                
+                InvalidCharacters = new IC();
+                return InvalidCharacters.Result(input);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                InvalidCharacters?.Dispose();
+            }
+        }
+        //{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
     }
 }

@@ -22,7 +22,7 @@ namespace ArchCorpUtilities.Models.Menus
             SessionID = "TBS";
         }
 
-        public static bool ExportMenus (string path = "Menus.txt")
+        public static bool ExportMenus(string path = "Menus.txt", bool DoNotExportMenuItself = true)
         {
             try
             {
@@ -47,7 +47,12 @@ namespace ArchCorpUtilities.Models.Menus
                     Environment.NewLine
                     );
 
-                foreach (MenuItem item in Menu)
+                List<MenuItem> MenuEntities = Menu;
+
+                if (DoNotExportMenuItself)
+                    MenuEntities = Menu.Where(p => p.Source != null && p.Source.Equals("UserAdded")).ToList();
+
+                foreach (MenuItem item in MenuEntities)
                 {
                     sb.Append(
                         $"{item.IDGUIDMenu}" + "|" +
@@ -66,7 +71,7 @@ namespace ArchCorpUtilities.Models.Menus
                         Environment.NewLine
                         );
                 }
-                File.AppendAllText(path, sb.ToString());
+                File.WriteAllText(path, sb.ToString());
                 return true;
             }
             catch (Exception ex)

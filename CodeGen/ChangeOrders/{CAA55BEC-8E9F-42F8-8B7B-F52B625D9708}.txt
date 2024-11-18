@@ -1,0 +1,106 @@
+-------------------------------------------------------------
+Change order
+-------------------------------------------------------------
+Number: {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+-------------------------------------------------------------
+Description:
+-------------------------------------------------------------
+Add checks for invalid characters onto all the inputs.
+Message?
+-------------------------------------------------------------
+Invalid entry - please re-enter. (Invalid characters found \/)
+-------------------------------------------------------------
+Action?
+-------------------------------------------------------------
+Log it.
+Clear the input where applicable.
+Give the client the message above.
+Do no continue with the normal flow.
+-------------------------------------------------------------
+What needs to be logged?
+-------------------------------------------------------------
+The item entered 
+the invalid characters that was found.
+Log the IP address of the system trying to enter it.
+Log the user name
+Log the Time and date
+Log the system name
+Log the company that is using the software
+Log the source (e.g UserInput/Simulation/System_<NameOfSystem>)
+-------------------------------------------------------------
+When must the check be done?
+-------------------------------------------------------------
+After entering values, before going on to storing etc.
+----------------------------------------------------------------
+What should happen when the check itself fails on a technical error?
+----------------------------------------------------------------
+Log it.
+Give the message:
+"Invalid entry in the item entered. - please re-enter. "
+----------------------------------------------------------------
+What is the code to be used on the time sheet?
+----------------------------------------------------------------
+{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+----------------------------------------------------------------
+What is the official description for this item?
+----------------------------------------------------------------
+Worked on the invalid character functionality on the inputs of the system.
+To deter invalid character to cause issues down the line.
+----------------------------------------------------------------
+What is the official description of this change to the client?
+----------------------------------------------------------------
+Functionality to prevnt unwanted characters like <List of characters>
+to be entered into the system to prevent unforseen usage of the sustem and
+to avoid issues relating to storing of the data.
+----------------------------------------------------------------
+Who is the client?
+----------------------------------------------------------------
+Arch
+----------------------------------------------------------------
+How much time is allocated on this?
+----------------------------------------------------------------
+3 days : Dev - 
+Includes
+	Testing (1)
+	Creating tests (1)
+	Dev work (1)
+2 days: Testing (1) day + (1) day retest for issues found.
+
+----------------------------------------------------------------
+How much time for documentation/Admin?
+----------------------------------------------------------------
+1 day (8 hrs)
+
+----------------------------------------------------------------
+When will this be tested, and by who?
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+How much time for testing?
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+When is the client expecting this?
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+When can the dev start?
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+What are the deliverables expected on this?
+----------------------------------------------------------------
+1.	System must resppond as stipulated.
+2.	Provide samples of what can be expected in the logs.
+3.	Provide samples of the flow
+4.	Provide the scenarios tested.
+5.	Provide screen shots of the message
+6.	The system must be deployed to Dev, QA , Prod.
+7.	Update the release notes.
+8. 	Make sure the code is in the code repository.
+9.	Use a branch called "InvalidCharacterChecksArch"
+10.	Feedback on progress
+11.	As little bugs as possible!
+12.	No spelling mistakes
+13.	Test project to test the - unit test.
+14. Provide a list of the invalid characters.

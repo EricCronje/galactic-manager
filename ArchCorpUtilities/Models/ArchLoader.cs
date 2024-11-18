@@ -1,4 +1,4 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+// Generated Code - Version: 20.11.25 - 2024/11/14 21:07:34 - {7551f151-70ea-48bd-855a-c58b13ad8090}
 
 using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;

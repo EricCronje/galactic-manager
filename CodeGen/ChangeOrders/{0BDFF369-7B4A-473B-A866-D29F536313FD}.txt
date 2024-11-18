@@ -1,0 +1,31 @@
+-------------------------------------------------------------
+Change order
+-------------------------------------------------------------
+Number: {0BDFF369-7B4A-473B-A866-D29F536313FD}
+-------------------------------------------------------------
+Description:
+-------------------------------------------------------------
+Add functionality 
+to 
+add users, 
+Roles, 
+Link Users to Roles
+
+RoleGroups,
+Link Roles to RoleGroups
+
+Deactivate Users
+
+Add a new user simply.
+
+User passwords/ Secrets
+
+Password rules?
+Reeset password?
+
+Login pin?
+MFA?
+
+
+
+-------------------------------------------------------------

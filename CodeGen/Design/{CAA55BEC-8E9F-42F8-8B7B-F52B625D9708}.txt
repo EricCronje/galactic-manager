@@ -1,0 +1,304 @@
+----------------------------------------------------------------
+Design {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+Summary:
+------------------------------------------------------------------------------------------
+UniversalUtilities.cs	|	\Utilities	|	Add	|	{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} | Method	|	 Generated 	| 	Code
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+Add|Project|TestInvalidCharacters| "TestProjectInvalidCharacters"
+Add|Unit Test|ValidInputOnInvalidCharacters| Use U = UniversalUtilities; U.ValidateInput 
+	- Assert it exists. 
+	- It wont 
+		- create it return null 
+		- as if all is fine;
+Add|Unit Test|InValidInputOnInvalidCharactersSingleQoute| Use U = UniversalUtilities; U.ValidateInput
+	- Assert if the message returned is <FailedMessage>.
+	- it wont be
+		- Add the reference to "InvalidCharacter" to the Project "ArchCorpUtilities" - where UniversalUtilities live.
+		- It does not exist
+			- Create "InvalidCharacters" Project
+				Add|Interface|IInvalidCharacters
+				- Methods
+					- Method "IsValid" (return bool, parameter nullable string Input) [true - if valid - fals if not]
+					
+					- Method "Result" (return string? -- null if nothing -- not null - string of values if found.)
+						- Invoke "IsValid(<input>)"
+						- true
+							return SuccessMessage();
+						- false
+							return FailMessage();
+						- exception
+							return FailMessageError(err);
+							
+					- Method "Dispose" (Clear)
+					- Method "Check(string? input)"
+					- Method "FailMessage()" (return <FailedMessage>)
+					- Method "FailMessageError(err exception)" (return <FailedMessageError>)
+					- Method "SuccessMessage()" (return <SuccessMessageMessage>)
+					- Method ShowCheckedValues - return the "InvalidCharactersList" (If empty or count = 0 return null)
+					- Method Version - return Version (InvalidCharactersList - Version number)					
+				Add|Class|InvalidCharacters| Implement Interface
+					- Implement as above.
+			- Reference "InvalidCharacters" Project in the "ArchCorpUtilities"
+		- Alter the code in UniversalUtilities - "ValidateInput"
+			- add using IC = ArchCorpUtilities.Utilities.InvalidCharacters;
+			- add return IC.Check(input);
+		- Run the test "InValidInputOnInvalidCharactersSingleQoute"
+			- it should return <FailMessage>;
+		- Add the generation code.
+			- Create Class "CodePartInvalidCharacterCheck"
+			- pass {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+			- Implement "CodePart"
+			- Add the constructor
+			- Add the Modify code.
+						
+			----------------------------------------------------------------
+			Sample code:
+			----------------------------------------------------------------
+
+			string[] InvalidCharactersList = ["'","\"", "\\", "/", ":", "*", "?", "<", ">", "|", "-"];
+			StringBuilder InvalidCharsFound = new();
+			var ReturnValue = String.Empty;
+
+			//Loop through the character:
+			foreach (var item in InvalidCharactersList)
+			{
+				if (input.Contains(item))
+				{
+					InvalidCharsFound.Append(item);
+					InvalidCharsFound.Append(',');
+				}		
+			}
+
+			ReturnValue =  InvalidCharsFound.ToString();
+			InvalidCharsFound.Clear();
+
+			return ReturnValue;			
+			----------------------------------------------------------------
+		- 
+			
+
+			
+			
+		Add|	Method	|	ValidateInput	|	Return a fail message or null if all is fine. | internal string? ValidateInput(string? input)
+
+Add|	Method	|	ValidateInput	|	Return a fail message or null if all is fine. | internal string? ValidateInput(string? input)
+Add|	GUID	|	{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}	|	Manual (2 of them on the bottom of UniversalUtilities.cs)
+Task|	Batch	|	Once completed push to backup GUID folder. {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+Add|Interface|IInvalidCharacters
+Add|Class|InvalidCharacters| Implement Interface
+
+Add|Project|TestInvalidCharacters
+
+
+<FailedMessage>|"Invalid entry - please re-enter.\r\nOne or more of the following charaters was found\r\n(<List of invalid charaters>)\r\nin the item."
+<SuccessMessageMessage>|None
+<FailMessageError>|
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------
+1 method in \Utilities\UniversalUtilities.cs
+----------------------------------------------------------------
+Method: 				Generated
+Generated Method Name: 	CodePartInvalidCharacterCheck
+Behaviour:				If the code is there do not overwrite.
+						Unless cleared. 
+						Then the code will be regenerated.
+						With a Comment:
+						//Generated: <Date> - <Session>
+Calls:					InvalidCharacter.Check(Input) (Only Method used)
+						return a null if all good - else a message.
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+GUID: {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+----------------------------------------------------------------
+Wrapped with {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+----------------------------------------------------------------
+Signature:
+----------------------------------------------------------------
+bool InvalidCharacterCheck(string? Input)
+----------------------------------------------------------------
+Error handeling:
+Wrapped in a try catch
+on the catch 
+Log error
+$"Error - {<Method>} - {<err.Message>} -- {<err.InnerException?.Message>}"
+Log level 9
+return false
+----------------------------------------------------------------
+Invalid character are?
+----------------------------------------------------------------
+'"\/:*?<>|
+----------------------------------------------------------------
+Steps:
+----------------------------------------------------------------
+Create Interface IInvalidCharacters
+- Method "IsValid" (return bool, parameter nullable string Input) [true - if valid - fals if not]
+- Method "Result" (return string? -- null if nothing -- not null - string of values if found.)
+- Method "Dispose" (Clear)
+- Method "Check"
+- Method "FailMessageError"
+- Method ShowCheckedValues
+- Method Version
+
+Create a class "InvalidCharacters" Implementing IInvalidCharacters.
+
+- store a list of known and agreed upon invalid characters.
+	-	Declare a list of invalid characters.
+- Implement "IsValid"
+	-	Pre checks expeced ehaviour (Log and return false):
+	-	Check if the input is null - if it is return false
+	-	Check if the input has white spaces, if the lenght > 0
+	- 	If all good
+		-	loop through the invalid character
+		-	check if the input contains any of them
+		-	if found add to the listOfinvalidcharacter found.
+		- if not found continue.
+		- return false if values found
+		- return true - if no valies found.
+		- Used microsoft folder rules.		
+- Implement "Result"
+	- if there are items return that
+	- other wise null.
+	
+- Implement "Dispose"
+	- clear the stringBuilder and the strings used.
+	
+- Implement "FailMessageError"
+	- if not specified in the constructor set return ""
+		
+- Implement "FailMessage"
+	- if not specified in the constructor set return ""
+	
+- Implement "SuccessMessage"
+	- if not specified in the constructor set return ""
+
+- Implement "Check"	
+	- call IsValid(Input)
+	- if true
+		return null
+	- if false
+		return FailMessage
+- constructor
+	- pass input (string?)
+	- FailMessage - string?) - default null
+	- SuccessMessage - string?) - default null
+	- if no values provided then - use internal message as per change order.
+
+In the Logger:
+--------------
+GetIP
+GetHostName
+GetDate -->
+
+Update Logger 
+to store the values 
+IP
+Hostname
+
+
+Alter CH.Input
+--------------
+
+Implement InvalidChar.
+
+1. Pass the input
+2. If valid - show valid feedback - if any ...
+3. If invalid show feedback - and need to signal an abort - return null
+
+
+----------------------------------------------------------------
+Sample code:
+----------------------------------------------------------------
+
+string[] InvalidCharactersList = ["'","\"", "\\", "/", ":", "*", "?", "<", ">", "|", "-"];
+StringBuilder InvalidCharsFound = new();
+var ReturnValue = String.Empty;
+
+//Loop through the character:
+foreach (var item in InvalidCharactersList)
+{
+	if (input.Contains(item))
+	{
+		InvalidCharsFound.Append(item);
+		InvalidCharsFound.Append(',');
+	}		
+}
+
+ReturnValue =  InvalidCharsFound.ToString();
+InvalidCharsFound.Clear();
+
+return ReturnValue;
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+Tests
+----------------------------------------------------------------
+InvalidChars Class.
+-------------------
+
+Assert false for:
+null
+empty space
+multiple empty spaces
+Invalid characters
+Assert true if:
+Valid characters
+
+Logger:
+-------
+If the IP is logged
+If the host name is logged
+If the Invalid characters was logged
+If the user was logged ...
+
+Check implementation:
+---------------------
+
+On CH.Input!
+------------
+Make sure if the input is invalid that the appropriate message is shown.
+
+Assert false for:
+null
+empty space
+multiple empty spaces
+Invalid characters
+Assert true if:
+Valid characters
+
+
+Flow:
+-----
+On the following functionality:
+-------------------------------
+Edit
+Add
+Search
+Import
+
+
+On all of them check with:
+--------------------------
+null
+empty space
+multiple empty spaces
+Invalid characters
+Assert true if:
+Valid characters
+
+
+
+Assert if input is lenght > 0 - and input is valid -- return true.
+
+Research:
+Invalid character?
+What is used in XXS attacks, SQL injections.
+
+How to get the IP in C#?
+How to get the HostName in C#?
+

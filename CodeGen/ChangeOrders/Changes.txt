@@ -1,0 +1,4 @@
+GUID|Description|HrsDev|HrsTestDev|HrsTestProj|Admin|Dependant GUIDs
+{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}|Invalid Character checks.|4|4|4|8|{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} | Version 23.11.25;|20241118|
+{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}|New way to generate code. |4|4|4|8|{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} | Version 23.11.25;||
+{0BDFF369-7B4A-473B-A866-D29F536313FD}|Add users, Roles, Groups, Link Roles to role groups, Link Users to role groups | Version ?;

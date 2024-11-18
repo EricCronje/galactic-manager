@@ -1,0 +1,81 @@
+IDGUIDMenu|IsDefaultChoice|TargetPage|TargetTask|DisplayName|HideRule|IsExitOption|IsHidden|Page|PageHeading|IsBack|Domain|IsStartPage|
+86e8a2e3-2b9d-4701-bb57-d5bd70821be9|False|17|None|Manage Buildings|None|False|False|9|Galaxy Manager - Main Menu|False|Buildings|False
+9829fc8d-81f8-4bda-af72-86b7cd99b76a|False|18|None|View Buildings|None|False|False|17|View Buildings - Sub Menu|False|Buildings|False
+3d4acbaf-7b04-475e-98c3-afcec4d0acb6|False|19|None|Add Buildings|None|False|False|17|Add Buildings - Sub Menu|False|Buildings|False
+a8fe3ada-73e0-4ab4-84e4-b71593edd65e|False|20|None|Remove Buildings|None|False|False|17|Remove Buildings - Sub Menu|False|Buildings|False
+b85b1166-6e00-4268-8a2c-572b0eef41f2|False|21|None|Edit Buildings|None|False|False|17|Edit Buildings - Sub Menu|False|Buildings|False
+536e27e7-b927-46d6-91ae-38cd77206866|False|22|None|Save Buildings|None|False|False|17|Save Buildings - Sub Menu|False|Buildings|False
+c5b295b1-b5df-4286-9043-a3e3f0555123|False|23|None|Load Buildings|None|False|False|17|Load Buildings - Sub Menu|False|Buildings|False
+eda01690-4822-4f49-b268-f82ef56f9ea7|False|9|None|Back to Main Menu|None|False|False|17|Back to Main Menu|True|Buildings|False
+277a6fc1-01c5-46d2-bafe-09ecdcec5fe8|False|0|None|Exit|None|True|False|17|Exit|True|Buildings|False
+4544acf2-cde4-4e1a-b949-54bfb42619cf|True|0|Refresh|Refresh|None|False|False|18|Refresh|False|Buildings|False
+a76f300a-fcf5-4e2f-8308-2c735912e9c3|True|0|Search|Search|None|False|False|18|Search|False|Buildings|False
+b167d139-31f3-4489-a54d-a5ad414a7759|True|0|Next|Next Page|LastPage|False|False|18|Next Page|False|Buildings|False
+048db161-3c3f-4bbd-84c1-6929f1e55fc0|True|0|Last|Last Page|LastPage|False|False|18|Last Page|False|Buildings|False
+e354af3e-03ce-4dd4-a5b7-f2613753e570|True|0|First|First Page|FirstPage|False|False|18|First Page|False|Buildings|False
+98b840d0-ae8f-4991-859a-0ee108bf902d|True|0|Previous|Previous Page|FirstPage|False|False|18|Previous Page|False|Buildings|False
+0230ce8d-9638-46fd-b8d7-db7b6a190493|False|17|None|Back to Main Menu|None|False|False|18|Back to Main Menu|True|Buildings|False
+40dd5004-c47f-47e9-892d-e89180f5b47a|False|0|None|Exit|None|True|False|18|Exit|True|Buildings|False
+53eff2b4-5946-4e4f-8f44-539eed14c2e8|True|0|Add|Add Buildings|None|False|False|19|Add Buildings|False|Buildings|False
+c9d61d8d-7418-41de-b19f-a5e23edccd88|False|17|None|Back to Main Menu|None|False|False|19|Back to Main Menu|True|Buildings|False
+9190afa0-6515-4d06-85ac-f3d0daee3e08|False|0|None|Exit|None|True|False|19|Exit|True|Buildings|False
+84799c69-0155-4c1b-8b5e-3f8e158526bf|True|0|Remove|Remove Buildings|None|False|False|20|Remove Buildings|False|Buildings|False
+33f9afdb-bff6-4c49-aa60-1815d3b39d3b|True|0|Next|Next Page|LastPage|False|False|20|Next Page|False|Buildings|False
+77db36eb-1091-434d-9cdd-94856ce3a9a8|True|0|Last|Last Page|LastPage|False|False|20|Last Page|False|Buildings|False
+49641f1b-bca4-4506-bb9c-f0f7a2b3585b|True|0|First|First Page|FirstPage|False|False|20|First Page|False|Buildings|False
+3a85b32d-5b86-4a77-94d0-b4bfd7bcadeb|True|0|Previous|Previous Page|FirstPage|False|False|20|Previous Page|False|Buildings|False
+115b6cad-45cb-47d0-bf0a-3ea6866bb0d9|False|17|None|Back to Main Menu|None|False|False|20|Back to Main Menu|True|Buildings|False
+3c16f725-d9a8-485a-b8bd-225f7a5481be|False|0|None|Exit|None|True|False|20|Exit|True|Buildings|False
+abb8d058-e746-4d6e-9120-6d4139105424|True|0|Edit|Edit Buildings|None|False|False|21|Edit Buildings|False|Buildings|False
+fa696ebd-d34a-40a6-9509-56bfb5cf59a7|True|0|Next|Next Page|LastPage|False|False|21|Next Page|False|Buildings|False
+209f4f75-b734-4bbe-bba3-4ced51cd5db8|True|0|Last|Last Page|LastPage|False|False|21|Last Page|False|Buildings|False
+4c5b45b7-64ee-48f8-8261-67f6611aa363|True|0|First|First Page|FirstPage|False|False|21|First Page|False|Buildings|False
+3da42ae3-d30a-4615-a025-e53a494f4901|True|0|Previous|Previous Page|FirstPage|False|False|21|Previous Page|False|Buildings|False
+d1591cfb-552e-4ff6-9655-5119d9745590|False|17|None|Back to Main Menu|None|False|False|21|Back to Main Menu|True|Buildings|False
+a9982860-398b-48d8-ae15-518299b0f33e|False|0|None|Exit|None|True|False|21|Exit|True|Buildings|False
+228873bb-986e-4a47-90e8-9def2245a4a9|True|0|Save|Save Buildings to a file|None|False|False|22|Save Buildings to a file|False|Buildings|False
+25678de9-c6c1-4fac-8cb5-e943e58eb89f|False|17|None|Back to Main Menu|None|False|False|22|Back to Main Menu|True|Buildings|False
+ea1aab5a-8955-48c2-9234-4d6c5faead3f|False|0|None|Exit|None|True|False|22|Exit|True|Buildings|False
+cac38d43-d951-4adb-ac91-fd8b69aa66c5|True|0|Load|Load Buildings from a file|None|False|False|23|Load Buildings from a file|False|Buildings|False
+05711f99-36bd-47f2-ae78-704d19720dfb|False|17|None|Back to Main Menu|None|False|False|23|Back to Main Menu|True|Buildings|False
+0b14139e-4e3e-4396-a42d-dfb6cd3881de|False|0|None|Exit|None|True|False|23|Exit|True|Buildings|False
+7f710c62-602d-4ebe-ac0a-9d6e4088f05c|False|24|None|Manage Beacons|None|False|False|9|Galaxy Manager - Main Menu|False|Beacons|False
+0cdcca7f-1ceb-4993-8541-a56d5faadd00|False|25|None|View Beacons|None|False|False|24|View Beacons - Sub Menu|False|Beacons|False
+cf6e3c6f-e7ca-4296-bf79-236faef88d16|False|26|None|Add Beacons|None|False|False|24|Add Beacons - Sub Menu|False|Beacons|False
+6cc296b1-e22f-49b5-823b-90bef1c00b66|False|27|None|Remove Beacons|None|False|False|24|Remove Beacons - Sub Menu|False|Beacons|False
+5aea78d9-18a0-454e-804f-d77aa83cdcf4|False|28|None|Edit Beacons|None|False|False|24|Edit Beacons - Sub Menu|False|Beacons|False
+77185063-aac6-43bb-a631-13e82ca30e0d|False|29|None|Save Beacons|None|False|False|24|Save Beacons - Sub Menu|False|Beacons|False
+a7a178cf-7ae9-4671-808d-5c3ca4213f54|False|30|None|Load Beacons|None|False|False|24|Load Beacons - Sub Menu|False|Beacons|False
+bc6548e6-802a-48ec-a859-d57c8d4271ce|False|9|None|Back to Main Menu|None|False|False|24|Back to Main Menu|True|Beacons|False
+42b74fe1-a96f-447a-991a-09cd671eeed3|False|0|None|Exit|None|True|False|24|Exit|True|Beacons|False
+03e83518-89ec-45af-b757-1f50d5f95344|True|0|Refresh|Refresh|None|False|False|25|Refresh|False|Beacons|False
+993ba38c-d607-4a39-84e5-8cb4cf634f07|True|0|Search|Search|None|False|False|25|Search|False|Beacons|False
+6e681a57-6072-4dad-82af-126624ca1110|True|0|Next|Next Page|LastPage|False|False|25|Next Page|False|Beacons|False
+519bfcfb-e5d9-4a0e-8474-f9b6b361d233|True|0|Last|Last Page|LastPage|False|False|25|Last Page|False|Beacons|False
+5fdfe52a-b97c-478a-9801-69d0de32bb90|True|0|First|First Page|FirstPage|False|False|25|First Page|False|Beacons|False
+7d967456-d495-4845-b2d4-efcc7b2842fd|True|0|Previous|Previous Page|FirstPage|False|False|25|Previous Page|False|Beacons|False
+97270bef-9fd2-4fa4-b648-ba7587187932|False|24|None|Back to Main Menu|None|False|False|25|Back to Main Menu|True|Beacons|False
+eebca179-cc7a-4ed3-8ebf-dfa076deffa6|False|0|None|Exit|None|True|False|25|Exit|True|Beacons|False
+afa46ee1-81ee-4b72-8578-46b63452afdd|True|0|Add|Add Beacons|None|False|False|26|Add Beacons|False|Beacons|False
+f2b71bf5-7081-4955-ae53-04504fbc95c0|False|24|None|Back to Main Menu|None|False|False|26|Back to Main Menu|True|Beacons|False
+e8d913bd-a6c9-449f-8ff0-2de0ca914d86|False|0|None|Exit|None|True|False|26|Exit|True|Beacons|False
+61c6de9b-6803-4518-8198-1d6b35807a73|True|0|Remove|Remove Beacons|None|False|False|27|Remove Beacons|False|Beacons|False
+99ffa313-8078-4267-b45b-fa5ece74f9a8|True|0|Next|Next Page|LastPage|False|False|27|Next Page|False|Beacons|False
+d00a1b4d-1865-4b34-a603-971753c0353b|True|0|Last|Last Page|LastPage|False|False|27|Last Page|False|Beacons|False
+5849b84e-f1d7-4ef1-b841-5daa9356de80|True|0|First|First Page|FirstPage|False|False|27|First Page|False|Beacons|False
+71e548ad-714a-48de-9caf-15a73f782ac1|True|0|Previous|Previous Page|FirstPage|False|False|27|Previous Page|False|Beacons|False
+61535059-9399-4ad9-8092-253b588cc22e|False|24|None|Back to Main Menu|None|False|False|27|Back to Main Menu|True|Beacons|False
+ba390028-98a2-4498-83cb-417e7f672453|False|0|None|Exit|None|True|False|27|Exit|True|Beacons|False
+5537541d-5cff-4d78-be03-525eaf8487b6|True|0|Edit|Edit Beacons|None|False|False|28|Edit Beacons|False|Beacons|False
+6223e93f-b816-4034-8ed5-f175b246c62c|True|0|Next|Next Page|LastPage|False|False|28|Next Page|False|Beacons|False
+c6f1ae1e-1310-42b2-9127-f80a312a075b|True|0|Last|Last Page|LastPage|False|False|28|Last Page|False|Beacons|False
+bb2c64a3-755d-419f-b996-b3b331a8d3c7|True|0|First|First Page|FirstPage|False|False|28|First Page|False|Beacons|False
+c8107530-bd1c-4d61-92dd-4e00ea00dabd|True|0|Previous|Previous Page|FirstPage|False|False|28|Previous Page|False|Beacons|False
+f9d4c540-c040-4eb8-ae2a-23558aa0fd24|False|24|None|Back to Main Menu|None|False|False|28|Back to Main Menu|True|Beacons|False
+ceb1cefb-1b57-4296-a6eb-758a11f4d92c|False|0|None|Exit|None|True|False|28|Exit|True|Beacons|False
+2c0f26cd-bec7-416d-8e4f-c86ad7e76996|True|0|Save|Save Beacons to a file|None|False|False|29|Save Beacons to a file|False|Beacons|False
+b9f98387-be45-4fdd-8d0f-24361a45ff31|False|24|None|Back to Main Menu|None|False|False|29|Back to Main Menu|True|Beacons|False
+041bd7c3-2587-4e3a-bb9f-b2e27b4bc0ee|False|0|None|Exit|None|True|False|29|Exit|True|Beacons|False
+1153978f-8a6d-4fc5-a91b-ae2a34c2df39|True|0|Load|Load Beacons from a file|None|False|False|30|Load Beacons from a file|False|Beacons|False
+fcc00ad9-51cd-4e4c-aec5-87d51dc2a238|False|24|None|Back to Main Menu|None|False|False|30|Back to Main Menu|True|Beacons|False
+c7ca9ec0-b57e-473d-9ca7-c2ea91cae766|False|0|None|Exit|None|True|False|30|Exit|True|Beacons|False

@@ -1,0 +1,15 @@
+----------------
+What was tested?
+----------------
+
+01. Creation of Buildings, Beacons.
+02. Searching of Buildings, Beacons. (Single item returned - 1 page).
+03. Navigation.
+04. Are the correct options available.
+05. Loading information (Single item - was new).
+06. Saving information.
+07. Exiting.
+08. Editing an item.
+09. Removing information.
+10. Does the correct information show on the screens.
+11. Duplicate check on edit and add functionality - does not allow duplicates on input or import.

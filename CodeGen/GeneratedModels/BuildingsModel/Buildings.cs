@@ -1,4 +1,4 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+// Generated Code - Version: <Version> - <Date> - {cc78f0cc-4ab8-4dd6-a01e-546c48d76b98}
 
 namespace ArchCorpUtilities.Models.BuildingsModel.Buildings;
 public class Buildings
