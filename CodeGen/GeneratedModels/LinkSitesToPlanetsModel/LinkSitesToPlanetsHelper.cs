@@ -1,4 +1,4 @@
-// Generated Code - Version: 23.11.25 - 2024/11/19 18:50:40 - {e16e756f-a27f-493b-bfa9-6667c239b926}
+// Generated Code - Version: 23.11.25 - 2024/11/19 19:23:44 - {2a4371ca-84c4-469c-a5be-31fe909f01e4}
 
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
@@ -244,10 +244,10 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
                 StringBuilder sb = new();
                 try
                 {
-                    sb.AppendLine($"LinkSitesToPlanetsName|LinkSitesToPlanetsGuid");
+                    sb.AppendLine($"LinkSitesToPlanetsName|LHLink|RHLink|LHLinkName|RHLinkName|Guid|LHLinkGuid|RHLinkGuid");
                     foreach (var item in Items.OrderBy(c => c.Name))
                     {
-                        sb.AppendLine($"{ item.Name}|{ item.LinkSitesToPlanetsGuid}");
+                        sb.AppendLine($"{ item.Name}|Sites|Planets|{AL.SitesHelper?.GetName(item.SitesGuid)}|{AL.PlanetsHelper?.GetName(item.PlanetsGuid)}|{ item.LinkSitesToPlanetsGuid}|{item.SitesGuid}|{item.PlanetsGuid}");
                     }
 
                     if (File.Exists(Path))

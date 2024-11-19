@@ -293,7 +293,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine("            }");
         }
 
-        private static void SaveLogic(StringBuilder stringBuilder, string entity)
+        private static void SaveLogic(StringBuilder stringBuilder, string entity, string? lHLink, string? rHLink)
         {
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"            var Path = \"{entity}\";");
@@ -303,10 +303,18 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"                StringBuilder sb = new();");
             stringBuilder.AppendLine($"                try");
             stringBuilder.AppendLine($"                {{");
-            stringBuilder.AppendLine($"                    sb.AppendLine($\"{entity}Name|{entity}Guid\");");
+            
+            if (lHLink == null && rHLink == null)
+                stringBuilder.AppendLine($"                    sb.AppendLine($\"{entity}Name|{entity}Guid\");");
+            else
+                stringBuilder.AppendLine($"                    sb.AppendLine($\"{entity}Name|LHLink|RHLink|LHLinkName|RHLinkName|Guid|LHLinkGuid|RHLinkGuid\");");
+            
             stringBuilder.AppendLine($"                    foreach (var item in Items.OrderBy(c => c.Name))");
             stringBuilder.AppendLine($"                    {{");
-            stringBuilder.AppendLine($"                        sb.AppendLine($\"{{ item.Name}}|{{ item.{entity}Guid}}\");");
+            if (lHLink == null && rHLink == null)
+                stringBuilder.AppendLine($"                        sb.AppendLine($\"{{ item.Name}}|{{ item.{entity}Guid}}\");");
+            else
+                stringBuilder.AppendLine($"                        sb.AppendLine($\"{{ item.Name}}|{lHLink}|{rHLink}|{{AL.{lHLink}Helper?.GetName(item.{lHLink}Guid)}}|{{AL.{rHLink}Helper?.GetName(item.{rHLink}Guid)}}|{{ item.{entity}Guid}}|{{item.{lHLink}Guid}}|{{item.{rHLink}Guid}}\");");
             stringBuilder.AppendLine($"                    }}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"                    if (File.Exists(Path))");
@@ -694,7 +702,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 MethodDeclarationLogic("Save", stringBuilder);
                 ScopeStartLogic(stringBuilder, "\t\t\t");
                 LoggingLogic(stringBuilder);
-                SaveLogic(stringBuilder, entity);
+                SaveLogic(stringBuilder, entity, LHLink, RHLink);
                 ScopeEndLogic(stringBuilder, "\t\t\t");
 
                 EmptyLineLogic(stringBuilder);
@@ -878,7 +886,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 MethodDeclarationLogic("Save", stringBuilder);
                 ScopeStartLogic(stringBuilder, "\t\t\t");
                 LoggingLogic(stringBuilder);
-                SaveLogic(stringBuilder, entity);
+                SaveLogic(stringBuilder, entity, LHLink, RHLink);
                 ScopeEndLogic(stringBuilder, "\t\t\t");
 
                 EmptyLineLogic(stringBuilder);

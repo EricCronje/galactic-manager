@@ -1,4 +1,4 @@
-// Generated Code - Version: 23.11.25 - 2024/11/19 18:50:39 - {e16e756f-a27f-493b-bfa9-6667c239b926}
+// Generated Code - Version: 23.11.25 - 2024/11/19 19:23:44 - {2a4371ca-84c4-469c-a5be-31fe909f01e4}
 
 namespace ArchCorpUtilities.Models.UsersModel.Users;
 
