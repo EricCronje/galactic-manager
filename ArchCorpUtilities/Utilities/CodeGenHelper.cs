@@ -2,6 +2,7 @@
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using System.Text;
 using L = Logger.Logger;
+using static ArchCorpUtilities.Utilities.CodeGen.CodePart;
 
 namespace ArchCorpUtilities.Utilities;
 
@@ -31,7 +32,7 @@ public static class CodeGenHelper
     }
 
 
-    public static bool CreateDefaultCode(string entity)
+    public static bool CreateDefaultCode(string entity, MenuTypeEnum menuType = MenuTypeEnum.Manage, string? lHLink = null, string? rHLink = null)
     {
         if (string.IsNullOrWhiteSpace(entity))
             return false;
@@ -39,74 +40,86 @@ public static class CodeGenHelper
         List<CodePart> codeVault = [];
         var Header = GetGeneratedCodeHeader();
 
-        CodePartMenuEnum codePartMenuEnum = new("\\Utilities", "UniversalUtilities.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "", SessionID ?? "TBA");
-        codeVault.Add(codePartMenuEnum);
+        if (menuType == MenuTypeEnum.Manage || menuType == MenuTypeEnum.Link)
+        {
+            CodePartMenuEnum codePartMenuEnum = new("\\Utilities", "UniversalUtilities.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePartMenuEnum);
 
-        CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
-        codeVault.Add(codePart);
+            CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePart);
 
-        CodePartHelperInstance codePartHelperInstance = new("\\Models", "ArchLoader.cs", entity, "{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartHelperInstance);
+            CodePartHelperInstance codePartHelperInstance = new("\\Models", "ArchLoader.cs", entity, "{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartHelperInstance);
 
-        CodePartISetInConstructorArch codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{9ED7AF33-DE0E-45C3-821F-4669558AD744}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");            
-        codeVault.Add(codePartISetInConstructorArch);
-            
-        CodePartTargetTaskHelperUsing codePartTargetTaskHelperUsing = new("\\Models", "TargetTaskHelper.cs", entity, "{24D86755-6962-4074-BD9F-73E8FE0A5F68}", WorkingFolder, Header, "", SessionID ?? "TBA");
-        codeVault.Add(codePartTargetTaskHelperUsing);
+            CodePartISetInConstructorArch codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{9ED7AF33-DE0E-45C3-821F-4669558AD744}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartISetInConstructorArch);
 
-        CodePartNodal codePartNodal = new("\\Models", "TargetTaskHelper.cs", entity, "{2D8B5F74-6CC5-4C0F-AB99-8E596C463DA0}", WorkingFolder, "", "\t\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartNodal);
-            
-        CodePartArchLoaderUsing codePartArchLoaderUsing = new("\\Models", "TargetTaskHelper.cs", entity, "{EA6AE6CA-7E51-43DE-95F9-FF66E27AE130}", WorkingFolder, "", "", SessionID ?? "TBA");
-        codeVault.Add(codePartArchLoaderUsing);
+            CodePartTargetTaskHelperUsing codePartTargetTaskHelperUsing = new("\\Models", "TargetTaskHelper.cs", entity, "{24D86755-6962-4074-BD9F-73E8FE0A5F68}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePartTargetTaskHelperUsing);
 
-        CodePartAdd codePartAdd = new("\\Models", "TargetTaskHelper.cs", entity, "{A6E3C6F1-D649-45CE-8C05-3A87466618A9}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartAdd);
+            CodePartNodal codePartNodal = new("\\Models", "TargetTaskHelper.cs", entity, "{2D8B5F74-6CC5-4C0F-AB99-8E596C463DA0}", WorkingFolder, "", "\t\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartNodal);
 
-        CodePartView codePartView = new("\\Models", "TargetTaskHelper.cs", entity, "{B03F74F5-9862-4916-9EF1-82DD253A5BC3}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartView);
+            CodePartArchLoaderUsing codePartArchLoaderUsing = new("\\Models", "TargetTaskHelper.cs", entity, "{EA6AE6CA-7E51-43DE-95F9-FF66E27AE130}", WorkingFolder, "", "", SessionID ?? "TBA");
+            codeVault.Add(codePartArchLoaderUsing);
 
-        CodePartFirst codePartFirst = new("\\Models", "TargetTaskHelper.cs", entity, "{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartFirst);
+            CodePartAdd codePartAdd = new("\\Models", "TargetTaskHelper.cs", entity, "{A6E3C6F1-D649-45CE-8C05-3A87466618A9}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartAdd);
 
-        CodePartLast codePartLast = new("\\Models", "TargetTaskHelper.cs", entity, "{39C53717-4163-4B33-B652-4AA3B4D28C5B}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartLast);
+            CodePartView codePartView = new("\\Models", "TargetTaskHelper.cs", entity, "{B03F74F5-9862-4916-9EF1-82DD253A5BC3}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartView);
 
-        CodePartNext codePartNext = new("\\Models", "TargetTaskHelper.cs", entity, "{BBDE47EF-8937-4545-A019-652A8A306B6E}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartNext);
+            CodePartFirst codePartFirst = new("\\Models", "TargetTaskHelper.cs", entity, "{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartFirst);
 
-        CodePartPrevious codePartPrevious = new("\\Models", "TargetTaskHelper.cs", entity, "{90D2D480-6963-441E-B2C4-E0EADC878A83}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartPrevious);
+            CodePartLast codePartLast = new("\\Models", "TargetTaskHelper.cs", entity, "{39C53717-4163-4B33-B652-4AA3B4D28C5B}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartLast);
 
-        CodePartEdit codePartEdit = new("\\Models", "TargetTaskHelper.cs", entity, "{74A75AB1-1AB2-46C7-B63F-39F52AF0049A}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartEdit);
+            CodePartNext codePartNext = new("\\Models", "TargetTaskHelper.cs", entity, "{BBDE47EF-8937-4545-A019-652A8A306B6E}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartNext);
 
-        CodePartRemove codePartRemove = new("\\Models", "TargetTaskHelper.cs", entity, "{11002DF2-E6AB-485E-B896-C3ED92706E30}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartRemove);
+            CodePartPrevious codePartPrevious = new("\\Models", "TargetTaskHelper.cs", entity, "{90D2D480-6963-441E-B2C4-E0EADC878A83}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartPrevious);
 
-        CodePartSave codePartSave = new("\\Models", "TargetTaskHelper.cs", entity, "{36DE75D7-A730-4F6B-A7C9-4660245BD895}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartSave);
+            CodePartEdit codePartEdit = new("\\Models", "TargetTaskHelper.cs", entity, "{74A75AB1-1AB2-46C7-B63F-39F52AF0049A}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartEdit);
 
-        CodePartLoad codePartLoad = new("\\Models", "TargetTaskHelper.cs", entity, "{BD92B12F-6AB8-420C-9A4B-654233721FB7}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartLoad);
+            CodePartRemove codePartRemove = new("\\Models", "TargetTaskHelper.cs", entity, "{11002DF2-E6AB-485E-B896-C3ED92706E30}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartRemove);
 
-        CodePartSearch codePartSearch = new("\\Models", "TargetTaskHelper.cs", entity, "{F745E72F-A908-4AB1-AF8B-E3FDE13BF46E}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartSearch);
+            CodePartSave codePartSave = new("\\Models", "TargetTaskHelper.cs", entity, "{36DE75D7-A730-4F6B-A7C9-4660245BD895}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartSave);
 
-        CodePartRefresh codePartRefresh = new("\\Models", "TargetTaskHelper.cs", entity, "{B2FED166-7FCF-4163-8507-EB1CC28B6435}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartRefresh);
+            CodePartLoad codePartLoad = new("\\Models", "TargetTaskHelper.cs", entity, "{BD92B12F-6AB8-420C-9A4B-654233721FB7}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartLoad);
 
-        CodePartHiddenRules codePartHiddenRules = new("\\Models", "TargetTaskHelper.cs", entity, "{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}", WorkingFolder, "", "\t\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartHiddenRules);
+            CodePartSearch codePartSearch = new("\\Models", "TargetTaskHelper.cs", entity, "{F745E72F-A908-4AB1-AF8B-E3FDE13BF46E}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartSearch);
 
-        CodePartLoadDefaults codePartLoadDefaults = new("\\Models", "ArchLoader.cs", entity, "{E4C217C0-AC0D-4571-95E4-16CE056F35A5}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
-        codeVault.Add(codePartLoadDefaults);
+            CodePartRefresh codePartRefresh = new("\\Models", "TargetTaskHelper.cs", entity, "{B2FED166-7FCF-4163-8507-EB1CC28B6435}", WorkingFolder, "", "\t\t\t\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartRefresh);
 
-        CodePartCreatePogo codePartCreatePogo = new("\\GeneratedModels", $"{entity}.cs", entity, "{2F1F31FC-636B-4FA1-B1F5-BD767B125F0E}", WorkingFolder, Header, "", SessionID ?? "TBA");
-        codeVault.Add(codePartCreatePogo);
+            CodePartHiddenRules codePartHiddenRules = new("\\Models", "TargetTaskHelper.cs", entity, "{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}", WorkingFolder, "", "\t\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartHiddenRules);
 
-        CodePartCreateHelper codePartCreateHelper = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{20D3B776-48B9-43E0-AE40-F1ABBCC31B90}", WorkingFolder, Header, "", SessionID ?? "TBA");
-        codeVault.Add(codePartCreateHelper);
+            CodePartLoadDefaults codePartLoadDefaults = new("\\Models", "ArchLoader.cs", entity, "{E4C217C0-AC0D-4571-95E4-16CE056F35A5}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartLoadDefaults);
+
+            CodePartCreatePogo codePartCreatePogo = new("\\GeneratedModels", $"{entity}.cs", entity, "{2F1F31FC-636B-4FA1-B1F5-BD767B125F0E}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePartCreatePogo);
+
+            CodePartCreateHelper codePartCreateHelper = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{20D3B776-48B9-43E0-AE40-F1ABBCC31B90}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePartCreateHelper);
+        }
+
+        if (menuType == MenuTypeEnum.Link)
+        {
+            CodePartCreatePogoLink codePartCreatePogoLink = new("\\GeneratedModels", $"{entity}.cs", entity, "{BC048EB7-5741-4D41-8608-208AEFDE31E1}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            codeVault.Add(codePartCreatePogoLink);
+
+            CodePartCreateHelperLink codePartCreateHelperLink = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{40CEF4E7-3F18-41F1-8149-01DF4FFFF9D9}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            codeVault.Add(codePartCreateHelperLink);
+        }
 
         foreach (CodePart item in codeVault)
             if (!item.AlterCode())

@@ -1,6 +1,9 @@
-// Generated Code - Version: 23.11.25 - 2024/11/14 23:54:43 - {7328f621-8c9b-4ae9-b2c6-e5c96ce8746e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:50:38 - {e16e756f-a27f-493b-bfa9-6667c239b926}
 
 namespace ArchCorpUtilities.Models.BuildingsModel.Buildings;
+
+using AL = ArchCorpUtilities.Models.ArchLoader;
+
 public class Buildings
 {
     public string? Name { get; }

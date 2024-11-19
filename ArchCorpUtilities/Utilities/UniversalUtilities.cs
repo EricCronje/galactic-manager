@@ -1,4 +1,5 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 21:07:34 - {7551f151-70ea-48bd-855a-c58b13ad8090}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:33 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
 
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -20,8 +21,8 @@ namespace ArchCorpUtilities.Utilities
             Menu,
 			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
 	
-            Beacons,
-			Buildings
+            Beacons,Buildings,Planets,Sites,Fleets,Ships,Personel,RoleGroups,Roles,Users,LinkSitesToPlanets,
+			Personnel
 			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
 	
         }

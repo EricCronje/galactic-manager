@@ -1,4 +1,15 @@
-// Generated Code - Version: 20.11.25 - 2024/11/14 03:19:10 - {a0d47dc6-67e7-402a-af37-33d83ed34429}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:35 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:34 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:34 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:34 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:33 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:33 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:33 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:32 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:32 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:32 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:43:32 - {ce1afc7d-bcd9-49eb-9275-a7dc8279e07e}
+// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
 
 using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
@@ -10,8 +21,17 @@ using TTH = ArchCorpUtilities.Models.TargetTaskHelper;
 using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
-using BeaconsHelper = ArchCorpUtilities.GeneratedModels.BeaconsModel.BeaconsHelper;
+using PlanetsHelper = ArchCorpUtilities.GeneratedModels.PlanetsModel.PlanetsHelper;
+using SitesHelper = ArchCorpUtilities.GeneratedModels.SitesModel.SitesHelper;
 using BuildingsHelper = ArchCorpUtilities.GeneratedModels.BuildingsModel.BuildingsHelper;
+using FleetsHelper = ArchCorpUtilities.GeneratedModels.FleetsModel.FleetsHelper;
+using ShipsHelper = ArchCorpUtilities.GeneratedModels.ShipsModel.ShipsHelper;
+using PersonnelHelper = ArchCorpUtilities.GeneratedModels.PersonnelModel.PersonnelHelper;
+using BeaconsHelper = ArchCorpUtilities.GeneratedModels.BeaconsModel.BeaconsHelper;
+using RoleGroupsHelper = ArchCorpUtilities.GeneratedModels.RoleGroupsModel.RoleGroupsHelper;
+using RolesHelper = ArchCorpUtilities.GeneratedModels.RolesModel.RolesHelper;
+using UsersHelper = ArchCorpUtilities.GeneratedModels.UsersModel.UsersHelper;
+using LinkSitesToPlanetsHelper = ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel.LinkSitesToPlanetsHelper;
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 
 using ArchCorpUtilities.Models.Menus;
@@ -24,8 +44,17 @@ namespace ArchCorpUtilities.Models
         public static string SessionID { get; }
 
         //{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
-        internal static BeaconsHelper BeaconsHelper;
+		internal static PlanetsHelper? PlanetsHelper = null;
+		internal static SitesHelper? SitesHelper = null;
 		internal static BuildingsHelper? BuildingsHelper = null;
+		internal static FleetsHelper? FleetsHelper = null;
+		internal static ShipsHelper? ShipsHelper = null;
+		internal static PersonnelHelper? PersonnelHelper = null;
+		internal static BeaconsHelper? BeaconsHelper = null;
+		internal static RoleGroupsHelper? RoleGroupsHelper = null;
+		internal static RolesHelper? RolesHelper = null;
+		internal static UsersHelper? UsersHelper = null;
+		internal static LinkSitesToPlanetsHelper? LinkSitesToPlanetsHelper = null;
 		//{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
 
         static ArchLoader()
@@ -38,8 +67,17 @@ namespace ArchCorpUtilities.Models
             CodeGen.SessionID = SessionID;
 
             //{9ED7AF33-DE0E-45C3-821F-4669558AD744}
-            BeaconsHelper = new(SessionID);
+			PlanetsHelper = new(SessionID);
+			SitesHelper = new(SessionID);
 			BuildingsHelper = new(SessionID);
+			FleetsHelper = new(SessionID);
+			ShipsHelper = new(SessionID);
+			PersonnelHelper = new(SessionID);
+			BeaconsHelper = new(SessionID);
+			RoleGroupsHelper = new(SessionID);
+			RolesHelper = new(SessionID);
+			UsersHelper = new(SessionID);
+			LinkSitesToPlanetsHelper = new(SessionID);
 			//{9ED7AF33-DE0E-45C3-821F-4669558AD744}
 
         }
@@ -52,9 +90,18 @@ namespace ArchCorpUtilities.Models
             }
 
             //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
-            BuildingsHelper?.LoadDefaults();
-            BeaconsHelper?.LoadDefaults();
-            //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
+			PlanetsHelper?.LoadDefaults();
+			SitesHelper?.LoadDefaults();
+			BuildingsHelper?.LoadDefaults();
+			FleetsHelper?.LoadDefaults();
+			ShipsHelper?.LoadDefaults();
+			PersonnelHelper?.LoadDefaults();
+			BeaconsHelper?.LoadDefaults();
+			RoleGroupsHelper?.LoadDefaults();
+			RolesHelper?.LoadDefaults();
+			UsersHelper?.LoadDefaults();
+			LinkSitesToPlanetsHelper?.LoadDefaults();
+			//{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
 
             if (File.Exists(CodeGenHelper.CurrentGuid))
                 MMH.Load(CodeGenHelper.CurrentGuid);

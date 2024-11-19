@@ -1,4 +1,4 @@
-// Generated Code - Version: <Version> - <Date> - {cc78f0cc-4ab8-4dd6-a01e-546c48d76b98}
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:50:39 - {e16e756f-a27f-493b-bfa9-6667c239b926}
 
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
@@ -102,10 +102,11 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
 	                    var NotFound = Items?.FirstOrDefault(i => (i.Name != null && i.Name.Equals(Input, StringComparison.CurrentCultureIgnoreCase)));
 	                    if (NotFound == null)
 	                    {
-	                        Items?.Add(new(Input, 0));
-	                        Items?.Remove(Entity);
-	                        Page = new Patina.Patina(1, 1);
 	                        EntitiesOnThePage = [new(Input, 0)];
+	                        Items?.Add(EntitiesOnThePage[0]);
+	                        if (Entity != null)
+		                      Items?.Remove(Entity);
+	                        Page = new Patina.Patina(1, 1);
 	                        ResetPageMaxCount();
 	                        ReIndexDisplayId();
 	                        ResetEntitiesOnThePage();
@@ -370,30 +371,16 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));
         }
+
         private Beacons? ViewAndSelectItem(string? simInput, string heading)
         {
             var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);
-
-            if (EntitiesOnThePage == null)
-                return null;
-
+            if (EntitiesOnThePage == null) { return null; }
             CH.Feedback(heading);
-
-            string ItemInput = CH.GetInput(simInput);
-            //If none selected - do nothing
-            if (!string.IsNullOrWhiteSpace(ItemInput))
-            {
-                _ = Int32.TryParse(ItemInput, out int Choice);
-                //If item selected
-                Beacons? SelectedEntity = EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
-                if (SelectedEntity != null)
-                {
-                    return SelectedEntity;
-                }
-            }
-            return null;
+            _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);
+            return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
 
         private void ResetEntitiesOnThePage()
@@ -421,5 +408,14 @@ namespace ArchCorpUtilities.GeneratedModels.BeaconsModel
             return false;
         }
 
+        internal string? GetName(string? guid)
+        {
+            return Items?.FirstOrDefault(p => p.BeaconsGuid != null && p.BeaconsGuid.Equals(guid))?.Name;
+        }
+
+        internal string? GetGuid(string? name)
+        {
+            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.BeaconsGuid;
+        }
     }
 }

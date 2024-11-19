@@ -1,2 +1,11 @@
-Manage Buildings|Buildings
-Manage Beacons|Beacons
+Manage Planets|Planets|Manage|None|None
+Manage Sites|Sites|Manage|None|None
+Manage Buildings|Buildings|Manage|None|None
+Manage Fleets|Fleets|Manage|None|None
+Manage Ships|Ships|Manage|None|None
+Manage Personnel|Personnel|Manage|None|None
+Manage Beacons|Beacons|Manage|None|None
+Manage RoleGroups|RoleGroups|Manage|None|None
+Manage Roles|Roles|Manage|None|None
+Manage Users|Users|Manage|None|None
+Link Sites To Planets|LinkSitesToPlanets|Link|Sites|Planets

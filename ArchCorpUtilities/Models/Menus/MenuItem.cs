@@ -23,7 +23,7 @@ namespace ArchCorpUtilities.Models.Menus
         public bool IsHidden { get; set; }
         public bool IsPagination { get; set; }
 
-        public string? Source { get; }
+        public string? Source { get; set; }
 
         public bool IsStartPage { get; }
 

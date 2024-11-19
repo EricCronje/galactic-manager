@@ -1,6 +1,5 @@
-// Generated Code - Version: 23.11.25 - 2024/11/14 23:54:43 - {7328f621-8c9b-4ae9-b2c6-e5c96ce8746e}
-
-
+// Generated Code - Version: 23.11.25 - 2024/11/19 18:50:38 - {e16e756f-a27f-493b-bfa9-6667c239b926}
+
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -103,10 +102,11 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	                    var NotFound = Items?.FirstOrDefault(i => (i.Name != null && i.Name.Equals(Input, StringComparison.CurrentCultureIgnoreCase)));
 	                    if (NotFound == null)
 	                    {
-	                        Items?.Add(new(Input, 0));
-	                        Items?.Remove(Entity);
-	                        Page = new Patina.Patina(1, 1);
 	                        EntitiesOnThePage = [new(Input, 0)];
+	                        Items?.Add(EntitiesOnThePage[0]);
+	                        if (Entity != null)
+		                      Items?.Remove(Entity);
+	                        Page = new Patina.Patina(1, 1);
 	                        ResetPageMaxCount();
 	                        ReIndexDisplayId();
 	                        ResetEntitiesOnThePage();
@@ -371,30 +371,16 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));
         }
+
         private Buildings? ViewAndSelectItem(string? simInput, string heading)
         {
             var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);
-
-            if (EntitiesOnThePage == null)
-                return null;
-
+            if (EntitiesOnThePage == null) { return null; }
             CH.Feedback(heading);
-
-            string ItemInput = CH.GetInput(simInput);
-            //If none selected - do nothing
-            if (!string.IsNullOrWhiteSpace(ItemInput))
-            {
-                _ = Int32.TryParse(ItemInput, out int Choice);
-                //If item selected
-                Buildings? SelectedEntity = EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
-                if (SelectedEntity != null)
-                {
-                    return SelectedEntity;
-                }
-            }
-            return null;
+            _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);
+            return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
 
         private void ResetEntitiesOnThePage()
@@ -422,5 +408,14 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
             return false;
         }
 
+        internal string? GetName(string? guid)
+        {
+            return Items?.FirstOrDefault(p => p.BuildingsGuid != null && p.BuildingsGuid.Equals(guid))?.Name;
+        }
+
+        internal string? GetGuid(string? name)
+        {
+            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.BuildingsGuid;
+        }
     }
 }

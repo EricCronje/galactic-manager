@@ -169,13 +169,6 @@ namespace TestProjectMenus
 
         //}
 
-        private static void ValidAddMenuMaintenanceAssert(string Result)
-        {
-            Assert.Contains("1 Manage Menus", Result);
-            Assert.Contains("2 Exit", Result);
-            Assert.Contains("-------------------------", Result);
-            Assert.Contains("Choice:", Result);
-        }
 
         [Fact]
         public void ValidAddMenuMaintenanceAddOperation()

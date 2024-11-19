@@ -17,8 +17,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         public string Heading { get; }
         public string Tabs { get; }
         public static string? SessionID { get; set; }
+        public static string? LHLink { get; set; }
+        public static string? RHLink { get; set; }
 
-        public CodePart(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID)
+        public CodePart(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID, string? lHLink = null, string? rHLink = null)
         {
             BaseFolder = baseFolder;
             TargetFile = targetFile;
@@ -28,8 +30,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             Heading = heading;
             Tabs = searchStringPostPart;
             SessionID = sessionID;
+            LHLink = lHLink;
+            RHLink = rHLink;
         }
-
         public virtual bool AlterCode()
         {
             var TargetPath = $"{WorkingFolder}{BaseFolder}\\{TargetFile}";
@@ -101,9 +104,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             return AlteredFile;
         }
 
-        public static bool CreateCode(CodeTemplateEnum codeTemplate, string entity, string basePath)
+        public static bool CreateCode(CodeTemplateEnum codeTemplate, string entity, string basePath, string? lHLinkGuid = null, string? rhLinkGuid = null)
         {
-            var TemplateCode = GenCode(codeTemplate, entity);
+            var TemplateCode = GenCode(codeTemplate, entity, lHLinkGuid, rhLinkGuid);
             if (TemplateCode != "<NoData>")
             {
                 var EntityFile = GetEntityPath(codeTemplate, entity, basePath);
@@ -120,17 +123,19 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 return false;
         }
 
-        private static List<CodeTemplate> GetMockData()
+        private static List<CodeTemplate> GetMockData(string? lhLink, string? rhLink)
         {
             List<CodeTemplate> TemplateList =
             [
                 new CodeTemplate("Helper", HelperCodeTemplate("PlanetsModel", "Planets")),
-            new CodeTemplate("POCO", PocoCodeTemplate("Poco", "")),
+                new CodeTemplate("HelperLink", HelperCodeTemplateLink("PlanetsModel", "Planets", lhLink, rhLink)),
+                new CodeTemplate("POCO", PocoCodeTemplate("Poco", "")),
+                new CodeTemplate("POCOLink", PocoCodeTemplate("Poco", "", false, lhLink, rhLink))
         ];
             return TemplateList;
         }
 
-        private static void SearchLogic(StringBuilder stringBuilder, string entity)
+        private static void SearchLogic(StringBuilder stringBuilder, string entity, string? lHLink, string? rHLink)
         {
             stringBuilder.AppendLine($"            CH.Feedback(\"Enter an item name to search for\");");
             stringBuilder.AppendLine($"");
@@ -152,7 +157,12 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"                else ");
             stringBuilder.AppendLine($"                {{");
             stringBuilder.AppendLine($"                    CH.Feedback(\"No Items Was Found\");");
-            stringBuilder.AppendLine($"                    EntitiesOnThePage = [new {entity}(\"None\", 1)];");
+
+            if(lHLink == null && rHLink == null)
+                stringBuilder.AppendLine($"                    EntitiesOnThePage = [new {entity}(\"None\", 1)];");
+            else
+                stringBuilder.AppendLine($"                    EntitiesOnThePage = [new {entity}(\"None\", 1, null, null)];");
+
             stringBuilder.AppendLine($"                    Page = new Patina.Patina(1, 1);");
             stringBuilder.AppendLine($"                    return false;");
             stringBuilder.AppendLine($"                }}");
@@ -164,7 +174,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"            return false;");
         }
 
-        private static void LoadLogic(StringBuilder stringBuilder, string entity)
+        private static void LoadLogic(StringBuilder stringBuilder, string entity, string? lHLink, string? rHLink)
         {
             stringBuilder.AppendLine($"            if (SessionID != null)");
             stringBuilder.AppendLine($"                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);");
@@ -186,7 +196,14 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"\t\t\t\t\t\t\tif (LineItem.Length > 0 && LineItem.Length > 1)");
             stringBuilder.AppendLine($"	                        {{");
             stringBuilder.AppendLine($"	                            string Name = LineItem[0].Trim();");
-            stringBuilder.AppendLine($"	                            string GUID = CH.IsSimulate ? \"<GUID>\" : LineItem[1].Trim();");
+            if (lHLink == null && rHLink == null)
+                stringBuilder.AppendLine($"	                            string GUID = CH.IsSimulate ? \"<GUID>\" : LineItem[1].Trim();");
+            else
+            {
+                stringBuilder.AppendLine($"	                            string GUID = CH.IsSimulate ? \"<GUID>\" : LineItem[5].Trim();");
+                stringBuilder.AppendLine($"	                            string LHLinkGuid = LineItem[6].Trim();");
+                stringBuilder.AppendLine($"	                            string RHLinkGuid = LineItem[7].Trim();");
+            }
             stringBuilder.AppendLine($"	                            var Entity = Items?.FirstOrDefault(c => c.{entity}Guid == GUID);");
             stringBuilder.AppendLine($"	                            var EntityItem = Items?.FirstOrDefault(c => c.Name == Name);");
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\tvar OldGUID = CH.IsSimulate ? \"<GUID>\" : EntityItem?.{entity}Guid;");
@@ -201,7 +218,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t{{");
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tif (SessionID != null)");
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\t\tL.Log($\"Item found - {{Name}}\", SessionID);");
-            stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tItems?.Add(new {entity}(Name, 0, GUID));");
+            if (lHLink == null && rHLink == null)
+                stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tItems?.Add(new {entity}(Name, 0, GUID));");
+            else
+                stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tItems?.Add(new {entity}(Name, 0, LHLinkGuid, RHLinkGuid, GUID));");
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tCH.Feedback($\"Item Added - New Item: {{Name}} - {{GUID}}\");");
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tReIndexDisplayId();");
             stringBuilder.AppendLine($"\t\t\t\t\t\t\t\t\tResetPageMaxCount();");
@@ -313,7 +333,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"            return false;");
         }
 
-        private static void EditLogic(StringBuilder stringBuilder, string entity)
+        private static void EditLogic(StringBuilder stringBuilder, string entity, string? lHLink = null, string? rHLink = null)
         {
             stringBuilder.AppendLine($"\t        try");
             stringBuilder.AppendLine($"\t        {{");
@@ -328,10 +348,14 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"\t                    var NotFound = Items?.FirstOrDefault(i => (i.Name != null && i.Name.Equals(Input, StringComparison.CurrentCultureIgnoreCase)));");
             stringBuilder.AppendLine($"\t                    if (NotFound == null)");
             stringBuilder.AppendLine($"\t                    {{");
-            stringBuilder.AppendLine($"\t                        Items?.Add(new(Input, 0));");
-            stringBuilder.AppendLine($"\t                        Items?.Remove(Entity);");
+            if (lHLink == null && rHLink == null)
+                stringBuilder.AppendLine($"\t                        EntitiesOnThePage = [new(Input, 0)];");
+            else
+                stringBuilder.AppendLine($"\t                        EntitiesOnThePage = [new(Input, 0, Entity?.{lHLink}Guid, Entity?.{rHLink}Guid)];");
+            stringBuilder.AppendLine($"\t                        Items?.Add(EntitiesOnThePage[0]);");
+            stringBuilder.AppendLine($"\t                        if (Entity != null)");
+            stringBuilder.AppendLine($"\t\t                      Items?.Remove(Entity);");
             stringBuilder.AppendLine($"\t                        Page = new Patina.Patina(1, 1);");
-            stringBuilder.AppendLine($"\t                        EntitiesOnThePage = [new(Input, 0)];");
             stringBuilder.AppendLine($"\t                        ResetPageMaxCount();");
             stringBuilder.AppendLine($"\t                        ReIndexDisplayId();");
             stringBuilder.AppendLine($"\t                        ResetEntitiesOnThePage();");
@@ -394,7 +418,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"            return false;");
         }
 
-        private static void AddLogic(StringBuilder stringBuilder)
+        private static void AddLogic(StringBuilder stringBuilder, string? lHLink, string? rHLink)
         {
             stringBuilder.AppendLine("            CH.Feedback(\"Please provide the item name: \");");
             stringBuilder.AppendLine("            var Input = CH.GetInput(simInput?[0]);");
@@ -407,7 +431,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine("                    return false;");
             stringBuilder.AppendLine("                }");
             stringBuilder.AppendLine("");
-            stringBuilder.AppendLine("                Items?.Add(new(Input, 0));");
+            if (lHLink == null && rHLink == null)
+                stringBuilder.AppendLine("                Items?.Add(new(Input, 0));");
+            else
+                stringBuilder.AppendLine("                Items?.Add(new(Input, 0, null, null));");
             stringBuilder.AppendLine("                CH.Feedback(\"Item added.\");");
             stringBuilder.AppendLine("                ResetPageMaxCount();");
             stringBuilder.AppendLine("                ReIndexDisplayId();");
@@ -452,10 +479,11 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             EmptyLineLogic(stringBuilder);
         }
 
-        private static readonly List<CodeTemplate> Repository = GetMockData();
+        private static List<CodeTemplate>? Repository;
 
-        private static string GetTemplate(CodeTemplateEnum name, string entity)
+        private static string GetTemplate(CodeTemplateEnum name, string entity, string? lhLink = null, string? rhLink = null)
         {
+            Repository = GetMockData(lhLink, rhLink);
             string? Template = Repository.FirstOrDefault(p => p.Name.ToUpper().Equals(name.ToString().ToUpper()))?.Code;
             if (Template != null)
             {
@@ -464,10 +492,15 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                     case CodeTemplateEnum.POCO:
                         Template = PocoCodeTemplate($"{entity}Model", entity);
                         break;
+                    case CodeTemplateEnum.POCOLink:
+                        Template = PocoCodeTemplate($"{entity}Model", entity, true, lhLink, rhLink);
+                        break;
                     case CodeTemplateEnum.Helper:
                         Template = HelperCodeTemplate($"{entity}Model", $"{entity}");
                         break;
-
+                    case CodeTemplateEnum.HelperLink:
+                        Template = HelperCodeTemplateLink($"{entity}Model", $"{entity}", lhLink, rhLink);
+                        break;
                     default:
                         break;
                 }
@@ -481,10 +514,18 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         public enum CodeTemplateEnum
         {
             Helper,
-            POCO
+            POCO,
+            POCOLink,
+            HelperLink
         }
 
-        private static string? GenCode(CodeTemplateEnum name, string entity)
+        public enum MenuTypeEnum
+        {
+            None,
+            Link,
+            Manage
+        }
+        private static string? GenCode(CodeTemplateEnum name, string entity,string? lhLinkGuid = null,string? rhLinkGuid = null)
         {
             #region Log that the GenCode method is running.
             #endregion
@@ -495,7 +536,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             if (Continue)
             {
                 #region Looking for the code in the repository.  Will return the code once found.
-                var Code = GetTemplate(name, entity);
+                var Code = GetTemplate(name, entity, lhLinkGuid, rhLinkGuid);
                 // The template exists - return it
                 if (Code != null && Code != " <NoData>")
                     return Code;
@@ -541,8 +582,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             var PrePath = $"{WorkingFolder}{baseFolder}\\{entity}Model\\{entity}";
             string? Path = codeTemplate switch
             {
+                CodeTemplateEnum.HelperLink => $"{PrePath}Helper.cs",
                 CodeTemplateEnum.Helper => $"{PrePath}Helper.cs",
                 CodeTemplateEnum.POCO => $"{PrePath}.cs",
+                CodeTemplateEnum.POCOLink => $"{PrePath}.cs",
                 _ => $"{PrePath}.cs",
             };
             return Path;
@@ -602,7 +645,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 stringBuilder.AppendLine("        public bool Add(int? simChoice = null, string[]? simInput = null)");
                 stringBuilder.AppendLine("        {");
                 LoggingLogic(stringBuilder);
-                AddLogic(stringBuilder);
+                AddLogic(stringBuilder, LHLink, RHLink);
                 stringBuilder.AppendLine("        }");
 
                 EmptyLineLogic(stringBuilder);
@@ -616,7 +659,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 stringBuilder.AppendLine("        public bool Edit(int? simChoice, string[]? simInput)");
                 stringBuilder.AppendLine("        {");
                 LoggingLogic(stringBuilder);
-                EditLogic(stringBuilder, entity);
+                EditLogic(stringBuilder, entity, LHLink, RHLink);
                 stringBuilder.AppendLine("        }");
 
                 EmptyLineLogic(stringBuilder);
@@ -630,7 +673,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 MethodDeclarationLogic("Search", stringBuilder);
                 ScopeStartLogic(stringBuilder, "\t\t\t");
                 LoggingLogic(stringBuilder);
-                SearchLogic(stringBuilder, entity);
+                SearchLogic(stringBuilder, entity, LHLink, RHLink);
                 ScopeEndLogic(stringBuilder, "\t\t\t");
 
                 EmptyLineLogic(stringBuilder);
@@ -658,7 +701,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 MethodDeclarationLogic("Load", stringBuilder);
                 ScopeStartLogic(stringBuilder, "\t\t\t");
                 LoggingLogic(stringBuilder);
-                LoadLogic(stringBuilder, entity);
+                LoadLogic(stringBuilder, entity, LHLink, RHLink);
                 ScopeEndLogic(stringBuilder, "\t\t\t");
 
                 EmptyLineLogic(stringBuilder);
@@ -674,31 +717,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 stringBuilder.AppendLine("            Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));");
                 stringBuilder.AppendLine("        }");
 
-                stringBuilder.AppendLine($"        private {entity}? ViewAndSelectItem(string? simInput, string heading)");
-                stringBuilder.AppendLine($"        {{");
-                stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();");
-                stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
-                stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);");
-                stringBuilder.AppendLine($"");
-                stringBuilder.AppendLine($"            if (EntitiesOnThePage == null)");
-                stringBuilder.AppendLine($"                return null;");
-                stringBuilder.AppendLine($"");
-                stringBuilder.AppendLine($"            CH.Feedback(heading);");
-                stringBuilder.AppendLine($"");
-                stringBuilder.AppendLine($"            string ItemInput = CH.GetInput(simInput);");
-                stringBuilder.AppendLine($"            //If none selected - do nothing");
-                stringBuilder.AppendLine($"            if (!string.IsNullOrWhiteSpace(ItemInput))");
-                stringBuilder.AppendLine($"            {{");
-                stringBuilder.AppendLine($"                _ = Int32.TryParse(ItemInput, out int Choice);");
-                stringBuilder.AppendLine($"                //If item selected");
-                stringBuilder.AppendLine($"                {entity}? SelectedEntity = EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);");
-                stringBuilder.AppendLine($"                if (SelectedEntity != null)");
-                stringBuilder.AppendLine($"                {{");
-                stringBuilder.AppendLine($"                    return SelectedEntity;");
-                stringBuilder.AppendLine($"                }}");
-                stringBuilder.AppendLine($"            }}");
-                stringBuilder.AppendLine($"            return null;");
-                stringBuilder.AppendLine($"        }}");
+                ViewAndSelectItemLogic(entity, stringBuilder);
                 stringBuilder.AppendLine($"");
                 stringBuilder.AppendLine($"        private void ResetEntitiesOnThePage()");
                 stringBuilder.AppendLine($"        {{");
@@ -725,6 +744,15 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 stringBuilder.AppendLine($"            return false;");
                 stringBuilder.AppendLine($"        }}");
                 stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        internal string? GetName(string? guid)");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            return Items?.FirstOrDefault(p => p.{entity}Guid != null && p.{entity}Guid.Equals(guid))?.Name;");
+                stringBuilder.AppendLine($"        }}");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        internal string? GetGuid(string? name)");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.{entity}Guid;");
+                stringBuilder.AppendLine($"        }}");
                 stringBuilder.AppendLine("    }");
                 stringBuilder.AppendLine("}");
 
@@ -743,7 +771,207 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             }
         }
 
-        private static string PocoCodeTemplate(string folderName, string entity)
+        private static string HelperCodeTemplateLink(string folderName, string entity, string? lHLink, string? rHLink)
+        {
+            if (SessionID != null)
+                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
+
+            StringBuilder stringBuilder = new();
+
+            try
+            {
+                EmptyLineLogic(stringBuilder);
+                DefaultUsingLogic(stringBuilder, entity);
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("using AL = ArchCorpUtilities.Models.ArchLoader;");
+                stringBuilder.AppendLine($"namespace ArchCorpUtilities.GeneratedModels.{folderName}");
+                ScopeStartLogic(stringBuilder, "");
+                stringBuilder.AppendLine($"    public class {entity}Helper : IHelper<{entity}>, IDisposable");
+                ScopeStartLogic(stringBuilder, "\t");
+                stringBuilder.AppendLine("        public string? SessionID { get; set; }");
+                stringBuilder.AppendLine("        public List<" + entity + ">? Items { get; set; }");
+                stringBuilder.AppendLine("        public List<" + entity + ">? EntitiesOnThePage { get; set; }");
+                stringBuilder.AppendLine("        public Patina.Patina Page { get; set; }");
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine($"       public {entity}Helper(string? sessionID)");
+                ScopeStartLogic(stringBuilder, "\t\t");
+                stringBuilder.AppendLine("            SessionID = sessionID;");
+                stringBuilder.AppendLine("            Items = MockData();");
+                stringBuilder.AppendLine("            Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Items?.Count));");
+                ScopeEndLogic(stringBuilder, "\t\t");
+                stringBuilder.AppendLine($"        private List<{entity}>? MockData()");
+                ScopeStartLogic(stringBuilder, "\t\t\t");
+                stringBuilder.AppendLine("            if (Items == null || Items.Count == 0)");
+                stringBuilder.AppendLine("                Items = [];");
+                stringBuilder.AppendLine("");
+                stringBuilder.AppendLine($"            var {rHLink}Items = AL.{rHLink}Helper?.Items;");
+                stringBuilder.AppendLine($"            var {lHLink}Items = AL.{lHLink}Helper?.Items;");
+                stringBuilder.AppendLine($"            if ({rHLink}Items != null && {lHLink}Items != null)");
+                stringBuilder.AppendLine($"                for (int i = 0; i < {rHLink}Items.Count; i++)");
+                stringBuilder.AppendLine($"                {{");
+                if (rHLink != null && lHLink != null)
+                {
+                    stringBuilder.AppendLine($"                    Models.{rHLink}Model.{rHLink}.{rHLink}?{rHLink.ToLower()} = {rHLink}Items[i];");
+                    stringBuilder.AppendLine($"                    Models.{lHLink}Model.{lHLink}.{lHLink}? {lHLink.ToLower()} = {lHLink}Items[i];");
+                    stringBuilder.AppendLine($"                    Items.Add(new {entity}($\"{{{lHLink.ToLower()}.Name}}-{{{rHLink.ToLower()}.Name}}\", 0, {lHLink.ToLower()}.{lHLink}Guid, {rHLink.ToLower()}.{rHLink}Guid));");
+                }
+                stringBuilder.AppendLine($"                }}");
+                stringBuilder.AppendLine("            return Items;");
+                ScopeEndLogic(stringBuilder, "\t\t\t");
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public bool View(U.Navigation navigate = U.Navigation.FirstPage)");
+                ScopeStartLogic(stringBuilder, "\t\t\t");
+                LoggingLogic(stringBuilder);
+                ViewLogic(stringBuilder, entity);
+                ScopeEndLogic(stringBuilder, "\t\t\t");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public bool Add(int? simChoice = null, string[]? simInput = null)");
+                stringBuilder.AppendLine("        {");
+                LoggingLogic(stringBuilder);
+                AddLogic(stringBuilder, LHLink, RHLink);
+                stringBuilder.AppendLine("        }");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public void Dispose()");
+                stringBuilder.AppendLine("        {");
+                LoggingLogic(stringBuilder);
+                stringBuilder.AppendLine("            GC.SuppressFinalize(this);");
+                stringBuilder.AppendLine("        }");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public bool Edit(int? simChoice, string[]? simInput)");
+                stringBuilder.AppendLine("        {");
+                LoggingLogic(stringBuilder);
+                EditLogic(stringBuilder, entity, LHLink, RHLink);
+                stringBuilder.AppendLine("        }");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public bool IsItemsOnThePage()");
+                stringBuilder.AppendLine("        {");
+                LoggingLogic(stringBuilder);
+                stringBuilder.AppendLine("            return !(EntitiesOnThePage == null || (EntitiesOnThePage != null && EntitiesOnThePage.Count == 0));");
+                stringBuilder.AppendLine("        }");
+
+                EmptyLineLogic(stringBuilder);
+                MethodDeclarationLogic("Search", stringBuilder);
+                ScopeStartLogic(stringBuilder, "\t\t\t");
+                LoggingLogic(stringBuilder);
+                SearchLogic(stringBuilder, entity, LHLink, RHLink);
+                ScopeEndLogic(stringBuilder, "\t\t\t");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine($"        public bool Refresh(List<{entity}> modelList, U.Navigation navigate = U.Navigation.FirstPage)");
+                stringBuilder.AppendLine("        {");
+                LoggingLogic(stringBuilder);
+                RefreshLogic(stringBuilder, entity);
+                stringBuilder.AppendLine("        }");
+
+                EmptyLineLogic(stringBuilder);
+                MethodDeclarationLogic("Remove", stringBuilder);
+                ScopeStartLogic(stringBuilder, "\t\t\t");
+                LoggingLogic(stringBuilder);
+                RemoveLogic(stringBuilder, entity);
+                ScopeEndLogic(stringBuilder, "\t\t\t");
+
+                EmptyLineLogic(stringBuilder);
+                MethodDeclarationLogic("Save", stringBuilder);
+                ScopeStartLogic(stringBuilder, "\t\t\t");
+                LoggingLogic(stringBuilder);
+                SaveLogic(stringBuilder, entity);
+                ScopeEndLogic(stringBuilder, "\t\t\t");
+
+                EmptyLineLogic(stringBuilder);
+                MethodDeclarationLogic("Load", stringBuilder);
+                ScopeStartLogic(stringBuilder, "\t\t\t");
+                LoggingLogic(stringBuilder);
+                LoadLogic(stringBuilder, entity, LHLink, RHLink);
+                ScopeEndLogic(stringBuilder, "\t\t\t");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public void ReIndexDisplayId()");
+                stringBuilder.AppendLine("        {");
+                LoggingLogic(stringBuilder);
+                ReIndexLogic(stringBuilder);
+                stringBuilder.AppendLine("        }");
+
+                EmptyLineLogic(stringBuilder);
+                stringBuilder.AppendLine("        public void ResetPageMaxCount()");
+                stringBuilder.AppendLine("        {");
+                stringBuilder.AppendLine("            Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));");
+                stringBuilder.AppendLine("        }");
+
+                ViewAndSelectItemLogic(entity, stringBuilder);
+
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        private void ResetEntitiesOnThePage()");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            if (SessionID != null)");
+                stringBuilder.AppendLine($"                L.Log(\"Entities was reset.\", SessionID, 4);");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"            EntitiesOnThePage = null;");
+                stringBuilder.AppendLine($"        }}");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        public bool LoadDefaults()");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            Items?.Clear();");
+                stringBuilder.AppendLine($"            Items = MockData();");
+                stringBuilder.AppendLine($"            return true;");
+                stringBuilder.AppendLine($"        }}");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        private bool DuplicateFound(string Input)");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            var DuplicateFound = Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input));");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"            if (DuplicateFound != null)");
+                stringBuilder.AppendLine($"                return true;");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"            return false;");
+                stringBuilder.AppendLine($"        }}");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        internal string? GetName(string? guid)");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            return Items?.FirstOrDefault(p => p.{entity}Guid != null && p.{entity}Guid.Equals(guid))?.Name;");
+                stringBuilder.AppendLine($"        }}");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"        internal string? GetGuid(string? name)");
+                stringBuilder.AppendLine($"        {{");
+                stringBuilder.AppendLine($"            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.{entity}Guid;");
+                stringBuilder.AppendLine($"        }}");
+                stringBuilder.AppendLine("    }");
+                stringBuilder.AppendLine("}");
+
+
+                return stringBuilder.ToString();
+            }
+            catch (Exception err)
+            {
+                if (SessionID != null)
+                    L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - Error - {err.Message} -- {err.InnerException?.Message}", SessionID);
+                return "<NoData>";
+            }
+            finally
+            {
+                stringBuilder.Clear();
+            }
+        }
+
+        private static void ViewAndSelectItemLogic(string entity, StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"        private {entity}? ViewAndSelectItem(string? simInput, string heading)");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();");
+            stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
+            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);");
+            stringBuilder.AppendLine($"            if (EntitiesOnThePage == null) {{ return null; }}");
+            stringBuilder.AppendLine($"            CH.Feedback(heading);");
+            stringBuilder.AppendLine($"            _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);");
+            stringBuilder.AppendLine($"            return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);");
+            stringBuilder.AppendLine($"        }}");
+        }
+
+        private static string PocoCodeTemplate(string folderName, string entity, bool isLink = false, string? lhLinkGuid = null, string? rhLinkGuid = null)
         {
             if (SessionID != null)
                 L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
@@ -754,16 +982,37 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             {
                 EmptyLineLogic(stringBuilder);
                 stringBuilder.AppendLine($"namespace ArchCorpUtilities.Models.{folderName}.{entity};");
+                stringBuilder.AppendLine("");
+                stringBuilder.AppendLine($"using AL = ArchCorpUtilities.Models.ArchLoader;");
+                stringBuilder.AppendLine("");
                 stringBuilder.AppendLine($"public class {entity}");
                 stringBuilder.AppendLine("{");
                 stringBuilder.AppendLine("    public string? Name { get; }");
+                if (lhLinkGuid != null && rhLinkGuid != null && isLink)
+                {
+                    stringBuilder.AppendLine($"    public string? {lhLinkGuid}Guid {{ get; }}");
+                    stringBuilder.AppendLine($"    public string? {rhLinkGuid}Guid {{ get; }}");
+                }
                 stringBuilder.AppendLine("    public int Id { get; set; }");
                 stringBuilder.AppendLine("    public int Index { get; set; }");
                 stringBuilder.AppendLine("    public int DisplayId { get; internal set; }");
                 stringBuilder.AppendLine("    public string? " + entity + "Guid {get; internal set; }");
-                stringBuilder.AppendLine($"    public {entity}(string? name, int id, string guid = \"\")");
+                if (!isLink)
+                    stringBuilder.AppendLine($"    public {entity}(string? name, int id, string guid = \"\")");
+                else
+                {
+                    if (lhLinkGuid != null && rhLinkGuid != null)
+                    {
+                        stringBuilder.AppendLine($"    public {entity}(string? name , int id ,string? {lhLinkGuid.ToLower()}Guid,string? {rhLinkGuid.ToLower()}Guid, string guid = \"\")");
+                    }
+                }
                 stringBuilder.AppendLine("    {");
                 stringBuilder.AppendLine("        Name = name;");
+                if (lhLinkGuid != null && rhLinkGuid != null && isLink)
+                {
+                    stringBuilder.AppendLine($"        {rhLinkGuid}Guid = {rhLinkGuid.ToLower()}Guid;");
+                    stringBuilder.AppendLine($"        {lhLinkGuid}Guid = {lhLinkGuid.ToLower()}Guid;");
+                }
                 stringBuilder.AppendLine("        Id = id;");
                 stringBuilder.AppendLine("        DisplayId = Id;");
                 stringBuilder.AppendLine("        if (guid != null && guid.Length > 0)");
@@ -776,7 +1025,15 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 stringBuilder.AppendLine("        }");
                 stringBuilder.AppendLine("    }");
                 stringBuilder.AppendLine("    public void SetDisplayId(int displayId) { DisplayId = displayId; }");
-                stringBuilder.AppendLine("    public override string ToString() {return $\"{DisplayId}) {Name}\";}");
+                if (!isLink)
+                    stringBuilder.AppendLine("    public override string ToString() {return $\"{DisplayId}) {Name}\";}");
+                else
+                {
+                    if (lhLinkGuid != null && rhLinkGuid != null)
+                    {
+                        stringBuilder.AppendLine($"    public override string ToString() {{return $\"{{DisplayId}}) {{Name}} -- {rhLinkGuid}-{lhLinkGuid}\";}}");
+                    }
+                }
                 stringBuilder.AppendLine("}");
 
                 return stringBuilder.ToString();

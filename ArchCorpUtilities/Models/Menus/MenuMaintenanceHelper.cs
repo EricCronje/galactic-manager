@@ -6,6 +6,7 @@ using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 using ArchCorpUtilities.Utilities;
 using static ArchCorpUtilities.Utilities.UniversalUtilities;
+using System.Diagnostics;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -71,7 +72,7 @@ namespace ArchCorpUtilities.Models.Menus
             if(GenerateUsingGUIDMassFile(simInputValues))
             {
                 CH.Feedback($"Generated - {CodeGenHelper.CurrentGuid}\r\nIn Order for the changes to take affect:\r\nDeploy the code manually.\r\nThen create the menu structure.\r\nPress any key to exit the program.");
-                var input = CH.GetInput(simInputValues?[0]);
+                _ = CH.GetInput(simInputValues?[0]);
                 if (simInputValues == null)
                     Environment.Exit(0);
                 else
@@ -104,7 +105,10 @@ namespace ArchCorpUtilities.Models.Menus
                 var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, Domain, NewMenuTargetPage);
                 //Re-Add it...
                 if (IsExitMenuItem != null)
+                {
+                    IsExitMenuItem.Source = "UserAdded";
                     MH.Menu.Add(IsExitMenuItem);
+                }
                 if (!AddedMenu)
                     CH.Feedback(Resource.NoDisplayNameProvided);
 
@@ -163,54 +167,6 @@ namespace ArchCorpUtilities.Models.Menus
             }
 
         }
-
-        private static void GenerateFileQuestion(string[]? simInputValues, ref string DisplayName, ref string ItemName, ref string Input)
-        {
-            if (DisplayName.Length == 0 && ItemName.Length == 0)
-            {
-                CH.Feedback(Resource.DisplayNamePrompt);
-                DisplayName = CH.GetInput(simInputValues?[1]);
-
-                CH.Feedback(Resource.EnterItemPrompt);
-                ItemName = CH.GetInput(simInputValues?[2]);
-
-                CH.Feedback("Do you want to generate the code? (Y/N)");
-                Input = CH.GetInput(simInputValues?[0]);
-
-                if (File.Exists("Last"))
-                    File.Delete("Last");
-
-                File.WriteAllText("Last", $"{DisplayName}|{ItemName}|{Input}");
-            }
-        }
-
-        private static void GenerateLastEntityQuestion(string[]? simInputValues, ref string DisplayName, ref string ItemName, ref string Input)
-        {
-            if (File.Exists("Last"))
-            {
-                var Context = File.ReadAllText("Last");
-                var ContextSplit = Context.Split("|");
-                if (ContextSplit.Length == 3)
-                {
-                    DisplayName = ContextSplit[0];
-                    ItemName = ContextSplit[1];
-
-                    CH.Feedback($"(Last Item Processed) Do you want to continue with DisplayName: {DisplayName} - ItemName: {ItemName} - CreateCode: {ContextSplit[2]}  (Y/N)");
-                    var Continue = CH.GetInput(simInputValues?[0]);
-                    if (!string.IsNullOrWhiteSpace(Continue) && Continue.Equals("N"))
-                    {
-                        DisplayName = "";
-                        ItemName = "";
-                    }
-                    else
-                    {
-                        CH.Feedback("(Last Item Processed) Do you want to generate the code? (Y/N)");
-                        Input = CH.GetInput(simInputValues?[0]);
-                    }
-                }
-            }
-        }
-
         private static bool GenerateUsingGUIDMassFile(string[]? simInputValues)
         {
 
@@ -249,19 +205,40 @@ namespace ArchCorpUtilities.Models.Menus
                                     L.Log($"Found command of length {SplitCommand.Length}", SessionID, 1);
 
                                 var SplitLine = SplitCommand.Split("|");
-                                if (SplitLine.Length == 2)
+                                if (SplitLine.Length == 5)
                                 {
                                     if (SessionID != null)
                                         L.Log($"Found command of length {SplitCommand.Length}", SessionID, 1);
                                     var MenuName = SplitLine[0];
                                     var EntityName = SplitLine[1];
+                                    var MenuType = SplitLine[2];
+                                    var LinkGuidOnTheLeft = SplitLine[3];
+                                    var LinkGuidOnTheRight = SplitLine[4];
 
-                                    if (CodeGen.CreateDefaultCode(EntityName))
+                                    _ = Enum.TryParse(MenuType, out Utilities.CodeGen.CodePart.MenuTypeEnum MenuTypeEnum);
+
+                                    if (CodeGen.CreateDefaultCode(EntityName, MenuTypeEnum, LinkGuidOnTheLeft == "None" ? null : LinkGuidOnTheLeft, LinkGuidOnTheRight == "None" ? null : LinkGuidOnTheRight))
                                     {
                                         CH.Feedback($"{Resource.ModelFileCreated} - {EntityName}.");
                                     }
                                     else
                                         CH.Feedback($"{Resource.ModelFileNotCreated} - {EntityName}");
+
+                                    try
+                                    {
+                                        Process process = new()
+                                        {
+                                            StartInfo = new ProcessStartInfo("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat")
+                                        };
+                                        process.Start();
+                                        process.WaitForExit();
+                                        process.Dispose();
+                                        CH.Feedback($"Deployed the changes to the code.");
+                                    }
+                                    catch (Exception)
+                                    {
+                                        CH.Feedback($"Could not deploy the changes to the code.");
+                                    }
 
                                     if (CurrentMenu != null)
                                     {

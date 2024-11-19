@@ -86,5 +86,6 @@ namespace ArchCorpUtilities.Models.Helper
         public bool Remove(int? simChoice = null, string[]? simInput = null);
 
         public void ResetPageMaxCount();
+
     }
 }
