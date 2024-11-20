@@ -1,6 +1,3 @@
-using ArchCorpUtilities.Models.Menus;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
-using System.Text;
 using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 
 namespace TestProjectCodeGen
@@ -56,7 +53,7 @@ namespace TestProjectCodeGen
             var TargetTaskHelperFile = $"{CodeGen.WorkingFolder}\\Models\\TargetTaskHelper.cs";
             var Context = File.ReadAllText(UniversalUtilitiesFile);
 
-            
+
 
             Assert.Contains("Brent", Context); //Find the GUID marker.           
             Assert.Contains("Charlie", Context); //Find the entry point
@@ -203,7 +200,7 @@ namespace TestProjectCodeGen
 
             Assert.Contains("Brent", Context); //Find the GUID marker.           
             Assert.Contains("Charlie", Context); //Find the entry point
-          
+
 
             RemoveCreatedModelFiles("Brent");
             RemoveCreatedModelFiles("Charlie");
@@ -257,8 +254,8 @@ namespace TestProjectCodeGen
                     File.Delete(ArchLoaderFile);
 
                 if (File.Exists(UniversalUtilitiesFile))
-                    File.Delete(UniversalUtilitiesFile);                
-                
+                    File.Delete(UniversalUtilitiesFile);
+
                 if (File.Exists(TargetTaskHelperFile))
                     File.Delete(TargetTaskHelperFile);
 

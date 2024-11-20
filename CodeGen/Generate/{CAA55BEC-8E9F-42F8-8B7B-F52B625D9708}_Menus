@@ -1,442 +1,1042 @@
 IDGUIDMenu|IsDefaultChoice|TargetPage|TargetTask|DisplayName|HideRule|IsExitOption|IsHidden|Page|PageHeading|IsBack|Domain|IsStartPage|
-4b679bb7-55f5-493c-aa55-58f16b5debbd|False|17|None|Manage Planets|None|False|False|9|Galaxy Manager - Main Menu|False|Planets|False
-28b8da0c-6016-46c8-b4f7-4d25c20877c5|False|18|None|View Planets|None|False|False|17|View Planets - Sub Menu|False|Planets|False
-1bef3e84-c4d4-4fe1-a0b0-2fb0ba03a02d|False|19|None|Add Planets|None|False|False|17|Add Planets - Sub Menu|False|Planets|False
-117ed634-b22d-4e5f-9db9-f26dfa7afabb|False|20|None|Remove Planets|None|False|False|17|Remove Planets - Sub Menu|False|Planets|False
-10cb62a5-7365-4126-9993-275c4cf933a9|False|21|None|Edit Planets|None|False|False|17|Edit Planets - Sub Menu|False|Planets|False
-2b15f6e8-c22e-4582-9320-e0041cc7ef63|False|22|None|Save Planets|None|False|False|17|Save Planets - Sub Menu|False|Planets|False
-b3b9f618-edeb-44be-a8dd-8f6c62d098ca|False|23|None|Load Planets|None|False|False|17|Load Planets - Sub Menu|False|Planets|False
-156e887b-e3d9-4f99-8a4a-e79ea51dbe7f|False|9|None|Back to Main Menu|None|False|False|17|Back to Main Menu|True|Planets|False
-dd84a161-17e8-4421-a7d7-ba50b779a997|False|0|None|Exit|None|True|False|17|Exit|True|Planets|False
-b9fce6fe-23bd-4744-9e9c-7f93d96f7b12|True|0|Refresh|Refresh|None|False|False|18|Refresh|False|Planets|False
-b9c2cc98-b78f-485d-9093-6c527c23f80f|True|0|Search|Search|None|False|False|18|Search|False|Planets|False
-7cdb995f-fc06-44e5-8dd9-01272110dde3|True|0|Next|Next Page|LastPage|False|False|18|Next Page|False|Planets|False
-f007aad6-6510-49f8-b2ee-454cf7868e4c|True|0|Last|Last Page|LastPage|False|False|18|Last Page|False|Planets|False
-a176fb47-df46-41ff-8af8-f73535828d91|True|0|First|First Page|FirstPage|False|False|18|First Page|False|Planets|False
-0e12f7fa-b3ea-41e2-bdd7-35e118a247de|True|0|Previous|Previous Page|FirstPage|False|False|18|Previous Page|False|Planets|False
-6f26b7d0-b5f1-4c40-b7ee-5540fc57da70|False|17|None|Back to Main Menu|None|False|False|18|Back to Main Menu|True|Planets|False
-171bedc8-0d9e-4116-9926-6401f9bd9ead|False|0|None|Exit|None|True|False|18|Exit|True|Planets|False
-190f3513-0b7c-4abb-bd08-a22c571568da|True|0|Add|Add Planets|None|False|False|19|Add Planets|False|Planets|False
-2bec9f84-470a-4786-8485-69d923ac37a0|False|17|None|Back to Main Menu|None|False|False|19|Back to Main Menu|True|Planets|False
-50dcfe1a-11b6-4f61-b80c-12500baab5da|False|0|None|Exit|None|True|False|19|Exit|True|Planets|False
-1fdbc8e0-1ab8-46eb-8118-5c411c776a5b|True|0|Remove|Remove Planets|None|False|False|20|Remove Planets|False|Planets|False
-fcfac5bc-c3f6-4091-b8bf-7ee9d744ff41|True|0|Next|Next Page|LastPage|False|False|20|Next Page|False|Planets|False
-5ba52fd0-fdda-4e29-afec-c0d0923d2886|True|0|Last|Last Page|LastPage|False|False|20|Last Page|False|Planets|False
-62f48518-1368-4ff3-9a6d-eb86f88c13ad|True|0|First|First Page|FirstPage|False|False|20|First Page|False|Planets|False
-f8cbe5a2-39d8-471a-817b-e04391bb876d|True|0|Previous|Previous Page|FirstPage|False|False|20|Previous Page|False|Planets|False
-9a7173d5-d677-4a00-81f0-ed74b71b27af|False|17|None|Back to Main Menu|None|False|False|20|Back to Main Menu|True|Planets|False
-b55c4893-4639-4ac5-a8dd-1d776293ec3f|False|0|None|Exit|None|True|False|20|Exit|True|Planets|False
-4c8c4fd1-5076-4d21-bcc8-21dee2982397|True|0|Edit|Edit Planets|None|False|False|21|Edit Planets|False|Planets|False
-7197e26d-90cd-44b8-851a-12a0267f375b|True|0|Next|Next Page|LastPage|False|False|21|Next Page|False|Planets|False
-b6d07650-013e-4903-86ff-ac1227c978fb|True|0|Last|Last Page|LastPage|False|False|21|Last Page|False|Planets|False
-3b5c704b-b79d-487e-9349-4f701dd13b6b|True|0|First|First Page|FirstPage|False|False|21|First Page|False|Planets|False
-e23c5591-f9e0-4f80-b287-52e921b0cdfb|True|0|Previous|Previous Page|FirstPage|False|False|21|Previous Page|False|Planets|False
-85919297-37e6-4fc3-80f2-06adac5b8a5d|False|17|None|Back to Main Menu|None|False|False|21|Back to Main Menu|True|Planets|False
-dc0cb4b8-a3ac-4a77-98fb-3e3ea83b0fc9|False|0|None|Exit|None|True|False|21|Exit|True|Planets|False
-59d84b55-1309-4930-92a4-02b9749f4139|True|0|Save|Save Planets to a file|None|False|False|22|Save Planets to a file|False|Planets|False
-93b7ee3f-d409-4e53-b8ca-90a274c934f2|False|17|None|Back to Main Menu|None|False|False|22|Back to Main Menu|True|Planets|False
-1248ed76-7a00-4c9b-b5be-665db9c30ff7|False|0|None|Exit|None|True|False|22|Exit|True|Planets|False
-e1dec41f-7d24-4429-8dc7-c029a7f24e49|True|0|Load|Load Planets from a file|None|False|False|23|Load Planets from a file|False|Planets|False
-faaecafd-4070-4912-8d9f-4db7dc80da51|False|17|None|Back to Main Menu|None|False|False|23|Back to Main Menu|True|Planets|False
-bb9affd4-ba8a-443b-ae79-4215953555f7|False|0|None|Exit|None|True|False|23|Exit|True|Planets|False
-458b20e6-3266-4539-a0be-7d1090d58cb6|False|24|None|Manage Sites|None|False|False|9|Galaxy Manager - Main Menu|False|Sites|False
-cbfae520-f85f-40e2-b984-83a22557bdaa|False|25|None|View Sites|None|False|False|24|View Sites - Sub Menu|False|Sites|False
-73513e75-9a1d-45f9-9508-e63747bb8617|False|26|None|Add Sites|None|False|False|24|Add Sites - Sub Menu|False|Sites|False
-622797c7-3739-4899-8b98-9e60baa8610d|False|27|None|Remove Sites|None|False|False|24|Remove Sites - Sub Menu|False|Sites|False
-368ce617-e9c4-42dc-8e7a-a5b8a52cd381|False|28|None|Edit Sites|None|False|False|24|Edit Sites - Sub Menu|False|Sites|False
-26538c43-d206-4ac4-8de2-126a72d3af13|False|29|None|Save Sites|None|False|False|24|Save Sites - Sub Menu|False|Sites|False
-68ddf2e0-94b0-43c8-9bbb-aaaa3e83c95f|False|30|None|Load Sites|None|False|False|24|Load Sites - Sub Menu|False|Sites|False
-6a45205c-0c48-461d-9b8f-2298ab85c74d|False|9|None|Back to Main Menu|None|False|False|24|Back to Main Menu|True|Sites|False
-7be1f062-bdf7-4b25-b403-f316756d3429|False|0|None|Exit|None|True|False|24|Exit|True|Sites|False
-2e3f1932-ec04-4340-9aa3-0bb6b310d133|True|0|Refresh|Refresh|None|False|False|25|Refresh|False|Sites|False
-7e146b62-ca1a-4a5b-965a-3968abff3d44|True|0|Search|Search|None|False|False|25|Search|False|Sites|False
-3f22513c-51b0-4545-9a8d-90fa7844721a|True|0|Next|Next Page|LastPage|False|False|25|Next Page|False|Sites|False
-52fbeaa3-3918-418c-9e68-4f3296c0e0e0|True|0|Last|Last Page|LastPage|False|False|25|Last Page|False|Sites|False
-2511efc0-f904-42af-a240-595a7e8d733a|True|0|First|First Page|FirstPage|False|False|25|First Page|False|Sites|False
-fa764795-700a-495c-b709-15f6674b2447|True|0|Previous|Previous Page|FirstPage|False|False|25|Previous Page|False|Sites|False
-b79773de-b33c-46f1-a272-7ef72f7a1525|False|24|None|Back to Main Menu|None|False|False|25|Back to Main Menu|True|Sites|False
-23d1c6a4-3842-4645-b4ed-e24c2f352012|False|0|None|Exit|None|True|False|25|Exit|True|Sites|False
-e2810265-ac41-4d41-88f4-7193bb83b991|True|0|Add|Add Sites|None|False|False|26|Add Sites|False|Sites|False
-ff9d7684-5ee4-46e6-9ffd-9fe333cb28e4|False|24|None|Back to Main Menu|None|False|False|26|Back to Main Menu|True|Sites|False
-af70704f-887f-4e98-a658-39b4c90a9743|False|0|None|Exit|None|True|False|26|Exit|True|Sites|False
-18103f2e-5138-46b6-ac98-8ab68041c529|True|0|Remove|Remove Sites|None|False|False|27|Remove Sites|False|Sites|False
-905b726e-caf4-47b8-b135-8f4f243b6f12|True|0|Next|Next Page|LastPage|False|False|27|Next Page|False|Sites|False
-55acc131-e784-4a64-95d8-4324d41265cb|True|0|Last|Last Page|LastPage|False|False|27|Last Page|False|Sites|False
-e8d0d217-c158-4f5a-a1e6-374485751b6b|True|0|First|First Page|FirstPage|False|False|27|First Page|False|Sites|False
-632e965d-7444-47f2-aac2-568bab245538|True|0|Previous|Previous Page|FirstPage|False|False|27|Previous Page|False|Sites|False
-c671a989-d8b5-4608-b6fc-eba406e5236d|False|24|None|Back to Main Menu|None|False|False|27|Back to Main Menu|True|Sites|False
-f973f2b9-8ed6-4787-a568-43065ff05cc3|False|0|None|Exit|None|True|False|27|Exit|True|Sites|False
-b12141ca-2e19-4c37-8ad5-808f34b7ba35|True|0|Edit|Edit Sites|None|False|False|28|Edit Sites|False|Sites|False
-8ff52393-1034-4370-801e-1c49e2ef33d4|True|0|Next|Next Page|LastPage|False|False|28|Next Page|False|Sites|False
-20faf83d-754a-476d-956b-595e7873c305|True|0|Last|Last Page|LastPage|False|False|28|Last Page|False|Sites|False
-a1d48e0e-64ca-4642-a52a-6c9d114ab68e|True|0|First|First Page|FirstPage|False|False|28|First Page|False|Sites|False
-f0b37dd7-8c2c-4953-b73f-9e3a1bce0a6d|True|0|Previous|Previous Page|FirstPage|False|False|28|Previous Page|False|Sites|False
-a26e7d99-af7e-46be-b7c8-d776c8e4b887|False|24|None|Back to Main Menu|None|False|False|28|Back to Main Menu|True|Sites|False
-d6776f5e-dfa9-4b45-9659-1470e281299c|False|0|None|Exit|None|True|False|28|Exit|True|Sites|False
-e5f95f3b-a092-4a7c-97a2-8949025bfe2e|True|0|Save|Save Sites to a file|None|False|False|29|Save Sites to a file|False|Sites|False
-7b5cdb77-75f5-4768-a30d-795fae7c8450|False|24|None|Back to Main Menu|None|False|False|29|Back to Main Menu|True|Sites|False
-ffc1575b-47ad-48fe-86da-89d435f2faa3|False|0|None|Exit|None|True|False|29|Exit|True|Sites|False
-02c29fd5-bc13-403d-b7a5-7dc506c7c1e7|True|0|Load|Load Sites from a file|None|False|False|30|Load Sites from a file|False|Sites|False
-acf7910a-4857-498d-9b22-af36d6982014|False|24|None|Back to Main Menu|None|False|False|30|Back to Main Menu|True|Sites|False
-2cb53ce5-b985-4e55-9e0e-e9b72227d57f|False|0|None|Exit|None|True|False|30|Exit|True|Sites|False
-e9d92e84-ed0f-4ddc-b0e4-84369134da5e|False|31|None|Manage Buildings|None|False|False|9|Galaxy Manager - Main Menu|False|Buildings|False
-815614b0-c4af-4c71-9d48-aa6e040d39cc|False|32|None|View Buildings|None|False|False|31|View Buildings - Sub Menu|False|Buildings|False
-bfb2eb67-873a-4793-982c-f15a7a98613e|False|33|None|Add Buildings|None|False|False|31|Add Buildings - Sub Menu|False|Buildings|False
-d7ec9151-a48b-403b-8486-a68bd72d5c8a|False|34|None|Remove Buildings|None|False|False|31|Remove Buildings - Sub Menu|False|Buildings|False
-575e1e6f-bdc1-49c1-ae04-1ad7b738f08b|False|35|None|Edit Buildings|None|False|False|31|Edit Buildings - Sub Menu|False|Buildings|False
-142d0b1c-d11a-4821-af60-0d0edc30bfbc|False|36|None|Save Buildings|None|False|False|31|Save Buildings - Sub Menu|False|Buildings|False
-487f7477-50d3-4591-a542-e82ee4062019|False|37|None|Load Buildings|None|False|False|31|Load Buildings - Sub Menu|False|Buildings|False
-b05c01db-f7dd-4682-8988-b204bdfd67ee|False|9|None|Back to Main Menu|None|False|False|31|Back to Main Menu|True|Buildings|False
-11c9eec9-f5db-4f0b-82f9-3b4e4fbfdc41|False|0|None|Exit|None|True|False|31|Exit|True|Buildings|False
-e4934a88-3200-4abb-8d89-7d49451d6eb0|True|0|Refresh|Refresh|None|False|False|32|Refresh|False|Buildings|False
-e6272e4b-aa3b-49b9-9cc6-ee8e72f4b293|True|0|Search|Search|None|False|False|32|Search|False|Buildings|False
-49cb9fb5-d6f2-4fa4-95c2-577acd562a11|True|0|Next|Next Page|LastPage|False|False|32|Next Page|False|Buildings|False
-0af6d451-28cb-4d2b-9bb7-51846c75e9bf|True|0|Last|Last Page|LastPage|False|False|32|Last Page|False|Buildings|False
-12e8bc67-9c9f-43cb-b2d6-809786e3ebb0|True|0|First|First Page|FirstPage|False|False|32|First Page|False|Buildings|False
-92ebecf7-7690-4e37-b738-606603c4fbe3|True|0|Previous|Previous Page|FirstPage|False|False|32|Previous Page|False|Buildings|False
-7eac0333-6e5b-4931-9ded-7a87d2d56316|False|31|None|Back to Main Menu|None|False|False|32|Back to Main Menu|True|Buildings|False
-280e8f47-812d-4b59-a194-c210045ac559|False|0|None|Exit|None|True|False|32|Exit|True|Buildings|False
-152b68f0-7468-4795-8bb9-9f0340839d49|True|0|Add|Add Buildings|None|False|False|33|Add Buildings|False|Buildings|False
-7ae2d9ed-38f7-49ae-9c59-d31def066ec1|False|31|None|Back to Main Menu|None|False|False|33|Back to Main Menu|True|Buildings|False
-faf17ff8-eecf-42f6-9f9d-c9281e378c88|False|0|None|Exit|None|True|False|33|Exit|True|Buildings|False
-b18ccfa7-23b9-42f3-a010-85f3ce08cdc9|True|0|Remove|Remove Buildings|None|False|False|34|Remove Buildings|False|Buildings|False
-0c8091b5-cb63-4a3c-aba4-6058120db8fc|True|0|Next|Next Page|LastPage|False|False|34|Next Page|False|Buildings|False
-8a3697d7-5a2c-4395-bf49-0126e3bed280|True|0|Last|Last Page|LastPage|False|False|34|Last Page|False|Buildings|False
-dc2109cc-fa32-45b1-b024-eb669ed81c17|True|0|First|First Page|FirstPage|False|False|34|First Page|False|Buildings|False
-27bbbab2-7313-4f15-b421-5bad28110f8f|True|0|Previous|Previous Page|FirstPage|False|False|34|Previous Page|False|Buildings|False
-73da948a-b2f7-4313-98b1-d376519b22a5|False|31|None|Back to Main Menu|None|False|False|34|Back to Main Menu|True|Buildings|False
-424f5b68-c38a-402f-93df-ba0a46180b84|False|0|None|Exit|None|True|False|34|Exit|True|Buildings|False
-97d5d341-5689-425a-9725-dfe3f979166b|True|0|Edit|Edit Buildings|None|False|False|35|Edit Buildings|False|Buildings|False
-78504cc7-50c1-4ad7-8062-6f150519e244|True|0|Next|Next Page|LastPage|False|False|35|Next Page|False|Buildings|False
-5fe94b7e-2a58-4b1c-b88d-81ce7a82dd87|True|0|Last|Last Page|LastPage|False|False|35|Last Page|False|Buildings|False
-2139ada7-7eb7-48d0-aa32-5e58672395e9|True|0|First|First Page|FirstPage|False|False|35|First Page|False|Buildings|False
-09db608b-9167-418a-8bb8-2063a62d9bc0|True|0|Previous|Previous Page|FirstPage|False|False|35|Previous Page|False|Buildings|False
-f32298f5-65af-43ab-98c2-36180e2f5a6a|False|31|None|Back to Main Menu|None|False|False|35|Back to Main Menu|True|Buildings|False
-b895382f-9817-4453-bfbd-980aa4101d01|False|0|None|Exit|None|True|False|35|Exit|True|Buildings|False
-df2d2d6c-7ee4-4e56-9bb2-c3c6720db22f|True|0|Save|Save Buildings to a file|None|False|False|36|Save Buildings to a file|False|Buildings|False
-a93806db-192b-4192-8843-011fb46173dc|False|31|None|Back to Main Menu|None|False|False|36|Back to Main Menu|True|Buildings|False
-bf2732d7-09d5-4a13-b3c1-6ad5306d861a|False|0|None|Exit|None|True|False|36|Exit|True|Buildings|False
-a6beb5e7-fbae-4d05-a042-97beab8cba9d|True|0|Load|Load Buildings from a file|None|False|False|37|Load Buildings from a file|False|Buildings|False
-2159534d-7df2-4bb7-9e61-14240121423e|False|31|None|Back to Main Menu|None|False|False|37|Back to Main Menu|True|Buildings|False
-18c57c4f-f0aa-4e64-80b0-30be8b1e407a|False|0|None|Exit|None|True|False|37|Exit|True|Buildings|False
-1333364f-bb49-4d80-8cde-13f7e84b2c54|False|38|None|Manage Fleets|None|False|False|9|Galaxy Manager - Main Menu|False|Fleets|False
-4c4b12ee-c726-4724-b1f3-e5a5b63ed240|False|39|None|View Fleets|None|False|False|38|View Fleets - Sub Menu|False|Fleets|False
-69b7e129-ddca-4c5c-835a-ac42586dfae7|False|40|None|Add Fleets|None|False|False|38|Add Fleets - Sub Menu|False|Fleets|False
-cb2492cc-97b1-4cec-9e9a-f4fa53fca4ab|False|41|None|Remove Fleets|None|False|False|38|Remove Fleets - Sub Menu|False|Fleets|False
-11933ca6-29de-4b36-a35d-209bd3c3e661|False|42|None|Edit Fleets|None|False|False|38|Edit Fleets - Sub Menu|False|Fleets|False
-37713263-3f91-42aa-ade4-086d994fdd29|False|43|None|Save Fleets|None|False|False|38|Save Fleets - Sub Menu|False|Fleets|False
-0726929c-b89c-4eaf-a194-61c0ff4b67bc|False|44|None|Load Fleets|None|False|False|38|Load Fleets - Sub Menu|False|Fleets|False
-2bca7b14-169c-4722-8f07-33b4140e2f68|False|9|None|Back to Main Menu|None|False|False|38|Back to Main Menu|True|Fleets|False
-fd9004fe-3f0a-4216-b7f7-931483ba628f|False|0|None|Exit|None|True|False|38|Exit|True|Fleets|False
-cedfe1d1-6485-4921-b640-41810fbc8198|True|0|Refresh|Refresh|None|False|False|39|Refresh|False|Fleets|False
-61880bf2-8980-48ff-8870-984158874bc1|True|0|Search|Search|None|False|False|39|Search|False|Fleets|False
-92983a13-c1e5-46d4-8ef1-27aeecc52bfc|True|0|Next|Next Page|LastPage|False|False|39|Next Page|False|Fleets|False
-49f37abb-97d0-4df5-9773-9707393486cb|True|0|Last|Last Page|LastPage|False|False|39|Last Page|False|Fleets|False
-ad1c51c5-798f-4e34-8cc4-88dace129755|True|0|First|First Page|FirstPage|False|False|39|First Page|False|Fleets|False
-a0d5d62f-7b38-4e4e-b70b-ea427b0b88d3|True|0|Previous|Previous Page|FirstPage|False|False|39|Previous Page|False|Fleets|False
-20ad7196-ca90-478d-b21c-4de0caa4102b|False|38|None|Back to Main Menu|None|False|False|39|Back to Main Menu|True|Fleets|False
-2fc4c152-3f49-40b4-8cc3-c9dcdf273da0|False|0|None|Exit|None|True|False|39|Exit|True|Fleets|False
-d4b36aa1-b0d2-4b79-a766-6803d465bee6|True|0|Add|Add Fleets|None|False|False|40|Add Fleets|False|Fleets|False
-fe2fd408-8cf2-4ad2-97c8-70ed21a8cff6|False|38|None|Back to Main Menu|None|False|False|40|Back to Main Menu|True|Fleets|False
-0e117bbd-4fc2-4bc0-8108-f8299998538e|False|0|None|Exit|None|True|False|40|Exit|True|Fleets|False
-9cb4aba4-02e7-4ffe-9a10-31697bfa17e1|True|0|Remove|Remove Fleets|None|False|False|41|Remove Fleets|False|Fleets|False
-926aae3b-4d7f-45d4-b337-37a4677b6a66|True|0|Next|Next Page|LastPage|False|False|41|Next Page|False|Fleets|False
-ac2bf775-e8c5-4f68-83fa-7f9c17d139a4|True|0|Last|Last Page|LastPage|False|False|41|Last Page|False|Fleets|False
-71d71d42-266a-485a-891e-971fcbe44ac4|True|0|First|First Page|FirstPage|False|False|41|First Page|False|Fleets|False
-b54f0f4e-3f11-43ad-b1f5-9614bb851b4d|True|0|Previous|Previous Page|FirstPage|False|False|41|Previous Page|False|Fleets|False
-4bcbf834-9229-47e6-beec-0f09794adc7a|False|38|None|Back to Main Menu|None|False|False|41|Back to Main Menu|True|Fleets|False
-a0d0ee98-3760-43a7-a552-3f8406436cff|False|0|None|Exit|None|True|False|41|Exit|True|Fleets|False
-ba0224cd-b5dd-4c3a-a1b9-b447cce481c8|True|0|Edit|Edit Fleets|None|False|False|42|Edit Fleets|False|Fleets|False
-f69cd037-e890-4c8d-b132-d37562899b76|True|0|Next|Next Page|LastPage|False|False|42|Next Page|False|Fleets|False
-a076f3bf-2220-490b-ad31-11a71efc6692|True|0|Last|Last Page|LastPage|False|False|42|Last Page|False|Fleets|False
-cc8e901c-bcf7-4b12-9d32-6569e1f07d65|True|0|First|First Page|FirstPage|False|False|42|First Page|False|Fleets|False
-2e8f745f-50de-4f0a-90f8-442954996bd8|True|0|Previous|Previous Page|FirstPage|False|False|42|Previous Page|False|Fleets|False
-e768cce8-5b34-433e-9c3b-a5c934765871|False|38|None|Back to Main Menu|None|False|False|42|Back to Main Menu|True|Fleets|False
-99508cdf-902d-4db6-ae6e-44b9dbabee68|False|0|None|Exit|None|True|False|42|Exit|True|Fleets|False
-df9416ea-4372-4a7f-a0bc-b04f5fa4ced8|True|0|Save|Save Fleets to a file|None|False|False|43|Save Fleets to a file|False|Fleets|False
-5a54d01f-368a-40b7-b427-5f5c46fe4043|False|38|None|Back to Main Menu|None|False|False|43|Back to Main Menu|True|Fleets|False
-3c4e318d-71fd-46e7-8bdb-4b04dde1fae3|False|0|None|Exit|None|True|False|43|Exit|True|Fleets|False
-d582eef4-09ab-42aa-a9fa-3adf8091a11f|True|0|Load|Load Fleets from a file|None|False|False|44|Load Fleets from a file|False|Fleets|False
-b509f004-f9a9-4a80-9122-ccfaf35dee9c|False|38|None|Back to Main Menu|None|False|False|44|Back to Main Menu|True|Fleets|False
-169f586f-3850-46ca-95c7-3be97b504af2|False|0|None|Exit|None|True|False|44|Exit|True|Fleets|False
-8a3d298f-437d-4848-8a52-27553030ba9b|False|45|None|Manage Ships|None|False|False|9|Galaxy Manager - Main Menu|False|Ships|False
-e64da1c8-21ae-481c-a5f5-f9a5c3f79ebe|False|46|None|View Ships|None|False|False|45|View Ships - Sub Menu|False|Ships|False
-3baf5b8b-04a7-48be-9907-faf0b6a6b374|False|47|None|Add Ships|None|False|False|45|Add Ships - Sub Menu|False|Ships|False
-7e259ca4-1569-482f-b81f-a2f9f4f66ec7|False|48|None|Remove Ships|None|False|False|45|Remove Ships - Sub Menu|False|Ships|False
-8b236cd5-2d51-4e09-ab31-9ec8010067d9|False|49|None|Edit Ships|None|False|False|45|Edit Ships - Sub Menu|False|Ships|False
-ea0f55f7-a9d8-43b2-be4c-2000c90afd63|False|50|None|Save Ships|None|False|False|45|Save Ships - Sub Menu|False|Ships|False
-6ebf54b0-0a21-453b-9c90-58d9cfe9bb86|False|51|None|Load Ships|None|False|False|45|Load Ships - Sub Menu|False|Ships|False
-310ffde3-f03d-42fc-a429-2dd5d25c0680|False|9|None|Back to Main Menu|None|False|False|45|Back to Main Menu|True|Ships|False
-ed22b861-8a78-4862-960c-00ad02fda616|False|0|None|Exit|None|True|False|45|Exit|True|Ships|False
-e32b0ba6-df06-4f20-95a4-196ef37dd7b3|True|0|Refresh|Refresh|None|False|False|46|Refresh|False|Ships|False
-ab9f93f0-7683-4a66-9e24-21ca21e37722|True|0|Search|Search|None|False|False|46|Search|False|Ships|False
-ce194221-8129-400b-9a7d-f662a40f7be1|True|0|Next|Next Page|LastPage|False|False|46|Next Page|False|Ships|False
-2fbaaf34-618a-48fa-8841-ad813e864ce4|True|0|Last|Last Page|LastPage|False|False|46|Last Page|False|Ships|False
-6534c9f0-deee-4d0f-b1e0-666091a9b7e2|True|0|First|First Page|FirstPage|False|False|46|First Page|False|Ships|False
-addef359-8ce2-4568-b21d-9e1b8a5cdbad|True|0|Previous|Previous Page|FirstPage|False|False|46|Previous Page|False|Ships|False
-c99b4785-85d8-4a26-920b-cf8bf530365e|False|45|None|Back to Main Menu|None|False|False|46|Back to Main Menu|True|Ships|False
-bac15f8e-7094-40b8-a9ad-72190f8db731|False|0|None|Exit|None|True|False|46|Exit|True|Ships|False
-edf179a7-e4ab-46a1-b4f8-934df7d69ce2|True|0|Add|Add Ships|None|False|False|47|Add Ships|False|Ships|False
-80da1e91-a533-4b79-98ab-1e408d1abab8|False|45|None|Back to Main Menu|None|False|False|47|Back to Main Menu|True|Ships|False
-9da9105d-7775-43cd-b8a1-3bb646bf8670|False|0|None|Exit|None|True|False|47|Exit|True|Ships|False
-b7c08ea7-d958-42c7-83bc-381f60befbc2|True|0|Remove|Remove Ships|None|False|False|48|Remove Ships|False|Ships|False
-7876cde9-358d-484a-97a2-3b28bf811b1c|True|0|Next|Next Page|LastPage|False|False|48|Next Page|False|Ships|False
-21fe503c-1352-4cce-90f2-fcb8858cb220|True|0|Last|Last Page|LastPage|False|False|48|Last Page|False|Ships|False
-f042faa1-f637-450d-9e05-9633972832e0|True|0|First|First Page|FirstPage|False|False|48|First Page|False|Ships|False
-b82f52d3-a9e0-4eb0-8a42-d9ad9d889927|True|0|Previous|Previous Page|FirstPage|False|False|48|Previous Page|False|Ships|False
-186de861-4935-4c0d-a0ca-7671bb2e82fc|False|45|None|Back to Main Menu|None|False|False|48|Back to Main Menu|True|Ships|False
-09bd8f4f-c746-445a-b984-cbf507266719|False|0|None|Exit|None|True|False|48|Exit|True|Ships|False
-74b8f310-bf73-4798-b5bf-a21df32cb247|True|0|Edit|Edit Ships|None|False|False|49|Edit Ships|False|Ships|False
-42a475b0-fd91-45ef-ba58-81813c64f6d6|True|0|Next|Next Page|LastPage|False|False|49|Next Page|False|Ships|False
-a5788759-5f45-4c98-bb50-e91bce0ab5cf|True|0|Last|Last Page|LastPage|False|False|49|Last Page|False|Ships|False
-d8b4f347-5100-4f07-b8d3-84c91bf4ec42|True|0|First|First Page|FirstPage|False|False|49|First Page|False|Ships|False
-c42c021e-52a2-4743-a25a-353ee19154c7|True|0|Previous|Previous Page|FirstPage|False|False|49|Previous Page|False|Ships|False
-74f9bab7-0c82-4753-8239-064ed2b0193c|False|45|None|Back to Main Menu|None|False|False|49|Back to Main Menu|True|Ships|False
-ff371e5e-0da9-4810-978f-f970d3a8eb19|False|0|None|Exit|None|True|False|49|Exit|True|Ships|False
-cd46e475-f9b2-4ea8-b75f-34c8e518fcfc|True|0|Save|Save Ships to a file|None|False|False|50|Save Ships to a file|False|Ships|False
-20ef6a3c-f1f9-4b28-b8ea-46065e55bfb9|False|45|None|Back to Main Menu|None|False|False|50|Back to Main Menu|True|Ships|False
-f7194191-6af9-4842-8eb2-0ce141dd1cda|False|0|None|Exit|None|True|False|50|Exit|True|Ships|False
-a3a231a2-04e9-4362-98fd-20f1aca04c6f|True|0|Load|Load Ships from a file|None|False|False|51|Load Ships from a file|False|Ships|False
-dab8f919-23e8-4857-9edb-c01a004652ed|False|45|None|Back to Main Menu|None|False|False|51|Back to Main Menu|True|Ships|False
-d65966ac-46fd-4485-9d5f-acd0f6aa8f55|False|0|None|Exit|None|True|False|51|Exit|True|Ships|False
-f28029f1-90f5-45c1-b08d-34b50a33bb5f|False|52|None|Manage Personnel|None|False|False|9|Galaxy Manager - Main Menu|False|None|False
-598aca9c-1142-43fb-bfcc-4155531d89bb|False|53|None|View Personnel|None|False|False|52|View Personnel - Sub Menu|False|None|False
-6bfa8331-c359-4bdf-8883-361bdb0628fe|False|54|None|Add Personnel|None|False|False|52|Add Personnel - Sub Menu|False|None|False
-a8316f06-89b6-435d-9c74-1f628727ce8a|False|55|None|Remove Personnel|None|False|False|52|Remove Personnel - Sub Menu|False|None|False
-6b844549-bbac-43d8-ab92-496a520e8105|False|56|None|Edit Personnel|None|False|False|52|Edit Personnel - Sub Menu|False|None|False
-7335a819-eedb-46ef-afdd-764992d75025|False|57|None|Save Personnel|None|False|False|52|Save Personnel - Sub Menu|False|None|False
-a70e3938-fb20-41b8-8464-ca2b422f0715|False|58|None|Load Personnel|None|False|False|52|Load Personnel - Sub Menu|False|None|False
-8dfbda8d-b37c-46ae-a1d7-d031860f559a|False|9|None|Back to Main Menu|None|False|False|52|Back to Main Menu|True|None|False
-fb74714c-af8b-4b4a-9e86-889a3e170d12|False|0|None|Exit|None|True|False|52|Exit|True|None|False
-0a4c709c-4693-45e9-a237-6cff23994f75|True|0|Refresh|Refresh|None|False|False|53|Refresh|False|None|False
-b46b1b63-cff4-4925-b049-1b511a58366f|True|0|Search|Search|None|False|False|53|Search|False|None|False
-949f24ed-cae0-492e-9062-dbadd13ac549|True|0|Next|Next Page|LastPage|False|False|53|Next Page|False|None|False
-ffae6774-25e4-41a5-b233-0b4bfc182af8|True|0|Last|Last Page|LastPage|False|False|53|Last Page|False|None|False
-81790024-5198-4ec0-95a7-03938772d669|True|0|First|First Page|FirstPage|False|False|53|First Page|False|None|False
-37ad4f73-9d8d-48f2-b50f-1345cd12aecf|True|0|Previous|Previous Page|FirstPage|False|False|53|Previous Page|False|None|False
-56ec8109-4b83-474a-aceb-d06035ebebc3|False|52|None|Back to Main Menu|None|False|False|53|Back to Main Menu|True|None|False
-23514e77-2435-40be-98c6-c183c2a96c32|False|0|None|Exit|None|True|False|53|Exit|True|None|False
-ec5d6f87-8551-42d3-9319-e904a5dbc9f2|True|0|Add|Add Personnel|None|False|False|54|Add Personnel|False|None|False
-1dde0e05-dd0b-4c37-bad7-41427a0f1a45|False|52|None|Back to Main Menu|None|False|False|54|Back to Main Menu|True|None|False
-bfc75ba4-bbf8-4c02-8f7d-e53c0f156f00|False|0|None|Exit|None|True|False|54|Exit|True|None|False
-4d8402ab-0e0c-4de0-990c-5abfa962b234|True|0|Remove|Remove Personnel|None|False|False|55|Remove Personnel|False|None|False
-2545213e-77c6-49ae-9615-e752e62ebf3c|True|0|Next|Next Page|LastPage|False|False|55|Next Page|False|None|False
-68f16271-28a3-47dd-9e64-25a7d4ddc004|True|0|Last|Last Page|LastPage|False|False|55|Last Page|False|None|False
-a7fb9ab1-9367-4149-8c91-a69bebd18fb5|True|0|First|First Page|FirstPage|False|False|55|First Page|False|None|False
-29104470-d7f7-4d8d-9282-731d0e4e8cfd|True|0|Previous|Previous Page|FirstPage|False|False|55|Previous Page|False|None|False
-a97f5221-496f-4681-b316-0debe6007a0f|False|52|None|Back to Main Menu|None|False|False|55|Back to Main Menu|True|None|False
-58dcfb25-1645-4a06-9b5b-5f9388909faa|False|0|None|Exit|None|True|False|55|Exit|True|None|False
-415eeeb8-d941-407b-9838-587c214064e9|True|0|Edit|Edit Personnel|None|False|False|56|Edit Personnel|False|None|False
-4d976bed-25a5-4c54-bbce-e3aa2d4a23aa|True|0|Next|Next Page|LastPage|False|False|56|Next Page|False|None|False
-85d71b4f-1d20-438c-a4b6-39159371d09f|True|0|Last|Last Page|LastPage|False|False|56|Last Page|False|None|False
-ff0478b6-7853-4cc6-b24c-3593aebbc016|True|0|First|First Page|FirstPage|False|False|56|First Page|False|None|False
-4bf95bf9-d805-47db-8991-f5727aefb3c6|True|0|Previous|Previous Page|FirstPage|False|False|56|Previous Page|False|None|False
-607f74d5-222d-4a8f-abc7-06a583b3f17d|False|52|None|Back to Main Menu|None|False|False|56|Back to Main Menu|True|None|False
-1d0f67dd-b9e0-4c6b-ad78-b88e2b93b2fa|False|0|None|Exit|None|True|False|56|Exit|True|None|False
-77e7196b-0e10-4346-b673-36cf1231a722|True|0|Save|Save Personnel to a file|None|False|False|57|Save Personnel to a file|False|None|False
-c09ef16c-acfc-42bb-a475-eb4e061b1281|False|52|None|Back to Main Menu|None|False|False|57|Back to Main Menu|True|None|False
-125e9275-00b7-4bb0-9c6b-1beb93df4335|False|0|None|Exit|None|True|False|57|Exit|True|None|False
-103a91d1-4200-443e-8e26-d024a9bc9bf8|True|0|Load|Load Personnel from a file|None|False|False|58|Load Personnel from a file|False|None|False
-f88c7c78-e6f4-430a-86a7-68ec4b678e6b|False|52|None|Back to Main Menu|None|False|False|58|Back to Main Menu|True|None|False
-6faea68b-bebf-4437-8612-7596b4303042|False|0|None|Exit|None|True|False|58|Exit|True|None|False
-1dd5cdf7-8d60-4983-9b61-c2ba6fd71618|False|59|None|Manage Beacons|None|False|False|9|Galaxy Manager - Main Menu|False|Beacons|False
-e7a42ce0-be67-45f5-8eb5-a4b3c983eb16|False|60|None|View Beacons|None|False|False|59|View Beacons - Sub Menu|False|Beacons|False
-f6420486-4037-4ceb-b40b-075119308052|False|61|None|Add Beacons|None|False|False|59|Add Beacons - Sub Menu|False|Beacons|False
-92568c5b-e582-4920-a094-2817707b1ac2|False|62|None|Remove Beacons|None|False|False|59|Remove Beacons - Sub Menu|False|Beacons|False
-118885eb-c42a-44ab-bdd2-3bb21ace93b2|False|63|None|Edit Beacons|None|False|False|59|Edit Beacons - Sub Menu|False|Beacons|False
-8fb1d959-404d-4270-92ce-44c34ab5e736|False|64|None|Save Beacons|None|False|False|59|Save Beacons - Sub Menu|False|Beacons|False
-4433c18d-982d-4915-ab4d-bf22b61fcbc4|False|65|None|Load Beacons|None|False|False|59|Load Beacons - Sub Menu|False|Beacons|False
-a5bd270d-548e-4430-a489-8af1c0d24db0|False|9|None|Back to Main Menu|None|False|False|59|Back to Main Menu|True|Beacons|False
-6540112b-5e61-4cc4-87c4-671b23431518|False|0|None|Exit|None|True|False|59|Exit|True|Beacons|False
-c4e1066f-306c-4dff-a552-f558bceb8fed|True|0|Refresh|Refresh|None|False|False|60|Refresh|False|Beacons|False
-1abd9dcb-79ee-41b9-a19c-9b8a9f3e029a|True|0|Search|Search|None|False|False|60|Search|False|Beacons|False
-505e6e27-669b-4fe7-853d-3f4537f7e38a|True|0|Next|Next Page|LastPage|False|False|60|Next Page|False|Beacons|False
-37f707c5-5b30-4f2e-9b3d-292a68a06a65|True|0|Last|Last Page|LastPage|False|False|60|Last Page|False|Beacons|False
-a564954e-d254-44da-bdd7-24ba54f1c589|True|0|First|First Page|FirstPage|False|False|60|First Page|False|Beacons|False
-734d500c-499a-4c0b-b6e0-d49c3e325974|True|0|Previous|Previous Page|FirstPage|False|False|60|Previous Page|False|Beacons|False
-e0647e9b-3cdd-45ec-be9a-652cce2daa4a|False|59|None|Back to Main Menu|None|False|False|60|Back to Main Menu|True|Beacons|False
-01bbd515-5f90-4e2c-b890-e4854799a100|False|0|None|Exit|None|True|False|60|Exit|True|Beacons|False
-e121927c-a04f-471a-a73e-d28d3a5f7255|True|0|Add|Add Beacons|None|False|False|61|Add Beacons|False|Beacons|False
-597e430b-9bf0-44d8-92b7-aba0178763eb|False|59|None|Back to Main Menu|None|False|False|61|Back to Main Menu|True|Beacons|False
-f3a4f97f-26a5-45e1-bbea-1c7de2f3c7ae|False|0|None|Exit|None|True|False|61|Exit|True|Beacons|False
-48ef9586-2f76-41ac-b7cb-c5b404795cc2|True|0|Remove|Remove Beacons|None|False|False|62|Remove Beacons|False|Beacons|False
-7e4100dc-6fcf-4bd0-bd87-4c96d1f19eae|True|0|Next|Next Page|LastPage|False|False|62|Next Page|False|Beacons|False
-1832dcf2-eca0-4b1e-bafc-1ae36f0496b9|True|0|Last|Last Page|LastPage|False|False|62|Last Page|False|Beacons|False
-1f3fa9e9-79ea-4dc8-8b7f-8c3edd75fbfd|True|0|First|First Page|FirstPage|False|False|62|First Page|False|Beacons|False
-b7af2159-a79a-438d-a726-c3fcb8ac4781|True|0|Previous|Previous Page|FirstPage|False|False|62|Previous Page|False|Beacons|False
-fd623625-290b-40bc-ae03-002d46426261|False|59|None|Back to Main Menu|None|False|False|62|Back to Main Menu|True|Beacons|False
-5923d45e-d6f9-4b7c-bc59-9bc57284d4ec|False|0|None|Exit|None|True|False|62|Exit|True|Beacons|False
-18d348f4-8055-49d2-894d-034a6404e1b0|True|0|Edit|Edit Beacons|None|False|False|63|Edit Beacons|False|Beacons|False
-bce33233-04a3-4cab-912d-24f4edbcb172|True|0|Next|Next Page|LastPage|False|False|63|Next Page|False|Beacons|False
-e62a039a-b224-4ea5-98b4-52c4da7c12f5|True|0|Last|Last Page|LastPage|False|False|63|Last Page|False|Beacons|False
-4ea05901-89b6-446f-aeb3-20cfba8dfb87|True|0|First|First Page|FirstPage|False|False|63|First Page|False|Beacons|False
-2b9a0ec4-ed41-4866-a6dc-aed54495f56b|True|0|Previous|Previous Page|FirstPage|False|False|63|Previous Page|False|Beacons|False
-c0a744d4-ae98-48a2-a929-119b49544093|False|59|None|Back to Main Menu|None|False|False|63|Back to Main Menu|True|Beacons|False
-3aa4a466-d3cd-4229-a6d6-d7a89c0b66fb|False|0|None|Exit|None|True|False|63|Exit|True|Beacons|False
-d0774eeb-7e56-455d-a561-8784d9a00feb|True|0|Save|Save Beacons to a file|None|False|False|64|Save Beacons to a file|False|Beacons|False
-91525f6f-b644-450b-a7f6-05825dd804c4|False|59|None|Back to Main Menu|None|False|False|64|Back to Main Menu|True|Beacons|False
-b3d45081-803e-454b-90dd-fd3d3dd2d596|False|0|None|Exit|None|True|False|64|Exit|True|Beacons|False
-94ac2cfb-35cb-4445-b678-d1d4b27edeb9|True|0|Load|Load Beacons from a file|None|False|False|65|Load Beacons from a file|False|Beacons|False
-1bc91288-16fb-4544-bde5-777af4bdbbfe|False|59|None|Back to Main Menu|None|False|False|65|Back to Main Menu|True|Beacons|False
-0e2d88cf-1c66-40b6-8ef1-33a02950fb93|False|0|None|Exit|None|True|False|65|Exit|True|Beacons|False
-59ce515b-890e-4f28-b287-0cd956b569a0|False|66|None|Manage RoleGroups|None|False|False|9|Galaxy Manager - Main Menu|False|RoleGroups|False
-8afdd21a-434a-48c7-a71f-afd6571eaaf3|False|67|None|View RoleGroups|None|False|False|66|View RoleGroups - Sub Menu|False|RoleGroups|False
-c553ca73-fb89-4c6a-a848-1eab1fa859f5|False|68|None|Add RoleGroups|None|False|False|66|Add RoleGroups - Sub Menu|False|RoleGroups|False
-962e3348-4b97-43d3-b28e-ef766d0fa791|False|69|None|Remove RoleGroups|None|False|False|66|Remove RoleGroups - Sub Menu|False|RoleGroups|False
-b2285e05-f9ee-466c-824f-781c1eb4cb93|False|70|None|Edit RoleGroups|None|False|False|66|Edit RoleGroups - Sub Menu|False|RoleGroups|False
-361a451b-8d04-43f9-8cab-72153739e9f2|False|71|None|Save RoleGroups|None|False|False|66|Save RoleGroups - Sub Menu|False|RoleGroups|False
-23745f70-181e-455d-8813-9d047eced1c6|False|72|None|Load RoleGroups|None|False|False|66|Load RoleGroups - Sub Menu|False|RoleGroups|False
-02e2cf65-3e94-413a-a613-3021f9c59070|False|9|None|Back to Main Menu|None|False|False|66|Back to Main Menu|True|RoleGroups|False
-f7033d8f-38d1-491b-8b72-681674cd72c3|False|0|None|Exit|None|True|False|66|Exit|True|RoleGroups|False
-3c737b6a-e6fe-49ed-8dbb-1fe10d38eca2|True|0|Refresh|Refresh|None|False|False|67|Refresh|False|RoleGroups|False
-724d4966-bb73-4122-b4dd-ab7d395058c7|True|0|Search|Search|None|False|False|67|Search|False|RoleGroups|False
-fcae3a50-8e24-46d4-9b3c-3ee22e49bb0b|True|0|Next|Next Page|LastPage|False|False|67|Next Page|False|RoleGroups|False
-6f226b41-31f7-40af-bdb7-85d3a6bb68dc|True|0|Last|Last Page|LastPage|False|False|67|Last Page|False|RoleGroups|False
-4df739ff-fa7a-4fcb-b93b-f5e87401c358|True|0|First|First Page|FirstPage|False|False|67|First Page|False|RoleGroups|False
-14097366-ac75-41f8-8854-ac3bb502d4f7|True|0|Previous|Previous Page|FirstPage|False|False|67|Previous Page|False|RoleGroups|False
-683b032e-e462-4537-9b57-603c8e17eaa7|False|66|None|Back to Main Menu|None|False|False|67|Back to Main Menu|True|RoleGroups|False
-f465a93a-629c-48a9-8d7a-24c9de0f7716|False|0|None|Exit|None|True|False|67|Exit|True|RoleGroups|False
-9b22999f-c72f-4eca-8f04-e64a8637dc93|True|0|Add|Add RoleGroups|None|False|False|68|Add RoleGroups|False|RoleGroups|False
-a117fc9e-d1a9-4e40-b5f5-7d7f75df450e|False|66|None|Back to Main Menu|None|False|False|68|Back to Main Menu|True|RoleGroups|False
-cd112c76-6b52-4d60-a609-817e5986f66d|False|0|None|Exit|None|True|False|68|Exit|True|RoleGroups|False
-569319ea-2dc0-4430-a5dd-bd0d137a617e|True|0|Remove|Remove RoleGroups|None|False|False|69|Remove RoleGroups|False|RoleGroups|False
-81a814af-453e-4b64-9ca8-dd417060613e|True|0|Next|Next Page|LastPage|False|False|69|Next Page|False|RoleGroups|False
-dc580d35-a74c-4743-b9a8-318dc90b097b|True|0|Last|Last Page|LastPage|False|False|69|Last Page|False|RoleGroups|False
-61208760-005e-4eb9-b34a-099519e76449|True|0|First|First Page|FirstPage|False|False|69|First Page|False|RoleGroups|False
-091b067c-9547-4797-8797-87d13549b13f|True|0|Previous|Previous Page|FirstPage|False|False|69|Previous Page|False|RoleGroups|False
-0d9e41e1-08fe-4fb7-a763-a1138da3d1d8|False|66|None|Back to Main Menu|None|False|False|69|Back to Main Menu|True|RoleGroups|False
-9f49ba00-1508-4cca-92c6-02f15da5a127|False|0|None|Exit|None|True|False|69|Exit|True|RoleGroups|False
-f39f2c94-71b7-4888-a1c3-0995ff94c5c9|True|0|Edit|Edit RoleGroups|None|False|False|70|Edit RoleGroups|False|RoleGroups|False
-82bacc27-fb78-4785-acd9-acd2e71eb18f|True|0|Next|Next Page|LastPage|False|False|70|Next Page|False|RoleGroups|False
-ce1654d2-3b4f-48e0-9325-4da49866f63f|True|0|Last|Last Page|LastPage|False|False|70|Last Page|False|RoleGroups|False
-773e70a8-658b-47ea-950c-476ba6d02e3f|True|0|First|First Page|FirstPage|False|False|70|First Page|False|RoleGroups|False
-8cc8de24-5581-4441-97d3-6288e6415640|True|0|Previous|Previous Page|FirstPage|False|False|70|Previous Page|False|RoleGroups|False
-5658d4ec-728e-4111-b377-fb62d1d2afd4|False|66|None|Back to Main Menu|None|False|False|70|Back to Main Menu|True|RoleGroups|False
-e5eadfe6-2d67-47eb-8a5e-111f39346d07|False|0|None|Exit|None|True|False|70|Exit|True|RoleGroups|False
-5d52f88a-cff9-4636-8fd3-77e7c15439e3|True|0|Save|Save RoleGroups to a file|None|False|False|71|Save RoleGroups to a file|False|RoleGroups|False
-a58891b2-5379-4d13-bf18-8617220ad6a4|False|66|None|Back to Main Menu|None|False|False|71|Back to Main Menu|True|RoleGroups|False
-3486a3bc-f399-4364-89bb-2d554ae630ef|False|0|None|Exit|None|True|False|71|Exit|True|RoleGroups|False
-62d22ce5-d0b0-4bec-a519-181c2c6f1700|True|0|Load|Load RoleGroups from a file|None|False|False|72|Load RoleGroups from a file|False|RoleGroups|False
-4ce4eca3-1661-4d4c-a186-451d0441761c|False|66|None|Back to Main Menu|None|False|False|72|Back to Main Menu|True|RoleGroups|False
-437f5f09-b0d5-4569-a589-5f9e4d674dc3|False|0|None|Exit|None|True|False|72|Exit|True|RoleGroups|False
-c363de25-4dd0-4be7-bed5-6cc68d101ab2|False|73|None|Manage Roles|None|False|False|9|Galaxy Manager - Main Menu|False|Roles|False
-9fa170ac-42bb-4078-ac1d-d86b8f894908|False|74|None|View Roles|None|False|False|73|View Roles - Sub Menu|False|Roles|False
-19dec025-ca60-4189-9103-13b096507d45|False|75|None|Add Roles|None|False|False|73|Add Roles - Sub Menu|False|Roles|False
-31261c54-14c3-47fa-bb42-02bdd327ff8f|False|76|None|Remove Roles|None|False|False|73|Remove Roles - Sub Menu|False|Roles|False
-d5aa08a6-359a-4686-8d1b-dbfd7b5c54ba|False|77|None|Edit Roles|None|False|False|73|Edit Roles - Sub Menu|False|Roles|False
-85fb3060-0427-4024-a465-c0ef86a38e07|False|78|None|Save Roles|None|False|False|73|Save Roles - Sub Menu|False|Roles|False
-6075809e-a232-412e-ad5a-6ee9ab8de29f|False|79|None|Load Roles|None|False|False|73|Load Roles - Sub Menu|False|Roles|False
-977df9cd-954e-49c6-9b18-e56e9eae02d2|False|9|None|Back to Main Menu|None|False|False|73|Back to Main Menu|True|Roles|False
-f652b0cf-9e47-40d0-a718-d1394344de15|False|0|None|Exit|None|True|False|73|Exit|True|Roles|False
-5995d3d7-6897-420f-b4de-0b28ea000071|True|0|Refresh|Refresh|None|False|False|74|Refresh|False|Roles|False
-f3f0a61a-996e-4129-baa3-e384a20fb802|True|0|Search|Search|None|False|False|74|Search|False|Roles|False
-c2d3177e-83e7-4c0d-8c46-96cc5f970307|True|0|Next|Next Page|LastPage|False|False|74|Next Page|False|Roles|False
-1f796dfb-9722-42f8-a10a-53423c3dda78|True|0|Last|Last Page|LastPage|False|False|74|Last Page|False|Roles|False
-ccc9f6f0-0d2c-49e1-8091-b744546fd743|True|0|First|First Page|FirstPage|False|False|74|First Page|False|Roles|False
-6a577929-c080-4d5d-b5cd-30f2f1600ae9|True|0|Previous|Previous Page|FirstPage|False|False|74|Previous Page|False|Roles|False
-07c5029e-b2f3-41a6-bee7-573dc09c1e3b|False|73|None|Back to Main Menu|None|False|False|74|Back to Main Menu|True|Roles|False
-fab0aa2c-a3e9-4f78-bc71-2c6e897672a8|False|0|None|Exit|None|True|False|74|Exit|True|Roles|False
-816355b6-8fd6-4abe-8ce6-4572abef53b4|True|0|Add|Add Roles|None|False|False|75|Add Roles|False|Roles|False
-65cd19cb-f355-4fd6-8e19-df93d443835e|False|73|None|Back to Main Menu|None|False|False|75|Back to Main Menu|True|Roles|False
-ee1143e0-5578-4103-a76b-d0a96bc1f890|False|0|None|Exit|None|True|False|75|Exit|True|Roles|False
-b08da6ca-1eed-47be-a661-216f8c9857c7|True|0|Remove|Remove Roles|None|False|False|76|Remove Roles|False|Roles|False
-927ee920-fe9b-460c-b7a4-4f740fbf8a5a|True|0|Next|Next Page|LastPage|False|False|76|Next Page|False|Roles|False
-13c38fac-03d9-446f-84ea-9dcf1902e726|True|0|Last|Last Page|LastPage|False|False|76|Last Page|False|Roles|False
-a74b432a-dffe-4d08-b548-d113ad2abc85|True|0|First|First Page|FirstPage|False|False|76|First Page|False|Roles|False
-84d79977-0764-4337-9a4a-606ca86a97f6|True|0|Previous|Previous Page|FirstPage|False|False|76|Previous Page|False|Roles|False
-8f84eead-08ac-4457-ae25-6fbc7d401b39|False|73|None|Back to Main Menu|None|False|False|76|Back to Main Menu|True|Roles|False
-02160595-c43f-425e-92aa-08292078b895|False|0|None|Exit|None|True|False|76|Exit|True|Roles|False
-21c28803-eb93-443c-a282-f4f92771db43|True|0|Edit|Edit Roles|None|False|False|77|Edit Roles|False|Roles|False
-cc14c146-2edb-448b-b873-022b33197e88|True|0|Next|Next Page|LastPage|False|False|77|Next Page|False|Roles|False
-ae4c0263-6df9-4877-ae12-74ebc75717b9|True|0|Last|Last Page|LastPage|False|False|77|Last Page|False|Roles|False
-28bf91f3-9a00-4115-b16e-930486b6ec59|True|0|First|First Page|FirstPage|False|False|77|First Page|False|Roles|False
-ac064213-f2ec-4575-b40a-c6720d753a2d|True|0|Previous|Previous Page|FirstPage|False|False|77|Previous Page|False|Roles|False
-7bd5e345-255e-4df8-b5e7-048e3c205aaa|False|73|None|Back to Main Menu|None|False|False|77|Back to Main Menu|True|Roles|False
-3f080f45-bf7f-418f-a694-99a2d36804c9|False|0|None|Exit|None|True|False|77|Exit|True|Roles|False
-7d66e5c9-72ff-46b2-a5b0-6515c802edc2|True|0|Save|Save Roles to a file|None|False|False|78|Save Roles to a file|False|Roles|False
-4bc91205-bb20-482b-b6b7-b661ff83a907|False|73|None|Back to Main Menu|None|False|False|78|Back to Main Menu|True|Roles|False
-f9c80712-aae8-4f34-b741-3563a908cce1|False|0|None|Exit|None|True|False|78|Exit|True|Roles|False
-0b04a8ba-655b-484d-a7cd-849db8df5de2|True|0|Load|Load Roles from a file|None|False|False|79|Load Roles from a file|False|Roles|False
-c34a15d2-878b-42fa-89a0-c95b8daacfb4|False|73|None|Back to Main Menu|None|False|False|79|Back to Main Menu|True|Roles|False
-08e38d59-ced5-45fd-8934-c4e0afd128f0|False|0|None|Exit|None|True|False|79|Exit|True|Roles|False
-950027d8-11be-4740-b9f4-bccc66fdd522|False|80|None|Manage Users|None|False|False|9|Galaxy Manager - Main Menu|False|Users|False
-67540f2d-8745-4f30-b75d-82a6935735df|False|81|None|View Users|None|False|False|80|View Users - Sub Menu|False|Users|False
-c93f8b96-4b37-4fd3-b420-c4e8aef681e9|False|82|None|Add Users|None|False|False|80|Add Users - Sub Menu|False|Users|False
-6392b836-ffa6-42c5-8d74-73992c0d1a55|False|83|None|Remove Users|None|False|False|80|Remove Users - Sub Menu|False|Users|False
-370753ac-3251-48c3-9967-8e9e029a3d71|False|84|None|Edit Users|None|False|False|80|Edit Users - Sub Menu|False|Users|False
-dece1de4-7025-459c-999c-f36f9bf8ee26|False|85|None|Save Users|None|False|False|80|Save Users - Sub Menu|False|Users|False
-9ade81de-ac03-4b3d-ad36-9049153fe08f|False|86|None|Load Users|None|False|False|80|Load Users - Sub Menu|False|Users|False
-a28d204c-bb60-4cb3-a832-318025165776|False|9|None|Back to Main Menu|None|False|False|80|Back to Main Menu|True|Users|False
-83c3461f-a128-4633-bdd9-2e2d0a2a0871|False|0|None|Exit|None|True|False|80|Exit|True|Users|False
-06b339b1-be8f-45a0-9fe0-b9b648c79b0b|True|0|Refresh|Refresh|None|False|False|81|Refresh|False|Users|False
-8cfa4d70-ce4d-4f56-b54c-7fbb00a6496d|True|0|Search|Search|None|False|False|81|Search|False|Users|False
-841b3f83-e859-4466-bf18-f15fe2607847|True|0|Next|Next Page|LastPage|False|False|81|Next Page|False|Users|False
-928c8492-e1fe-45fe-bd3a-115fe29a4a32|True|0|Last|Last Page|LastPage|False|False|81|Last Page|False|Users|False
-eeae083d-9b95-489f-822c-8d817f31daee|True|0|First|First Page|FirstPage|False|False|81|First Page|False|Users|False
-3260a58c-ba26-4a01-80ec-73f216b9b6ec|True|0|Previous|Previous Page|FirstPage|False|False|81|Previous Page|False|Users|False
-e0bed169-bf50-498c-889e-5dbf4930a529|False|80|None|Back to Main Menu|None|False|False|81|Back to Main Menu|True|Users|False
-e10be767-d15c-46bf-9cab-1fae46a7301d|False|0|None|Exit|None|True|False|81|Exit|True|Users|False
-ec94d1c7-17e9-4fb0-b642-f48c2a02c030|True|0|Add|Add Users|None|False|False|82|Add Users|False|Users|False
-561c2966-bdd8-4756-8aba-a7fdc58aa425|False|80|None|Back to Main Menu|None|False|False|82|Back to Main Menu|True|Users|False
-0ce9163a-c204-4e4d-b451-1cffd6e76cba|False|0|None|Exit|None|True|False|82|Exit|True|Users|False
-7b513c93-cddc-400f-a617-403b3383509f|True|0|Remove|Remove Users|None|False|False|83|Remove Users|False|Users|False
-711f78ed-45e4-48f2-9638-44b3b87e46ac|True|0|Next|Next Page|LastPage|False|False|83|Next Page|False|Users|False
-6548d144-4556-4b58-9c48-40e16d782639|True|0|Last|Last Page|LastPage|False|False|83|Last Page|False|Users|False
-65a4dffa-019e-4d63-bc35-3355c63dc678|True|0|First|First Page|FirstPage|False|False|83|First Page|False|Users|False
-3ae847e5-b2fb-4d9c-8c38-cbd12112ec86|True|0|Previous|Previous Page|FirstPage|False|False|83|Previous Page|False|Users|False
-44c29dfd-0fe8-49e9-b1c6-7b36fcda8498|False|80|None|Back to Main Menu|None|False|False|83|Back to Main Menu|True|Users|False
-de32c243-2a7a-44bd-a9b7-dddf55c2f124|False|0|None|Exit|None|True|False|83|Exit|True|Users|False
-d3b8078a-8309-452b-b4ec-69312a16bdbe|True|0|Edit|Edit Users|None|False|False|84|Edit Users|False|Users|False
-96f4adb4-b89b-41ae-b7aa-77d972fcd027|True|0|Next|Next Page|LastPage|False|False|84|Next Page|False|Users|False
-a8cb68de-b322-4842-aa7a-2a8d3b30290b|True|0|Last|Last Page|LastPage|False|False|84|Last Page|False|Users|False
-ab4eeb10-cdf2-4f25-bc6f-c0490355b273|True|0|First|First Page|FirstPage|False|False|84|First Page|False|Users|False
-250aa62a-f1a5-4f74-92aa-659a9110bfcb|True|0|Previous|Previous Page|FirstPage|False|False|84|Previous Page|False|Users|False
-794186df-d3d3-40dd-8d18-70d66cdf84d5|False|80|None|Back to Main Menu|None|False|False|84|Back to Main Menu|True|Users|False
-6c9c684e-4192-46a6-9430-6e39d10df7e5|False|0|None|Exit|None|True|False|84|Exit|True|Users|False
-af345c2e-becd-42ca-aa59-737d8440d43e|True|0|Save|Save Users to a file|None|False|False|85|Save Users to a file|False|Users|False
-e1dcb322-1cf5-41a7-8a1f-44daca8f4d1a|False|80|None|Back to Main Menu|None|False|False|85|Back to Main Menu|True|Users|False
-5671da94-e281-4902-949c-9e033d0ff176|False|0|None|Exit|None|True|False|85|Exit|True|Users|False
-d2bb8ebf-19e4-4a7a-a934-694fa272a46a|True|0|Load|Load Users from a file|None|False|False|86|Load Users from a file|False|Users|False
-0ff3dadc-e8fe-4fae-a1cd-efb79c60528c|False|80|None|Back to Main Menu|None|False|False|86|Back to Main Menu|True|Users|False
-2dd3e6e1-dafd-4e8c-9884-1c7139a3806c|False|0|None|Exit|None|True|False|86|Exit|True|Users|False
-b4b49a89-572e-432b-8b62-b90df333ef5b|False|87|None|Link Sites To Planets|None|False|False|9|Galaxy Manager - Main Menu|False|LinkSitesToPlanets|False
-2e10bc0f-b96e-4bc8-a016-499695d296a4|False|0|None|Exit|None|True|False|9|Galaxy Manager - Main Menu|False|None|False
-d891afb9-02ad-4b22-bf77-2f59fb1f67b8|False|88|None|View LinkSitesToPlanets|None|False|False|87|View LinkSitesToPlanets - Sub Menu|False|LinkSitesToPlanets|False
-fae16d76-a062-4410-8a1f-cfec6c45c27d|False|89|None|Add LinkSitesToPlanets|None|False|False|87|Add LinkSitesToPlanets - Sub Menu|False|LinkSitesToPlanets|False
-90efc6fa-ef58-498a-9fa4-efc786ab2897|False|90|None|Remove LinkSitesToPlanets|None|False|False|87|Remove LinkSitesToPlanets - Sub Menu|False|LinkSitesToPlanets|False
-a54ecaa0-732b-47ac-8496-292d9b354868|False|91|None|Edit LinkSitesToPlanets|None|False|False|87|Edit LinkSitesToPlanets - Sub Menu|False|LinkSitesToPlanets|False
-f2381b3a-c905-4395-9809-ee468a2eb2a1|False|92|None|Save LinkSitesToPlanets|None|False|False|87|Save LinkSitesToPlanets - Sub Menu|False|LinkSitesToPlanets|False
-53b24686-c1bd-4fc8-b324-a9436f734b4d|False|93|None|Load LinkSitesToPlanets|None|False|False|87|Load LinkSitesToPlanets - Sub Menu|False|LinkSitesToPlanets|False
-bdc15a29-c098-469a-8513-b4c17dd8166e|False|9|None|Back to Main Menu|None|False|False|87|Back to Main Menu|True|LinkSitesToPlanets|False
-00103179-1d3b-41db-a3d4-9efe3ba98bc9|False|0|None|Exit|None|True|False|87|Exit|True|LinkSitesToPlanets|False
-72b237cb-d346-418e-8937-f22a74959e93|True|0|Refresh|Refresh|None|False|False|88|Refresh|False|LinkSitesToPlanets|False
-9126249f-5f20-4385-a4da-29680c56240c|True|0|Search|Search|None|False|False|88|Search|False|LinkSitesToPlanets|False
-8b5edd2c-f8d4-4782-8340-b5e242bb5c56|True|0|Next|Next Page|LastPage|False|False|88|Next Page|False|LinkSitesToPlanets|False
-196c6959-cf60-4a90-afd3-bc026139855f|True|0|Last|Last Page|LastPage|False|False|88|Last Page|False|LinkSitesToPlanets|False
-50771f69-a0db-4266-aad1-f5fab4233715|True|0|First|First Page|FirstPage|False|False|88|First Page|False|LinkSitesToPlanets|False
-bba28631-a2d1-494c-b64c-97b828a70bcb|True|0|Previous|Previous Page|FirstPage|False|False|88|Previous Page|False|LinkSitesToPlanets|False
-98592e98-a3ee-449d-b9bd-007ef30b693b|False|87|None|Back to Main Menu|None|False|False|88|Back to Main Menu|True|LinkSitesToPlanets|False
-43e2b3a7-16af-4c9a-83ce-62d0c184d403|False|0|None|Exit|None|True|False|88|Exit|True|LinkSitesToPlanets|False
-18e2aad6-3beb-458d-a3fd-fc717d8d6713|True|0|Add|Add LinkSitesToPlanets|None|False|False|89|Add LinkSitesToPlanets|False|LinkSitesToPlanets|False
-2686ecba-aa0d-49e6-b18f-e17e4efba72d|False|87|None|Back to Main Menu|None|False|False|89|Back to Main Menu|True|LinkSitesToPlanets|False
-cf9a7af5-f6d7-41ac-bd4d-03a6bb1bc6b4|False|0|None|Exit|None|True|False|89|Exit|True|LinkSitesToPlanets|False
-eb81d5e2-eb99-43de-a643-84af12e1a2b8|True|0|Remove|Remove LinkSitesToPlanets|None|False|False|90|Remove LinkSitesToPlanets|False|LinkSitesToPlanets|False
-b15a8e79-03c7-47be-a70a-a9e639ad7004|True|0|Next|Next Page|LastPage|False|False|90|Next Page|False|LinkSitesToPlanets|False
-71437707-6afc-49e3-a940-9848a24462ff|True|0|Last|Last Page|LastPage|False|False|90|Last Page|False|LinkSitesToPlanets|False
-d261a90d-cca2-40d3-bb15-a16a392e43fb|True|0|First|First Page|FirstPage|False|False|90|First Page|False|LinkSitesToPlanets|False
-18ef869f-28a2-4d5c-b417-21fdca7d09c7|True|0|Previous|Previous Page|FirstPage|False|False|90|Previous Page|False|LinkSitesToPlanets|False
-f12cf708-466b-43f0-826c-e0226bef894e|False|87|None|Back to Main Menu|None|False|False|90|Back to Main Menu|True|LinkSitesToPlanets|False
-7ec2ec68-e00d-44e5-9f15-b7c25eacb0d5|False|0|None|Exit|None|True|False|90|Exit|True|LinkSitesToPlanets|False
-559684b5-9688-4ec6-9bf3-dd51be87c2b4|True|0|Edit|Edit LinkSitesToPlanets|None|False|False|91|Edit LinkSitesToPlanets|False|LinkSitesToPlanets|False
-8ebfae4e-8118-441b-980f-ae7201418c99|True|0|Next|Next Page|LastPage|False|False|91|Next Page|False|LinkSitesToPlanets|False
-1b36a563-b234-42ec-9161-1ff74870cc2b|True|0|Last|Last Page|LastPage|False|False|91|Last Page|False|LinkSitesToPlanets|False
-84c35bec-184c-4c72-b013-6ba50cd20bc4|True|0|First|First Page|FirstPage|False|False|91|First Page|False|LinkSitesToPlanets|False
-9be17a67-2e78-49e7-8363-fa84c850169e|True|0|Previous|Previous Page|FirstPage|False|False|91|Previous Page|False|LinkSitesToPlanets|False
-83fb837b-3868-4929-88a0-e329671e7120|False|87|None|Back to Main Menu|None|False|False|91|Back to Main Menu|True|LinkSitesToPlanets|False
-bf4ba5d6-23c6-4eec-bff4-46b6a5861eff|False|0|None|Exit|None|True|False|91|Exit|True|LinkSitesToPlanets|False
-e220f103-dee1-42b3-8250-33c6e996dd07|True|0|Save|Save LinkSitesToPlanets to a file|None|False|False|92|Save LinkSitesToPlanets to a file|False|LinkSitesToPlanets|False
-f684de25-c0d1-4191-9218-dac6f6ae7d01|False|87|None|Back to Main Menu|None|False|False|92|Back to Main Menu|True|LinkSitesToPlanets|False
-b690ef3c-b7ef-4963-9bbb-ff734a2ed18d|False|0|None|Exit|None|True|False|92|Exit|True|LinkSitesToPlanets|False
-55c8fb94-2160-42ff-a4cf-32ae293b1c23|True|0|Load|Load LinkSitesToPlanets from a file|None|False|False|93|Load LinkSitesToPlanets from a file|False|LinkSitesToPlanets|False
-c49bfbaa-9d9e-43d6-8b72-21140a5e13f6|False|87|None|Back to Main Menu|None|False|False|93|Back to Main Menu|True|LinkSitesToPlanets|False
-40a7b622-4d2f-40c6-b329-075889a57368|False|0|None|Exit|None|True|False|93|Exit|True|LinkSitesToPlanets|False
+ab5af7f4-6723-4805-873c-65a42fffaf26|False|17|None|Manage Buildings|None|False|False|9|Galaxy Manager - Main Menu|False|Buildings|False
+35d5e18f-8137-417a-a241-34f50dc1740e|False|18|None|View Buildings|None|False|False|17|View Buildings - Sub Menu|False|Buildings|False
+928c7e53-3fcf-4030-8cc0-c20ceca383c4|False|19|None|Add Buildings|None|False|False|17|Add Buildings - Sub Menu|False|Buildings|False
+2abace9a-a40f-41f8-9dc1-4c6656606a20|False|20|None|Remove Buildings|None|False|False|17|Remove Buildings - Sub Menu|False|Buildings|False
+568491b0-da3d-44b2-980c-966cdddb679f|False|21|None|Edit Buildings|None|False|False|17|Edit Buildings - Sub Menu|False|Buildings|False
+00c5134b-5109-4f22-9417-c7ea0dbc6351|False|22|None|Save Buildings|None|False|False|17|Save Buildings - Sub Menu|False|Buildings|False
+13deeee5-f327-4cc6-851f-4323bbeec4a3|False|23|None|Load Buildings|None|False|False|17|Load Buildings - Sub Menu|False|Buildings|False
+dc69f565-b4cf-460d-9899-94c05dd91e37|False|9|None|Back to Main Menu|None|False|False|17|Back to Main Menu|True|Buildings|False
+f8c16841-d370-4811-8a59-a2438176d867|False|0|None|Exit|None|True|False|17|Exit|True|Buildings|False
+c2694203-a196-49b9-8895-1a0fbb320570|True|0|Refresh|Refresh|None|False|False|18|Refresh|False|Buildings|False
+83d289db-6863-4922-825c-5814e5d356a5|True|0|Search|Search|None|False|False|18|Search|False|Buildings|False
+5e97c8ff-ec89-4386-97d3-c56b23cf57a8|True|0|Next|Next Page|LastPage|False|False|18|Next Page|False|Buildings|False
+f96e598d-1320-413f-ae1c-ee015a120c3a|True|0|Last|Last Page|LastPage|False|False|18|Last Page|False|Buildings|False
+0fbf2e33-7647-4ba7-8e27-6c16613c6d63|True|0|First|First Page|FirstPage|False|False|18|First Page|False|Buildings|False
+f988b9bf-cd36-4703-bda4-a4ace4360b71|True|0|Previous|Previous Page|FirstPage|False|False|18|Previous Page|False|Buildings|False
+a0199bad-55ec-49a7-be5d-8837c0cca63f|False|17|None|Back to Main Menu|None|False|False|18|Back to Main Menu|True|Buildings|False
+daa7aef8-ba12-4936-9add-197dfb8a9e46|False|0|None|Exit|None|True|False|18|Exit|True|Buildings|False
+59fb7cba-b08f-44f5-b25a-38742a4ce56b|True|0|Add|Add Buildings|None|False|False|19|Add Buildings|False|Buildings|False
+50455172-bd05-4007-b01c-e5740400e2fc|False|17|None|Back to Main Menu|None|False|False|19|Back to Main Menu|True|Buildings|False
+1adfadd1-bb80-45e9-bd72-91493e7ef753|False|0|None|Exit|None|True|False|19|Exit|True|Buildings|False
+2bf0e8bb-96fd-4388-9eb1-1f2bf7514007|True|0|Remove|Remove Buildings|None|False|False|20|Remove Buildings|False|Buildings|False
+80a4ff21-1863-49d1-bc8b-8928892c44db|True|0|Next|Next Page|LastPage|False|False|20|Next Page|False|Buildings|False
+41b97473-6ebe-40d0-bb0e-b0b58ae8af5a|True|0|Last|Last Page|LastPage|False|False|20|Last Page|False|Buildings|False
+976e25d8-e567-4fc4-8907-fcbc7b6b650d|True|0|First|First Page|FirstPage|False|False|20|First Page|False|Buildings|False
+ced599d0-b032-4bb7-82cc-600129372d2b|True|0|Previous|Previous Page|FirstPage|False|False|20|Previous Page|False|Buildings|False
+16f43442-1156-41c8-9580-bc63f738870f|False|17|None|Back to Main Menu|None|False|False|20|Back to Main Menu|True|Buildings|False
+be1f1e0f-bf60-4dea-9ede-6abf9115e96f|False|0|None|Exit|None|True|False|20|Exit|True|Buildings|False
+9227b50e-bfb7-4764-a546-d0df82d2b4d1|True|0|Edit|Edit Buildings|None|False|False|21|Edit Buildings|False|Buildings|False
+0936aa33-a1bf-4ebc-8789-55396b917009|True|0|Next|Next Page|LastPage|False|False|21|Next Page|False|Buildings|False
+a243fa0c-647e-4fc7-9f65-e02acd39fce4|True|0|Last|Last Page|LastPage|False|False|21|Last Page|False|Buildings|False
+41851457-4c87-47a9-b8f7-eff8af10612f|True|0|First|First Page|FirstPage|False|False|21|First Page|False|Buildings|False
+a38192e7-64b0-47ce-8b8c-57511bb83c50|True|0|Previous|Previous Page|FirstPage|False|False|21|Previous Page|False|Buildings|False
+1df462ad-adb1-4ac9-a25b-582d882a14f3|False|17|None|Back to Main Menu|None|False|False|21|Back to Main Menu|True|Buildings|False
+e6cf9549-d300-427a-b74b-7db912997e0c|False|0|None|Exit|None|True|False|21|Exit|True|Buildings|False
+5c25e12d-9e7a-4090-a2bd-8ec865e136ee|True|0|Save|Save Buildings to a file|None|False|False|22|Save Buildings to a file|False|Buildings|False
+784ae539-2990-4b92-a35d-10f26a11d9a1|False|17|None|Back to Main Menu|None|False|False|22|Back to Main Menu|True|Buildings|False
+7e9d80b2-9999-4d19-bf29-19c9f17ad434|False|0|None|Exit|None|True|False|22|Exit|True|Buildings|False
+14f8bab6-355c-473d-8949-edb628ffbdbb|True|0|Load|Load Buildings from a file|None|False|False|23|Load Buildings from a file|False|Buildings|False
+491d7b8e-1c71-4677-bc25-22ac1f98d7d3|False|17|None|Back to Main Menu|None|False|False|23|Back to Main Menu|True|Buildings|False
+58b369d6-39ed-47a0-9d69-84b269bc149a|False|0|None|Exit|None|True|False|23|Exit|True|Buildings|False
+1f520727-9272-42d2-b521-1c39a6d1df94|False|24|None|Manage BuildingTypes|None|False|False|9|Galaxy Manager - Main Menu|False|BuildingType|False
+c9e69f8d-5490-4524-8b66-6f9d05db7dcb|False|25|None|View BuildingType|None|False|False|24|View BuildingType - Sub Menu|False|BuildingType|False
+52d2100e-7e9f-409a-9481-c72935cd7eca|False|26|None|Add BuildingType|None|False|False|24|Add BuildingType - Sub Menu|False|BuildingType|False
+50561d6f-1824-42de-9904-66c2851f1fec|False|27|None|Remove BuildingType|None|False|False|24|Remove BuildingType - Sub Menu|False|BuildingType|False
+91c78a42-c582-4d38-9409-3cfe4bc492ef|False|28|None|Edit BuildingType|None|False|False|24|Edit BuildingType - Sub Menu|False|BuildingType|False
+bad48bf2-9429-4826-85b4-1652d5d75fe9|False|29|None|Save BuildingType|None|False|False|24|Save BuildingType - Sub Menu|False|BuildingType|False
+d6dd0c5d-1f83-4454-a2ae-91e0d15fcfb9|False|30|None|Load BuildingType|None|False|False|24|Load BuildingType - Sub Menu|False|BuildingType|False
+13366c9a-89a5-4838-a934-89715d8357b3|False|9|None|Back to Main Menu|None|False|False|24|Back to Main Menu|True|BuildingType|False
+ad993763-6fbd-49f2-b9e7-6658eecc9242|False|0|None|Exit|None|True|False|24|Exit|True|BuildingType|False
+c668e1b5-f88b-4965-827d-4801e655fc72|True|0|Refresh|Refresh|None|False|False|25|Refresh|False|BuildingType|False
+432ff711-85f0-4cbe-8b99-1be133777c15|True|0|Search|Search|None|False|False|25|Search|False|BuildingType|False
+d824718d-5d8b-4a39-924f-bac8c253987d|True|0|Next|Next Page|LastPage|False|False|25|Next Page|False|BuildingType|False
+61ff144c-be54-453d-b7f3-2f75a2665de3|True|0|Last|Last Page|LastPage|False|False|25|Last Page|False|BuildingType|False
+405f164b-c152-4a82-9ea3-8e4eba41cf92|True|0|First|First Page|FirstPage|False|False|25|First Page|False|BuildingType|False
+1d44aad1-e398-4c1e-a290-49519b054df6|True|0|Previous|Previous Page|FirstPage|False|False|25|Previous Page|False|BuildingType|False
+88b1735e-b9a6-408d-b6ee-d971da9ec488|False|24|None|Back to Main Menu|None|False|False|25|Back to Main Menu|True|BuildingType|False
+e3900d23-b5a0-49e5-a270-cbd94b2c051b|False|0|None|Exit|None|True|False|25|Exit|True|BuildingType|False
+febd8ef2-77fb-4f03-8b0d-9ee1627adc25|True|0|Add|Add BuildingType|None|False|False|26|Add BuildingType|False|BuildingType|False
+f740663a-09bc-49e8-bedd-536e6fe5b490|False|24|None|Back to Main Menu|None|False|False|26|Back to Main Menu|True|BuildingType|False
+7e1b7e58-ddaa-4b77-b590-6ebbbb863e67|False|0|None|Exit|None|True|False|26|Exit|True|BuildingType|False
+aced35d8-9c5c-4c0e-b262-49fc2446940f|True|0|Remove|Remove BuildingType|None|False|False|27|Remove BuildingType|False|BuildingType|False
+76fe6342-8e38-44af-9505-c8b1ac2e237c|True|0|Next|Next Page|LastPage|False|False|27|Next Page|False|BuildingType|False
+07d8843d-01e5-4b75-b0b9-ab8c9fccb4e0|True|0|Last|Last Page|LastPage|False|False|27|Last Page|False|BuildingType|False
+9ef0c275-cf90-4125-9b75-ef621787c849|True|0|First|First Page|FirstPage|False|False|27|First Page|False|BuildingType|False
+9e3a0248-f173-4df0-be44-ecbbf817af76|True|0|Previous|Previous Page|FirstPage|False|False|27|Previous Page|False|BuildingType|False
+c65944ce-ea46-4093-9eb2-d5ea9fd0daca|False|24|None|Back to Main Menu|None|False|False|27|Back to Main Menu|True|BuildingType|False
+2858252a-f3ad-42ec-b4eb-63534bd184ed|False|0|None|Exit|None|True|False|27|Exit|True|BuildingType|False
+606afe3b-a99f-4f7e-afed-1db8e8a084b1|True|0|Edit|Edit BuildingType|None|False|False|28|Edit BuildingType|False|BuildingType|False
+81c57cda-8e5e-4e4f-935c-4f6b54beab48|True|0|Next|Next Page|LastPage|False|False|28|Next Page|False|BuildingType|False
+cb939f10-9511-4fdd-9c78-6b5064bdf57f|True|0|Last|Last Page|LastPage|False|False|28|Last Page|False|BuildingType|False
+d8599956-b55e-4b64-9886-c246df1e3c64|True|0|First|First Page|FirstPage|False|False|28|First Page|False|BuildingType|False
+2f196a47-f570-4b36-a43a-9fe539422a7a|True|0|Previous|Previous Page|FirstPage|False|False|28|Previous Page|False|BuildingType|False
+17862332-523d-4d25-85e7-a79adbfd7752|False|24|None|Back to Main Menu|None|False|False|28|Back to Main Menu|True|BuildingType|False
+a1483f37-1e21-4e06-8067-d75c49c8d84e|False|0|None|Exit|None|True|False|28|Exit|True|BuildingType|False
+ffc961fe-0efc-46a9-b27c-4df9bb9e21a5|True|0|Save|Save BuildingType to a file|None|False|False|29|Save BuildingType to a file|False|BuildingType|False
+70f2cf5e-4188-40bf-b9f6-f238c22c0a3f|False|24|None|Back to Main Menu|None|False|False|29|Back to Main Menu|True|BuildingType|False
+16b237cf-f0c4-4dfb-840d-def29be4042e|False|0|None|Exit|None|True|False|29|Exit|True|BuildingType|False
+1ea425a0-1722-45b0-8614-0088bd2583af|True|0|Load|Load BuildingType from a file|None|False|False|30|Load BuildingType from a file|False|BuildingType|False
+433a8182-6632-432b-a6a7-d32f58d80583|False|24|None|Back to Main Menu|None|False|False|30|Back to Main Menu|True|BuildingType|False
+4d578531-4ee8-457b-9af6-aee171272ccc|False|0|None|Exit|None|True|False|30|Exit|True|BuildingType|False
+8906261c-c35f-49be-bc56-fc587aae78b7|False|31|None|Manage Sites|None|False|False|9|Galaxy Manager - Main Menu|False|Sites|False
+27d1656e-e960-45c0-bb1b-20d42560198f|False|32|None|View Sites|None|False|False|31|View Sites - Sub Menu|False|Sites|False
+5a168aa1-1791-47e7-b607-71b8b2d0b9c4|False|33|None|Add Sites|None|False|False|31|Add Sites - Sub Menu|False|Sites|False
+933edf35-82c6-47fe-96f7-e6e6e584173b|False|34|None|Remove Sites|None|False|False|31|Remove Sites - Sub Menu|False|Sites|False
+69f4d1a8-a587-4967-8852-a071ac8644b3|False|35|None|Edit Sites|None|False|False|31|Edit Sites - Sub Menu|False|Sites|False
+d6ffac2f-a5fa-499a-925d-e8bfe8871911|False|36|None|Save Sites|None|False|False|31|Save Sites - Sub Menu|False|Sites|False
+dcb9d398-faa2-48f2-a2cb-c3e397541e5b|False|37|None|Load Sites|None|False|False|31|Load Sites - Sub Menu|False|Sites|False
+18bb5b9a-b48c-4925-8439-1225e3b9d870|False|9|None|Back to Main Menu|None|False|False|31|Back to Main Menu|True|Sites|False
+e5b0134b-52a9-4032-b19e-56161f6732a3|False|0|None|Exit|None|True|False|31|Exit|True|Sites|False
+7e48c440-54df-4914-8f4d-8ded112ecfaf|True|0|Refresh|Refresh|None|False|False|32|Refresh|False|Sites|False
+460ccc38-d6ef-4f2a-8020-68743498d0f8|True|0|Search|Search|None|False|False|32|Search|False|Sites|False
+262a056d-d676-498d-92e0-5f872a8393a4|True|0|Next|Next Page|LastPage|False|False|32|Next Page|False|Sites|False
+a638a44e-efb9-4670-9d2e-18a7bea6e423|True|0|Last|Last Page|LastPage|False|False|32|Last Page|False|Sites|False
+2c31466e-0973-4bb3-90fa-9a082a6041f8|True|0|First|First Page|FirstPage|False|False|32|First Page|False|Sites|False
+d8c1f701-5bfe-4a59-82ce-e78f52f76552|True|0|Previous|Previous Page|FirstPage|False|False|32|Previous Page|False|Sites|False
+c5cd28e3-515f-4a30-9fcc-769d4bfab32e|False|31|None|Back to Main Menu|None|False|False|32|Back to Main Menu|True|Sites|False
+2b2d6b45-434e-4f65-b254-9201842aae8f|False|0|None|Exit|None|True|False|32|Exit|True|Sites|False
+afb7390c-6165-415b-8500-6c6aeaff81b0|True|0|Add|Add Sites|None|False|False|33|Add Sites|False|Sites|False
+611ff234-08fe-498f-b5b8-b549423719d5|False|31|None|Back to Main Menu|None|False|False|33|Back to Main Menu|True|Sites|False
+2e117298-063a-49df-9512-085197bd13b3|False|0|None|Exit|None|True|False|33|Exit|True|Sites|False
+b20229fa-30af-41c9-bac9-2b3845e6f302|True|0|Remove|Remove Sites|None|False|False|34|Remove Sites|False|Sites|False
+98aab230-b4db-418f-9d17-87e60128f5e2|True|0|Next|Next Page|LastPage|False|False|34|Next Page|False|Sites|False
+9ac9059e-1354-4212-a84a-4c93ba9669b7|True|0|Last|Last Page|LastPage|False|False|34|Last Page|False|Sites|False
+b9bdfb5e-6ed0-47de-83a1-4154fd73040b|True|0|First|First Page|FirstPage|False|False|34|First Page|False|Sites|False
+33f237f7-25c4-4778-9a20-3b51d258ec7e|True|0|Previous|Previous Page|FirstPage|False|False|34|Previous Page|False|Sites|False
+e2f870d1-5b36-4254-9f16-0eea6f11c532|False|31|None|Back to Main Menu|None|False|False|34|Back to Main Menu|True|Sites|False
+9a73bad5-8257-489a-a166-6734735f6f16|False|0|None|Exit|None|True|False|34|Exit|True|Sites|False
+d62c5bf8-d3c0-4ef1-9d5b-314f825a00af|True|0|Edit|Edit Sites|None|False|False|35|Edit Sites|False|Sites|False
+afdefa25-8f9a-4afd-b69b-613dc4b678dd|True|0|Next|Next Page|LastPage|False|False|35|Next Page|False|Sites|False
+c714ae1f-3754-446a-9d69-8f124cb5fdf5|True|0|Last|Last Page|LastPage|False|False|35|Last Page|False|Sites|False
+53ea80bf-4c98-4ca6-8ce4-008b7e5f01ab|True|0|First|First Page|FirstPage|False|False|35|First Page|False|Sites|False
+4df0aa8c-3c58-4fc8-bfa7-4d3477356e60|True|0|Previous|Previous Page|FirstPage|False|False|35|Previous Page|False|Sites|False
+3d8575e4-8e06-4529-aadf-f95becff0af8|False|31|None|Back to Main Menu|None|False|False|35|Back to Main Menu|True|Sites|False
+aee65b1a-e3f3-4050-8080-7089105aea3a|False|0|None|Exit|None|True|False|35|Exit|True|Sites|False
+8dc11c28-d666-4250-85bc-daf2a3f6a338|True|0|Save|Save Sites to a file|None|False|False|36|Save Sites to a file|False|Sites|False
+889d8653-a1bd-4a5f-b39f-803b523f1997|False|31|None|Back to Main Menu|None|False|False|36|Back to Main Menu|True|Sites|False
+2a3fe05a-f9b7-4249-b806-410a4a3fcd34|False|0|None|Exit|None|True|False|36|Exit|True|Sites|False
+81898381-dbdc-413b-bdfa-9a98bd0e032b|True|0|Load|Load Sites from a file|None|False|False|37|Load Sites from a file|False|Sites|False
+deebbb51-69aa-4a98-a698-b06a1d413359|False|31|None|Back to Main Menu|None|False|False|37|Back to Main Menu|True|Sites|False
+cd8c828d-ccba-4dfb-91e6-3579f08ecfc3|False|0|None|Exit|None|True|False|37|Exit|True|Sites|False
+bb9790e0-cced-4c95-b5f6-e0a58998a9ed|False|38|None|Manage Planets|None|False|False|9|Galaxy Manager - Main Menu|False|Planets|False
+77e9dc2d-b075-4250-97e4-9273bc6793e1|False|39|None|View Planets|None|False|False|38|View Planets - Sub Menu|False|Planets|False
+745d2911-5dba-41e4-ab04-7301946edab5|False|40|None|Add Planets|None|False|False|38|Add Planets - Sub Menu|False|Planets|False
+57b394e6-a449-44c0-aea7-a1fdca128e4a|False|41|None|Remove Planets|None|False|False|38|Remove Planets - Sub Menu|False|Planets|False
+9d194fa2-f905-4ba3-88bc-515bd6140b7b|False|42|None|Edit Planets|None|False|False|38|Edit Planets - Sub Menu|False|Planets|False
+8a4c0b63-62c0-4f74-af6c-05e7e82d8922|False|43|None|Save Planets|None|False|False|38|Save Planets - Sub Menu|False|Planets|False
+a9e66f48-c91a-4a8f-83e3-ea034e8b02b4|False|44|None|Load Planets|None|False|False|38|Load Planets - Sub Menu|False|Planets|False
+989431ad-756a-4e3d-b4b1-26bd31043aa9|False|9|None|Back to Main Menu|None|False|False|38|Back to Main Menu|True|Planets|False
+5152a1ed-61d4-4d2d-854c-9da2b471551b|False|0|None|Exit|None|True|False|38|Exit|True|Planets|False
+1dd5991a-093d-4797-a048-30bcdc679148|True|0|Refresh|Refresh|None|False|False|39|Refresh|False|Planets|False
+e9ab64d9-e45e-48c6-a7e9-2589ea55ee83|True|0|Search|Search|None|False|False|39|Search|False|Planets|False
+3b47a89a-3f71-498c-b9cd-5d204c0693bf|True|0|Next|Next Page|LastPage|False|False|39|Next Page|False|Planets|False
+2875c8cd-187c-4492-8885-51ac3a91d29c|True|0|Last|Last Page|LastPage|False|False|39|Last Page|False|Planets|False
+a19bef34-766b-49cb-88d4-41081ae139c2|True|0|First|First Page|FirstPage|False|False|39|First Page|False|Planets|False
+f4e207fe-1ba9-4b4c-b7be-f0435c983cb5|True|0|Previous|Previous Page|FirstPage|False|False|39|Previous Page|False|Planets|False
+e98a9de1-63d5-4ec7-bc1c-a4ba64db054f|False|38|None|Back to Main Menu|None|False|False|39|Back to Main Menu|True|Planets|False
+d97a936c-2309-4df2-a975-c6eb200c1b77|False|0|None|Exit|None|True|False|39|Exit|True|Planets|False
+f6e575dc-1530-44a9-b61d-7237801ed694|True|0|Add|Add Planets|None|False|False|40|Add Planets|False|Planets|False
+c4ea9a17-ac9d-4cef-b5fe-fd41f62cd443|False|38|None|Back to Main Menu|None|False|False|40|Back to Main Menu|True|Planets|False
+d8cf8954-a1a2-41f4-aa73-2c137daa1965|False|0|None|Exit|None|True|False|40|Exit|True|Planets|False
+1af278f9-689b-4551-9e4f-714c2c7b0fdf|True|0|Remove|Remove Planets|None|False|False|41|Remove Planets|False|Planets|False
+47b43537-3b28-4c56-b313-f73133db98fc|True|0|Next|Next Page|LastPage|False|False|41|Next Page|False|Planets|False
+9919988a-bf55-44e4-9246-689576eef0ea|True|0|Last|Last Page|LastPage|False|False|41|Last Page|False|Planets|False
+f3be5697-f4b2-43bf-85d2-31cb8400757d|True|0|First|First Page|FirstPage|False|False|41|First Page|False|Planets|False
+b56e422f-1398-4142-b0ca-4d045d43b11d|True|0|Previous|Previous Page|FirstPage|False|False|41|Previous Page|False|Planets|False
+89c416e0-15de-4f9d-9e3e-b4345e2d0e75|False|38|None|Back to Main Menu|None|False|False|41|Back to Main Menu|True|Planets|False
+fe1a96c1-ad83-4b2f-a306-5fb5066351f1|False|0|None|Exit|None|True|False|41|Exit|True|Planets|False
+f533fef7-d919-4277-b3e2-ea6b541f1914|True|0|Edit|Edit Planets|None|False|False|42|Edit Planets|False|Planets|False
+dcc84e00-ff29-47b5-97e2-c118cb629372|True|0|Next|Next Page|LastPage|False|False|42|Next Page|False|Planets|False
+f82c4ec1-01bc-4b66-9272-bf33ec02d471|True|0|Last|Last Page|LastPage|False|False|42|Last Page|False|Planets|False
+262dd588-2057-4e1f-8aa4-76d48324ff14|True|0|First|First Page|FirstPage|False|False|42|First Page|False|Planets|False
+66b0a9af-96f0-402d-974a-5bf9975dbf51|True|0|Previous|Previous Page|FirstPage|False|False|42|Previous Page|False|Planets|False
+cf81584c-e977-4b45-aa9c-006c12736b1f|False|38|None|Back to Main Menu|None|False|False|42|Back to Main Menu|True|Planets|False
+cae0ea52-304f-4c71-8f1c-03cdfbffa3b8|False|0|None|Exit|None|True|False|42|Exit|True|Planets|False
+554bdc3d-0c01-4d76-897a-67d8c22e9947|True|0|Save|Save Planets to a file|None|False|False|43|Save Planets to a file|False|Planets|False
+6988b19a-8325-4b0c-a62b-a7d1d8cce653|False|38|None|Back to Main Menu|None|False|False|43|Back to Main Menu|True|Planets|False
+dcef0aaf-3eae-4dfb-829b-77aad181f55f|False|0|None|Exit|None|True|False|43|Exit|True|Planets|False
+68bffe5c-6b65-4d8a-b77b-97e127176441|True|0|Load|Load Planets from a file|None|False|False|44|Load Planets from a file|False|Planets|False
+771dfe48-e9c5-4769-97b8-74b2cc981961|False|38|None|Back to Main Menu|None|False|False|44|Back to Main Menu|True|Planets|False
+87908bea-d42f-4a33-8ab7-53df01daf017|False|0|None|Exit|None|True|False|44|Exit|True|Planets|False
+bac4d9e3-7cad-4f38-8864-6f14a7879758|False|45|None|Manage PlanetTypes|None|False|False|9|Galaxy Manager - Main Menu|False|PlanetType|False
+9254b6e8-fb62-4ddb-a8a3-5f2c6ca9d178|False|46|None|View PlanetType|None|False|False|45|View PlanetType - Sub Menu|False|PlanetType|False
+6da94a8b-9824-4cc8-bb4f-24a7919cf637|False|47|None|Add PlanetType|None|False|False|45|Add PlanetType - Sub Menu|False|PlanetType|False
+73ad4859-8a22-4a25-97f8-78395bcff21d|False|48|None|Remove PlanetType|None|False|False|45|Remove PlanetType - Sub Menu|False|PlanetType|False
+45779f9f-b42a-4813-80dc-54ded26b27d7|False|49|None|Edit PlanetType|None|False|False|45|Edit PlanetType - Sub Menu|False|PlanetType|False
+995fa3e5-e3df-4d98-87ee-b53f2537aa9c|False|50|None|Save PlanetType|None|False|False|45|Save PlanetType - Sub Menu|False|PlanetType|False
+7ce4a945-a991-4318-ad6f-73a7141cef00|False|51|None|Load PlanetType|None|False|False|45|Load PlanetType - Sub Menu|False|PlanetType|False
+4444f506-9711-4299-84f3-ea21f5072e04|False|9|None|Back to Main Menu|None|False|False|45|Back to Main Menu|True|PlanetType|False
+d3e8bdfd-f9c2-419a-b304-449e4dc3a16a|False|0|None|Exit|None|True|False|45|Exit|True|PlanetType|False
+a26765fc-f629-4afe-9681-dca55beb87a1|True|0|Refresh|Refresh|None|False|False|46|Refresh|False|PlanetType|False
+68019609-bcb2-4ae2-acba-30cf8ff81f3f|True|0|Search|Search|None|False|False|46|Search|False|PlanetType|False
+62fe1cd7-b942-40d6-bfdb-139e69afbbfa|True|0|Next|Next Page|LastPage|False|False|46|Next Page|False|PlanetType|False
+7b0ba7b9-6658-477c-af28-ea3a541c1601|True|0|Last|Last Page|LastPage|False|False|46|Last Page|False|PlanetType|False
+00ab9ff1-cccf-40a2-ab5f-e876da62199b|True|0|First|First Page|FirstPage|False|False|46|First Page|False|PlanetType|False
+eb7a6816-a2cc-4873-a705-033ab1413774|True|0|Previous|Previous Page|FirstPage|False|False|46|Previous Page|False|PlanetType|False
+e130f239-0dae-44a1-8abf-ffb1859d4f08|False|45|None|Back to Main Menu|None|False|False|46|Back to Main Menu|True|PlanetType|False
+48bf9d98-ecc7-4f10-932a-ab925464a1f9|False|0|None|Exit|None|True|False|46|Exit|True|PlanetType|False
+a1a07505-b1d0-42a9-ac34-97925f465e42|True|0|Add|Add PlanetType|None|False|False|47|Add PlanetType|False|PlanetType|False
+3da1f3b7-5104-480e-a4be-0f1db246a28a|False|45|None|Back to Main Menu|None|False|False|47|Back to Main Menu|True|PlanetType|False
+741e1886-cab1-4f3b-8595-786435abdf63|False|0|None|Exit|None|True|False|47|Exit|True|PlanetType|False
+a9797209-8fa8-4231-a8dc-a5002a5259a0|True|0|Remove|Remove PlanetType|None|False|False|48|Remove PlanetType|False|PlanetType|False
+a72c2d4b-4c41-4887-a344-b7d013e55f9a|True|0|Next|Next Page|LastPage|False|False|48|Next Page|False|PlanetType|False
+90ad78ba-8d8a-4fb3-8b97-827c1e05c5ec|True|0|Last|Last Page|LastPage|False|False|48|Last Page|False|PlanetType|False
+36f48812-b87d-49b8-aac8-168381e44eb7|True|0|First|First Page|FirstPage|False|False|48|First Page|False|PlanetType|False
+89f4c6bd-f8b0-4b2b-84a3-69cea6e3317d|True|0|Previous|Previous Page|FirstPage|False|False|48|Previous Page|False|PlanetType|False
+de8c14ba-e081-4c4e-8e5d-87b537432b93|False|45|None|Back to Main Menu|None|False|False|48|Back to Main Menu|True|PlanetType|False
+d10b8a98-f56b-4ba8-9217-07d93302091d|False|0|None|Exit|None|True|False|48|Exit|True|PlanetType|False
+341a0026-268b-485b-82c3-3b0519428934|True|0|Edit|Edit PlanetType|None|False|False|49|Edit PlanetType|False|PlanetType|False
+83ef7488-8efe-4d5a-8570-5602a3e81f1e|True|0|Next|Next Page|LastPage|False|False|49|Next Page|False|PlanetType|False
+2a59ba9c-d573-40e6-9b36-30f94b9733b5|True|0|Last|Last Page|LastPage|False|False|49|Last Page|False|PlanetType|False
+23ea1d08-bd48-4616-a854-df51cb0c53c1|True|0|First|First Page|FirstPage|False|False|49|First Page|False|PlanetType|False
+bb18ceee-8e8d-4e39-a76a-79cf6b0858cf|True|0|Previous|Previous Page|FirstPage|False|False|49|Previous Page|False|PlanetType|False
+20df8da8-7f2a-44a1-9412-32a7a244000f|False|45|None|Back to Main Menu|None|False|False|49|Back to Main Menu|True|PlanetType|False
+cf7a9445-0228-43ad-b100-eb2c6645829f|False|0|None|Exit|None|True|False|49|Exit|True|PlanetType|False
+a62714a4-d089-4a9c-985b-7a23493384fe|True|0|Save|Save PlanetType to a file|None|False|False|50|Save PlanetType to a file|False|PlanetType|False
+a380dcdb-2ab8-41f5-bc69-374676953d21|False|45|None|Back to Main Menu|None|False|False|50|Back to Main Menu|True|PlanetType|False
+77d6e12f-e23f-4f4e-a19f-7cc29cbd1c67|False|0|None|Exit|None|True|False|50|Exit|True|PlanetType|False
+17297426-3346-4a79-8046-8f2825ae7c49|True|0|Load|Load PlanetType from a file|None|False|False|51|Load PlanetType from a file|False|PlanetType|False
+ee527254-c9cf-4310-9895-cd3d3a9c287f|False|45|None|Back to Main Menu|None|False|False|51|Back to Main Menu|True|PlanetType|False
+12a5aafd-598e-4436-bf19-46920bae96e1|False|0|None|Exit|None|True|False|51|Exit|True|PlanetType|False
+0661d613-f2bf-414d-bb68-03ec6f158ff7|False|52|None|Manage Personnel|None|False|False|9|Galaxy Manager - Main Menu|False|Personnel|False
+edb7fcd8-7cbd-416a-9a6b-d129894eac02|False|53|None|View Personnel|None|False|False|52|View Personnel - Sub Menu|False|Personnel|False
+89145e84-2e84-4dd7-9983-8004041fd3e7|False|54|None|Add Personnel|None|False|False|52|Add Personnel - Sub Menu|False|Personnel|False
+be518d3f-430d-4426-8440-ef6f6084444f|False|55|None|Remove Personnel|None|False|False|52|Remove Personnel - Sub Menu|False|Personnel|False
+95b44578-a5b2-4fe2-8901-bb1cf9b5fc39|False|56|None|Edit Personnel|None|False|False|52|Edit Personnel - Sub Menu|False|Personnel|False
+acbfd877-f425-4156-b8f5-0b0edb4629a3|False|57|None|Save Personnel|None|False|False|52|Save Personnel - Sub Menu|False|Personnel|False
+ff4017aa-5152-429c-9a7c-9a7c19e96bad|False|58|None|Load Personnel|None|False|False|52|Load Personnel - Sub Menu|False|Personnel|False
+425c09d8-c6fe-429d-9632-79f762f8b5e8|False|9|None|Back to Main Menu|None|False|False|52|Back to Main Menu|True|Personnel|False
+5920cf08-9b80-4412-8f7e-2726140b7a04|False|0|None|Exit|None|True|False|52|Exit|True|Personnel|False
+218cab17-d50d-44b4-9888-f00e268ba8e9|True|0|Refresh|Refresh|None|False|False|53|Refresh|False|Personnel|False
+54ca6285-c13b-4119-8c0f-d31733353fe3|True|0|Search|Search|None|False|False|53|Search|False|Personnel|False
+8123bea3-19f6-481b-aebd-223992a9cf2e|True|0|Next|Next Page|LastPage|False|False|53|Next Page|False|Personnel|False
+cf0f1ccb-5664-4c22-b0da-23f7df473555|True|0|Last|Last Page|LastPage|False|False|53|Last Page|False|Personnel|False
+d60ab6e5-b68b-48dc-a546-13143aeeb1ee|True|0|First|First Page|FirstPage|False|False|53|First Page|False|Personnel|False
+eb692f8a-23bd-4be7-8a4e-6d81d3a4af02|True|0|Previous|Previous Page|FirstPage|False|False|53|Previous Page|False|Personnel|False
+a338c3d3-91cd-4f17-a5a7-617d85bb3acf|False|52|None|Back to Main Menu|None|False|False|53|Back to Main Menu|True|Personnel|False
+0dacce03-1731-455c-b4db-8a1ea791eb88|False|0|None|Exit|None|True|False|53|Exit|True|Personnel|False
+3921db08-e721-4224-a566-7e780a813e80|True|0|Add|Add Personnel|None|False|False|54|Add Personnel|False|Personnel|False
+2e4e1c1b-5f6c-4a54-8837-566b3b62edfe|False|52|None|Back to Main Menu|None|False|False|54|Back to Main Menu|True|Personnel|False
+82aba4c7-01fa-4798-97be-d486c34223d0|False|0|None|Exit|None|True|False|54|Exit|True|Personnel|False
+513915d5-21d5-4957-9665-58893243a86a|True|0|Remove|Remove Personnel|None|False|False|55|Remove Personnel|False|Personnel|False
+15c3c3c9-dbe2-46d6-abcb-a897ce95b040|True|0|Next|Next Page|LastPage|False|False|55|Next Page|False|Personnel|False
+d3e6ccfa-50b3-4fcd-bff8-cedf38092b3b|True|0|Last|Last Page|LastPage|False|False|55|Last Page|False|Personnel|False
+c8020ac9-deae-460b-9990-6571ad636cd3|True|0|First|First Page|FirstPage|False|False|55|First Page|False|Personnel|False
+ff64f9e8-1fac-4a3f-89ec-2dede8cdc6cb|True|0|Previous|Previous Page|FirstPage|False|False|55|Previous Page|False|Personnel|False
+e57b5361-154b-4301-9cb5-b82a193d3964|False|52|None|Back to Main Menu|None|False|False|55|Back to Main Menu|True|Personnel|False
+ede103db-5cf4-48bf-aaa5-46bb161842b7|False|0|None|Exit|None|True|False|55|Exit|True|Personnel|False
+5b59d063-63ea-4052-baf3-cb7a9f168363|True|0|Edit|Edit Personnel|None|False|False|56|Edit Personnel|False|Personnel|False
+be137e9d-a9ba-40c0-94bc-bd52622d86bf|True|0|Next|Next Page|LastPage|False|False|56|Next Page|False|Personnel|False
+ab3f5550-9d3e-47bf-9cfe-a50fc1c50f7d|True|0|Last|Last Page|LastPage|False|False|56|Last Page|False|Personnel|False
+688e8361-bf82-4ec8-83f5-4469060f54f0|True|0|First|First Page|FirstPage|False|False|56|First Page|False|Personnel|False
+6f866b0f-09de-4718-b668-8a8d87f87a4a|True|0|Previous|Previous Page|FirstPage|False|False|56|Previous Page|False|Personnel|False
+466553e0-43b1-464a-8607-42d3df479769|False|52|None|Back to Main Menu|None|False|False|56|Back to Main Menu|True|Personnel|False
+70448c9d-a930-46fb-8ea9-805f25518f86|False|0|None|Exit|None|True|False|56|Exit|True|Personnel|False
+7b0d0af2-9975-4632-b3dd-151d4d1a30cb|True|0|Save|Save Personnel to a file|None|False|False|57|Save Personnel to a file|False|Personnel|False
+c492bd26-7253-4555-9dd2-3c7c6e61b19f|False|52|None|Back to Main Menu|None|False|False|57|Back to Main Menu|True|Personnel|False
+c52ae371-2182-433a-b29b-60d23c406ced|False|0|None|Exit|None|True|False|57|Exit|True|Personnel|False
+0fbe45a9-f3d5-4599-899a-20db4cbad5e4|True|0|Load|Load Personnel from a file|None|False|False|58|Load Personnel from a file|False|Personnel|False
+cb930796-69b2-419e-b7cd-bf40f121e90f|False|52|None|Back to Main Menu|None|False|False|58|Back to Main Menu|True|Personnel|False
+4eb20050-bdd7-4c5c-9b54-e0c1a6306722|False|0|None|Exit|None|True|False|58|Exit|True|Personnel|False
+a906b27a-8295-41ac-92d4-199ed4d766c8|False|59|None|Manage PersonnelTypes|None|False|False|9|Galaxy Manager - Main Menu|False|PersonnelType|False
+09df2136-cde0-4703-9ce9-b3fe0d2bc713|False|60|None|View PersonnelType|None|False|False|59|View PersonnelType - Sub Menu|False|PersonnelType|False
+20ad5403-3cc9-4e1e-9023-c3fbe955fc61|False|61|None|Add PersonnelType|None|False|False|59|Add PersonnelType - Sub Menu|False|PersonnelType|False
+8fcaf3cd-1530-4ff3-968c-19c7789cd341|False|62|None|Remove PersonnelType|None|False|False|59|Remove PersonnelType - Sub Menu|False|PersonnelType|False
+1f1351e6-4c44-4959-aa80-d88f63c698a6|False|63|None|Edit PersonnelType|None|False|False|59|Edit PersonnelType - Sub Menu|False|PersonnelType|False
+01a4055f-e734-4864-9597-1d9575ff61e2|False|64|None|Save PersonnelType|None|False|False|59|Save PersonnelType - Sub Menu|False|PersonnelType|False
+95c59e6f-36b3-4088-9434-771a1d1c7e58|False|65|None|Load PersonnelType|None|False|False|59|Load PersonnelType - Sub Menu|False|PersonnelType|False
+789a0ea0-cf1e-403b-a05d-08a6c55ca3b1|False|9|None|Back to Main Menu|None|False|False|59|Back to Main Menu|True|PersonnelType|False
+aa38507e-0855-4451-a21d-a1319da91d17|False|0|None|Exit|None|True|False|59|Exit|True|PersonnelType|False
+99a39404-57cf-4d5b-921e-edebcbbd5c50|True|0|Refresh|Refresh|None|False|False|60|Refresh|False|PersonnelType|False
+e6c27b44-ef2f-435e-a94d-b6d8bb49dc7f|True|0|Search|Search|None|False|False|60|Search|False|PersonnelType|False
+6987cb5f-6b41-440b-bead-b3174950043e|True|0|Next|Next Page|LastPage|False|False|60|Next Page|False|PersonnelType|False
+dc0d970d-b9b8-4be5-9bb7-0101c3cf733b|True|0|Last|Last Page|LastPage|False|False|60|Last Page|False|PersonnelType|False
+d30023b7-9719-46f9-857f-8237ebc81004|True|0|First|First Page|FirstPage|False|False|60|First Page|False|PersonnelType|False
+e95ff1ab-8415-4898-9617-28dbd27d5f9e|True|0|Previous|Previous Page|FirstPage|False|False|60|Previous Page|False|PersonnelType|False
+2227d812-cf07-410d-bfca-bebc8add072e|False|59|None|Back to Main Menu|None|False|False|60|Back to Main Menu|True|PersonnelType|False
+96b3b203-2ac7-465e-9bdf-adef5384097c|False|0|None|Exit|None|True|False|60|Exit|True|PersonnelType|False
+39cff32c-ae67-44d6-b783-b48ae23adddd|True|0|Add|Add PersonnelType|None|False|False|61|Add PersonnelType|False|PersonnelType|False
+7289b55b-fe60-4eec-93bf-27f34a797819|False|59|None|Back to Main Menu|None|False|False|61|Back to Main Menu|True|PersonnelType|False
+3cec41ba-df1a-44ff-afce-2fa03fe975f7|False|0|None|Exit|None|True|False|61|Exit|True|PersonnelType|False
+84f0a907-482e-4688-85d0-ae312c0cd4d5|True|0|Remove|Remove PersonnelType|None|False|False|62|Remove PersonnelType|False|PersonnelType|False
+fd2f2b5f-7e66-4714-9c60-c87ac31a67cc|True|0|Next|Next Page|LastPage|False|False|62|Next Page|False|PersonnelType|False
+8c847ece-8b19-4904-8671-d4564fe4bd9c|True|0|Last|Last Page|LastPage|False|False|62|Last Page|False|PersonnelType|False
+c8103462-6bfb-4904-906a-0f4b9f7141b7|True|0|First|First Page|FirstPage|False|False|62|First Page|False|PersonnelType|False
+80000c66-fa32-47d7-a4fd-2020815eea9c|True|0|Previous|Previous Page|FirstPage|False|False|62|Previous Page|False|PersonnelType|False
+1b38fa76-05a0-465f-90ee-cb79f96c94e6|False|59|None|Back to Main Menu|None|False|False|62|Back to Main Menu|True|PersonnelType|False
+32916f6c-a433-4e13-b67a-ef469ef2d30f|False|0|None|Exit|None|True|False|62|Exit|True|PersonnelType|False
+6e53b951-efb4-4ae6-b1fd-2de05ab92a6b|True|0|Edit|Edit PersonnelType|None|False|False|63|Edit PersonnelType|False|PersonnelType|False
+9d143f37-49b3-4d70-a488-6bc44c5af866|True|0|Next|Next Page|LastPage|False|False|63|Next Page|False|PersonnelType|False
+ecf79bab-f47a-43a6-a13a-6d76228a15e4|True|0|Last|Last Page|LastPage|False|False|63|Last Page|False|PersonnelType|False
+42e933fc-0c83-4a6c-a00e-a5448f683866|True|0|First|First Page|FirstPage|False|False|63|First Page|False|PersonnelType|False
+23429ab6-2a1f-4190-8051-f4149ba00d34|True|0|Previous|Previous Page|FirstPage|False|False|63|Previous Page|False|PersonnelType|False
+b988e62f-09a8-4e9d-8439-952c340b8878|False|59|None|Back to Main Menu|None|False|False|63|Back to Main Menu|True|PersonnelType|False
+e2053b2e-c558-47f4-8070-f7060ceeec60|False|0|None|Exit|None|True|False|63|Exit|True|PersonnelType|False
+81e3a83f-f538-4af7-855e-95d28e2070fe|True|0|Save|Save PersonnelType to a file|None|False|False|64|Save PersonnelType to a file|False|PersonnelType|False
+15abc769-590c-423f-a2b5-b9b3018ac983|False|59|None|Back to Main Menu|None|False|False|64|Back to Main Menu|True|PersonnelType|False
+c0b0b7af-5a81-416c-8632-623fe5a78470|False|0|None|Exit|None|True|False|64|Exit|True|PersonnelType|False
+de17f496-43c9-4d1a-90bf-39e9cc22f50f|True|0|Load|Load PersonnelType from a file|None|False|False|65|Load PersonnelType from a file|False|PersonnelType|False
+6b6551de-36b1-48f6-a59e-762cab929ae5|False|59|None|Back to Main Menu|None|False|False|65|Back to Main Menu|True|PersonnelType|False
+55b2450f-47c7-4532-adc9-cda04f01e22f|False|0|None|Exit|None|True|False|65|Exit|True|PersonnelType|False
+883f49f2-4673-4b49-8310-68f4390e125f|False|66|None|Manage Ships|None|False|False|9|Galaxy Manager - Main Menu|False|Ships|False
+6a43ed8b-5374-41e1-a8fe-c6e6359a7624|False|67|None|View Ships|None|False|False|66|View Ships - Sub Menu|False|Ships|False
+bd50861a-26ac-4b9a-a7ae-71acefb817cc|False|68|None|Add Ships|None|False|False|66|Add Ships - Sub Menu|False|Ships|False
+8c65fd4c-38ca-4a51-acae-b51a4b87dec0|False|69|None|Remove Ships|None|False|False|66|Remove Ships - Sub Menu|False|Ships|False
+fcf86336-562a-4d0a-aa67-99834b0195f3|False|70|None|Edit Ships|None|False|False|66|Edit Ships - Sub Menu|False|Ships|False
+25f96d49-274d-4bad-a502-ba3a3305feb9|False|71|None|Save Ships|None|False|False|66|Save Ships - Sub Menu|False|Ships|False
+824a883f-b184-4c5c-b367-7f8f10673b1e|False|72|None|Load Ships|None|False|False|66|Load Ships - Sub Menu|False|Ships|False
+d2e0ad4c-2725-4e65-aca5-2eede382e616|False|9|None|Back to Main Menu|None|False|False|66|Back to Main Menu|True|Ships|False
+a17fc138-d37b-4901-bf29-7dfd411013b5|False|0|None|Exit|None|True|False|66|Exit|True|Ships|False
+a2498ff2-6f61-4d60-a023-f058e6dae95c|True|0|Refresh|Refresh|None|False|False|67|Refresh|False|Ships|False
+375d752b-dc53-4453-8d3e-92bed42eaf82|True|0|Search|Search|None|False|False|67|Search|False|Ships|False
+71b8d855-8816-470b-bcd0-a71ff168a820|True|0|Next|Next Page|LastPage|False|False|67|Next Page|False|Ships|False
+3eff8d37-3ce5-4992-8c53-f89fe8237961|True|0|Last|Last Page|LastPage|False|False|67|Last Page|False|Ships|False
+b16c5f78-07d6-4e57-a6ca-4e1520d0432f|True|0|First|First Page|FirstPage|False|False|67|First Page|False|Ships|False
+25f029d9-1e70-4d52-9332-ed84270d7a51|True|0|Previous|Previous Page|FirstPage|False|False|67|Previous Page|False|Ships|False
+b73f1286-b734-49c6-b3a1-d9b26ace28df|False|66|None|Back to Main Menu|None|False|False|67|Back to Main Menu|True|Ships|False
+1b9f9d04-e8a6-4f6c-acdf-d343358f4a53|False|0|None|Exit|None|True|False|67|Exit|True|Ships|False
+0936f366-aa43-4c83-9edb-4d9cfc092031|True|0|Add|Add Ships|None|False|False|68|Add Ships|False|Ships|False
+3497bb12-d739-4396-8c75-3648d7622acc|False|66|None|Back to Main Menu|None|False|False|68|Back to Main Menu|True|Ships|False
+b3905a40-4d60-4abc-a0bc-e54ffa944b86|False|0|None|Exit|None|True|False|68|Exit|True|Ships|False
+fbc3ecaf-79b1-42f7-bf6d-8c95783fca4a|True|0|Remove|Remove Ships|None|False|False|69|Remove Ships|False|Ships|False
+2cb24cf4-23a6-4d25-a151-7cee286ffb22|True|0|Next|Next Page|LastPage|False|False|69|Next Page|False|Ships|False
+0d21f1bc-f012-4bd9-9db7-4c0195dd4dcf|True|0|Last|Last Page|LastPage|False|False|69|Last Page|False|Ships|False
+01ca38a6-dd69-4397-bd40-870d1f03ddc9|True|0|First|First Page|FirstPage|False|False|69|First Page|False|Ships|False
+1993195b-b8ac-474d-8ad8-9e7e9f7d6222|True|0|Previous|Previous Page|FirstPage|False|False|69|Previous Page|False|Ships|False
+47a28a4e-92ce-4210-b140-67397f4755da|False|66|None|Back to Main Menu|None|False|False|69|Back to Main Menu|True|Ships|False
+a6881ea2-3977-4833-9b4c-30a3653970e7|False|0|None|Exit|None|True|False|69|Exit|True|Ships|False
+d9593e0b-eb0c-412d-865f-2ac8efa2e9fe|True|0|Edit|Edit Ships|None|False|False|70|Edit Ships|False|Ships|False
+fa04ef23-f26d-48bc-a31c-2920ec6ce599|True|0|Next|Next Page|LastPage|False|False|70|Next Page|False|Ships|False
+2f20105b-9395-4864-89c1-a593452f1c55|True|0|Last|Last Page|LastPage|False|False|70|Last Page|False|Ships|False
+a4f5ee98-a6f8-465b-94a1-f3cb1c6e7925|True|0|First|First Page|FirstPage|False|False|70|First Page|False|Ships|False
+8ee61472-5054-44c1-ac48-b61a38d37421|True|0|Previous|Previous Page|FirstPage|False|False|70|Previous Page|False|Ships|False
+87bc3047-51ab-491b-b6db-04413f1425e1|False|66|None|Back to Main Menu|None|False|False|70|Back to Main Menu|True|Ships|False
+062da859-6a67-4fd8-85a0-899ae329ce65|False|0|None|Exit|None|True|False|70|Exit|True|Ships|False
+91be0f62-c783-4285-ac72-28388ec4e14a|True|0|Save|Save Ships to a file|None|False|False|71|Save Ships to a file|False|Ships|False
+e51b6192-8e09-4a37-895a-2b2b0e16d34e|False|66|None|Back to Main Menu|None|False|False|71|Back to Main Menu|True|Ships|False
+fa3588cb-7e80-461a-bb4e-84506b54994d|False|0|None|Exit|None|True|False|71|Exit|True|Ships|False
+67c26f10-8b2e-47c9-9c76-0f466f351fd6|True|0|Load|Load Ships from a file|None|False|False|72|Load Ships from a file|False|Ships|False
+a343bb7b-5f60-497b-8921-7b231b696a65|False|66|None|Back to Main Menu|None|False|False|72|Back to Main Menu|True|Ships|False
+4fdacd5b-f04f-4084-bf81-ccb21e9e684b|False|0|None|Exit|None|True|False|72|Exit|True|Ships|False
+bf437c72-37ac-4e24-9031-4eb4b6171e8c|False|73|None|Manage ShipsTypes|None|False|False|9|Galaxy Manager - Main Menu|False|ShipType|False
+6f08acde-2043-400a-975d-f91c68db13b3|False|74|None|View ShipType|None|False|False|73|View ShipType - Sub Menu|False|ShipType|False
+529622ad-b0f3-46e1-8053-50a38180e6c3|False|75|None|Add ShipType|None|False|False|73|Add ShipType - Sub Menu|False|ShipType|False
+25c4d0d3-8c56-4b13-895a-d7112008e006|False|76|None|Remove ShipType|None|False|False|73|Remove ShipType - Sub Menu|False|ShipType|False
+34fc9330-8b58-4f8e-ae91-e2e97f44efa4|False|77|None|Edit ShipType|None|False|False|73|Edit ShipType - Sub Menu|False|ShipType|False
+1aafb25a-4539-4fa8-bb11-1819285ed40b|False|78|None|Save ShipType|None|False|False|73|Save ShipType - Sub Menu|False|ShipType|False
+c5618285-b1eb-40ca-92ed-f91da3071935|False|79|None|Load ShipType|None|False|False|73|Load ShipType - Sub Menu|False|ShipType|False
+3cd06f6e-d9a4-47b4-9bdd-038518ab3059|False|9|None|Back to Main Menu|None|False|False|73|Back to Main Menu|True|ShipType|False
+f796d2f4-381f-456a-99b2-cc4d038819d4|False|0|None|Exit|None|True|False|73|Exit|True|ShipType|False
+1b55fc4b-f882-49d3-b430-c0e98a5c973d|True|0|Refresh|Refresh|None|False|False|74|Refresh|False|ShipType|False
+bdfb170e-0b9b-4dff-85e0-d3e295099a5f|True|0|Search|Search|None|False|False|74|Search|False|ShipType|False
+8d56930d-66d9-4292-8f61-1b2a5f04e2e0|True|0|Next|Next Page|LastPage|False|False|74|Next Page|False|ShipType|False
+469fb4a4-f661-4778-ba3c-e166d49b6626|True|0|Last|Last Page|LastPage|False|False|74|Last Page|False|ShipType|False
+14f0cd04-06c0-45d3-857c-8837de103522|True|0|First|First Page|FirstPage|False|False|74|First Page|False|ShipType|False
+93e46546-c771-49d7-bab0-4a61ad727630|True|0|Previous|Previous Page|FirstPage|False|False|74|Previous Page|False|ShipType|False
+d1e6c3d8-3917-4f23-bd94-151639ed9d7a|False|73|None|Back to Main Menu|None|False|False|74|Back to Main Menu|True|ShipType|False
+884898f9-0146-4f7e-b2ca-64d5c59ce60c|False|0|None|Exit|None|True|False|74|Exit|True|ShipType|False
+f27f09b7-ab33-4b64-96fb-0c3c11196baa|True|0|Add|Add ShipType|None|False|False|75|Add ShipType|False|ShipType|False
+3ba4aba4-5f4e-45cc-b04d-7226e30ddc7a|False|73|None|Back to Main Menu|None|False|False|75|Back to Main Menu|True|ShipType|False
+3804931f-5465-4db8-b752-710184169ed3|False|0|None|Exit|None|True|False|75|Exit|True|ShipType|False
+85578a8b-7f30-4222-9c01-98bc821c2820|True|0|Remove|Remove ShipType|None|False|False|76|Remove ShipType|False|ShipType|False
+8ed83969-ae57-4d0f-adb6-126302867487|True|0|Next|Next Page|LastPage|False|False|76|Next Page|False|ShipType|False
+8953c752-f91c-4b06-a1ec-52dbdb3a9730|True|0|Last|Last Page|LastPage|False|False|76|Last Page|False|ShipType|False
+0f2cb7eb-b523-430a-838a-b0c5edc8985a|True|0|First|First Page|FirstPage|False|False|76|First Page|False|ShipType|False
+5c3f93d0-a20f-45c4-b347-95320d8d94ee|True|0|Previous|Previous Page|FirstPage|False|False|76|Previous Page|False|ShipType|False
+5d00118b-ba0c-4ebe-b32b-fad0cd41362c|False|73|None|Back to Main Menu|None|False|False|76|Back to Main Menu|True|ShipType|False
+605d8b1f-4aec-4ecd-9f17-ab4a5a6713df|False|0|None|Exit|None|True|False|76|Exit|True|ShipType|False
+b4734c1b-ab9b-4a42-ba2b-04065db4344f|True|0|Edit|Edit ShipType|None|False|False|77|Edit ShipType|False|ShipType|False
+b5b81d13-c1b5-4d6b-8dc7-cd3be625a71d|True|0|Next|Next Page|LastPage|False|False|77|Next Page|False|ShipType|False
+fb495168-3a6e-4381-8c1b-22a5c0715084|True|0|Last|Last Page|LastPage|False|False|77|Last Page|False|ShipType|False
+f3a11f61-aa3b-4b1a-9a4e-fdd622dcca15|True|0|First|First Page|FirstPage|False|False|77|First Page|False|ShipType|False
+76ab0bc2-3363-4f1c-891c-0ae0be5b7d33|True|0|Previous|Previous Page|FirstPage|False|False|77|Previous Page|False|ShipType|False
+afd7aa02-577f-4ddc-92d1-c021aa313b4a|False|73|None|Back to Main Menu|None|False|False|77|Back to Main Menu|True|ShipType|False
+012c039c-b861-48e8-89b2-17dd74669636|False|0|None|Exit|None|True|False|77|Exit|True|ShipType|False
+08a8dd33-b207-45b7-8d86-c4945046fc95|True|0|Save|Save ShipType to a file|None|False|False|78|Save ShipType to a file|False|ShipType|False
+3cc5b168-1219-4576-8baa-8fb253d90dfc|False|73|None|Back to Main Menu|None|False|False|78|Back to Main Menu|True|ShipType|False
+d4aa3fd9-7de5-4561-a1da-892a1c7f6ce2|False|0|None|Exit|None|True|False|78|Exit|True|ShipType|False
+3c55e1e2-a9c6-406f-bd0c-70801d714116|True|0|Load|Load ShipType from a file|None|False|False|79|Load ShipType from a file|False|ShipType|False
+b71f6377-62c6-433e-85ce-747aa25cf44d|False|73|None|Back to Main Menu|None|False|False|79|Back to Main Menu|True|ShipType|False
+3c648b8c-0071-42b7-b704-198c0b7b2689|False|0|None|Exit|None|True|False|79|Exit|True|ShipType|False
+c4389cbe-9dc4-4b63-b2c8-6f10b8654fa4|False|80|None|Manage Fleets|None|False|False|9|Galaxy Manager - Main Menu|False|Fleets|False
+2bd55f22-655a-417f-b4b8-dce01da31ebe|False|81|None|View Fleets|None|False|False|80|View Fleets - Sub Menu|False|Fleets|False
+b258c559-8ed3-4b34-a103-ee053903b287|False|82|None|Add Fleets|None|False|False|80|Add Fleets - Sub Menu|False|Fleets|False
+6d858ce7-0232-42ae-87de-ef7a144267f9|False|83|None|Remove Fleets|None|False|False|80|Remove Fleets - Sub Menu|False|Fleets|False
+81b7a2e8-a8a1-4854-b868-644a3f9f3d2b|False|84|None|Edit Fleets|None|False|False|80|Edit Fleets - Sub Menu|False|Fleets|False
+e69faf32-accd-494a-8beb-61e413f8b034|False|85|None|Save Fleets|None|False|False|80|Save Fleets - Sub Menu|False|Fleets|False
+ead964f5-daa3-431b-87a2-179ffdd61d68|False|86|None|Load Fleets|None|False|False|80|Load Fleets - Sub Menu|False|Fleets|False
+2182f65b-98d9-4c06-9d6d-138b4e92111c|False|9|None|Back to Main Menu|None|False|False|80|Back to Main Menu|True|Fleets|False
+f6a975c6-1266-42cb-bbdc-7dc13b4bb726|False|0|None|Exit|None|True|False|80|Exit|True|Fleets|False
+b0ad2b1a-3008-46f7-92e8-965c0cf18db9|True|0|Refresh|Refresh|None|False|False|81|Refresh|False|Fleets|False
+350c8780-bf68-4c20-85cd-a1f9403d814b|True|0|Search|Search|None|False|False|81|Search|False|Fleets|False
+9fe83638-097d-4290-b903-942c5aa1ad70|True|0|Next|Next Page|LastPage|False|False|81|Next Page|False|Fleets|False
+1ecf9712-2f17-4120-92ea-1eaa4ab437c0|True|0|Last|Last Page|LastPage|False|False|81|Last Page|False|Fleets|False
+e892948a-85e4-4443-97e5-dc11e6259e89|True|0|First|First Page|FirstPage|False|False|81|First Page|False|Fleets|False
+6819e3f2-31e8-4b21-b411-334fa84c0570|True|0|Previous|Previous Page|FirstPage|False|False|81|Previous Page|False|Fleets|False
+857facdb-d071-4b93-a6d4-16fcd777ea75|False|80|None|Back to Main Menu|None|False|False|81|Back to Main Menu|True|Fleets|False
+c4c2d6af-4d68-4bee-8af2-52a09daa2731|False|0|None|Exit|None|True|False|81|Exit|True|Fleets|False
+823c3f15-16b2-4348-a38a-f23064ae0dd3|True|0|Add|Add Fleets|None|False|False|82|Add Fleets|False|Fleets|False
+a8430a52-6117-4532-92a4-18f0256fe66b|False|80|None|Back to Main Menu|None|False|False|82|Back to Main Menu|True|Fleets|False
+265c59a2-66d9-4bb7-a83e-c9b6d5be31be|False|0|None|Exit|None|True|False|82|Exit|True|Fleets|False
+11f9e481-cffa-415a-aecf-2ae8e9bbf3b7|True|0|Remove|Remove Fleets|None|False|False|83|Remove Fleets|False|Fleets|False
+52094a5a-1e2c-4a32-b871-987694fe4579|True|0|Next|Next Page|LastPage|False|False|83|Next Page|False|Fleets|False
+46dfdbc1-eb1f-47f2-ab1d-e28edab95152|True|0|Last|Last Page|LastPage|False|False|83|Last Page|False|Fleets|False
+d0acaf54-3e63-4537-91da-4bb9779cc4ee|True|0|First|First Page|FirstPage|False|False|83|First Page|False|Fleets|False
+e2e5baa0-4933-4308-9a24-4134e27b049a|True|0|Previous|Previous Page|FirstPage|False|False|83|Previous Page|False|Fleets|False
+dfe9c83d-6525-4fcd-8c9e-2d3344207a28|False|80|None|Back to Main Menu|None|False|False|83|Back to Main Menu|True|Fleets|False
+f2724cd3-bab4-4496-89b8-986220fbc81c|False|0|None|Exit|None|True|False|83|Exit|True|Fleets|False
+fe54de62-a7e1-4774-a36c-295650e418f0|True|0|Edit|Edit Fleets|None|False|False|84|Edit Fleets|False|Fleets|False
+2577d247-6c37-4d74-8180-22abbae89e28|True|0|Next|Next Page|LastPage|False|False|84|Next Page|False|Fleets|False
+b375b180-6da2-4270-8da6-fd7e7f3ef89b|True|0|Last|Last Page|LastPage|False|False|84|Last Page|False|Fleets|False
+915576aa-3a1d-4d8a-801e-b8b280cfbfa8|True|0|First|First Page|FirstPage|False|False|84|First Page|False|Fleets|False
+d06aa209-767e-4850-9732-00920e66cf9c|True|0|Previous|Previous Page|FirstPage|False|False|84|Previous Page|False|Fleets|False
+d80d2b89-362b-4837-9c1c-fa4700e6d0ba|False|80|None|Back to Main Menu|None|False|False|84|Back to Main Menu|True|Fleets|False
+a2a924d4-eee7-47d6-8eb7-92130f69bd6f|False|0|None|Exit|None|True|False|84|Exit|True|Fleets|False
+f2705b06-783c-46ff-a878-fa894e36ce16|True|0|Save|Save Fleets to a file|None|False|False|85|Save Fleets to a file|False|Fleets|False
+81cd441f-6088-431e-8c01-a306e046d367|False|80|None|Back to Main Menu|None|False|False|85|Back to Main Menu|True|Fleets|False
+534983a0-8cd8-47b2-9e53-56d95dc2cacd|False|0|None|Exit|None|True|False|85|Exit|True|Fleets|False
+5c111226-148c-4452-9d2b-2588ac06c093|True|0|Load|Load Fleets from a file|None|False|False|86|Load Fleets from a file|False|Fleets|False
+30eff6b9-09f8-4377-8462-9cce4eeb912a|False|80|None|Back to Main Menu|None|False|False|86|Back to Main Menu|True|Fleets|False
+00a703ca-41a4-4c38-a3e7-2b5892ce9768|False|0|None|Exit|None|True|False|86|Exit|True|Fleets|False
+35954aeb-e124-48f0-a14e-b255d9c9a341|False|87|None|Manage Users|None|False|False|9|Galaxy Manager - Main Menu|False|Users|False
+ccf207fa-bc2f-41b5-bb6e-4f794c549791|False|88|None|View Users|None|False|False|87|View Users - Sub Menu|False|Users|False
+6dda547d-ee7d-4a6e-be1c-57466d27eee8|False|89|None|Add Users|None|False|False|87|Add Users - Sub Menu|False|Users|False
+6bb53da6-cb8e-4537-8336-0b5cf63132eb|False|90|None|Remove Users|None|False|False|87|Remove Users - Sub Menu|False|Users|False
+499085c9-c291-4cad-a045-7c72f147d0dc|False|91|None|Edit Users|None|False|False|87|Edit Users - Sub Menu|False|Users|False
+1ad8361b-f3e9-4c67-ae0f-4ddaad8fc493|False|92|None|Save Users|None|False|False|87|Save Users - Sub Menu|False|Users|False
+6d0d38d8-ea4d-44bb-869d-8e0549619593|False|93|None|Load Users|None|False|False|87|Load Users - Sub Menu|False|Users|False
+dc538dc3-3edf-44e2-820b-1b4fcd8ae16e|False|9|None|Back to Main Menu|None|False|False|87|Back to Main Menu|True|Users|False
+b44567e5-9e81-4c14-a13c-9c09507ad022|False|0|None|Exit|None|True|False|87|Exit|True|Users|False
+2d6aa1cf-6e4a-4b32-83f3-ed82faedb9f6|True|0|Refresh|Refresh|None|False|False|88|Refresh|False|Users|False
+be9ca4da-d050-4e90-b608-c7f78fe39f9d|True|0|Search|Search|None|False|False|88|Search|False|Users|False
+fcf652d7-fe28-49f9-9ed6-bedb4cbf5096|True|0|Next|Next Page|LastPage|False|False|88|Next Page|False|Users|False
+bcb99557-3ba6-4f69-88ac-6a16ba8cefc9|True|0|Last|Last Page|LastPage|False|False|88|Last Page|False|Users|False
+57ac0754-6b88-4da8-b9d0-c12d634a1f35|True|0|First|First Page|FirstPage|False|False|88|First Page|False|Users|False
+ab6c7494-1cb7-4f7b-a19f-bdb8afc2606b|True|0|Previous|Previous Page|FirstPage|False|False|88|Previous Page|False|Users|False
+a205292f-8121-4c4e-89e0-d1af8f610076|False|87|None|Back to Main Menu|None|False|False|88|Back to Main Menu|True|Users|False
+6d71b82f-5df4-4344-be27-0f806e924d79|False|0|None|Exit|None|True|False|88|Exit|True|Users|False
+c2cca299-812f-46ff-b8f5-02a5413b7097|True|0|Add|Add Users|None|False|False|89|Add Users|False|Users|False
+b01313a7-2217-4a66-ae94-0e51676d0110|False|87|None|Back to Main Menu|None|False|False|89|Back to Main Menu|True|Users|False
+39c3b556-49e2-446c-8318-932cdb9e0de6|False|0|None|Exit|None|True|False|89|Exit|True|Users|False
+8a963b82-e52c-41f1-8530-ed792657aba8|True|0|Remove|Remove Users|None|False|False|90|Remove Users|False|Users|False
+a25c6463-c5d6-48e0-a4ff-49a510e82553|True|0|Next|Next Page|LastPage|False|False|90|Next Page|False|Users|False
+f65451c0-5a78-4975-a7f5-7468967f8e53|True|0|Last|Last Page|LastPage|False|False|90|Last Page|False|Users|False
+fe6c540c-b6df-419d-8d4b-02661b45ac4e|True|0|First|First Page|FirstPage|False|False|90|First Page|False|Users|False
+b91b1ba3-0b58-4f19-9b3f-56348160e5a6|True|0|Previous|Previous Page|FirstPage|False|False|90|Previous Page|False|Users|False
+56d700f5-d78c-4ce4-819c-ef045c252dc0|False|87|None|Back to Main Menu|None|False|False|90|Back to Main Menu|True|Users|False
+6eeff791-ea18-4935-bd17-5fcec1728abc|False|0|None|Exit|None|True|False|90|Exit|True|Users|False
+bd0d3dee-c8b9-417c-b235-518f932bf758|True|0|Edit|Edit Users|None|False|False|91|Edit Users|False|Users|False
+e96c15b7-ca56-4691-839e-a636606a8e77|True|0|Next|Next Page|LastPage|False|False|91|Next Page|False|Users|False
+262b6070-5536-4127-944a-97c76a074d5a|True|0|Last|Last Page|LastPage|False|False|91|Last Page|False|Users|False
+8fdbc949-8425-4a04-89c4-69e482901913|True|0|First|First Page|FirstPage|False|False|91|First Page|False|Users|False
+66cb24ab-7b4c-4aba-90cb-da56a9e408f4|True|0|Previous|Previous Page|FirstPage|False|False|91|Previous Page|False|Users|False
+668ebb09-6a0a-4310-8c9c-02521fcbe01a|False|87|None|Back to Main Menu|None|False|False|91|Back to Main Menu|True|Users|False
+273e7cff-9880-431b-98e8-ff1fac998463|False|0|None|Exit|None|True|False|91|Exit|True|Users|False
+02cc3431-62d5-4770-812e-9712060f0f5c|True|0|Save|Save Users to a file|None|False|False|92|Save Users to a file|False|Users|False
+2ecced66-9432-4c49-afd1-e8509043ffc2|False|87|None|Back to Main Menu|None|False|False|92|Back to Main Menu|True|Users|False
+a754afed-8724-411f-8ec3-14e0f5481312|False|0|None|Exit|None|True|False|92|Exit|True|Users|False
+dde3fe14-ab56-4121-9225-cb8eed24d16c|True|0|Load|Load Users from a file|None|False|False|93|Load Users from a file|False|Users|False
+f9ab9d50-74f0-4d86-a21e-b06142af65a9|False|87|None|Back to Main Menu|None|False|False|93|Back to Main Menu|True|Users|False
+9be8b25f-22c2-4319-8843-b833e34a2c38|False|0|None|Exit|None|True|False|93|Exit|True|Users|False
+b56655f0-a660-48f1-b59c-1a0f85a94191|False|94|None|Manage Roles|None|False|False|9|Galaxy Manager - Main Menu|False|Roles|False
+426ce80a-75da-4f85-beab-8b7bf95476ad|False|95|None|View Roles|None|False|False|94|View Roles - Sub Menu|False|Roles|False
+45f1208e-3b2a-47a3-8c60-75c2f1ed3501|False|96|None|Add Roles|None|False|False|94|Add Roles - Sub Menu|False|Roles|False
+c994c6ec-df99-433c-a2c1-104100041fdb|False|97|None|Remove Roles|None|False|False|94|Remove Roles - Sub Menu|False|Roles|False
+38f0e9c8-313d-4a01-8708-72df461073c6|False|98|None|Edit Roles|None|False|False|94|Edit Roles - Sub Menu|False|Roles|False
+e5b70fe2-46ee-4f81-a68a-3cc777fcb490|False|99|None|Save Roles|None|False|False|94|Save Roles - Sub Menu|False|Roles|False
+f35e9f68-bc67-4c6f-9290-07366943232e|False|100|None|Load Roles|None|False|False|94|Load Roles - Sub Menu|False|Roles|False
+6ed79ee3-d76e-4f44-8a5f-45cb07202998|False|9|None|Back to Main Menu|None|False|False|94|Back to Main Menu|True|Roles|False
+69e15f68-e245-4ada-8e7f-ed082522631a|False|0|None|Exit|None|True|False|94|Exit|True|Roles|False
+0293f4ff-c95c-45bb-b7c1-767da1f3d336|True|0|Refresh|Refresh|None|False|False|95|Refresh|False|Roles|False
+aae79b1b-e5f6-403a-a948-7406daed56b2|True|0|Search|Search|None|False|False|95|Search|False|Roles|False
+307b4209-a24a-487c-bfd1-070121135783|True|0|Next|Next Page|LastPage|False|False|95|Next Page|False|Roles|False
+07015ca0-32dc-4f6d-a8f9-d2d9524e98f4|True|0|Last|Last Page|LastPage|False|False|95|Last Page|False|Roles|False
+594fbdbc-cd97-4a5f-bd00-a8be7cc86c20|True|0|First|First Page|FirstPage|False|False|95|First Page|False|Roles|False
+3c9b8a09-8ab6-42ad-a12d-cb352a97bd2e|True|0|Previous|Previous Page|FirstPage|False|False|95|Previous Page|False|Roles|False
+537dadb6-e03a-402d-936d-0e28b95af4b3|False|94|None|Back to Main Menu|None|False|False|95|Back to Main Menu|True|Roles|False
+b37f3806-2c0c-4ec5-9468-09a24797061c|False|0|None|Exit|None|True|False|95|Exit|True|Roles|False
+ae5f18cb-e74d-4dc2-b932-29df515ee5b0|True|0|Add|Add Roles|None|False|False|96|Add Roles|False|Roles|False
+947db028-1552-4f9d-90f5-b65bec9ebf69|False|94|None|Back to Main Menu|None|False|False|96|Back to Main Menu|True|Roles|False
+21b2bc15-9d7a-4f2a-8108-4c1b068f5644|False|0|None|Exit|None|True|False|96|Exit|True|Roles|False
+e7c5dea2-4bf6-47eb-ac20-29a3f165caa3|True|0|Remove|Remove Roles|None|False|False|97|Remove Roles|False|Roles|False
+54dfc344-a196-40d2-96f2-c4b0957be3c8|True|0|Next|Next Page|LastPage|False|False|97|Next Page|False|Roles|False
+05d79749-ed11-486a-a359-9427bcdeb8fd|True|0|Last|Last Page|LastPage|False|False|97|Last Page|False|Roles|False
+a5b82825-5038-4d95-b0a9-dfe67498f9ef|True|0|First|First Page|FirstPage|False|False|97|First Page|False|Roles|False
+9091e083-8011-44da-89ef-30a8591587b9|True|0|Previous|Previous Page|FirstPage|False|False|97|Previous Page|False|Roles|False
+f081c766-9b78-4328-9956-f678fdda1adf|False|94|None|Back to Main Menu|None|False|False|97|Back to Main Menu|True|Roles|False
+34b6d88a-7c08-484a-bce1-ebaabced2fc6|False|0|None|Exit|None|True|False|97|Exit|True|Roles|False
+5fa8cb02-a1ee-46ac-aea3-97ba39487c3b|True|0|Edit|Edit Roles|None|False|False|98|Edit Roles|False|Roles|False
+6d003da8-f4d1-4343-99cb-c0cdd2ede51d|True|0|Next|Next Page|LastPage|False|False|98|Next Page|False|Roles|False
+d84fcc63-73d3-46f2-957e-7b64ba28656c|True|0|Last|Last Page|LastPage|False|False|98|Last Page|False|Roles|False
+97f0b71e-46d1-4bc0-8134-e00c78e56f02|True|0|First|First Page|FirstPage|False|False|98|First Page|False|Roles|False
+6e2cb166-4305-4715-bf7b-aaa573bde71d|True|0|Previous|Previous Page|FirstPage|False|False|98|Previous Page|False|Roles|False
+20349854-28ae-4221-9ea2-35ada4e8c684|False|94|None|Back to Main Menu|None|False|False|98|Back to Main Menu|True|Roles|False
+a7fc2e97-d681-4de0-b783-e4fcd1d74335|False|0|None|Exit|None|True|False|98|Exit|True|Roles|False
+3ec6a51c-dec0-4411-a6a6-45d4893ee2ce|True|0|Save|Save Roles to a file|None|False|False|99|Save Roles to a file|False|Roles|False
+e78386bd-657d-4787-a5af-db6582131004|False|94|None|Back to Main Menu|None|False|False|99|Back to Main Menu|True|Roles|False
+3733ec95-7625-42de-9124-24f90283a12d|False|0|None|Exit|None|True|False|99|Exit|True|Roles|False
+cb4723f8-d97b-46c8-a6a7-3b9e415c1eae|True|0|Load|Load Roles from a file|None|False|False|100|Load Roles from a file|False|Roles|False
+a9bbf3ee-ed3e-40c8-a4ea-ac7403c9d51a|False|94|None|Back to Main Menu|None|False|False|100|Back to Main Menu|True|Roles|False
+714f7b62-2013-49a1-95e8-3f583a6e8cec|False|0|None|Exit|None|True|False|100|Exit|True|Roles|False
+d9a124c9-d7ec-4eca-8e9e-342a84b6fca5|False|101|None|Manage RoleGroups|None|False|False|9|Galaxy Manager - Main Menu|False|RoleGroups|False
+34cb8ba9-6b81-421b-88ca-b26756e6130a|False|102|None|View RoleGroups|None|False|False|101|View RoleGroups - Sub Menu|False|RoleGroups|False
+059d1a60-5333-465a-bcdb-17ae1cc50c36|False|103|None|Add RoleGroups|None|False|False|101|Add RoleGroups - Sub Menu|False|RoleGroups|False
+cd94f468-e75f-455d-94c0-1879c03b8563|False|104|None|Remove RoleGroups|None|False|False|101|Remove RoleGroups - Sub Menu|False|RoleGroups|False
+29a3a1dd-a3ac-43f8-b20e-9c8c3afd10a6|False|105|None|Edit RoleGroups|None|False|False|101|Edit RoleGroups - Sub Menu|False|RoleGroups|False
+7ea0abad-098b-4bd3-94c1-e91bedf27fac|False|106|None|Save RoleGroups|None|False|False|101|Save RoleGroups - Sub Menu|False|RoleGroups|False
+2625fd2f-68d1-4d10-b405-53468f7b2039|False|107|None|Load RoleGroups|None|False|False|101|Load RoleGroups - Sub Menu|False|RoleGroups|False
+d4402169-62a7-4886-bc8a-193c6237b42e|False|9|None|Back to Main Menu|None|False|False|101|Back to Main Menu|True|RoleGroups|False
+15182841-27ea-44ff-b911-da12bfb75ab0|False|0|None|Exit|None|True|False|101|Exit|True|RoleGroups|False
+2a990c42-6b07-44a9-84d4-d77b15e745e1|True|0|Refresh|Refresh|None|False|False|102|Refresh|False|RoleGroups|False
+0c88ef2e-bc51-435c-b15f-4e71025e1cde|True|0|Search|Search|None|False|False|102|Search|False|RoleGroups|False
+a1b2d747-c0f3-4baf-82ce-fad6ba3bd27e|True|0|Next|Next Page|LastPage|False|False|102|Next Page|False|RoleGroups|False
+78cf6649-4473-47e7-af95-a865b4d8e2fe|True|0|Last|Last Page|LastPage|False|False|102|Last Page|False|RoleGroups|False
+df7669fd-ae14-42ad-a3f3-454c293fb5f3|True|0|First|First Page|FirstPage|False|False|102|First Page|False|RoleGroups|False
+a7a10bc0-1a2b-4020-ba40-913033e39d1f|True|0|Previous|Previous Page|FirstPage|False|False|102|Previous Page|False|RoleGroups|False
+ff2ae6ef-4982-4d8e-89c2-7f53745bc913|False|101|None|Back to Main Menu|None|False|False|102|Back to Main Menu|True|RoleGroups|False
+05a5e6b5-b3f7-4ed8-b94f-ad696cde5180|False|0|None|Exit|None|True|False|102|Exit|True|RoleGroups|False
+cf317ce8-eb31-4fc4-b628-ef7595c42c1e|True|0|Add|Add RoleGroups|None|False|False|103|Add RoleGroups|False|RoleGroups|False
+3a39a514-b43e-4bee-9d8f-7e96b4f09720|False|101|None|Back to Main Menu|None|False|False|103|Back to Main Menu|True|RoleGroups|False
+2373ca8e-e85c-44a8-9ea6-e99e9ca6d613|False|0|None|Exit|None|True|False|103|Exit|True|RoleGroups|False
+2f9bedf3-5c81-4d8d-9420-8d337827b9e0|True|0|Remove|Remove RoleGroups|None|False|False|104|Remove RoleGroups|False|RoleGroups|False
+e61e389b-7b9a-475a-a7b6-3f75b68522f2|True|0|Next|Next Page|LastPage|False|False|104|Next Page|False|RoleGroups|False
+ae3e04fc-f4ad-4d86-ba32-0c922b0e6c2f|True|0|Last|Last Page|LastPage|False|False|104|Last Page|False|RoleGroups|False
+65e14461-fd19-4f4d-8dd3-4e15aa816aa4|True|0|First|First Page|FirstPage|False|False|104|First Page|False|RoleGroups|False
+8a57adab-9531-4c2d-a5f5-578383a608e2|True|0|Previous|Previous Page|FirstPage|False|False|104|Previous Page|False|RoleGroups|False
+a004b0f3-47e7-45e0-908a-3323f05a8b98|False|101|None|Back to Main Menu|None|False|False|104|Back to Main Menu|True|RoleGroups|False
+ae29e7c7-b03b-402f-adff-c7deae14720a|False|0|None|Exit|None|True|False|104|Exit|True|RoleGroups|False
+0c3022b0-8652-4163-9aee-b48a4f6fad1d|True|0|Edit|Edit RoleGroups|None|False|False|105|Edit RoleGroups|False|RoleGroups|False
+aa749bc3-6ddf-47fc-8ab7-bbe04f58e2ec|True|0|Next|Next Page|LastPage|False|False|105|Next Page|False|RoleGroups|False
+ad1654cd-1a9c-4bed-b35c-fb5aa859de6c|True|0|Last|Last Page|LastPage|False|False|105|Last Page|False|RoleGroups|False
+ec52ce22-9348-4cbb-8b6d-b6d2afaa9b91|True|0|First|First Page|FirstPage|False|False|105|First Page|False|RoleGroups|False
+89a6a6a7-ecfb-473f-a3d4-61cdc335b269|True|0|Previous|Previous Page|FirstPage|False|False|105|Previous Page|False|RoleGroups|False
+3f3efb3f-7e53-4af5-a5c2-23c86b26f3f3|False|101|None|Back to Main Menu|None|False|False|105|Back to Main Menu|True|RoleGroups|False
+662c59cd-e4b3-4ef1-bb12-898809eb3cab|False|0|None|Exit|None|True|False|105|Exit|True|RoleGroups|False
+563db6e0-8d07-4d36-8291-aabc315e7267|True|0|Save|Save RoleGroups to a file|None|False|False|106|Save RoleGroups to a file|False|RoleGroups|False
+fa040867-2d72-42af-8efa-aa99ee91e7df|False|101|None|Back to Main Menu|None|False|False|106|Back to Main Menu|True|RoleGroups|False
+0daf2a8b-36b3-4e6f-a38f-6a23f102c9d2|False|0|None|Exit|None|True|False|106|Exit|True|RoleGroups|False
+822f180f-a38d-420e-a020-d9530f3e8ede|True|0|Load|Load RoleGroups from a file|None|False|False|107|Load RoleGroups from a file|False|RoleGroups|False
+16a09edc-8e81-4e82-ab86-1156d625062b|False|101|None|Back to Main Menu|None|False|False|107|Back to Main Menu|True|RoleGroups|False
+6a7fde7f-d5a1-411f-afb5-7c49b768d5ea|False|0|None|Exit|None|True|False|107|Exit|True|RoleGroups|False
+e9a7f899-d88b-48a1-b8da-bbe89324fe87|False|108|None|Manage Beacons|None|False|False|9|Galaxy Manager - Main Menu|False|Beacons|False
+4acdeff9-0d56-4dba-af36-351d4d5e932a|False|109|None|View Beacons|None|False|False|108|View Beacons - Sub Menu|False|Beacons|False
+9c155294-2080-422e-9cdc-147d5977d9b5|False|110|None|Add Beacons|None|False|False|108|Add Beacons - Sub Menu|False|Beacons|False
+1296aa26-7159-4daf-b7f4-be331cd4786f|False|111|None|Remove Beacons|None|False|False|108|Remove Beacons - Sub Menu|False|Beacons|False
+bc63b974-e551-4b39-88ee-7e08324ca2df|False|112|None|Edit Beacons|None|False|False|108|Edit Beacons - Sub Menu|False|Beacons|False
+4147f65f-1574-4267-b0aa-a56204dad377|False|113|None|Save Beacons|None|False|False|108|Save Beacons - Sub Menu|False|Beacons|False
+31ec26c1-e5cd-4f69-8a1c-9bbf28bcd609|False|114|None|Load Beacons|None|False|False|108|Load Beacons - Sub Menu|False|Beacons|False
+fe94130e-c174-466b-a0c3-aad9330126fa|False|9|None|Back to Main Menu|None|False|False|108|Back to Main Menu|True|Beacons|False
+2e64a217-2d3a-4a07-b837-90a6e3bd22e7|False|0|None|Exit|None|True|False|108|Exit|True|Beacons|False
+44fc88e7-ea20-48f7-bfb7-c218bab0697f|True|0|Refresh|Refresh|None|False|False|109|Refresh|False|Beacons|False
+fa8210fe-310e-4fda-b2ba-316b9438bf16|True|0|Search|Search|None|False|False|109|Search|False|Beacons|False
+517952a3-2c39-40ef-9bf3-540c01c95a50|True|0|Next|Next Page|LastPage|False|False|109|Next Page|False|Beacons|False
+866811e9-dd6b-40da-ab0f-a7414c5517fc|True|0|Last|Last Page|LastPage|False|False|109|Last Page|False|Beacons|False
+2f89d9cd-9ece-4a5f-9b54-8b20896c233d|True|0|First|First Page|FirstPage|False|False|109|First Page|False|Beacons|False
+634c493f-7985-484b-be87-3c877be47278|True|0|Previous|Previous Page|FirstPage|False|False|109|Previous Page|False|Beacons|False
+52312965-32de-4a0b-a699-aca55b4fdf1b|False|108|None|Back to Main Menu|None|False|False|109|Back to Main Menu|True|Beacons|False
+ad79c467-072f-4c40-8a6a-bc75c0fc758a|False|0|None|Exit|None|True|False|109|Exit|True|Beacons|False
+393059a2-5e8d-489a-9253-606828451364|True|0|Add|Add Beacons|None|False|False|110|Add Beacons|False|Beacons|False
+445a23a7-bd4d-459d-b577-bb5e423be57c|False|108|None|Back to Main Menu|None|False|False|110|Back to Main Menu|True|Beacons|False
+848fbe9d-2e5d-45ef-bc8b-d2a1c3ba7d05|False|0|None|Exit|None|True|False|110|Exit|True|Beacons|False
+858c059b-b414-4dd4-a30f-515704c8105b|True|0|Remove|Remove Beacons|None|False|False|111|Remove Beacons|False|Beacons|False
+6fd9f3dd-c029-4e0b-af2d-cb293fc0d5d9|True|0|Next|Next Page|LastPage|False|False|111|Next Page|False|Beacons|False
+f584011d-f1c5-442f-85d9-ad631d78e770|True|0|Last|Last Page|LastPage|False|False|111|Last Page|False|Beacons|False
+9674abeb-713d-4672-ace8-8441fe3acc64|True|0|First|First Page|FirstPage|False|False|111|First Page|False|Beacons|False
+e3f8b0d6-e6d2-4c1d-8b45-e57b22f92b0c|True|0|Previous|Previous Page|FirstPage|False|False|111|Previous Page|False|Beacons|False
+acef7c37-55d3-4b23-913b-f3accecd0633|False|108|None|Back to Main Menu|None|False|False|111|Back to Main Menu|True|Beacons|False
+395aa9c6-2dda-4096-ab57-f555442bab15|False|0|None|Exit|None|True|False|111|Exit|True|Beacons|False
+d9b1a831-bd43-459e-8274-29c7b32182aa|True|0|Edit|Edit Beacons|None|False|False|112|Edit Beacons|False|Beacons|False
+1017b740-f705-4366-a168-a9e5731a761a|True|0|Next|Next Page|LastPage|False|False|112|Next Page|False|Beacons|False
+840fc44d-d329-49ed-80db-d6b730750dfe|True|0|Last|Last Page|LastPage|False|False|112|Last Page|False|Beacons|False
+a9c2ba65-e3f7-4bc7-acc5-04e409845cc6|True|0|First|First Page|FirstPage|False|False|112|First Page|False|Beacons|False
+52267cd2-6892-47d4-bba2-aadf446707d6|True|0|Previous|Previous Page|FirstPage|False|False|112|Previous Page|False|Beacons|False
+ea9d2734-8303-4e25-866e-50ced2d7c51c|False|108|None|Back to Main Menu|None|False|False|112|Back to Main Menu|True|Beacons|False
+2b6cd04f-c693-4605-bf6a-60a1bc3b36ad|False|0|None|Exit|None|True|False|112|Exit|True|Beacons|False
+f1f6be2f-d67a-4065-93db-fed2e293b9a1|True|0|Save|Save Beacons to a file|None|False|False|113|Save Beacons to a file|False|Beacons|False
+a98be68e-247d-4dd5-9280-d34e17342ce8|False|108|None|Back to Main Menu|None|False|False|113|Back to Main Menu|True|Beacons|False
+71ff3158-fcb8-43e8-911c-a1a04c0b2b6a|False|0|None|Exit|None|True|False|113|Exit|True|Beacons|False
+de2a4a3e-1c2a-4740-b940-b567ee7a3b0a|True|0|Load|Load Beacons from a file|None|False|False|114|Load Beacons from a file|False|Beacons|False
+a3f4dcbf-e528-45e2-b552-038840481b8b|False|108|None|Back to Main Menu|None|False|False|114|Back to Main Menu|True|Beacons|False
+b99de4ae-c31a-49bd-889f-82cf47a873b1|False|0|None|Exit|None|True|False|114|Exit|True|Beacons|False
+af443a92-a376-43e2-a6c2-6a729c8c933e|False|115|None|Manage Routes|None|False|False|9|Galaxy Manager - Main Menu|False|Routes|False
+f37c0a24-7c7c-403a-b893-b6e6837072fd|False|116|None|View Routes|None|False|False|115|View Routes - Sub Menu|False|Routes|False
+91248cad-3409-4a4c-9030-59ffd31904c3|False|117|None|Add Routes|None|False|False|115|Add Routes - Sub Menu|False|Routes|False
+c9cb4fad-ccd2-4dbb-bda7-d6f7e5492740|False|118|None|Remove Routes|None|False|False|115|Remove Routes - Sub Menu|False|Routes|False
+f3979d07-9955-4acb-aad5-c7d2c2f233ef|False|119|None|Edit Routes|None|False|False|115|Edit Routes - Sub Menu|False|Routes|False
+956e20e2-d185-47f0-aca8-54d71b50d0d6|False|120|None|Save Routes|None|False|False|115|Save Routes - Sub Menu|False|Routes|False
+b22a719d-8c4c-46e8-82e1-37231fea9ef7|False|121|None|Load Routes|None|False|False|115|Load Routes - Sub Menu|False|Routes|False
+24113db7-6e74-4566-a2d9-b8fd0d043536|False|9|None|Back to Main Menu|None|False|False|115|Back to Main Menu|True|Routes|False
+5e6b0fa4-206e-4271-9b46-e5a3a34ca9f5|False|0|None|Exit|None|True|False|115|Exit|True|Routes|False
+272435f7-665c-49ef-a15b-0d1ef82d2784|True|0|Refresh|Refresh|None|False|False|116|Refresh|False|Routes|False
+5d7d6ca7-9c21-48aa-b715-ecff056bf988|True|0|Search|Search|None|False|False|116|Search|False|Routes|False
+18b09bd7-e891-4cab-8a82-94ec1cc68730|True|0|Next|Next Page|LastPage|False|False|116|Next Page|False|Routes|False
+baa2deb5-1e74-4e7b-99fb-1b7be98aaf0b|True|0|Last|Last Page|LastPage|False|False|116|Last Page|False|Routes|False
+a9c5c110-bd2b-4ba7-a8e5-e32153181cb9|True|0|First|First Page|FirstPage|False|False|116|First Page|False|Routes|False
+b228434d-2310-462f-a7fb-f56dd49b1310|True|0|Previous|Previous Page|FirstPage|False|False|116|Previous Page|False|Routes|False
+544d8b35-803e-4494-a663-db31f316a359|False|115|None|Back to Main Menu|None|False|False|116|Back to Main Menu|True|Routes|False
+dfa17254-d5b9-4019-848f-6ef1af84d302|False|0|None|Exit|None|True|False|116|Exit|True|Routes|False
+35ceaad8-ad34-40f3-99ac-23b2a9f48a6f|True|0|Add|Add Routes|None|False|False|117|Add Routes|False|Routes|False
+8a56a14b-5e21-4a6f-a1c0-69b48453fbad|False|115|None|Back to Main Menu|None|False|False|117|Back to Main Menu|True|Routes|False
+59f77ef2-049c-42a0-92f3-d282f4090f3a|False|0|None|Exit|None|True|False|117|Exit|True|Routes|False
+202b8ff0-148f-44b9-bd12-8f2261e9e126|True|0|Remove|Remove Routes|None|False|False|118|Remove Routes|False|Routes|False
+4e77c6a6-e160-43b3-abae-ac4713f55ec9|True|0|Next|Next Page|LastPage|False|False|118|Next Page|False|Routes|False
+c208c49d-a808-43d5-9ef1-30285d492a18|True|0|Last|Last Page|LastPage|False|False|118|Last Page|False|Routes|False
+7adf7971-a8a4-4031-ba99-4cec6f202a3c|True|0|First|First Page|FirstPage|False|False|118|First Page|False|Routes|False
+94656acf-c65d-4e25-8f59-ec8e4c6995da|True|0|Previous|Previous Page|FirstPage|False|False|118|Previous Page|False|Routes|False
+f5b97398-9752-432e-9bfa-945cf2b92ef5|False|115|None|Back to Main Menu|None|False|False|118|Back to Main Menu|True|Routes|False
+d95f8964-cbf6-48d2-a719-7fe87422dcee|False|0|None|Exit|None|True|False|118|Exit|True|Routes|False
+4545c725-8218-4824-9972-080faaf12a65|True|0|Edit|Edit Routes|None|False|False|119|Edit Routes|False|Routes|False
+51a2ab31-9c36-4f6c-90b1-36091b947935|True|0|Next|Next Page|LastPage|False|False|119|Next Page|False|Routes|False
+29032a82-ece1-451a-8ece-c385afa6a5de|True|0|Last|Last Page|LastPage|False|False|119|Last Page|False|Routes|False
+5767b94f-3bd0-45dd-a25a-c701e35119b0|True|0|First|First Page|FirstPage|False|False|119|First Page|False|Routes|False
+72a176cb-9021-492f-a677-3cc5aa09b156|True|0|Previous|Previous Page|FirstPage|False|False|119|Previous Page|False|Routes|False
+a3ac02ff-22f9-4b92-b54f-3699e19547f3|False|115|None|Back to Main Menu|None|False|False|119|Back to Main Menu|True|Routes|False
+cf264f7c-83ce-4351-89ef-7564b916d85f|False|0|None|Exit|None|True|False|119|Exit|True|Routes|False
+1cf995ac-5d5c-47ad-a951-21e9aafff107|True|0|Save|Save Routes to a file|None|False|False|120|Save Routes to a file|False|Routes|False
+6110c3c5-42c9-4410-ab82-145d9d928f88|False|115|None|Back to Main Menu|None|False|False|120|Back to Main Menu|True|Routes|False
+3a063312-dd7f-4881-a8f9-fcc20488eaca|False|0|None|Exit|None|True|False|120|Exit|True|Routes|False
+fe2a2928-1e93-4cfc-8992-d92bb317d86a|True|0|Load|Load Routes from a file|None|False|False|121|Load Routes from a file|False|Routes|False
+78b2caa7-4220-49ab-a9d9-227378b052e1|False|115|None|Back to Main Menu|None|False|False|121|Back to Main Menu|True|Routes|False
+6e7358d8-0a03-4c1a-a632-fb34e9afa315|False|0|None|Exit|None|True|False|121|Exit|True|Routes|False
+eeb11d20-1fa3-45b1-8eac-49c0553c2ed4|False|122|None|Link BuildingTypes To Buildings|None|False|False|9|Galaxy Manager - Main Menu|False|LinkBuildingsTypesBuildings|False
+52d8344a-a012-4ef1-b2e2-34cb1b006cea|False|123|None|View LinkBuildingsTypesBuildings|None|False|False|122|View LinkBuildingsTypesBuildings - Sub Menu|False|LinkBuildingsTypesBuildings|False
+c89cddb3-acb3-4b5f-a7e0-d092a1d8d1fd|False|124|None|Add LinkBuildingsTypesBuildings|None|False|False|122|Add LinkBuildingsTypesBuildings - Sub Menu|False|LinkBuildingsTypesBuildings|False
+dca64eee-9a89-4231-a213-2926bc6e622e|False|125|None|Remove LinkBuildingsTypesBuildings|None|False|False|122|Remove LinkBuildingsTypesBuildings - Sub Menu|False|LinkBuildingsTypesBuildings|False
+babfaa41-3bc3-44f4-85da-f3a94f345488|False|126|None|Edit LinkBuildingsTypesBuildings|None|False|False|122|Edit LinkBuildingsTypesBuildings - Sub Menu|False|LinkBuildingsTypesBuildings|False
+7e49a639-f2e5-475b-b240-8f9aef4452f8|False|127|None|Save LinkBuildingsTypesBuildings|None|False|False|122|Save LinkBuildingsTypesBuildings - Sub Menu|False|LinkBuildingsTypesBuildings|False
+fd282e9d-0196-4983-981e-d5178fab4fc4|False|128|None|Load LinkBuildingsTypesBuildings|None|False|False|122|Load LinkBuildingsTypesBuildings - Sub Menu|False|LinkBuildingsTypesBuildings|False
+548093c7-2545-4df0-b90b-6e8fe7944d39|False|9|None|Back to Main Menu|None|False|False|122|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+5557d8b2-f2b3-4d66-836f-2ba1d5951637|False|0|None|Exit|None|True|False|122|Exit|True|LinkBuildingsTypesBuildings|False
+f9f507bf-e9d6-41d7-ac72-1a1c80246d72|True|0|Refresh|Refresh|None|False|False|123|Refresh|False|LinkBuildingsTypesBuildings|False
+d2a1a1d1-a490-42ef-8dee-d3c59520f5a4|True|0|Search|Search|None|False|False|123|Search|False|LinkBuildingsTypesBuildings|False
+4e0bf854-d8cc-4961-96de-1fa2d2b7af1e|True|0|Next|Next Page|LastPage|False|False|123|Next Page|False|LinkBuildingsTypesBuildings|False
+cf13dc8f-06ee-4845-a878-27adc86a1da4|True|0|Last|Last Page|LastPage|False|False|123|Last Page|False|LinkBuildingsTypesBuildings|False
+6b637752-3d48-42de-a597-1b0a0f1fce2d|True|0|First|First Page|FirstPage|False|False|123|First Page|False|LinkBuildingsTypesBuildings|False
+575f621d-4f6e-42bc-8706-2c60681b45eb|True|0|Previous|Previous Page|FirstPage|False|False|123|Previous Page|False|LinkBuildingsTypesBuildings|False
+f72310e4-0d8b-48d4-9ea9-92636a8af1ac|False|122|None|Back to Main Menu|None|False|False|123|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+e44571ec-da41-4725-8e19-85279e13c8dc|False|0|None|Exit|None|True|False|123|Exit|True|LinkBuildingsTypesBuildings|False
+b4eda93a-d8ae-4aa8-8f63-82aca35f16c6|True|0|Add|Add LinkBuildingsTypesBuildings|None|False|False|124|Add LinkBuildingsTypesBuildings|False|LinkBuildingsTypesBuildings|False
+11d1a6b0-bf67-4b73-a8b1-5dd2c8a442e2|False|122|None|Back to Main Menu|None|False|False|124|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+e071ddf1-e3c2-4608-8351-f69564aa53b2|False|0|None|Exit|None|True|False|124|Exit|True|LinkBuildingsTypesBuildings|False
+c08bac20-44ba-472f-8e36-8f9de29155b3|True|0|Remove|Remove LinkBuildingsTypesBuildings|None|False|False|125|Remove LinkBuildingsTypesBuildings|False|LinkBuildingsTypesBuildings|False
+ced52c3e-ead8-477d-bc1d-17a0af1cdaf1|True|0|Next|Next Page|LastPage|False|False|125|Next Page|False|LinkBuildingsTypesBuildings|False
+a19ac921-bd8c-4193-b8fe-88fa4a1c39cb|True|0|Last|Last Page|LastPage|False|False|125|Last Page|False|LinkBuildingsTypesBuildings|False
+681c66ef-ac06-4c9c-921a-16749a66216e|True|0|First|First Page|FirstPage|False|False|125|First Page|False|LinkBuildingsTypesBuildings|False
+3ebebe33-525d-4ce2-84b3-ab1a0c2ef8e6|True|0|Previous|Previous Page|FirstPage|False|False|125|Previous Page|False|LinkBuildingsTypesBuildings|False
+bd73e470-91ff-4c5e-a143-b0a9a4b4ae99|False|122|None|Back to Main Menu|None|False|False|125|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+05040431-982d-498b-a7ea-e3bec3bce347|False|0|None|Exit|None|True|False|125|Exit|True|LinkBuildingsTypesBuildings|False
+c392a3f2-f1cf-440e-8e86-89e57f9fc042|True|0|Edit|Edit LinkBuildingsTypesBuildings|None|False|False|126|Edit LinkBuildingsTypesBuildings|False|LinkBuildingsTypesBuildings|False
+7927f3c7-01eb-4c56-bf9f-21f079ca4ad1|True|0|Next|Next Page|LastPage|False|False|126|Next Page|False|LinkBuildingsTypesBuildings|False
+923b2766-938c-437f-8bfc-94f18a455e1d|True|0|Last|Last Page|LastPage|False|False|126|Last Page|False|LinkBuildingsTypesBuildings|False
+404ccd37-ad51-4e3a-b8e3-e12b0954d2a3|True|0|First|First Page|FirstPage|False|False|126|First Page|False|LinkBuildingsTypesBuildings|False
+37095cac-3e15-4a9b-84ed-e6112d2e1632|True|0|Previous|Previous Page|FirstPage|False|False|126|Previous Page|False|LinkBuildingsTypesBuildings|False
+2a3639df-4a93-4888-ac65-adf6e39281dd|False|122|None|Back to Main Menu|None|False|False|126|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+7105f82b-9dd2-4061-81be-65fb2be72483|False|0|None|Exit|None|True|False|126|Exit|True|LinkBuildingsTypesBuildings|False
+56f8b2d0-a571-4211-8a65-8f4a40ee153f|True|0|Save|Save LinkBuildingsTypesBuildings to a file|None|False|False|127|Save LinkBuildingsTypesBuildings to a file|False|LinkBuildingsTypesBuildings|False
+eb12a161-284d-403b-980f-769f17c043af|False|122|None|Back to Main Menu|None|False|False|127|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+50ec5e1e-9c55-4233-bda9-0674b5c3dac6|False|0|None|Exit|None|True|False|127|Exit|True|LinkBuildingsTypesBuildings|False
+64f73829-acd1-4626-9bc7-860f7efe65af|True|0|Load|Load LinkBuildingsTypesBuildings from a file|None|False|False|128|Load LinkBuildingsTypesBuildings from a file|False|LinkBuildingsTypesBuildings|False
+1cfceca2-901a-44e6-8767-91fed0ec2f84|False|122|None|Back to Main Menu|None|False|False|128|Back to Main Menu|True|LinkBuildingsTypesBuildings|False
+005002ef-3bed-47ae-9e7a-1c1187f4be13|False|0|None|Exit|None|True|False|128|Exit|True|LinkBuildingsTypesBuildings|False
+3039d94b-23de-4257-87e9-186f7576c513|False|129|None|Link Buildings To Sites|None|False|False|9|Galaxy Manager - Main Menu|False|LinkBuildingsSites|False
+59febaa8-22e4-4946-855b-9769395e9117|False|130|None|View LinkBuildingsSites|None|False|False|129|View LinkBuildingsSites - Sub Menu|False|LinkBuildingsSites|False
+b46d4252-9972-4163-8e44-179744630189|False|131|None|Add LinkBuildingsSites|None|False|False|129|Add LinkBuildingsSites - Sub Menu|False|LinkBuildingsSites|False
+33739ece-97b2-43e6-a506-449d895a5aff|False|132|None|Remove LinkBuildingsSites|None|False|False|129|Remove LinkBuildingsSites - Sub Menu|False|LinkBuildingsSites|False
+01fc2562-73c3-407c-aaa6-d0c8a5d47862|False|133|None|Edit LinkBuildingsSites|None|False|False|129|Edit LinkBuildingsSites - Sub Menu|False|LinkBuildingsSites|False
+bd457129-eb0c-4e8c-bccf-b079bd9243f8|False|134|None|Save LinkBuildingsSites|None|False|False|129|Save LinkBuildingsSites - Sub Menu|False|LinkBuildingsSites|False
+aad9c0e0-c5b3-4441-aeaa-7981181b9a60|False|135|None|Load LinkBuildingsSites|None|False|False|129|Load LinkBuildingsSites - Sub Menu|False|LinkBuildingsSites|False
+67796e22-fbdf-47f8-863e-52e6704fce77|False|9|None|Back to Main Menu|None|False|False|129|Back to Main Menu|True|LinkBuildingsSites|False
+10b6605c-f81f-414c-8852-c2b115e004f2|False|0|None|Exit|None|True|False|129|Exit|True|LinkBuildingsSites|False
+9e6269a9-85e3-4f1d-9904-527fb168076a|True|0|Refresh|Refresh|None|False|False|130|Refresh|False|LinkBuildingsSites|False
+87d7a6d1-5957-4eef-b41f-2ec139fbbe92|True|0|Search|Search|None|False|False|130|Search|False|LinkBuildingsSites|False
+38e59133-dd77-441a-85ad-9e44fb9e4901|True|0|Next|Next Page|LastPage|False|False|130|Next Page|False|LinkBuildingsSites|False
+d6867cc7-d813-4c43-a74d-a816f42a7dc7|True|0|Last|Last Page|LastPage|False|False|130|Last Page|False|LinkBuildingsSites|False
+85203f6e-f779-4002-83de-e78c557a951a|True|0|First|First Page|FirstPage|False|False|130|First Page|False|LinkBuildingsSites|False
+d5a4e18f-2909-4ee3-8162-92a62d6aeeb9|True|0|Previous|Previous Page|FirstPage|False|False|130|Previous Page|False|LinkBuildingsSites|False
+8c82bfcd-2c3a-4100-bd11-edcfca2b73ce|False|129|None|Back to Main Menu|None|False|False|130|Back to Main Menu|True|LinkBuildingsSites|False
+0110526a-0bb6-4142-b658-b003040be487|False|0|None|Exit|None|True|False|130|Exit|True|LinkBuildingsSites|False
+2b030ef5-dd1b-4212-9996-5c7a07d4b33c|True|0|Add|Add LinkBuildingsSites|None|False|False|131|Add LinkBuildingsSites|False|LinkBuildingsSites|False
+d9ce1e44-8fe4-4177-bbaf-4cedbe432be1|False|129|None|Back to Main Menu|None|False|False|131|Back to Main Menu|True|LinkBuildingsSites|False
+a84d29cb-edea-40e0-b1f4-6a5a41e6a876|False|0|None|Exit|None|True|False|131|Exit|True|LinkBuildingsSites|False
+fe9d2630-63f8-47f3-b277-bf491018245e|True|0|Remove|Remove LinkBuildingsSites|None|False|False|132|Remove LinkBuildingsSites|False|LinkBuildingsSites|False
+18d64744-ff78-4a15-8df6-4428b7510f62|True|0|Next|Next Page|LastPage|False|False|132|Next Page|False|LinkBuildingsSites|False
+8801fcc8-1df2-49d2-8625-bfcb67033e23|True|0|Last|Last Page|LastPage|False|False|132|Last Page|False|LinkBuildingsSites|False
+668f23bc-8d54-4e11-a939-74095dd91786|True|0|First|First Page|FirstPage|False|False|132|First Page|False|LinkBuildingsSites|False
+e0791d59-9b3b-466e-a1e2-14cb0c113d90|True|0|Previous|Previous Page|FirstPage|False|False|132|Previous Page|False|LinkBuildingsSites|False
+39ecdd14-6bb7-4250-b712-12331f1907a2|False|129|None|Back to Main Menu|None|False|False|132|Back to Main Menu|True|LinkBuildingsSites|False
+349ef5f4-f389-4d5f-aabf-ba615012170e|False|0|None|Exit|None|True|False|132|Exit|True|LinkBuildingsSites|False
+a6734ff5-176f-4714-ba22-f1fb2029fe63|True|0|Edit|Edit LinkBuildingsSites|None|False|False|133|Edit LinkBuildingsSites|False|LinkBuildingsSites|False
+4ab59586-d8a2-4d22-8e45-71aff7af7a9b|True|0|Next|Next Page|LastPage|False|False|133|Next Page|False|LinkBuildingsSites|False
+d472705a-b4aa-4a77-a6a0-79498ed090a1|True|0|Last|Last Page|LastPage|False|False|133|Last Page|False|LinkBuildingsSites|False
+a18bcdcf-b9b6-4b0a-9f51-8d4c15811ef7|True|0|First|First Page|FirstPage|False|False|133|First Page|False|LinkBuildingsSites|False
+facb4538-e58d-4a9e-a970-f43b887fc95d|True|0|Previous|Previous Page|FirstPage|False|False|133|Previous Page|False|LinkBuildingsSites|False
+56e08321-8ca5-4be1-a12a-17e1911ef810|False|129|None|Back to Main Menu|None|False|False|133|Back to Main Menu|True|LinkBuildingsSites|False
+15e03ef0-a4f4-4148-b88e-ba733f9cf423|False|0|None|Exit|None|True|False|133|Exit|True|LinkBuildingsSites|False
+08976171-027d-400a-b19b-706aa4169065|True|0|Save|Save LinkBuildingsSites to a file|None|False|False|134|Save LinkBuildingsSites to a file|False|LinkBuildingsSites|False
+5b90e286-a4fb-4402-b149-50207d8d9f96|False|129|None|Back to Main Menu|None|False|False|134|Back to Main Menu|True|LinkBuildingsSites|False
+997f01cb-cd87-4749-889c-5385ceb9fcd5|False|0|None|Exit|None|True|False|134|Exit|True|LinkBuildingsSites|False
+bcff76fe-77bd-496a-a309-05b660b83b0b|True|0|Load|Load LinkBuildingsSites from a file|None|False|False|135|Load LinkBuildingsSites from a file|False|LinkBuildingsSites|False
+c352b513-2d4a-4067-861b-8890a2ad7438|False|129|None|Back to Main Menu|None|False|False|135|Back to Main Menu|True|LinkBuildingsSites|False
+e8e2a6e2-3589-4a78-88a6-afaa000f6bb1|False|0|None|Exit|None|True|False|135|Exit|True|LinkBuildingsSites|False
+d0cdc33e-09a0-4e81-a60b-ce2c58db21eb|False|136|None|Link Site To Planet|None|False|False|9|Galaxy Manager - Main Menu|False|LinkSitePlanet|False
+f3bc2fad-4f7c-4b43-b5bf-bf2f03cb04d5|False|137|None|View LinkSitePlanet|None|False|False|136|View LinkSitePlanet - Sub Menu|False|LinkSitePlanet|False
+684ff29f-cbc0-4f33-b30c-940592cdfc59|False|138|None|Add LinkSitePlanet|None|False|False|136|Add LinkSitePlanet - Sub Menu|False|LinkSitePlanet|False
+d37cd087-8979-45f2-a551-7caf786f8739|False|139|None|Remove LinkSitePlanet|None|False|False|136|Remove LinkSitePlanet - Sub Menu|False|LinkSitePlanet|False
+96890b07-d78d-4722-be32-c0a9d39aa0a7|False|140|None|Edit LinkSitePlanet|None|False|False|136|Edit LinkSitePlanet - Sub Menu|False|LinkSitePlanet|False
+b95ba08d-cbd4-4ed0-b664-02b957893175|False|141|None|Save LinkSitePlanet|None|False|False|136|Save LinkSitePlanet - Sub Menu|False|LinkSitePlanet|False
+ae713646-fddd-4b03-aeb7-b1f7b09194da|False|142|None|Load LinkSitePlanet|None|False|False|136|Load LinkSitePlanet - Sub Menu|False|LinkSitePlanet|False
+599cecf6-6814-4b03-acb9-50a8a62b2b18|False|9|None|Back to Main Menu|None|False|False|136|Back to Main Menu|True|LinkSitePlanet|False
+43cecf78-c659-4c0b-9e78-8a5c882f869c|False|0|None|Exit|None|True|False|136|Exit|True|LinkSitePlanet|False
+dc5d9d53-c7fc-4ba6-b76f-62bf4fd32fb4|True|0|Refresh|Refresh|None|False|False|137|Refresh|False|LinkSitePlanet|False
+5aea98cf-959d-4ff4-a6ac-411d6edf960c|True|0|Search|Search|None|False|False|137|Search|False|LinkSitePlanet|False
+13360ca4-c24e-4d20-81fe-411e64a631fb|True|0|Next|Next Page|LastPage|False|False|137|Next Page|False|LinkSitePlanet|False
+0a865596-2c3e-4c29-995e-e86d1c8163e6|True|0|Last|Last Page|LastPage|False|False|137|Last Page|False|LinkSitePlanet|False
+0770227f-a4c1-42ee-9269-c1272bfe667e|True|0|First|First Page|FirstPage|False|False|137|First Page|False|LinkSitePlanet|False
+4378fa0a-b618-43b5-9ce3-12400f6c44d0|True|0|Previous|Previous Page|FirstPage|False|False|137|Previous Page|False|LinkSitePlanet|False
+4d504228-2dd6-4e11-ba4e-3ab391e53d03|False|136|None|Back to Main Menu|None|False|False|137|Back to Main Menu|True|LinkSitePlanet|False
+65a94fb6-e3fa-412d-b846-5d749b10566d|False|0|None|Exit|None|True|False|137|Exit|True|LinkSitePlanet|False
+d8023252-c0c3-4399-bc4c-01a43ad3e26d|True|0|Add|Add LinkSitePlanet|None|False|False|138|Add LinkSitePlanet|False|LinkSitePlanet|False
+d5c1d108-bdbb-4a8b-8f83-e2ce601e0757|False|136|None|Back to Main Menu|None|False|False|138|Back to Main Menu|True|LinkSitePlanet|False
+ee091e0c-b2b7-47a3-abaa-b76e3c971900|False|0|None|Exit|None|True|False|138|Exit|True|LinkSitePlanet|False
+ad3ac937-52f5-4b86-900b-ff2ef2dafdd5|True|0|Remove|Remove LinkSitePlanet|None|False|False|139|Remove LinkSitePlanet|False|LinkSitePlanet|False
+782664ba-9637-4c70-a2ed-77e9d2377457|True|0|Next|Next Page|LastPage|False|False|139|Next Page|False|LinkSitePlanet|False
+0b91a54f-c11c-4212-8f2d-782012d9a663|True|0|Last|Last Page|LastPage|False|False|139|Last Page|False|LinkSitePlanet|False
+908c82e2-49ab-4232-a738-1e5582d67c63|True|0|First|First Page|FirstPage|False|False|139|First Page|False|LinkSitePlanet|False
+fea60924-1604-4113-903d-9f411a88af8f|True|0|Previous|Previous Page|FirstPage|False|False|139|Previous Page|False|LinkSitePlanet|False
+b929bc47-c8db-4a7f-bb7a-98a009f976a8|False|136|None|Back to Main Menu|None|False|False|139|Back to Main Menu|True|LinkSitePlanet|False
+2dc27db4-a91a-4dd1-8c30-590827353bcd|False|0|None|Exit|None|True|False|139|Exit|True|LinkSitePlanet|False
+3db1e40b-24d4-402e-899d-bb73acd55293|True|0|Edit|Edit LinkSitePlanet|None|False|False|140|Edit LinkSitePlanet|False|LinkSitePlanet|False
+0368e2f5-0cc3-4cb3-b734-11f0c077edf6|True|0|Next|Next Page|LastPage|False|False|140|Next Page|False|LinkSitePlanet|False
+cba8bc68-5d98-4632-aa00-d513639cf8a3|True|0|Last|Last Page|LastPage|False|False|140|Last Page|False|LinkSitePlanet|False
+63bc5362-8641-4826-8248-066d47e9a347|True|0|First|First Page|FirstPage|False|False|140|First Page|False|LinkSitePlanet|False
+084e3b8e-2f37-4888-aef4-530c3b140f00|True|0|Previous|Previous Page|FirstPage|False|False|140|Previous Page|False|LinkSitePlanet|False
+1d06e06d-78d5-4280-b52b-7f90a640b657|False|136|None|Back to Main Menu|None|False|False|140|Back to Main Menu|True|LinkSitePlanet|False
+5658531e-e798-42ae-97d4-44d15fe3f12b|False|0|None|Exit|None|True|False|140|Exit|True|LinkSitePlanet|False
+7c04fc4c-c7ae-498e-b6db-a7e3016a1161|True|0|Save|Save LinkSitePlanet to a file|None|False|False|141|Save LinkSitePlanet to a file|False|LinkSitePlanet|False
+a2596f00-63b0-4fe9-958e-1ce9fdda8e6f|False|136|None|Back to Main Menu|None|False|False|141|Back to Main Menu|True|LinkSitePlanet|False
+ebd011dc-b134-4752-a2ee-d82fc5f38ba0|False|0|None|Exit|None|True|False|141|Exit|True|LinkSitePlanet|False
+1eb9ae23-4c3b-4909-842e-8cef90ddf36c|True|0|Load|Load LinkSitePlanet from a file|None|False|False|142|Load LinkSitePlanet from a file|False|LinkSitePlanet|False
+004c6b5f-d61d-46d9-a98d-2b59d190fb00|False|136|None|Back to Main Menu|None|False|False|142|Back to Main Menu|True|LinkSitePlanet|False
+345ecef2-39e9-4048-b448-2e0e0697db11|False|0|None|Exit|None|True|False|142|Exit|True|LinkSitePlanet|False
+656ea809-e38c-4dad-b46f-fc96973fc39f|False|143|None|Link PlanetTypes To Planet|None|False|False|9|Galaxy Manager - Main Menu|False|LinkPlanetTypesPlanet|False
+ac0da380-5155-40ad-bdc5-dd520ef44871|False|144|None|View LinkPlanetTypesPlanet|None|False|False|143|View LinkPlanetTypesPlanet - Sub Menu|False|LinkPlanetTypesPlanet|False
+4e7513d8-bc10-417c-8f72-b1db0ad64ace|False|145|None|Add LinkPlanetTypesPlanet|None|False|False|143|Add LinkPlanetTypesPlanet - Sub Menu|False|LinkPlanetTypesPlanet|False
+4acb7b96-0bbb-4f15-b149-fc8669ddf554|False|146|None|Remove LinkPlanetTypesPlanet|None|False|False|143|Remove LinkPlanetTypesPlanet - Sub Menu|False|LinkPlanetTypesPlanet|False
+a9ee944c-0e82-42ee-afdc-cc1836f6aca5|False|147|None|Edit LinkPlanetTypesPlanet|None|False|False|143|Edit LinkPlanetTypesPlanet - Sub Menu|False|LinkPlanetTypesPlanet|False
+98bd1346-6a69-47ae-befa-e8dc100b9bdd|False|148|None|Save LinkPlanetTypesPlanet|None|False|False|143|Save LinkPlanetTypesPlanet - Sub Menu|False|LinkPlanetTypesPlanet|False
+964bc2ea-4c41-48a5-8b83-79fb3351c80c|False|149|None|Load LinkPlanetTypesPlanet|None|False|False|143|Load LinkPlanetTypesPlanet - Sub Menu|False|LinkPlanetTypesPlanet|False
+c5aab610-3159-494f-a17b-7072ef37c97d|False|9|None|Back to Main Menu|None|False|False|143|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+989433db-2477-4a91-9f54-4e313535d6cf|False|0|None|Exit|None|True|False|143|Exit|True|LinkPlanetTypesPlanet|False
+cb68105e-7cae-446b-a129-a2c27ef4cd27|True|0|Refresh|Refresh|None|False|False|144|Refresh|False|LinkPlanetTypesPlanet|False
+2a6d01b5-1ec2-46f9-b8a3-193ba9edfd67|True|0|Search|Search|None|False|False|144|Search|False|LinkPlanetTypesPlanet|False
+4dd39a13-7151-4b88-8126-832c8b35b67d|True|0|Next|Next Page|LastPage|False|False|144|Next Page|False|LinkPlanetTypesPlanet|False
+d1c6b749-b269-4a04-9bd9-212851d1d847|True|0|Last|Last Page|LastPage|False|False|144|Last Page|False|LinkPlanetTypesPlanet|False
+280f0034-32ad-437e-bbfd-45d5f538ee67|True|0|First|First Page|FirstPage|False|False|144|First Page|False|LinkPlanetTypesPlanet|False
+39534252-8802-44e2-a348-67c1a9710589|True|0|Previous|Previous Page|FirstPage|False|False|144|Previous Page|False|LinkPlanetTypesPlanet|False
+07afac5e-68bf-440e-ae1f-511b7cca685e|False|143|None|Back to Main Menu|None|False|False|144|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+611b5eb1-5355-4238-bcd0-92e1ed3d1748|False|0|None|Exit|None|True|False|144|Exit|True|LinkPlanetTypesPlanet|False
+24d4c1d9-2000-4115-a4a9-4345c1ed4c60|True|0|Add|Add LinkPlanetTypesPlanet|None|False|False|145|Add LinkPlanetTypesPlanet|False|LinkPlanetTypesPlanet|False
+82835633-6c0a-4d2f-9101-85b3dc299774|False|143|None|Back to Main Menu|None|False|False|145|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+a7b37f7e-3c33-43db-9842-fbfc863c700a|False|0|None|Exit|None|True|False|145|Exit|True|LinkPlanetTypesPlanet|False
+d25444e5-8072-4933-a951-64679a4a81af|True|0|Remove|Remove LinkPlanetTypesPlanet|None|False|False|146|Remove LinkPlanetTypesPlanet|False|LinkPlanetTypesPlanet|False
+8f059433-80ad-4ab1-ab5e-14d6fe54bd83|True|0|Next|Next Page|LastPage|False|False|146|Next Page|False|LinkPlanetTypesPlanet|False
+8ec48fb2-083f-4a63-86b5-0fe3f7063b1d|True|0|Last|Last Page|LastPage|False|False|146|Last Page|False|LinkPlanetTypesPlanet|False
+3857970a-6bd7-4d56-b3b4-2ae090154b83|True|0|First|First Page|FirstPage|False|False|146|First Page|False|LinkPlanetTypesPlanet|False
+8c5271fe-9264-43b1-8518-70a19576a9e7|True|0|Previous|Previous Page|FirstPage|False|False|146|Previous Page|False|LinkPlanetTypesPlanet|False
+a88ca0f8-c1d9-4d4e-af08-6852cfb132ac|False|143|None|Back to Main Menu|None|False|False|146|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+f5d79490-fdf8-4b21-a59c-6d2075443c47|False|0|None|Exit|None|True|False|146|Exit|True|LinkPlanetTypesPlanet|False
+350a3754-b983-4b22-bdf4-12d492cfaf91|True|0|Edit|Edit LinkPlanetTypesPlanet|None|False|False|147|Edit LinkPlanetTypesPlanet|False|LinkPlanetTypesPlanet|False
+09a52c3e-e651-463b-bd5d-1fb6977386ad|True|0|Next|Next Page|LastPage|False|False|147|Next Page|False|LinkPlanetTypesPlanet|False
+d6d98b7a-8867-4335-9e3c-9da9301ea44f|True|0|Last|Last Page|LastPage|False|False|147|Last Page|False|LinkPlanetTypesPlanet|False
+1d8c3aa0-dc80-4864-b2ae-954dc026ccc0|True|0|First|First Page|FirstPage|False|False|147|First Page|False|LinkPlanetTypesPlanet|False
+cc9a1760-8578-4aa4-8a9e-1b55d1ea9641|True|0|Previous|Previous Page|FirstPage|False|False|147|Previous Page|False|LinkPlanetTypesPlanet|False
+a8ab34e1-84d5-4737-8308-fa5f2de54f92|False|143|None|Back to Main Menu|None|False|False|147|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+f5372f6b-e8cf-4d25-b68e-536b8dd8cd8c|False|0|None|Exit|None|True|False|147|Exit|True|LinkPlanetTypesPlanet|False
+afb02d56-190e-43d1-bb40-02837babd4ee|True|0|Save|Save LinkPlanetTypesPlanet to a file|None|False|False|148|Save LinkPlanetTypesPlanet to a file|False|LinkPlanetTypesPlanet|False
+043c2100-e28a-4a89-989c-df33c84bc5e9|False|143|None|Back to Main Menu|None|False|False|148|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+11d2357d-e6f5-4d97-8345-c90f0d241d62|False|0|None|Exit|None|True|False|148|Exit|True|LinkPlanetTypesPlanet|False
+ed78e03e-4620-4dea-ad17-c1aa365e3620|True|0|Load|Load LinkPlanetTypesPlanet from a file|None|False|False|149|Load LinkPlanetTypesPlanet from a file|False|LinkPlanetTypesPlanet|False
+0134c750-f77b-45d0-aad1-e04e5142ea7a|False|143|None|Back to Main Menu|None|False|False|149|Back to Main Menu|True|LinkPlanetTypesPlanet|False
+0375a945-1669-475b-aa13-cebe97e012dd|False|0|None|Exit|None|True|False|149|Exit|True|LinkPlanetTypesPlanet|False
+0cf31d53-c3aa-48bf-bff4-69f540495e27|False|150|None|Link Personnel To Ship|None|False|False|9|Galaxy Manager - Main Menu|False|LinkPersonnelShip|False
+490afb4a-73ab-44df-9652-a97bab9a57eb|False|151|None|View LinkPersonnelShip|None|False|False|150|View LinkPersonnelShip - Sub Menu|False|LinkPersonnelShip|False
+164b1849-9a86-4af2-840b-00f0dcde0d64|False|152|None|Add LinkPersonnelShip|None|False|False|150|Add LinkPersonnelShip - Sub Menu|False|LinkPersonnelShip|False
+38bb53ac-613b-4af0-b9db-6c28bd01b05d|False|153|None|Remove LinkPersonnelShip|None|False|False|150|Remove LinkPersonnelShip - Sub Menu|False|LinkPersonnelShip|False
+467216a2-2bf9-4234-8377-016953a07a88|False|154|None|Edit LinkPersonnelShip|None|False|False|150|Edit LinkPersonnelShip - Sub Menu|False|LinkPersonnelShip|False
+55e95e9b-a9e1-475c-b6a2-2781567bd94f|False|155|None|Save LinkPersonnelShip|None|False|False|150|Save LinkPersonnelShip - Sub Menu|False|LinkPersonnelShip|False
+8ae6a736-ad84-4584-9414-053abfbd1a37|False|156|None|Load LinkPersonnelShip|None|False|False|150|Load LinkPersonnelShip - Sub Menu|False|LinkPersonnelShip|False
+f8bdc8e8-d6c3-425c-80a9-ea4436734472|False|9|None|Back to Main Menu|None|False|False|150|Back to Main Menu|True|LinkPersonnelShip|False
+e871e3e2-6514-4035-b42d-fa5fd490de1d|False|0|None|Exit|None|True|False|150|Exit|True|LinkPersonnelShip|False
+ae8cd8f1-5007-4898-9221-18b79edfdc10|True|0|Refresh|Refresh|None|False|False|151|Refresh|False|LinkPersonnelShip|False
+92a253be-c93a-4238-96fb-a93b9c8fc678|True|0|Search|Search|None|False|False|151|Search|False|LinkPersonnelShip|False
+aa43542d-e3fd-40f5-860a-83d09a0bc509|True|0|Next|Next Page|LastPage|False|False|151|Next Page|False|LinkPersonnelShip|False
+022f214d-1fed-4a97-b623-6f49b1f3a528|True|0|Last|Last Page|LastPage|False|False|151|Last Page|False|LinkPersonnelShip|False
+038475ad-1717-41a2-bd82-c9f13d12dd9e|True|0|First|First Page|FirstPage|False|False|151|First Page|False|LinkPersonnelShip|False
+be0cfca3-7247-4ec8-8eae-c1e8c239f7cc|True|0|Previous|Previous Page|FirstPage|False|False|151|Previous Page|False|LinkPersonnelShip|False
+89b861ea-cc7d-4f8b-9223-ca756b544054|False|150|None|Back to Main Menu|None|False|False|151|Back to Main Menu|True|LinkPersonnelShip|False
+b1df4ae0-8c45-4ba3-ab8f-82b729de720e|False|0|None|Exit|None|True|False|151|Exit|True|LinkPersonnelShip|False
+2abb961b-29cd-4755-89a5-67e2777b5d5c|True|0|Add|Add LinkPersonnelShip|None|False|False|152|Add LinkPersonnelShip|False|LinkPersonnelShip|False
+d58e82e5-e284-4fe1-bc24-67ceffaec853|False|150|None|Back to Main Menu|None|False|False|152|Back to Main Menu|True|LinkPersonnelShip|False
+2e47cbe9-5481-43b6-a334-91793a1c34b8|False|0|None|Exit|None|True|False|152|Exit|True|LinkPersonnelShip|False
+f414219e-c8e1-4be1-97ff-14f6610a9b00|True|0|Remove|Remove LinkPersonnelShip|None|False|False|153|Remove LinkPersonnelShip|False|LinkPersonnelShip|False
+eefd4c27-c607-448f-88a0-5906a9a5ae44|True|0|Next|Next Page|LastPage|False|False|153|Next Page|False|LinkPersonnelShip|False
+ac1e2dfb-b987-457c-82ac-d33e89e56a2f|True|0|Last|Last Page|LastPage|False|False|153|Last Page|False|LinkPersonnelShip|False
+12183c0d-fc38-4c24-a74a-f92883f5c99e|True|0|First|First Page|FirstPage|False|False|153|First Page|False|LinkPersonnelShip|False
+c659c866-7641-4f95-8106-5471640dfbd8|True|0|Previous|Previous Page|FirstPage|False|False|153|Previous Page|False|LinkPersonnelShip|False
+d466b0db-3e8a-4c10-997a-175de463a7be|False|150|None|Back to Main Menu|None|False|False|153|Back to Main Menu|True|LinkPersonnelShip|False
+a785ecd9-d41e-4d5f-b562-59155b920eaf|False|0|None|Exit|None|True|False|153|Exit|True|LinkPersonnelShip|False
+411933d8-760c-44e0-be53-964583500dd7|True|0|Edit|Edit LinkPersonnelShip|None|False|False|154|Edit LinkPersonnelShip|False|LinkPersonnelShip|False
+ade738d1-ef96-4a78-a83f-5aef18bac056|True|0|Next|Next Page|LastPage|False|False|154|Next Page|False|LinkPersonnelShip|False
+67cc18fc-9c18-4704-8720-856608c452bd|True|0|Last|Last Page|LastPage|False|False|154|Last Page|False|LinkPersonnelShip|False
+57cb7575-c356-4bda-887c-a058ce82ca06|True|0|First|First Page|FirstPage|False|False|154|First Page|False|LinkPersonnelShip|False
+f3b3f688-0473-4416-8573-366be391f667|True|0|Previous|Previous Page|FirstPage|False|False|154|Previous Page|False|LinkPersonnelShip|False
+6ec31be7-5f95-4108-b7d6-cd992d0f1cfb|False|150|None|Back to Main Menu|None|False|False|154|Back to Main Menu|True|LinkPersonnelShip|False
+6c90e64f-fb1a-478e-bc9b-71181a305877|False|0|None|Exit|None|True|False|154|Exit|True|LinkPersonnelShip|False
+39edda6c-5db3-4e16-91ee-a0508f784a1a|True|0|Save|Save LinkPersonnelShip to a file|None|False|False|155|Save LinkPersonnelShip to a file|False|LinkPersonnelShip|False
+1866100d-dbc5-4fff-b80b-1273da3626d5|False|150|None|Back to Main Menu|None|False|False|155|Back to Main Menu|True|LinkPersonnelShip|False
+43abf113-0f20-4314-94b4-9710f405a99f|False|0|None|Exit|None|True|False|155|Exit|True|LinkPersonnelShip|False
+f2b3376d-5296-4dea-afa1-5d0cc63a9a47|True|0|Load|Load LinkPersonnelShip from a file|None|False|False|156|Load LinkPersonnelShip from a file|False|LinkPersonnelShip|False
+506b8a82-83e6-4313-ad77-df483f53a19d|False|150|None|Back to Main Menu|None|False|False|156|Back to Main Menu|True|LinkPersonnelShip|False
+a35fa09a-2a0b-471a-9baa-653215432cbd|False|0|None|Exit|None|True|False|156|Exit|True|LinkPersonnelShip|False
+6e68619a-b27d-42a2-a016-3c6d2f4a5be3|False|157|None|Link Personnel To PersonnelType|None|False|False|9|Galaxy Manager - Main Menu|False|LinkPersonnelPersonnelType|False
+25601efe-e98e-46e7-9c3a-9796a5bd0283|False|158|None|View LinkPersonnelPersonnelType|None|False|False|157|View LinkPersonnelPersonnelType - Sub Menu|False|LinkPersonnelPersonnelType|False
+7fd09564-4987-41c7-b2b9-9469c2810166|False|159|None|Add LinkPersonnelPersonnelType|None|False|False|157|Add LinkPersonnelPersonnelType - Sub Menu|False|LinkPersonnelPersonnelType|False
+201ee0a2-94a1-42d4-9ca6-624e0d987b44|False|160|None|Remove LinkPersonnelPersonnelType|None|False|False|157|Remove LinkPersonnelPersonnelType - Sub Menu|False|LinkPersonnelPersonnelType|False
+29418ab2-a445-48dd-9a0b-aa5e510fdc73|False|161|None|Edit LinkPersonnelPersonnelType|None|False|False|157|Edit LinkPersonnelPersonnelType - Sub Menu|False|LinkPersonnelPersonnelType|False
+996719e2-697f-4fa4-8c72-09a04b9ea7ed|False|162|None|Save LinkPersonnelPersonnelType|None|False|False|157|Save LinkPersonnelPersonnelType - Sub Menu|False|LinkPersonnelPersonnelType|False
+b0ff9279-b80f-4e71-880f-bd50dbc8e7f1|False|163|None|Load LinkPersonnelPersonnelType|None|False|False|157|Load LinkPersonnelPersonnelType - Sub Menu|False|LinkPersonnelPersonnelType|False
+e0633314-9da2-46af-bd12-f002a414cb5d|False|9|None|Back to Main Menu|None|False|False|157|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+42a8f0f5-08ef-4ce3-9454-1269f18efa6b|False|0|None|Exit|None|True|False|157|Exit|True|LinkPersonnelPersonnelType|False
+63aa6961-043f-441c-b62c-366ff16a1976|True|0|Refresh|Refresh|None|False|False|158|Refresh|False|LinkPersonnelPersonnelType|False
+13e0575d-b50e-4a5b-913e-f7ff5243e853|True|0|Search|Search|None|False|False|158|Search|False|LinkPersonnelPersonnelType|False
+0046d9f9-97df-43e6-8bbc-39601a9a524d|True|0|Next|Next Page|LastPage|False|False|158|Next Page|False|LinkPersonnelPersonnelType|False
+5421b68e-da09-42d6-bed0-3b1592ef15f0|True|0|Last|Last Page|LastPage|False|False|158|Last Page|False|LinkPersonnelPersonnelType|False
+ddceb63e-cc82-4690-9212-98e26264c3cf|True|0|First|First Page|FirstPage|False|False|158|First Page|False|LinkPersonnelPersonnelType|False
+5c86846d-30fd-4408-bb64-422433f5657e|True|0|Previous|Previous Page|FirstPage|False|False|158|Previous Page|False|LinkPersonnelPersonnelType|False
+919e0399-c2f9-4c11-9fc8-e8a5763dea94|False|157|None|Back to Main Menu|None|False|False|158|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+b3f09ee8-cbf6-44d1-8dca-ba365e857e17|False|0|None|Exit|None|True|False|158|Exit|True|LinkPersonnelPersonnelType|False
+6aba4572-ef67-456b-bc2c-ab4f9de2895c|True|0|Add|Add LinkPersonnelPersonnelType|None|False|False|159|Add LinkPersonnelPersonnelType|False|LinkPersonnelPersonnelType|False
+7fb487ee-e971-4758-ac5f-45bc26c0f7ca|False|157|None|Back to Main Menu|None|False|False|159|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+c78284b6-9e8e-49aa-a1cb-beb95480ec2b|False|0|None|Exit|None|True|False|159|Exit|True|LinkPersonnelPersonnelType|False
+deb287f3-a3e4-4215-8c96-e6f91216a68e|True|0|Remove|Remove LinkPersonnelPersonnelType|None|False|False|160|Remove LinkPersonnelPersonnelType|False|LinkPersonnelPersonnelType|False
+3e614a79-2fee-4b38-88b7-56c7c4c91242|True|0|Next|Next Page|LastPage|False|False|160|Next Page|False|LinkPersonnelPersonnelType|False
+9d7664d0-df25-459f-8318-2667c3ab9b22|True|0|Last|Last Page|LastPage|False|False|160|Last Page|False|LinkPersonnelPersonnelType|False
+78bfdb85-abd9-4948-a182-9eb20dfb4be6|True|0|First|First Page|FirstPage|False|False|160|First Page|False|LinkPersonnelPersonnelType|False
+72892248-88d4-40f9-9c6d-73e4ffbed0ea|True|0|Previous|Previous Page|FirstPage|False|False|160|Previous Page|False|LinkPersonnelPersonnelType|False
+0fe046fb-08b6-4ce6-91ed-0e51f438e0ce|False|157|None|Back to Main Menu|None|False|False|160|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+bfc2bc97-31af-4917-8b1f-fd868873888b|False|0|None|Exit|None|True|False|160|Exit|True|LinkPersonnelPersonnelType|False
+526d6415-280b-4e59-9bd2-74ac2bd8410a|True|0|Edit|Edit LinkPersonnelPersonnelType|None|False|False|161|Edit LinkPersonnelPersonnelType|False|LinkPersonnelPersonnelType|False
+f1abc4b5-dae0-40ea-933e-b7faa44604ea|True|0|Next|Next Page|LastPage|False|False|161|Next Page|False|LinkPersonnelPersonnelType|False
+4eec7ea9-e9ef-42be-b437-3e24fec4eb28|True|0|Last|Last Page|LastPage|False|False|161|Last Page|False|LinkPersonnelPersonnelType|False
+584842a0-ae63-4932-a2ee-cd06787262e3|True|0|First|First Page|FirstPage|False|False|161|First Page|False|LinkPersonnelPersonnelType|False
+f6f5b9e0-13a8-41dc-9604-705c64dc63fa|True|0|Previous|Previous Page|FirstPage|False|False|161|Previous Page|False|LinkPersonnelPersonnelType|False
+ce43bc88-158e-4e17-9bd0-5aa988607a08|False|157|None|Back to Main Menu|None|False|False|161|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+66bf3d77-aaee-4560-bfcd-53eb754c88c4|False|0|None|Exit|None|True|False|161|Exit|True|LinkPersonnelPersonnelType|False
+d7b9a9a0-279d-41b4-955e-6df75eaf8bdf|True|0|Save|Save LinkPersonnelPersonnelType to a file|None|False|False|162|Save LinkPersonnelPersonnelType to a file|False|LinkPersonnelPersonnelType|False
+6f4bca2d-997a-4196-bbab-6433d105c05b|False|157|None|Back to Main Menu|None|False|False|162|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+9d54d454-8f6d-4f41-b410-2d378bd80413|False|0|None|Exit|None|True|False|162|Exit|True|LinkPersonnelPersonnelType|False
+03e2f76a-28a4-42a7-b28f-116a46bc28ff|True|0|Load|Load LinkPersonnelPersonnelType from a file|None|False|False|163|Load LinkPersonnelPersonnelType from a file|False|LinkPersonnelPersonnelType|False
+fee7484d-ecba-47ed-b6eb-bdce67c54730|False|157|None|Back to Main Menu|None|False|False|163|Back to Main Menu|True|LinkPersonnelPersonnelType|False
+b9c9a999-8a47-4cf1-bd10-eb16c60282d8|False|0|None|Exit|None|True|False|163|Exit|True|LinkPersonnelPersonnelType|False
+89fe1331-abc5-473a-a06f-0d1afcb588c6|False|164|None|Link Ships To Fleets|None|False|False|9|Galaxy Manager - Main Menu|False|LinkShipFleet|False
+6bae6169-6c30-470b-8da6-3f0e2fd3372f|False|165|None|View LinkShipFleet|None|False|False|164|View LinkShipFleet - Sub Menu|False|LinkShipFleet|False
+56a579bd-4e01-45e4-8532-d7b1fb35c622|False|166|None|Add LinkShipFleet|None|False|False|164|Add LinkShipFleet - Sub Menu|False|LinkShipFleet|False
+27f30d33-744b-4337-b71a-d1e9354e4afd|False|167|None|Remove LinkShipFleet|None|False|False|164|Remove LinkShipFleet - Sub Menu|False|LinkShipFleet|False
+62bc4a91-6d0c-410e-a1ff-4318954dd993|False|168|None|Edit LinkShipFleet|None|False|False|164|Edit LinkShipFleet - Sub Menu|False|LinkShipFleet|False
+48f0e564-3c8d-4a40-b26b-1267d5006573|False|169|None|Save LinkShipFleet|None|False|False|164|Save LinkShipFleet - Sub Menu|False|LinkShipFleet|False
+5e30e2eb-7a24-42cc-bb0c-d523cefe4c9a|False|170|None|Load LinkShipFleet|None|False|False|164|Load LinkShipFleet - Sub Menu|False|LinkShipFleet|False
+a60161a3-b3d0-487f-b638-84f650490ab7|False|9|None|Back to Main Menu|None|False|False|164|Back to Main Menu|True|LinkShipFleet|False
+e994b832-9652-49a0-8de8-e3bd8b3d04fb|False|0|None|Exit|None|True|False|164|Exit|True|LinkShipFleet|False
+4a248a76-fd28-4e92-9279-868802d0fd19|True|0|Refresh|Refresh|None|False|False|165|Refresh|False|LinkShipFleet|False
+78b0587f-9302-4913-9e51-42f4c3def870|True|0|Search|Search|None|False|False|165|Search|False|LinkShipFleet|False
+d22ca45e-5323-4ac5-91b3-ca5958495e19|True|0|Next|Next Page|LastPage|False|False|165|Next Page|False|LinkShipFleet|False
+5fe2e76d-0e36-49e9-9e74-8578c994dbb8|True|0|Last|Last Page|LastPage|False|False|165|Last Page|False|LinkShipFleet|False
+76e7cde4-4fb2-47f2-aeae-e5b6c024abce|True|0|First|First Page|FirstPage|False|False|165|First Page|False|LinkShipFleet|False
+0eda4f17-276c-447a-be8f-f6fcc7112142|True|0|Previous|Previous Page|FirstPage|False|False|165|Previous Page|False|LinkShipFleet|False
+4899ef86-d42c-4229-a748-a2ce21eb0ff6|False|164|None|Back to Main Menu|None|False|False|165|Back to Main Menu|True|LinkShipFleet|False
+c763330f-ed53-4123-bfed-6c944c2ea6db|False|0|None|Exit|None|True|False|165|Exit|True|LinkShipFleet|False
+a5a157eb-f667-40d7-99ff-edc13ef08532|True|0|Add|Add LinkShipFleet|None|False|False|166|Add LinkShipFleet|False|LinkShipFleet|False
+3db81604-c6bc-49b9-affb-9f2876dcb74f|False|164|None|Back to Main Menu|None|False|False|166|Back to Main Menu|True|LinkShipFleet|False
+bc530b79-dcf1-42f1-b536-8277221ff890|False|0|None|Exit|None|True|False|166|Exit|True|LinkShipFleet|False
+cd93439d-0c40-40b9-a2a3-428288e52caa|True|0|Remove|Remove LinkShipFleet|None|False|False|167|Remove LinkShipFleet|False|LinkShipFleet|False
+e0815e78-a4e8-41bc-baf6-9ddf998db2d5|True|0|Next|Next Page|LastPage|False|False|167|Next Page|False|LinkShipFleet|False
+e3eb8abe-5fe2-4167-ba33-350041c00f64|True|0|Last|Last Page|LastPage|False|False|167|Last Page|False|LinkShipFleet|False
+e1771855-f4d2-4afd-bebe-30ddfbae9fc6|True|0|First|First Page|FirstPage|False|False|167|First Page|False|LinkShipFleet|False
+eb44d0f8-0faf-48af-be80-745f0682f8d4|True|0|Previous|Previous Page|FirstPage|False|False|167|Previous Page|False|LinkShipFleet|False
+4d23364c-c60d-4009-ab6c-cecf9969fe2c|False|164|None|Back to Main Menu|None|False|False|167|Back to Main Menu|True|LinkShipFleet|False
+bfcb25ff-0b25-4592-bf4b-5a6308bbc1b6|False|0|None|Exit|None|True|False|167|Exit|True|LinkShipFleet|False
+4a9f4ae7-6f21-4aa9-b069-58de80da1090|True|0|Edit|Edit LinkShipFleet|None|False|False|168|Edit LinkShipFleet|False|LinkShipFleet|False
+3619ad49-03dd-4c86-b52f-5fe98b377818|True|0|Next|Next Page|LastPage|False|False|168|Next Page|False|LinkShipFleet|False
+8b005f32-ceec-4a36-a533-ff94bd1b795c|True|0|Last|Last Page|LastPage|False|False|168|Last Page|False|LinkShipFleet|False
+fc67a1a2-4d91-43ef-a1de-7a9d9403280f|True|0|First|First Page|FirstPage|False|False|168|First Page|False|LinkShipFleet|False
+2290e977-827f-4cd6-ba8b-832e2e2ded43|True|0|Previous|Previous Page|FirstPage|False|False|168|Previous Page|False|LinkShipFleet|False
+73fbb688-22fe-4308-8081-fa32957ad769|False|164|None|Back to Main Menu|None|False|False|168|Back to Main Menu|True|LinkShipFleet|False
+ce866405-936a-43db-bf38-93b2a9143cde|False|0|None|Exit|None|True|False|168|Exit|True|LinkShipFleet|False
+a0404a12-56e7-442f-86df-8b5302cc3358|True|0|Save|Save LinkShipFleet to a file|None|False|False|169|Save LinkShipFleet to a file|False|LinkShipFleet|False
+4ae4af99-92be-4dfc-81b9-ead6f0c2866d|False|164|None|Back to Main Menu|None|False|False|169|Back to Main Menu|True|LinkShipFleet|False
+0bc94c85-a568-4c4f-83a9-9bb67773584d|False|0|None|Exit|None|True|False|169|Exit|True|LinkShipFleet|False
+6d41268c-2b8b-4775-9b2d-980845295efd|True|0|Load|Load LinkShipFleet from a file|None|False|False|170|Load LinkShipFleet from a file|False|LinkShipFleet|False
+3c260811-851b-486e-920a-1c2a7dcc7fcd|False|164|None|Back to Main Menu|None|False|False|170|Back to Main Menu|True|LinkShipFleet|False
+da64dc9f-b95f-43a1-8175-f61dd2f6c9a5|False|0|None|Exit|None|True|False|170|Exit|True|LinkShipFleet|False
+67a77acc-d360-417b-9ceb-9377421702fd|False|171|None|Link ShipTypes To Ships|None|False|False|9|Galaxy Manager - Main Menu|False|LinkShipTypeShip|False
+9ab0c1fb-2019-450a-a36d-d51c0204368f|False|172|None|View LinkShipTypeShip|None|False|False|171|View LinkShipTypeShip - Sub Menu|False|LinkShipTypeShip|False
+b63dfcd7-19f5-40ba-a121-ac8881b6943a|False|173|None|Add LinkShipTypeShip|None|False|False|171|Add LinkShipTypeShip - Sub Menu|False|LinkShipTypeShip|False
+80ccc29b-db4e-49d4-bb7b-edc3f24bfc0b|False|174|None|Remove LinkShipTypeShip|None|False|False|171|Remove LinkShipTypeShip - Sub Menu|False|LinkShipTypeShip|False
+401f0840-7256-4335-80cf-c8a6b1435b8d|False|175|None|Edit LinkShipTypeShip|None|False|False|171|Edit LinkShipTypeShip - Sub Menu|False|LinkShipTypeShip|False
+6ad4ce75-007c-48f4-8566-24d614dc0c1e|False|176|None|Save LinkShipTypeShip|None|False|False|171|Save LinkShipTypeShip - Sub Menu|False|LinkShipTypeShip|False
+5853c4ad-4158-4511-a367-739032d6bc95|False|177|None|Load LinkShipTypeShip|None|False|False|171|Load LinkShipTypeShip - Sub Menu|False|LinkShipTypeShip|False
+6a6e951d-ffde-4012-bb65-a2ff90c1e7dc|False|9|None|Back to Main Menu|None|False|False|171|Back to Main Menu|True|LinkShipTypeShip|False
+79c69c88-96b3-43d5-8bf9-53c517a91f7a|False|0|None|Exit|None|True|False|171|Exit|True|LinkShipTypeShip|False
+49168795-cc6a-41bf-8e1b-36c73f99bc15|True|0|Refresh|Refresh|None|False|False|172|Refresh|False|LinkShipTypeShip|False
+d588c507-a0ee-43ce-bf1d-5d8c7baa7558|True|0|Search|Search|None|False|False|172|Search|False|LinkShipTypeShip|False
+c968068f-1014-4b90-827f-97673a0e63fa|True|0|Next|Next Page|LastPage|False|False|172|Next Page|False|LinkShipTypeShip|False
+cbaf3eb6-3e1b-455a-9859-9ed37a892f00|True|0|Last|Last Page|LastPage|False|False|172|Last Page|False|LinkShipTypeShip|False
+c3bcfe98-a608-4904-a938-3e2e0133d8a0|True|0|First|First Page|FirstPage|False|False|172|First Page|False|LinkShipTypeShip|False
+71551264-073e-4408-8bc5-e276b23b494e|True|0|Previous|Previous Page|FirstPage|False|False|172|Previous Page|False|LinkShipTypeShip|False
+357cd938-28d8-4bd9-a164-6f9c60e19657|False|171|None|Back to Main Menu|None|False|False|172|Back to Main Menu|True|LinkShipTypeShip|False
+ceb71465-8f45-4aa4-90e5-9225f58b1cc9|False|0|None|Exit|None|True|False|172|Exit|True|LinkShipTypeShip|False
+11a3a43a-127b-4254-b405-a2717df0093b|True|0|Add|Add LinkShipTypeShip|None|False|False|173|Add LinkShipTypeShip|False|LinkShipTypeShip|False
+22e77a39-3356-4f49-8c2e-1f7ab487ff65|False|171|None|Back to Main Menu|None|False|False|173|Back to Main Menu|True|LinkShipTypeShip|False
+c9ca9c92-262d-4150-92ac-da790b5a02d7|False|0|None|Exit|None|True|False|173|Exit|True|LinkShipTypeShip|False
+a1a7e824-3246-4799-8163-298ee907dd02|True|0|Remove|Remove LinkShipTypeShip|None|False|False|174|Remove LinkShipTypeShip|False|LinkShipTypeShip|False
+78c68835-f482-497e-b3df-75b9a07b3cfa|True|0|Next|Next Page|LastPage|False|False|174|Next Page|False|LinkShipTypeShip|False
+ae2c5895-a78e-4c11-9b81-8f9218a99c6b|True|0|Last|Last Page|LastPage|False|False|174|Last Page|False|LinkShipTypeShip|False
+60cedebb-1907-432a-9548-dff6f0a2890f|True|0|First|First Page|FirstPage|False|False|174|First Page|False|LinkShipTypeShip|False
+28f2f5f0-65b0-428e-b7b4-14e2e0656595|True|0|Previous|Previous Page|FirstPage|False|False|174|Previous Page|False|LinkShipTypeShip|False
+8682c5d4-577f-4a8c-b7fd-1e100c25c55f|False|171|None|Back to Main Menu|None|False|False|174|Back to Main Menu|True|LinkShipTypeShip|False
+c8c3bdf1-fd88-47bf-907b-1a6273ac606a|False|0|None|Exit|None|True|False|174|Exit|True|LinkShipTypeShip|False
+dc2e1a65-1e2a-40e4-bb7c-4bcdf07666c5|True|0|Edit|Edit LinkShipTypeShip|None|False|False|175|Edit LinkShipTypeShip|False|LinkShipTypeShip|False
+28c94d2a-0112-40c8-9d29-180b22d76edb|True|0|Next|Next Page|LastPage|False|False|175|Next Page|False|LinkShipTypeShip|False
+0b0bd649-f15c-40e6-a8e1-f63ed0e0c139|True|0|Last|Last Page|LastPage|False|False|175|Last Page|False|LinkShipTypeShip|False
+bf2fe4d3-6a4e-4718-93e3-1b093b85d4ed|True|0|First|First Page|FirstPage|False|False|175|First Page|False|LinkShipTypeShip|False
+a08a0850-f0fd-4484-a692-5ea77fe6952a|True|0|Previous|Previous Page|FirstPage|False|False|175|Previous Page|False|LinkShipTypeShip|False
+3c86b2e0-324f-4d2c-a369-9daf28f92ecf|False|171|None|Back to Main Menu|None|False|False|175|Back to Main Menu|True|LinkShipTypeShip|False
+e9d6a49a-9ea0-4339-8724-eda99a34d592|False|0|None|Exit|None|True|False|175|Exit|True|LinkShipTypeShip|False
+cb50ab74-b31b-43d9-85f2-4e9e2dab6356|True|0|Save|Save LinkShipTypeShip to a file|None|False|False|176|Save LinkShipTypeShip to a file|False|LinkShipTypeShip|False
+ee924012-dde8-41ca-83e2-98b1450f2d6b|False|171|None|Back to Main Menu|None|False|False|176|Back to Main Menu|True|LinkShipTypeShip|False
+bfa66059-1aec-414a-b414-bbdcd20009c0|False|0|None|Exit|None|True|False|176|Exit|True|LinkShipTypeShip|False
+701ea05c-93bd-4969-8b78-5cc5ad440d68|True|0|Load|Load LinkShipTypeShip from a file|None|False|False|177|Load LinkShipTypeShip from a file|False|LinkShipTypeShip|False
+d6abd11a-f4b8-4424-b18f-5faf5f5310d0|False|171|None|Back to Main Menu|None|False|False|177|Back to Main Menu|True|LinkShipTypeShip|False
+d22143c5-49ee-4af9-93a1-207f4a4b4f97|False|0|None|Exit|None|True|False|177|Exit|True|LinkShipTypeShip|False
+39eca377-f141-4021-bf56-af9c8234a522|False|178|None|Link Users To Roles|None|False|False|9|Galaxy Manager - Main Menu|False|LinkUserRole|False
+95c78fd0-a446-4a7c-ac72-6b359c94306c|False|179|None|View LinkUserRole|None|False|False|178|View LinkUserRole - Sub Menu|False|LinkUserRole|False
+b160638f-d177-4b28-be06-f92d5f759a4c|False|180|None|Add LinkUserRole|None|False|False|178|Add LinkUserRole - Sub Menu|False|LinkUserRole|False
+3545bcac-ecf5-489f-9512-5afd891955f1|False|181|None|Remove LinkUserRole|None|False|False|178|Remove LinkUserRole - Sub Menu|False|LinkUserRole|False
+b69b4e21-260d-4d93-a0eb-11733c89f3f2|False|182|None|Edit LinkUserRole|None|False|False|178|Edit LinkUserRole - Sub Menu|False|LinkUserRole|False
+b07e8352-a74a-468b-bbc1-94c8ed5f4b0e|False|183|None|Save LinkUserRole|None|False|False|178|Save LinkUserRole - Sub Menu|False|LinkUserRole|False
+2393b81e-7c36-4235-9005-4ac99e41f859|False|184|None|Load LinkUserRole|None|False|False|178|Load LinkUserRole - Sub Menu|False|LinkUserRole|False
+b7541889-edbe-448d-8433-90d3d5859de6|False|9|None|Back to Main Menu|None|False|False|178|Back to Main Menu|True|LinkUserRole|False
+9594170d-60c7-4489-b791-17312f67688c|False|0|None|Exit|None|True|False|178|Exit|True|LinkUserRole|False
+a3e8e2f1-c869-43c2-80d7-e119992846ed|True|0|Refresh|Refresh|None|False|False|179|Refresh|False|LinkUserRole|False
+155a6efd-db66-4a2c-be44-3a65404b1772|True|0|Search|Search|None|False|False|179|Search|False|LinkUserRole|False
+6f972fc3-64c6-42a6-abb7-39c771521637|True|0|Next|Next Page|LastPage|False|False|179|Next Page|False|LinkUserRole|False
+2e8f434e-e0f8-48f3-93fd-33b4701b30f8|True|0|Last|Last Page|LastPage|False|False|179|Last Page|False|LinkUserRole|False
+1023ce4b-ee60-4457-b790-df977983497f|True|0|First|First Page|FirstPage|False|False|179|First Page|False|LinkUserRole|False
+c8291ef8-0b92-4093-98a2-c04829d9b773|True|0|Previous|Previous Page|FirstPage|False|False|179|Previous Page|False|LinkUserRole|False
+4151e3a2-bbae-4b3b-8ac5-11307efe3a27|False|178|None|Back to Main Menu|None|False|False|179|Back to Main Menu|True|LinkUserRole|False
+8b768672-ae2a-434d-ade0-8f2ec13ce833|False|0|None|Exit|None|True|False|179|Exit|True|LinkUserRole|False
+ee2e195a-5dc1-449d-a070-57c2f162c1ca|True|0|Add|Add LinkUserRole|None|False|False|180|Add LinkUserRole|False|LinkUserRole|False
+1acedb41-1950-4357-8458-911d578dc5f7|False|178|None|Back to Main Menu|None|False|False|180|Back to Main Menu|True|LinkUserRole|False
+d6d99b29-6d4d-4ec6-91d7-a04d5f1ce974|False|0|None|Exit|None|True|False|180|Exit|True|LinkUserRole|False
+cb4f6a8a-941c-435c-92bf-53ac513b22a2|True|0|Remove|Remove LinkUserRole|None|False|False|181|Remove LinkUserRole|False|LinkUserRole|False
+2ac46dc6-09ca-4fb8-a1f9-88dd91c43246|True|0|Next|Next Page|LastPage|False|False|181|Next Page|False|LinkUserRole|False
+122c49f6-cba5-45cf-910d-154540dc5c2a|True|0|Last|Last Page|LastPage|False|False|181|Last Page|False|LinkUserRole|False
+14d3e128-3063-46ce-a7e2-6439e20f9969|True|0|First|First Page|FirstPage|False|False|181|First Page|False|LinkUserRole|False
+bdbc7506-3036-4aee-b30c-b4641da9e67f|True|0|Previous|Previous Page|FirstPage|False|False|181|Previous Page|False|LinkUserRole|False
+fe8a5065-4af1-4e79-ab76-b149d24a4a5c|False|178|None|Back to Main Menu|None|False|False|181|Back to Main Menu|True|LinkUserRole|False
+95d4f280-5441-49fd-a56e-5f4070d916ec|False|0|None|Exit|None|True|False|181|Exit|True|LinkUserRole|False
+6aca3d75-5265-4247-a56b-a012b06b4855|True|0|Edit|Edit LinkUserRole|None|False|False|182|Edit LinkUserRole|False|LinkUserRole|False
+cbdc7b75-c064-41e4-a1e0-877fc4eff1d5|True|0|Next|Next Page|LastPage|False|False|182|Next Page|False|LinkUserRole|False
+78246839-09a9-4efe-9bc7-3d122eeac2cc|True|0|Last|Last Page|LastPage|False|False|182|Last Page|False|LinkUserRole|False
+5613c0fe-b61c-4045-8289-093fde06d810|True|0|First|First Page|FirstPage|False|False|182|First Page|False|LinkUserRole|False
+a41085dd-87c2-4d6a-bfc6-7e81373c92cd|True|0|Previous|Previous Page|FirstPage|False|False|182|Previous Page|False|LinkUserRole|False
+681264d1-9e5c-4536-baa0-4adba9b2296e|False|178|None|Back to Main Menu|None|False|False|182|Back to Main Menu|True|LinkUserRole|False
+956fe0de-5f8e-4d96-a0f4-d2f941948854|False|0|None|Exit|None|True|False|182|Exit|True|LinkUserRole|False
+bdf67cc6-cb98-435f-b7b1-5597bb0ae21c|True|0|Save|Save LinkUserRole to a file|None|False|False|183|Save LinkUserRole to a file|False|LinkUserRole|False
+5b608c5a-302d-4835-927f-f394532fe5bc|False|178|None|Back to Main Menu|None|False|False|183|Back to Main Menu|True|LinkUserRole|False
+fc536a3f-a9b8-4b53-9b1f-37e5ebe13c44|False|0|None|Exit|None|True|False|183|Exit|True|LinkUserRole|False
+a19efdd6-985c-43e5-850a-b4cdf0900362|True|0|Load|Load LinkUserRole from a file|None|False|False|184|Load LinkUserRole from a file|False|LinkUserRole|False
+b4c5b75c-a5a6-4ea6-a599-cd104da0d774|False|178|None|Back to Main Menu|None|False|False|184|Back to Main Menu|True|LinkUserRole|False
+0d775037-f954-4e29-9ba3-d59eb8fbbd0d|False|0|None|Exit|None|True|False|184|Exit|True|LinkUserRole|False
+2a8adbdc-9147-4a3c-8504-2e58c0ec00fb|False|185|None|Link Roles To RoleGroups|None|False|False|9|Galaxy Manager - Main Menu|False|LinkRoleRoleGroup|False
+6144d134-e9cc-4b4f-b778-cb370b4bd218|False|186|None|View LinkRoleRoleGroup|None|False|False|185|View LinkRoleRoleGroup - Sub Menu|False|LinkRoleRoleGroup|False
+3d35ed04-cd78-4e02-8731-72f0dd5401e1|False|187|None|Add LinkRoleRoleGroup|None|False|False|185|Add LinkRoleRoleGroup - Sub Menu|False|LinkRoleRoleGroup|False
+b02dc86b-a564-4259-a524-9121896a1eac|False|188|None|Remove LinkRoleRoleGroup|None|False|False|185|Remove LinkRoleRoleGroup - Sub Menu|False|LinkRoleRoleGroup|False
+3086ee0d-bde0-4b13-ab56-92cda71353dd|False|189|None|Edit LinkRoleRoleGroup|None|False|False|185|Edit LinkRoleRoleGroup - Sub Menu|False|LinkRoleRoleGroup|False
+03f0ba63-b2d0-4fd2-94df-c6b7936cd10b|False|190|None|Save LinkRoleRoleGroup|None|False|False|185|Save LinkRoleRoleGroup - Sub Menu|False|LinkRoleRoleGroup|False
+2a37bfe1-a8ff-4843-b9c8-29b0fde0df60|False|191|None|Load LinkRoleRoleGroup|None|False|False|185|Load LinkRoleRoleGroup - Sub Menu|False|LinkRoleRoleGroup|False
+f496005b-5252-4911-a3d6-c68d486cae7d|False|9|None|Back to Main Menu|None|False|False|185|Back to Main Menu|True|LinkRoleRoleGroup|False
+ce74f930-3026-43b7-92d6-1f3a19f2857f|False|0|None|Exit|None|True|False|185|Exit|True|LinkRoleRoleGroup|False
+b6d11bb6-8fc3-4e4a-8baf-0749875bc511|True|0|Refresh|Refresh|None|False|False|186|Refresh|False|LinkRoleRoleGroup|False
+2f352c98-fc24-4a44-8520-f83f0e2c65d2|True|0|Search|Search|None|False|False|186|Search|False|LinkRoleRoleGroup|False
+0fbcfd52-1ed2-474d-baaa-c27fdf49548f|True|0|Next|Next Page|LastPage|False|False|186|Next Page|False|LinkRoleRoleGroup|False
+2e3779cd-e0b7-4b0d-a86d-7aa4d78acf05|True|0|Last|Last Page|LastPage|False|False|186|Last Page|False|LinkRoleRoleGroup|False
+486a77c1-7652-4419-be88-1584b61ddb52|True|0|First|First Page|FirstPage|False|False|186|First Page|False|LinkRoleRoleGroup|False
+6d699b13-dcad-4516-9afa-6ca2df1a4553|True|0|Previous|Previous Page|FirstPage|False|False|186|Previous Page|False|LinkRoleRoleGroup|False
+3de7f162-b63d-4133-8419-eeab44bf5ddb|False|185|None|Back to Main Menu|None|False|False|186|Back to Main Menu|True|LinkRoleRoleGroup|False
+47f8304d-8984-4e15-9358-2315ec0f6a5a|False|0|None|Exit|None|True|False|186|Exit|True|LinkRoleRoleGroup|False
+a90bbcb8-c655-482f-acdf-fffcf99397fd|True|0|Add|Add LinkRoleRoleGroup|None|False|False|187|Add LinkRoleRoleGroup|False|LinkRoleRoleGroup|False
+20480b10-0481-4bb3-a879-7b99909bfaab|False|185|None|Back to Main Menu|None|False|False|187|Back to Main Menu|True|LinkRoleRoleGroup|False
+e094c217-ac6b-43b2-a14b-ac9e5d332c27|False|0|None|Exit|None|True|False|187|Exit|True|LinkRoleRoleGroup|False
+0fd123a3-72c9-456e-bd4e-967f0b951cba|True|0|Remove|Remove LinkRoleRoleGroup|None|False|False|188|Remove LinkRoleRoleGroup|False|LinkRoleRoleGroup|False
+e92000ce-9d21-4003-8874-dd288c78c587|True|0|Next|Next Page|LastPage|False|False|188|Next Page|False|LinkRoleRoleGroup|False
+c2ec09f3-61d4-4700-ae31-b791a7a0b6ea|True|0|Last|Last Page|LastPage|False|False|188|Last Page|False|LinkRoleRoleGroup|False
+e5ccfe51-17fa-4fe1-b620-0a73cd0cc101|True|0|First|First Page|FirstPage|False|False|188|First Page|False|LinkRoleRoleGroup|False
+f18a7f77-09d8-45eb-8dcb-fdc3e739170b|True|0|Previous|Previous Page|FirstPage|False|False|188|Previous Page|False|LinkRoleRoleGroup|False
+5e7fe571-3bb3-450d-b6cf-876e3ebdc0a1|False|185|None|Back to Main Menu|None|False|False|188|Back to Main Menu|True|LinkRoleRoleGroup|False
+6d27314c-ebd3-427a-ac59-251f482baaea|False|0|None|Exit|None|True|False|188|Exit|True|LinkRoleRoleGroup|False
+1fdc2375-866d-41fd-af9d-305ca179dd63|True|0|Edit|Edit LinkRoleRoleGroup|None|False|False|189|Edit LinkRoleRoleGroup|False|LinkRoleRoleGroup|False
+5cb06702-f3ab-46b7-a723-6468aa13f191|True|0|Next|Next Page|LastPage|False|False|189|Next Page|False|LinkRoleRoleGroup|False
+504f36d0-65c9-4717-80ca-f45877130610|True|0|Last|Last Page|LastPage|False|False|189|Last Page|False|LinkRoleRoleGroup|False
+bdda1e4a-0684-44ae-8ef4-e43ae09f6814|True|0|First|First Page|FirstPage|False|False|189|First Page|False|LinkRoleRoleGroup|False
+af09045a-23d2-4b3b-85af-4e27ca4da9a8|True|0|Previous|Previous Page|FirstPage|False|False|189|Previous Page|False|LinkRoleRoleGroup|False
+e4be4356-57ae-44b9-ae45-4703fb90bece|False|185|None|Back to Main Menu|None|False|False|189|Back to Main Menu|True|LinkRoleRoleGroup|False
+9b61d1b8-046d-4b47-bf14-f3b58c7d4101|False|0|None|Exit|None|True|False|189|Exit|True|LinkRoleRoleGroup|False
+41f03e74-951f-408c-9ca7-c2ff2a655880|True|0|Save|Save LinkRoleRoleGroup to a file|None|False|False|190|Save LinkRoleRoleGroup to a file|False|LinkRoleRoleGroup|False
+7a2b5ad7-ed6f-4620-a247-f2b6001f7d05|False|185|None|Back to Main Menu|None|False|False|190|Back to Main Menu|True|LinkRoleRoleGroup|False
+154877f3-4c8c-498d-bafe-f5018c9b4e9a|False|0|None|Exit|None|True|False|190|Exit|True|LinkRoleRoleGroup|False
+9baaa92d-ba35-4a90-9408-911d0717dafb|True|0|Load|Load LinkRoleRoleGroup from a file|None|False|False|191|Load LinkRoleRoleGroup from a file|False|LinkRoleRoleGroup|False
+30f23c76-d9f9-461e-b732-c5bab450241d|False|185|None|Back to Main Menu|None|False|False|191|Back to Main Menu|True|LinkRoleRoleGroup|False
+3d6d3ce9-0b8d-47a9-8069-5bfd1e76c0a7|False|0|None|Exit|None|True|False|191|Exit|True|LinkRoleRoleGroup|False
+4c2988ca-6161-4fd1-82d7-5d8488027c15|False|192|None|Link Beacons To Routes|None|False|False|9|Galaxy Manager - Main Menu|False|LinkBeaconRoute|False
+1d47e48f-43d7-481d-9333-7f1bf9041234|False|0|None|Exit|None|True|False|9|Galaxy Manager - Main Menu|False|None|False
+9c1a6084-b5ae-4168-8043-8365547ef5eb|False|193|None|View LinkBeaconRoute|None|False|False|192|View LinkBeaconRoute - Sub Menu|False|LinkBeaconRoute|False
+2142b13b-edbc-400a-9251-abb4f2bfac1a|False|194|None|Add LinkBeaconRoute|None|False|False|192|Add LinkBeaconRoute - Sub Menu|False|LinkBeaconRoute|False
+c144c246-51ff-4b28-ad0f-9b7edf5ba616|False|195|None|Remove LinkBeaconRoute|None|False|False|192|Remove LinkBeaconRoute - Sub Menu|False|LinkBeaconRoute|False
+65965229-b065-47d2-b3b3-5621ff4e3b99|False|196|None|Edit LinkBeaconRoute|None|False|False|192|Edit LinkBeaconRoute - Sub Menu|False|LinkBeaconRoute|False
+dc8c6ad9-bde2-4aa3-8654-b47e77534991|False|197|None|Save LinkBeaconRoute|None|False|False|192|Save LinkBeaconRoute - Sub Menu|False|LinkBeaconRoute|False
+1f66c5d5-4b4c-44a8-861b-e95bf0759926|False|198|None|Load LinkBeaconRoute|None|False|False|192|Load LinkBeaconRoute - Sub Menu|False|LinkBeaconRoute|False
+3a7c3bc8-ccc1-44d2-a219-10e7cd45238f|False|9|None|Back to Main Menu|None|False|False|192|Back to Main Menu|True|LinkBeaconRoute|False
+283103e5-3342-4051-8349-ca204c301d6b|False|0|None|Exit|None|True|False|192|Exit|True|LinkBeaconRoute|False
+b487d6d8-a4eb-4189-809b-fa70e7ac5f72|True|0|Refresh|Refresh|None|False|False|193|Refresh|False|LinkBeaconRoute|False
+b406b227-4fa7-4385-9b1b-07b6abd5e690|True|0|Search|Search|None|False|False|193|Search|False|LinkBeaconRoute|False
+5108ba2f-89bf-4bc0-9fb1-816e90dfcfa9|True|0|Next|Next Page|LastPage|False|False|193|Next Page|False|LinkBeaconRoute|False
+6679fb73-9351-4dfa-8e94-b6ec4d125bfd|True|0|Last|Last Page|LastPage|False|False|193|Last Page|False|LinkBeaconRoute|False
+477102ae-ce73-4a39-9661-efe2daabcd83|True|0|First|First Page|FirstPage|False|False|193|First Page|False|LinkBeaconRoute|False
+38f7da6b-3023-4db2-998c-da4fb15545b9|True|0|Previous|Previous Page|FirstPage|False|False|193|Previous Page|False|LinkBeaconRoute|False
+a4c27144-62d2-43d4-bcd2-415597768dea|False|192|None|Back to Main Menu|None|False|False|193|Back to Main Menu|True|LinkBeaconRoute|False
+66cc0a2f-8e95-43cc-9680-2640009f158d|False|0|None|Exit|None|True|False|193|Exit|True|LinkBeaconRoute|False
+33f9219b-2795-4075-a626-035437402d77|True|0|Add|Add LinkBeaconRoute|None|False|False|194|Add LinkBeaconRoute|False|LinkBeaconRoute|False
+e34a7f24-e736-4b24-8f68-c8431d090456|False|192|None|Back to Main Menu|None|False|False|194|Back to Main Menu|True|LinkBeaconRoute|False
+2141d439-020f-4392-92f4-5f0ffab168d8|False|0|None|Exit|None|True|False|194|Exit|True|LinkBeaconRoute|False
+157105f3-7282-45a7-96fe-a6938ea044f0|True|0|Remove|Remove LinkBeaconRoute|None|False|False|195|Remove LinkBeaconRoute|False|LinkBeaconRoute|False
+b92e9907-4a32-4f24-8faf-0408fc61d707|True|0|Next|Next Page|LastPage|False|False|195|Next Page|False|LinkBeaconRoute|False
+5321cd3d-ac08-4b4b-8edc-f3f74d6ce49a|True|0|Last|Last Page|LastPage|False|False|195|Last Page|False|LinkBeaconRoute|False
+fc2746bf-aa16-4a47-a095-d2a5ae8c26d0|True|0|First|First Page|FirstPage|False|False|195|First Page|False|LinkBeaconRoute|False
+2a8dc90f-7614-40ce-b615-738a44f37fb3|True|0|Previous|Previous Page|FirstPage|False|False|195|Previous Page|False|LinkBeaconRoute|False
+c378ad74-d927-4439-b134-bc06b7f1b532|False|192|None|Back to Main Menu|None|False|False|195|Back to Main Menu|True|LinkBeaconRoute|False
+06587776-dfa6-4f6e-96a0-53ffdb695915|False|0|None|Exit|None|True|False|195|Exit|True|LinkBeaconRoute|False
+9e3e237b-2aca-4e0b-b69b-c13de07419a4|True|0|Edit|Edit LinkBeaconRoute|None|False|False|196|Edit LinkBeaconRoute|False|LinkBeaconRoute|False
+93d49a01-9871-4f10-9ffe-432d523260ca|True|0|Next|Next Page|LastPage|False|False|196|Next Page|False|LinkBeaconRoute|False
+ee3edb9a-7489-4d7d-80b0-fd8a3e4d41a1|True|0|Last|Last Page|LastPage|False|False|196|Last Page|False|LinkBeaconRoute|False
+84c44bdc-4ed1-4819-8413-e7abeb6c8e5b|True|0|First|First Page|FirstPage|False|False|196|First Page|False|LinkBeaconRoute|False
+79b97b46-f8af-408f-b0ce-6378490f16d2|True|0|Previous|Previous Page|FirstPage|False|False|196|Previous Page|False|LinkBeaconRoute|False
+0c076e9d-3c86-4dc9-acc9-e7d87659634f|False|192|None|Back to Main Menu|None|False|False|196|Back to Main Menu|True|LinkBeaconRoute|False
+72ef6ad1-7ec8-43de-80c3-ec8d7b3a391b|False|0|None|Exit|None|True|False|196|Exit|True|LinkBeaconRoute|False
+003b000a-1520-4438-a49a-9365a8772cbb|True|0|Save|Save LinkBeaconRoute to a file|None|False|False|197|Save LinkBeaconRoute to a file|False|LinkBeaconRoute|False
+396eb7e6-b5ac-40e2-ad69-5b3877dc2323|False|192|None|Back to Main Menu|None|False|False|197|Back to Main Menu|True|LinkBeaconRoute|False
+92ea347d-851c-4ef5-a967-ab5dff66493f|False|0|None|Exit|None|True|False|197|Exit|True|LinkBeaconRoute|False
+f149bce7-9b91-4001-9d60-d7d5f931d3fe|True|0|Load|Load LinkBeaconRoute from a file|None|False|False|198|Load LinkBeaconRoute from a file|False|LinkBeaconRoute|False
+c0c29d57-4e3a-4c03-b0b2-187905446bd6|False|192|None|Back to Main Menu|None|False|False|198|Back to Main Menu|True|LinkBeaconRoute|False
+67150900-4846-461d-9e32-08eda54d40d9|False|0|None|Exit|None|True|False|198|Exit|True|LinkBeaconRoute|False

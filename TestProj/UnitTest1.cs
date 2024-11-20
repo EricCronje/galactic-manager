@@ -1,19 +1,15 @@
 namespace TestProJ
 {
-    using ArchCorpUtilities.Models.Menus;
     using ArchCorpUtilities.Utilities;
-    using System.Buffers;
     using AL = ArchCorpUtilities.Models.ArchLoader;
     using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-    using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
-    using MMH = ArchCorpUtilities.Models.Menus.MenuMaintenanceHelper;
 
     public class UnitTest1
     {
         [Fact]
         public void ScenarioValidAddItemSearchView()
         {
-            
+
 
             string[] Entity = ["Buildings", "Beacons"];
             string Scenario = "Scenario_1_";
@@ -63,7 +59,7 @@ namespace TestProJ
 
                 string[] SearchEditedValues = ["EditedBuilding"];
                 string[] RemoveValue = ["6"];
-                
+
                 var Add = 2;
                 var BackFromAdd = 2;
                 var View = 1;
@@ -98,7 +94,7 @@ namespace TestProJ
                 ];
                 CH.ClearFeedback();
                 AL.RunArch(Commands);
-    
+
                 var Result = CH.GetFeedback();
 
                 #endregion                
@@ -157,14 +153,14 @@ namespace TestProJ
                      new Command (Search, SearchValues),
                      new Command (Search, SearchEditedValues),
                      new Command (BackFromSearch, ""),
-                     new Command (Remove, RemoveValue), 
-                     new Command (BackFromRemove, ""), 
+                     new Command (Remove, RemoveValue),
+                     new Command (BackFromRemove, ""),
                      new Command (View, ""),
                      new Command (Search, SearchEditedValues),
-                     new Command (BackFromSearch, ""), 
+                     new Command (BackFromSearch, ""),
                      new Command (View, ""),
                      new Command (Next, "")
-    
+
                  ];
                 CH.ClearFeedback();
                 AL.RunArch(Commands);
@@ -306,7 +302,7 @@ namespace TestProJ
                 }
                 catch (Exception ex)
                 {
-                    Logger.Logger.Log($"Unit Test Failed to create output files. - {ex.Message} -- {ex.InnerException?.Message}");                   
+                    Logger.Logger.Log($"Unit Test Failed to create output files. - {ex.Message} -- {ex.InnerException?.Message}");
                 }
                 #endregion
             }
@@ -323,7 +319,7 @@ namespace TestProJ
 
             #endregion        
         }
-        
+
     }
 
 }

@@ -1,17 +1,10 @@
-using ArchCorpUtilities.Models.Buildings;
-
 namespace TestProjectMenus
 {
-    using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
+    using ArchCorpUtilities.Models.Menus;
     using AC = ArchCorpUtilities.Utilities.Command;
     using AL = ArchCorpUtilities.Models.ArchLoader;
     using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-    using U = ArchCorpUtilities.Utilities.UniversalUtilities;
-    using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
-
-    using ArchCorpUtilities.Models.Menus;
-    using System.Text;
-    using System;
+    using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 
     public class UnitTestMenus
     {

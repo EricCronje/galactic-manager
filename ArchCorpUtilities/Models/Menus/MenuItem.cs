@@ -28,7 +28,7 @@ namespace ArchCorpUtilities.Models.Menus
         public bool IsStartPage { get; }
 
 
-        
+
         public UniversalUtilities.MenuDomain Domain { get; set; }
 
         public int Level { get; set; }
@@ -59,7 +59,7 @@ namespace ArchCorpUtilities.Models.Menus
             {
                 IDGUIDMenu = idGuidMenu;
             }
-            
+
             DisplayName = displayName;
             DisplayMenuItem = $"{DisplayNumber}) {DisplayName}";
             IsExitOption = isExitOption;

@@ -1,12 +1,7 @@
-using ArchCorpUtilities.Models.Buildings;
 using ArchCorpUtilities.Models.Menus;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using System.Text;
 
-using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
-using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace TestProjectArchProject
 {

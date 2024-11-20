@@ -6,10 +6,9 @@ namespace InvalidCharacters
 
     public class InvalidCharacters : IInvalidCharacters
     {
-        private List<string>? ListOfInvalidCharacters;
-        private string? InvalidCharactersFound = null;
+        private readonly List<string>? ListOfInvalidCharacters;
 
-        public InvalidCharacters() 
+        public InvalidCharacters()
         {
             ListOfInvalidCharacters = [];
 

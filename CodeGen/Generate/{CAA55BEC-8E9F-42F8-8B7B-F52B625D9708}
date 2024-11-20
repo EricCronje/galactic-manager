@@ -1,11 +1,26 @@
-Manage Planets|Planets|Manage|None|None
-Manage Sites|Sites|Manage|None|None
 Manage Buildings|Buildings|Manage|None|None
-Manage Fleets|Fleets|Manage|None|None
-Manage Ships|Ships|Manage|None|None
+Manage BuildingTypes|BuildingType|Manage|None|None
+Manage Sites|Sites|Manage|None|None
+Manage Planets|Planets|Manage|None|None
+Manage PlanetTypes|PlanetType|Manage|None|None
 Manage Personnel|Personnel|Manage|None|None
-Manage Beacons|Beacons|Manage|None|None
-Manage RoleGroups|RoleGroups|Manage|None|None
-Manage Roles|Roles|Manage|None|None
+Manage PersonnelTypes|PersonnelType|Manage|None|None
+Manage Ships|Ships|Manage|None|None
+Manage ShipsTypes|ShipType|Manage|None|None
+Manage Fleets|Fleets|Manage|None|None
 Manage Users|Users|Manage|None|None
-Link Sites To Planets|LinkSitesToPlanets|Link|Sites|Planets
+Manage Roles|Roles|Manage|None|None
+Manage RoleGroups|RoleGroups|Manage|None|None
+Manage Beacons|Beacons|Manage|None|None
+Manage Routes|Routes|Manage|None|None
+Link BuildingTypes To Buildings|LinkBuildingsTypesBuildings|Link|BuildingType|Buildings
+Link Buildings To Sites|LinkBuildingsSites|Link|Buildings|Sites
+Link Site To Planet|LinkSitePlanet|Link|Sites|Planets
+Link PlanetTypes To Planet|LinkPlanetTypesPlanet|Link|PlanetType|Planets
+Link Personnel To Ship|LinkPersonnelShip|Link|Personnel|Ships
+Link Personnel To PersonnelType|LinkPersonnelPersonnelType|Link|Personnel|PersonnelType
+Link Ships To Fleets|LinkShipFleet|Link|Ships|Fleets
+Link ShipTypes To Ships|LinkShipTypeShip|Link|ShipType|Ships
+Link Users To Roles|LinkUserRole|Link|Users|Roles
+Link Roles To RoleGroups|LinkRoleRoleGroup|Link|Roles|RoleGroups
+Link Beacons To Routes|LinkBeaconRoute|Link|Beacons|Routes

@@ -1,5 +1,4 @@
 ﻿using ArchCorpUtilities.Utilities.CodeGen;
-using static ArchCorpUtilities.Utilities.CodeGenHelper;
 
 namespace ArchCorpUtilities.Utilities
 {

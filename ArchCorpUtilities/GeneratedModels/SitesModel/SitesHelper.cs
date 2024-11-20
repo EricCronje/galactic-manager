@@ -1,12 +1,10 @@
-// Generated Code - Version: 23.11.25 - 2024/11/19 19:23:41 - {2a4371ca-84c4-469c-a5be-31fe909f01e4}
-
-using L = Logger.Logger;
+// Generated Code - Version: 23.11.25 - 2024/11/20 17:29:20 - {64b62547-252c-4706-a962-7f21c734af25}
+using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-using ArchCorpUtilities.Models.SitesModel.Sites;
 using ArchCorpUtilities.Models.Helper;
 using System.Text;
-
+using AL = ArchCorpUtilities.Models.ArchLoader;
 namespace ArchCorpUtilities.GeneratedModels.SitesModel
 {
     public class SitesHelper : IHelper<Sites>, IDisposable
@@ -15,44 +13,24 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
         public List<Sites>? Items { get; set; }
         public List<Sites>? EntitiesOnThePage { get; set; }
         public Patina.Patina Page { get; set; }
-
+        public SitesMockRepository<Sites> Repository { get; set; }
        public SitesHelper(string? sessionID)
 		{
             SessionID = sessionID;
-            Items = MockData();
+            Items = [];
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Items?.Count));
+            Repository = new("-Sites");
 		}
-        private List<Sites>? MockData()
-			{
-            if (Items == null || Items.Count == 0)
-                Items = [];
-
-            Items.Add(new Sites("Alpha-Sites", 1));
-            Items.Add(new Sites("Beta-Sites", 2));
-            Items.Add(new Sites("Charlie-Sites", 3));
-            Items.Add(new Sites("Delta-Sites", 3));
-            Items.Add(new Sites("Echo-Sites", 3));
-            Items.Add(new Sites("Foxtrot-Sites", 3));
-            Items.Add(new Sites("Golf-Sites", 3));
-            Items.Add(new Sites("Hotel-Sites", 3));
-            return Items;
-			}
-
         public bool View(U.Navigation navigate = U.Navigation.FirstPage)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             var orderedEntities = Items?.OrderBy(p => p.Index).ToList();
            EntitiesOnThePage = U.ViewWithPagination("Sites", Page, orderedEntities, navigate);
             return true;
 			}
-
         public bool Add(int? simChoice = null, string[]? simInput = null)
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             CH.Feedback("Please provide the item name: ");
             var Input = CH.GetInput(simInput?[0]);
             if(!string.IsNullOrWhiteSpace(Input))
@@ -75,20 +53,14 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 
             return false;
         }
-
         public void Dispose()
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             GC.SuppressFinalize(this);
         }
-
         public bool Edit(int? simChoice, string[]? simInput)
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        try
 	        {
 	            Sites? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
@@ -138,20 +110,14 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 	            return false;
 	        }
         }
-
         public bool IsItemsOnThePage()
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             return !(EntitiesOnThePage == null || (EntitiesOnThePage != null && EntitiesOnThePage.Count == 0));
         }
-
         public bool Search(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             CH.Feedback("Enter an item name to search for");
 
             var Input = CH.GetInput(simInput?[0]);
@@ -183,24 +149,18 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 
             return false;
 			}
-
         public bool Refresh(List<Sites> modelList, U.Navigation navigate = U.Navigation.FirstPage)
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             ReIndexDisplayId();
             ResetPageMaxCount();
             var orderedEntities = modelList?.OrderBy(p => p.Index).ToList();
            EntitiesOnThePage = U.ViewWithPagination("Sites", Page, orderedEntities, navigate);
             return true;
         }
-
         public bool Remove(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 
             //List the items
             var CurrentSites = ViewAndSelectItem(simInput?[0], "Select the item to remove");
@@ -228,12 +188,9 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 
             return false;
 			}
-
         public bool Save(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 
             var Path = "Sites";
 
@@ -271,22 +228,15 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
             }
             return false;
 			}
-
         public bool Load(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        var path = "Sites";
 	        try
 	        {
 	            if (File.Exists(path))
 	            {
 	                CH.Feedback($"Items Loaded Successfully {path} - {U.GetCurrentDate()}");
-	
 	                string FileInput = File.ReadAllText(path);
 	                bool SkipFirstLine = true;
 	                foreach (string line in FileInput.Split("\r\n"))
@@ -317,7 +267,6 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 									ReIndexDisplayId();
 									ResetPageMaxCount();
 									ResetEntitiesOnThePage();
-									return true;
 									}
 								}
 								else
@@ -330,6 +279,7 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 	                ReIndexDisplayId();
 	                ResetPageMaxCount();
 	                ResetEntitiesOnThePage();
+                 return true;
 	            }
 	            else
 	            {
@@ -346,32 +296,23 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
 	        }
 	        return false;
 			}
-
         public void ReIndexDisplayId()
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             var OrderedModels = Items?.OrderBy(c => c.Name).ToList();
-
-            int counter = 1;
             if (OrderedModels != null)
-            {
-                foreach (var item in OrderedModels)
+                for (int i = 0; i < OrderedModels.Count; i++)
                 {
-                    item.DisplayId = counter++;
+                    Sites? item = OrderedModels[i];
+                    item.DisplayId = i + 1;
                     item.Id = item.DisplayId;
                     item.Index = item.DisplayId;
                 }
-            }
         }
-
         public void ResetPageMaxCount()
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));
         }
-
         private Sites? ViewAndSelectItem(string? simInput, string heading)
         {
             var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();
@@ -382,40 +323,26 @@ namespace ArchCorpUtilities.GeneratedModels.SitesModel
             _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);
             return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
-
         private void ResetEntitiesOnThePage()
         {
-            if (SessionID != null)
-                L.Log("Entities was reset.", SessionID, 4);
-
-            EntitiesOnThePage = null;
+            if (SessionID != null) { L.Log("Entities was reset.", SessionID, 4);}
+               EntitiesOnThePage = null;
         }
-
         public bool LoadDefaults()
         {
-            Items?.Clear();
-            Items = MockData();
-            return true;
+            Items?.Clear(); Items = Repository.All()?.ToList(); return true;
         }
-
         private bool DuplicateFound(string Input)
         {
-            var DuplicateFound = Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input));
-
-            if (DuplicateFound != null)
-                return true;
-
-            return false;
+            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input)) != null;
         }
-
         internal string? GetName(string? guid)
         {
             return Items?.FirstOrDefault(p => p.SitesGuid != null && p.SitesGuid.Equals(guid))?.Name;
         }
-
         internal string? GetGuid(string? name)
         {
             return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.SitesGuid;
         }
-    }
+	}
 }

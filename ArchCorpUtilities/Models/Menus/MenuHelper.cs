@@ -1,11 +1,7 @@
-﻿using System.Text;
-
-using L = Logger.Logger;
+﻿using ArchCorpUtilities.Utilities;
+using System.Text;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-
-using System.Runtime.InteropServices;
-using ArchCorpUtilities.Utilities;
-using System.Runtime.Versioning;
+using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Models.Menus
@@ -97,24 +93,24 @@ namespace ArchCorpUtilities.Models.Menus
             PageHeading = "Manage Menus";
             PageNumber = 10;
 
-            list.Add(new MenuItem("View Menus", PageNumber, PageHeading,  false, 11));
-            list.Add(new MenuItem("Add Menus", PageNumber, PageHeading,  false, 12));
-            list.Add(new MenuItem("Remove Menus", PageNumber, PageHeading,  false, 13));
-            list.Add(new MenuItem("Edit Menus",  PageNumber, PageHeading,  false, 14));
-            list.Add(new MenuItem("Save Menu",  PageNumber, PageHeading,  false, 15));
-            list.Add(new MenuItem("Load Menu",  PageNumber, PageHeading,  false, 16));
-            list.Add(new MenuItem("Back to Main Menu",  PageNumber, PageHeading,  false, 9, "None", true));
-            list.Add(new MenuItem("Exit",  PageNumber, PageHeading,  true));
+            list.Add(new MenuItem("View Menus", PageNumber, PageHeading, false, 11));
+            list.Add(new MenuItem("Add Menus", PageNumber, PageHeading, false, 12, "Add"));
+            list.Add(new MenuItem("Remove Menus", PageNumber, PageHeading, false, 13));
+            list.Add(new MenuItem("Edit Menus", PageNumber, PageHeading, false, 14));
+            list.Add(new MenuItem("Save Menu", PageNumber, PageHeading, false, 15));
+            list.Add(new MenuItem("Load Menu", PageNumber, PageHeading, false, 16));
+            list.Add(new MenuItem("Back to Main Menu", PageNumber, PageHeading, false, 9, "None", true));
+            list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //View Menus
             PageHeading = "View Menus - Sub Menu";
             PageNumber = 11;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "View", false, true,"None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "View", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Back to Manage Menus",PageNumber, PageHeading, false, 10, "None", true));
+            list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //Add Menus
@@ -132,7 +128,7 @@ namespace ArchCorpUtilities.Models.Menus
             //Remove Menus
             PageHeading = "Remove Menu - Sub Menu";
             PageNumber = 13;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading,false, 0, "Refresh", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("Remove a menu item", PageNumber, PageHeading, false, 0, "Remove", false, true, "None", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
             list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
@@ -181,7 +177,7 @@ namespace ArchCorpUtilities.Models.Menus
             sb.AppendLine(Line);
             if (heading != null)
                 sb.Append(heading.ToString());
-                sb.AppendLine($" - {U.GetVersion()}");
+            sb.AppendLine($" - {U.GetVersion()}");
 
             sb.Append(Line);
 
@@ -243,7 +239,7 @@ namespace ArchCorpUtilities.Models.Menus
                                 _ = bool.TryParse(LineParts[10], out bool IsBack);
                                 _ = Enum.TryParse(LineParts[11], out UniversalUtilities.MenuDomain Domain);
                                 bool IsStartPage = false;
-                                
+
                                 if (LineParts.Length > 12)
                                     _ = bool.TryParse(LineParts[12], out IsStartPage);
 
@@ -253,7 +249,7 @@ namespace ArchCorpUtilities.Models.Menus
                             }
                         }
                     }
-                    else 
+                    else
                     {
                         throw new Exception("Empty lines");
                     }
@@ -261,7 +257,7 @@ namespace ArchCorpUtilities.Models.Menus
                 return menuItems;
 
             }
-            return null;   
+            return null;
         }
 
         static int _Counter = 0;
@@ -281,7 +277,7 @@ namespace ArchCorpUtilities.Models.Menus
             int InternalCounter = 0;
             foreach (var item in MenuItems)
             {
-                
+
                 //This adds the numbering into DisplayMenuItem e.g. 1.1.1 2.5 etc. depending on the indention level.
                 //Updates the menu index.
                 string TempPrefix = $"{prefix.Trim()}{Index}".Trim();
@@ -297,7 +293,7 @@ namespace ArchCorpUtilities.Models.Menus
                     Menu.Level = level;
                     Menu.DisplayNumber = InternalCounter;
                 }
-                
+
                 if (item.TargetPage > 0 && item.IsBack == false)
                 {
                     level++;
@@ -320,7 +316,7 @@ namespace ArchCorpUtilities.Models.Menus
                 }
                 Index++;
             }
-            
+
             if (prefix.Length == 0) //The prefix is not passed in the initial call ...
                 _Counter = 0; // meaning this is the last instance - and the counter can be reset.
         }

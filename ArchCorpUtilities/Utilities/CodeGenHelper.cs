@@ -1,8 +1,7 @@
 ﻿using ArchCorpUtilities.Utilities.CodeGen;
-using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using System.Text;
-using L = Logger.Logger;
 using static ArchCorpUtilities.Utilities.CodeGen.CodePart;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Utilities;
 
@@ -12,7 +11,7 @@ public static class CodeGenHelper
     public static string WorkingFolder { get; set; }
     public static string TargetWorkingFolder { get; set; }
     public static string Version { get; set; }
-    public static string BackupFolder{ get; set; }
+    public static string BackupFolder { get; set; }
     public static string CurrentGuid { get; set; }
     public static string ProdGuid { get; set; }
     public static string DevGuid { get; set; }
@@ -21,7 +20,7 @@ public static class CodeGenHelper
     static CodeGenHelper()
     {
         ProdGuid = "{744852ea-d309-4f87-bbd2-03fe76ba877b}";
-        DevGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}"; 
+        DevGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}";
         TestGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}";
 
         WorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen";
@@ -110,6 +109,9 @@ public static class CodeGenHelper
 
             CodePartCreateHelper codePartCreateHelper = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{20D3B776-48B9-43E0-AE40-F1ABBCC31B90}", WorkingFolder, Header, "", SessionID ?? "TBA");
             codeVault.Add(codePartCreateHelper);
+
+            CodePartCreateMockRepository codePartCreatMockReposirory = new("\\GeneratedModels", $"{entity}MockRepository.cs", entity, "{0A673A7C-C929-442E-87EE-077C5267B9C3}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePartCreatMockReposirory);
         }
 
         if (menuType == MenuTypeEnum.Link)

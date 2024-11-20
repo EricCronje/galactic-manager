@@ -1,10 +1,9 @@
-// Generated Code - Version: 23.11.25 - 2024/11/19 19:23:44 - {2a4371ca-84c4-469c-a5be-31fe909f01e4}
+// Generated Code - Version: 23.11.25 - 2024/11/20 17:29:25 - {64b62547-252c-4706-a962-7f21c734af25}
 
-namespace ArchCorpUtilities.Models.LinkSitesToPlanetsModel.LinkSitesToPlanets;
-
-using AL = ArchCorpUtilities.Models.ArchLoader;
-
-public class LinkSitesToPlanets
+using ArchCorpUtilities.Models;
+namespace ArchCorpUtilities.GeneratedModels.LinkSitePlanetModel;
+using AL = ArchLoader;
+public class LinkSitePlanet
 {
     public string? Name { get; }
     public string? SitesGuid { get; }
@@ -12,8 +11,8 @@ public class LinkSitesToPlanets
     public int Id { get; set; }
     public int Index { get; set; }
     public int DisplayId { get; internal set; }
-    public string? LinkSitesToPlanetsGuid {get; internal set; }
-    public LinkSitesToPlanets(string? name , int id ,string? sitesGuid,string? planetsGuid, string guid = "")
+    public string? LinkSitePlanetGuid {get; internal set; }
+    public LinkSitePlanet(string? name , int id ,string? sitesGuid,string? planetsGuid, string guid = "")
     {
         Name = name;
         PlanetsGuid = planetsGuid;
@@ -22,11 +21,11 @@ public class LinkSitesToPlanets
         DisplayId = Id;
         if (guid != null && guid.Length > 0)
         {
-            LinkSitesToPlanetsGuid = guid;
+            LinkSitePlanetGuid = guid;
         }
         else
         {
-            LinkSitesToPlanetsGuid = Guid.NewGuid().ToString();
+            LinkSitePlanetGuid = Guid.NewGuid().ToString();
         }
     }
     public void SetDisplayId(int displayId) { DisplayId = displayId; }

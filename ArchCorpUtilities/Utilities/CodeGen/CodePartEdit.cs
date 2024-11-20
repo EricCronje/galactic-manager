@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
@@ -18,7 +14,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             var Tabs = "\t\t\t\t\t\t\t";
             stringBuilder.Append(CodeToAlter.AsSpan(2));
             stringBuilder.AppendLine($"case U.MenuDomain.{Entity}:");
-            stringBuilder.AppendLine($"{Tabs}\tL.Log(\"{ Entity}-Edit\", SessionID, 1);");
+            stringBuilder.AppendLine($"{Tabs}\tL.Log(\"{Entity}-Edit\", SessionID, 1);");
             stringBuilder.AppendLine($"{Tabs}\tA.{Entity}Helper?.Edit(simChoice, simInputValues);");
             stringBuilder.AppendLine($"{Tabs}\tbreak;");
             var CodeAltered = stringBuilder.ToString();

@@ -1,9 +1,8 @@
-// Generated Code - Version: 23.11.25 - 2024/11/19 19:23:44 - {2a4371ca-84c4-469c-a5be-31fe909f01e4}
+// Generated Code - Version: 23.11.25 - 2024/11/20 17:29:23 - {64b62547-252c-4706-a962-7f21c734af25}
 
-namespace ArchCorpUtilities.Models.RolesModel.Roles;
-
-using AL = ArchCorpUtilities.Models.ArchLoader;
-
+using ArchCorpUtilities.Models;
+namespace ArchCorpUtilities.GeneratedModels.RolesModel;
+using AL = ArchLoader;
 public class Roles
 {
     public string? Name { get; }

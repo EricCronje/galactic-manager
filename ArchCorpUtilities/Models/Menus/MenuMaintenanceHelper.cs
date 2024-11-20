@@ -1,16 +1,16 @@
-﻿using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
-using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-using Page = Patina.Patina;
-using L = Logger.Logger;
-using U = ArchCorpUtilities.Utilities.UniversalUtilities;
-using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
-using ArchCorpUtilities.Utilities;
-using static ArchCorpUtilities.Utilities.UniversalUtilities;
+﻿using ArchCorpUtilities.Utilities;
 using System.Diagnostics;
+using static ArchCorpUtilities.Utilities.UniversalUtilities;
+using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
+using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
+using L = Logger.Logger;
+using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
+using Page = Patina.Patina;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Models.Menus
 {
-    
+
     public static class MenuMaintenanceHelper
     {
         public static string? SessionID { get; internal set; }
@@ -56,7 +56,7 @@ namespace ArchCorpUtilities.Models.Menus
 
         internal static void Refresh()
         {
-            ViewMenuTopLevelWrapper();            
+            ViewMenuTopLevelWrapper();
         }
 
         private static void ViewMenuTopLevelWrapper()
@@ -64,12 +64,12 @@ namespace ArchCorpUtilities.Models.Menus
             PrepareMenuWrapper(MH.Menu);
             var orderedMenus = MH.Menu?.Where(p => p.Level == 0).OrderBy(p => p.Index).ToList();
             MenuPage = new Page(40, Convert.ToUInt16(orderedMenus?.Count));
-            MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage ,orderedMenus, U.Navigation.FirstPage);
+            MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage, orderedMenus, U.Navigation.FirstPage);
         }
 
         internal static void Add(string[]? simInputValues = null)
         {
-            if(GenerateUsingGUIDMassFile(simInputValues))
+            if (GenerateUsingGUIDMassFile(simInputValues))
             {
                 CH.Feedback($"Generated - {CodeGenHelper.CurrentGuid}\r\nIn Order for the changes to take affect:\r\nDeploy the code manually.\r\nThen create the menu structure.\r\nPress any key to exit the program.");
                 _ = CH.GetInput(simInputValues?[0]);
@@ -155,7 +155,7 @@ namespace ArchCorpUtilities.Models.Menus
                 }
                 else
                     if (SessionID != null)
-                        L.Log("No Entity name provided.", SessionID, 8);
+                    L.Log("No Entity name provided.", SessionID, 8);
 
                 return false;
             }
@@ -272,7 +272,7 @@ namespace ArchCorpUtilities.Models.Menus
                                     L.Log($"Abort - No lines", SessionID, 1);
                             }
                         }
-                        
+
                         return true;
                     }
                     else
@@ -294,7 +294,7 @@ namespace ArchCorpUtilities.Models.Menus
             return false;
         }
 
-        private static void CreateSubMenuLevel2( MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
+        private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
         {
             string DisplayName;
             bool IsBack;
@@ -317,7 +317,7 @@ namespace ArchCorpUtilities.Models.Menus
                     PageHeading = $"{DisplayName}";
                     IsExitOption = false;
                     NewMenuTargetPage = 0;
-                    
+
                     if (Counter == 1)
                         IsDefault = true;
 
@@ -326,9 +326,9 @@ namespace ArchCorpUtilities.Models.Menus
                     switch (item)
                     {
                         case "Next Page":
-                        case "Last Page":                                            
+                        case "Last Page":
                             HideRule = "LastPage";
-                            break;                        
+                            break;
                         case "Previous Page":
                         case "First Page":
                             HideRule = "FirstPage";
@@ -343,8 +343,8 @@ namespace ArchCorpUtilities.Models.Menus
 
                     AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomain, NewMenuTargetPage, HideRule, TargetTaskSplit[0], IsDefault);
                 }
-                Page = NewViewMenu.TargetPage;                
-                CreateBackAndExitMenuOptions(menuDomain , NewViewMenu, Page);
+                Page = NewViewMenu.TargetPage;
+                CreateBackAndExitMenuOptions(menuDomain, NewViewMenu, Page);
             }
         }
 
@@ -363,7 +363,7 @@ namespace ArchCorpUtilities.Models.Menus
                 {
                     if (CurrentMenu != null)
                     {
-                        
+
                         DisplayName = $"{subDisplayName} {itemName}";
                         PageHeading = $"{subDisplayName} {itemName} - Sub Menu";
                         NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
@@ -372,12 +372,12 @@ namespace ArchCorpUtilities.Models.Menus
                         AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, MenuDomainOption, NewMenuTargetPage);
                     }
                 }
-                
+
                 CreateBackAndExitMenuOptions(MenuDomainOption, CurrentMenu, Page);
                 return true;
             }
             else
-                return false; 
+                return false;
         }
 
         private static void CreateBackAndExitMenuOptions(MenuDomain menuDomainOption, MenuItem? CurrentMenu, int Page)
@@ -477,16 +477,16 @@ namespace ArchCorpUtilities.Models.Menus
         }
 
         internal static void Load(string? path = null)
-        {            
-            var Menus  = MH.ImportMenu(path ?? "Menus.txt");
+        {
+            var Menus = MH.ImportMenu(path ?? "Menus.txt");
             if (Menus != null)
             {
                 var Start = Menus.FirstOrDefault(p => p.IsStartPage)?.Page;
                 MH.MapMenus(Menus, Start);
                 MH.Menu.Clear();
                 MH.Menu = Menus;
-                
-                
+
+
                 CH.Feedback($"{Resource.LoadMenusSuccess} - {U.GetCurrentDate()}");
 
             }
@@ -506,7 +506,7 @@ namespace ArchCorpUtilities.Models.Menus
             //List the items
             var CurrentMenu = ViewAndSelectItem(simChoice);
 
-            if (CurrentMenu != null) 
+            if (CurrentMenu != null)
                 if (MH.Menu.Remove(CurrentMenu))
                     CH.Feedback(Resource.MenuItemRemovedSuccess);
                 else

@@ -1,60 +1,36 @@
-// Generated Code - Version: 23.11.25 - 2024/11/19 19:23:44 - {2a4371ca-84c4-469c-a5be-31fe909f01e4}
-
-using L = Logger.Logger;
+// Generated Code - Version: 23.11.25 - 2024/11/20 17:29:21 - {64b62547-252c-4706-a962-7f21c734af25}
+using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-using ArchCorpUtilities.Models.LinkSitesToPlanetsModel.LinkSitesToPlanets;
 using ArchCorpUtilities.Models.Helper;
 using System.Text;
-
 using AL = ArchCorpUtilities.Models.ArchLoader;
-namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
+namespace ArchCorpUtilities.GeneratedModels.PlanetTypeModel
 {
-    public class LinkSitesToPlanetsHelper : IHelper<LinkSitesToPlanets>, IDisposable
+    public class PlanetTypeHelper : IHelper<PlanetType>, IDisposable
 	{
         public string? SessionID { get; set; }
-        public List<LinkSitesToPlanets>? Items { get; set; }
-        public List<LinkSitesToPlanets>? EntitiesOnThePage { get; set; }
+        public List<PlanetType>? Items { get; set; }
+        public List<PlanetType>? EntitiesOnThePage { get; set; }
         public Patina.Patina Page { get; set; }
-
-       public LinkSitesToPlanetsHelper(string? sessionID)
+        public PlanetTypeMockRepository<PlanetType> Repository { get; set; }
+       public PlanetTypeHelper(string? sessionID)
 		{
             SessionID = sessionID;
-            Items = MockData();
+            Items = [];
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Items?.Count));
+            Repository = new("-PlanetType");
 		}
-        private List<LinkSitesToPlanets>? MockData()
-			{
-            if (Items == null || Items.Count == 0)
-                Items = [];
-
-            var PlanetsItems = AL.PlanetsHelper?.Items;
-            var SitesItems = AL.SitesHelper?.Items;
-            if (PlanetsItems != null && SitesItems != null)
-                for (int i = 0; i < PlanetsItems.Count; i++)
-                {
-                    Models.PlanetsModel.Planets.Planets?planets = PlanetsItems[i];
-                    Models.SitesModel.Sites.Sites? sites = SitesItems[i];
-                    Items.Add(new LinkSitesToPlanets($"{sites.Name}-{planets.Name}", 0, sites.SitesGuid, planets.PlanetsGuid));
-                }
-            return Items;
-			}
-
         public bool View(U.Navigation navigate = U.Navigation.FirstPage)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             var orderedEntities = Items?.OrderBy(p => p.Index).ToList();
-           EntitiesOnThePage = U.ViewWithPagination("LinkSitesToPlanets", Page, orderedEntities, navigate);
+           EntitiesOnThePage = U.ViewWithPagination("PlanetType", Page, orderedEntities, navigate);
             return true;
 			}
-
         public bool Add(int? simChoice = null, string[]? simInput = null)
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             CH.Feedback("Please provide the item name: ");
             var Input = CH.GetInput(simInput?[0]);
             if(!string.IsNullOrWhiteSpace(Input))
@@ -66,7 +42,7 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
                     return false;
                 }
 
-                Items?.Add(new(Input, 0, null, null));
+                Items?.Add(new(Input, 0));
                 CH.Feedback("Item added.");
                 ResetPageMaxCount();
                 ReIndexDisplayId();
@@ -77,23 +53,17 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 
             return false;
         }
-
         public void Dispose()
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             GC.SuppressFinalize(this);
         }
-
         public bool Edit(int? simChoice, string[]? simInput)
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        try
 	        {
-	            LinkSitesToPlanets? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
+	            PlanetType? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
 	
 	            if (Entity != null)
 	            {
@@ -104,7 +74,7 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 	                    var NotFound = Items?.FirstOrDefault(i => (i.Name != null && i.Name.Equals(Input, StringComparison.CurrentCultureIgnoreCase)));
 	                    if (NotFound == null)
 	                    {
-	                        EntitiesOnThePage = [new(Input, 0, Entity?.SitesGuid, Entity?.PlanetsGuid)];
+	                        EntitiesOnThePage = [new(Input, 0)];
 	                        Items?.Add(EntitiesOnThePage[0]);
 	                        if (Entity != null)
 		                      Items?.Remove(Entity);
@@ -140,20 +110,14 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 	            return false;
 	        }
         }
-
         public bool IsItemsOnThePage()
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             return !(EntitiesOnThePage == null || (EntitiesOnThePage != null && EntitiesOnThePage.Count == 0));
         }
-
         public bool Search(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             CH.Feedback("Enter an item name to search for");
 
             var Input = CH.GetInput(simInput?[0]);
@@ -163,7 +127,7 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
             else 
             {
 
-                List<LinkSitesToPlanets>? Entities = Items?.Where(c => c.Name != null && c.Name.ToUpper().Contains(Input.ToUpper(), StringComparison.CurrentCultureIgnoreCase)).ToList<LinkSitesToPlanets>();
+                List<PlanetType>? Entities = Items?.Where(c => c.Name != null && c.Name.ToUpper().Contains(Input.ToUpper(), StringComparison.CurrentCultureIgnoreCase)).ToList<PlanetType>();
 
                 if (Entities != null && Entities.Count > 0)
                 {
@@ -174,7 +138,7 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
                 else 
                 {
                     CH.Feedback("No Items Was Found");
-                    EntitiesOnThePage = [new LinkSitesToPlanets("None", 1, null, null)];
+                    EntitiesOnThePage = [new PlanetType("None", 1)];
                     Page = new Patina.Patina(1, 1);
                     return false;
                 }
@@ -185,30 +149,24 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 
             return false;
 			}
-
-        public bool Refresh(List<LinkSitesToPlanets> modelList, U.Navigation navigate = U.Navigation.FirstPage)
+        public bool Refresh(List<PlanetType> modelList, U.Navigation navigate = U.Navigation.FirstPage)
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             ReIndexDisplayId();
             ResetPageMaxCount();
             var orderedEntities = modelList?.OrderBy(p => p.Index).ToList();
-           EntitiesOnThePage = U.ViewWithPagination("LinkSitesToPlanets", Page, orderedEntities, navigate);
+           EntitiesOnThePage = U.ViewWithPagination("PlanetType", Page, orderedEntities, navigate);
             return true;
         }
-
         public bool Remove(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 
             //List the items
-            var CurrentLinkSitesToPlanets = ViewAndSelectItem(simInput?[0], "Select the item to remove");
+            var CurrentPlanetType = ViewAndSelectItem(simInput?[0], "Select the item to remove");
 
-            if (Items != null && CurrentLinkSitesToPlanets != null)
-                if (Items.Remove(CurrentLinkSitesToPlanets))
+            if (Items != null && CurrentPlanetType != null)
+                if (Items.Remove(CurrentPlanetType))
                 {
                     CH.Feedback("Item removed.");
                     ResetPageMaxCount();
@@ -230,24 +188,21 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 
             return false;
 			}
-
         public bool Save(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 
-
-            var Path = "LinkSitesToPlanets";
+            var Path = "PlanetType";
 
             if (Items != null && Items.Count > 0)
             {
                 StringBuilder sb = new();
                 try
                 {
-                    sb.AppendLine($"LinkSitesToPlanetsName|LHLink|RHLink|LHLinkName|RHLinkName|Guid|LHLinkGuid|RHLinkGuid");
+                    sb.AppendLine($"PlanetTypeName|PlanetTypeGuid");
                     foreach (var item in Items.OrderBy(c => c.Name))
                     {
-                        sb.AppendLine($"{ item.Name}|Sites|Planets|{AL.SitesHelper?.GetName(item.SitesGuid)}|{AL.PlanetsHelper?.GetName(item.PlanetsGuid)}|{ item.LinkSitesToPlanetsGuid}|{item.SitesGuid}|{item.PlanetsGuid}");
+                        sb.AppendLine($"{ item.Name}|{ item.PlanetTypeGuid}");
                     }
 
                     if (File.Exists(Path))
@@ -273,22 +228,15 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
             }
             return false;
 			}
-
         public bool Load(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
-	        var path = "LinkSitesToPlanets";
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+	        var path = "PlanetType";
 	        try
 	        {
 	            if (File.Exists(path))
 	            {
 	                CH.Feedback($"Items Loaded Successfully {path} - {U.GetCurrentDate()}");
-	
 	                string FileInput = File.ReadAllText(path);
 	                bool SkipFirstLine = true;
 	                foreach (string line in FileInput.Split("\r\n"))
@@ -299,12 +247,10 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 							if (LineItem.Length > 0 && LineItem.Length > 1)
 	                        {
 	                            string Name = LineItem[0].Trim();
-	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[5].Trim();
-	                            string LHLinkGuid = LineItem[6].Trim();
-	                            string RHLinkGuid = LineItem[7].Trim();
-	                            var Entity = Items?.FirstOrDefault(c => c.LinkSitesToPlanetsGuid == GUID);
+	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[1].Trim();
+	                            var Entity = Items?.FirstOrDefault(c => c.PlanetTypeGuid == GUID);
 	                            var EntityItem = Items?.FirstOrDefault(c => c.Name == Name);
-								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.LinkSitesToPlanetsGuid;
+								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.PlanetTypeGuid;
 
 								if (Entity == null)
 								{
@@ -316,12 +262,11 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 									{
 									if (SessionID != null)
 										L.Log($"Item found - {Name}", SessionID);
-									Items?.Add(new LinkSitesToPlanets(Name, 0, LHLinkGuid, RHLinkGuid, GUID));
+									Items?.Add(new PlanetType(Name, 0, GUID));
 									CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
 									ReIndexDisplayId();
 									ResetPageMaxCount();
 									ResetEntitiesOnThePage();
-									return true;
 									}
 								}
 								else
@@ -334,6 +279,7 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 	                ReIndexDisplayId();
 	                ResetPageMaxCount();
 	                ResetEntitiesOnThePage();
+                 return true;
 	            }
 	            else
 	            {
@@ -350,33 +296,24 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
 	        }
 	        return false;
 			}
-
         public void ReIndexDisplayId()
         {
-            if (SessionID != null)
-                L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
-
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             var OrderedModels = Items?.OrderBy(c => c.Name).ToList();
-
-            int counter = 1;
             if (OrderedModels != null)
-            {
-                foreach (var item in OrderedModels)
+                for (int i = 0; i < OrderedModels.Count; i++)
                 {
-                    item.DisplayId = counter++;
+                    PlanetType? item = OrderedModels[i];
+                    item.DisplayId = i + 1;
                     item.Id = item.DisplayId;
                     item.Index = item.DisplayId;
                 }
-            }
         }
-
         public void ResetPageMaxCount()
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));
         }
-
-        private LinkSitesToPlanets? ViewAndSelectItem(string? simInput, string heading)
+        private PlanetType? ViewAndSelectItem(string? simInput, string heading)
         {
             var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
@@ -386,40 +323,26 @@ namespace ArchCorpUtilities.GeneratedModels.LinkSitesToPlanetsModel
             _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);
             return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
-
         private void ResetEntitiesOnThePage()
         {
-            if (SessionID != null)
-                L.Log("Entities was reset.", SessionID, 4);
-
-            EntitiesOnThePage = null;
+            if (SessionID != null) { L.Log("Entities was reset.", SessionID, 4);}
+               EntitiesOnThePage = null;
         }
-
         public bool LoadDefaults()
         {
-            Items?.Clear();
-            Items = MockData();
-            return true;
+            Items?.Clear(); Items = Repository.All()?.ToList(); return true;
         }
-
         private bool DuplicateFound(string Input)
         {
-            var DuplicateFound = Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input));
-
-            if (DuplicateFound != null)
-                return true;
-
-            return false;
+            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input)) != null;
         }
-
         internal string? GetName(string? guid)
         {
-            return Items?.FirstOrDefault(p => p.LinkSitesToPlanetsGuid != null && p.LinkSitesToPlanetsGuid.Equals(guid))?.Name;
+            return Items?.FirstOrDefault(p => p.PlanetTypeGuid != null && p.PlanetTypeGuid.Equals(guid))?.Name;
         }
-
         internal string? GetGuid(string? name)
         {
-            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.LinkSitesToPlanetsGuid;
+            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.PlanetTypeGuid;
         }
-    }
+	}
 }
