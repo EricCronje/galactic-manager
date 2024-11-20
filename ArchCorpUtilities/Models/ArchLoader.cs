@@ -1,30 +1,4 @@
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:15 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:14 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:14 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:13 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:13 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:13 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:12 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:12 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:12 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:11 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:11 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:10 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:10 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:10 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:09 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:09 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:09 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:09 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:08 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:08 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:07 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:07 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:07 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:06 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:17:26 - {bc074cbe-aae5-4d1e-aa83-fa69cd2e48f4}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:17:26 - {bc074cbe-aae5-4d1e-aa83-fa69cd2e48f4}
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:17:26 - {bc074cbe-aae5-4d1e-aa83-fa69cd2e48f4}
+// Generated Code - Version: <Version> - <Date> - {91430f8b-6f80-4c3e-9376-72b046fb8d41}
 // Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
 
 using ArchCorpUtilities.Utilities;
@@ -38,32 +12,6 @@ using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 using BuildingsHelper = ArchCorpUtilities.GeneratedModels.BuildingsModel.BuildingsHelper;
-using SitesHelper = ArchCorpUtilities.GeneratedModels.SitesModel.SitesHelper;
-using BuildingSiteHelper = ArchCorpUtilities.GeneratedModels.BuildingSiteModel.BuildingSiteHelper;
-using BuildingTypeHelper = ArchCorpUtilities.GeneratedModels.BuildingTypeModel.BuildingTypeHelper;
-using PlanetsHelper = ArchCorpUtilities.GeneratedModels.PlanetsModel.PlanetsHelper;
-using PlanetTypeHelper = ArchCorpUtilities.GeneratedModels.PlanetTypeModel.PlanetTypeHelper;
-using PersonnelHelper = ArchCorpUtilities.GeneratedModels.PersonnelModel.PersonnelHelper;
-using PersonnelTypeHelper = ArchCorpUtilities.GeneratedModels.PersonnelTypeModel.PersonnelTypeHelper;
-using ShipsHelper = ArchCorpUtilities.GeneratedModels.ShipsModel.ShipsHelper;
-using ShipTypeHelper = ArchCorpUtilities.GeneratedModels.ShipTypeModel.ShipTypeHelper;
-using FleetsHelper = ArchCorpUtilities.GeneratedModels.FleetsModel.FleetsHelper;
-using UsersHelper = ArchCorpUtilities.GeneratedModels.UsersModel.UsersHelper;
-using RolesHelper = ArchCorpUtilities.GeneratedModels.RolesModel.RolesHelper;
-using RoleGroupsHelper = ArchCorpUtilities.GeneratedModels.RoleGroupsModel.RoleGroupsHelper;
-using BeaconsHelper = ArchCorpUtilities.GeneratedModels.BeaconsModel.BeaconsHelper;
-using RoutesHelper = ArchCorpUtilities.GeneratedModels.RoutesModel.RoutesHelper;
-using LinkBuildingsTypesBuildingsHelper = ArchCorpUtilities.GeneratedModels.LinkBuildingsTypesBuildingsModel.LinkBuildingsTypesBuildingsHelper;
-using LinkBuildingsSitesHelper = ArchCorpUtilities.GeneratedModels.LinkBuildingsSitesModel.LinkBuildingsSitesHelper;
-using LinkSitePlanetHelper = ArchCorpUtilities.GeneratedModels.LinkSitePlanetModel.LinkSitePlanetHelper;
-using LinkPlanetTypesPlanetHelper = ArchCorpUtilities.GeneratedModels.LinkPlanetTypesPlanetModel.LinkPlanetTypesPlanetHelper;
-using LinkPersonnelShipHelper = ArchCorpUtilities.GeneratedModels.LinkPersonnelShipModel.LinkPersonnelShipHelper;
-using LinkPersonnelPersonnelTypeHelper = ArchCorpUtilities.GeneratedModels.LinkPersonnelPersonnelTypeModel.LinkPersonnelPersonnelTypeHelper;
-using LinkShipFleetHelper = ArchCorpUtilities.GeneratedModels.LinkShipFleetModel.LinkShipFleetHelper;
-using LinkShipTypeShipHelper = ArchCorpUtilities.GeneratedModels.LinkShipTypeShipModel.LinkShipTypeShipHelper;
-using LinkUserRoleHelper = ArchCorpUtilities.GeneratedModels.LinkUserRoleModel.LinkUserRoleHelper;
-using LinkRoleRoleGroupHelper = ArchCorpUtilities.GeneratedModels.LinkRoleRoleGroupModel.LinkRoleRoleGroupHelper;
-using LinkBeaconRouteHelper = ArchCorpUtilities.GeneratedModels.LinkBeaconRouteModel.LinkBeaconRouteHelper;
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 
 using ArchCorpUtilities.Models.Menus;
@@ -77,32 +25,6 @@ namespace ArchCorpUtilities.Models
 
         //{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
 		internal static BuildingsHelper? BuildingsHelper = null;
-		internal static SitesHelper? SitesHelper = null;
-		internal static BuildingSiteHelper? BuildingSiteHelper = null;
-		internal static BuildingTypeHelper? BuildingTypeHelper = null;
-		internal static PlanetsHelper? PlanetsHelper = null;
-		internal static PlanetTypeHelper? PlanetTypeHelper = null;
-		internal static PersonnelHelper? PersonnelHelper = null;
-		internal static PersonnelTypeHelper? PersonnelTypeHelper = null;
-		internal static ShipsHelper? ShipsHelper = null;
-		internal static ShipTypeHelper? ShipTypeHelper = null;
-		internal static FleetsHelper? FleetsHelper = null;
-		internal static UsersHelper? UsersHelper = null;
-		internal static RolesHelper? RolesHelper = null;
-		internal static RoleGroupsHelper? RoleGroupsHelper = null;
-		internal static BeaconsHelper? BeaconsHelper = null;
-		internal static RoutesHelper? RoutesHelper = null;
-		internal static LinkBuildingsTypesBuildingsHelper? LinkBuildingsTypesBuildingsHelper = null;
-		internal static LinkBuildingsSitesHelper? LinkBuildingsSitesHelper = null;
-		internal static LinkSitePlanetHelper? LinkSitePlanetHelper = null;
-		internal static LinkPlanetTypesPlanetHelper? LinkPlanetTypesPlanetHelper = null;
-		internal static LinkPersonnelShipHelper? LinkPersonnelShipHelper = null;
-		internal static LinkPersonnelPersonnelTypeHelper? LinkPersonnelPersonnelTypeHelper = null;
-		internal static LinkShipFleetHelper? LinkShipFleetHelper = null;
-		internal static LinkShipTypeShipHelper? LinkShipTypeShipHelper = null;
-		internal static LinkUserRoleHelper? LinkUserRoleHelper = null;
-		internal static LinkRoleRoleGroupHelper? LinkRoleRoleGroupHelper = null;
-		internal static LinkBeaconRouteHelper? LinkBeaconRouteHelper = null;
 		//{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
 
         static ArchLoader()
@@ -116,32 +38,6 @@ namespace ArchCorpUtilities.Models
 
             //{9ED7AF33-DE0E-45C3-821F-4669558AD744}
 			BuildingsHelper = new(SessionID);
-			SitesHelper = new(SessionID);
-			BuildingSiteHelper = new(SessionID);
-			BuildingTypeHelper = new(SessionID);
-			PlanetsHelper = new(SessionID);
-			PlanetTypeHelper = new(SessionID);
-			PersonnelHelper = new(SessionID);
-			PersonnelTypeHelper = new(SessionID);
-			ShipsHelper = new(SessionID);
-			ShipTypeHelper = new(SessionID);
-			FleetsHelper = new(SessionID);
-			UsersHelper = new(SessionID);
-			RolesHelper = new(SessionID);
-			RoleGroupsHelper = new(SessionID);
-			BeaconsHelper = new(SessionID);
-			RoutesHelper = new(SessionID);
-			LinkBuildingsTypesBuildingsHelper = new(SessionID);
-			LinkBuildingsSitesHelper = new(SessionID);
-			LinkSitePlanetHelper = new(SessionID);
-			LinkPlanetTypesPlanetHelper = new(SessionID);
-			LinkPersonnelShipHelper = new(SessionID);
-			LinkPersonnelPersonnelTypeHelper = new(SessionID);
-			LinkShipFleetHelper = new(SessionID);
-			LinkShipTypeShipHelper = new(SessionID);
-			LinkUserRoleHelper = new(SessionID);
-			LinkRoleRoleGroupHelper = new(SessionID);
-			LinkBeaconRouteHelper = new(SessionID);
 			//{9ED7AF33-DE0E-45C3-821F-4669558AD744}
 
         }
@@ -155,32 +51,6 @@ namespace ArchCorpUtilities.Models
 
             //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
 			BuildingsHelper?.LoadDefaults();
-			SitesHelper?.LoadDefaults();
-			BuildingSiteHelper?.LoadDefaults();
-			BuildingTypeHelper?.LoadDefaults();
-			PlanetsHelper?.LoadDefaults();
-			PlanetTypeHelper?.LoadDefaults();
-			PersonnelHelper?.LoadDefaults();
-			PersonnelTypeHelper?.LoadDefaults();
-			ShipsHelper?.LoadDefaults();
-			ShipTypeHelper?.LoadDefaults();
-			FleetsHelper?.LoadDefaults();
-			UsersHelper?.LoadDefaults();
-			RolesHelper?.LoadDefaults();
-			RoleGroupsHelper?.LoadDefaults();
-			BeaconsHelper?.LoadDefaults();
-			RoutesHelper?.LoadDefaults();
-			LinkBuildingsTypesBuildingsHelper?.LoadDefaults();
-			LinkBuildingsSitesHelper?.LoadDefaults();
-			LinkSitePlanetHelper?.LoadDefaults();
-			LinkPlanetTypesPlanetHelper?.LoadDefaults();
-			LinkPersonnelShipHelper?.LoadDefaults();
-			LinkPersonnelPersonnelTypeHelper?.LoadDefaults();
-			LinkShipFleetHelper?.LoadDefaults();
-			LinkShipTypeShipHelper?.LoadDefaults();
-			LinkUserRoleHelper?.LoadDefaults();
-			LinkRoleRoleGroupHelper?.LoadDefaults();
-			LinkBeaconRouteHelper?.LoadDefaults();
 			//{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
 
             if (File.Exists(CodeGenHelper.CurrentGuid))

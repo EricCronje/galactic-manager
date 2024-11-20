@@ -86,7 +86,7 @@ namespace ArchCorpUtilities.Models.Menus
             }
         }
 
-        private static bool GenerateMenuItems(MenuItem? CurrentMenu, ref string DisplayName, string ItemName, ref bool IsBack, ref int Page, ref string PageHeading, ref int ParentPage, ref bool IsExitOption, ref int NewMenuTargetPage)
+        private static bool GenerateMenuItems(MenuItem? CurrentMenu, ref string DisplayName, string ItemName, ref bool IsBack, ref int Page, ref string PageHeading, ref int ParentPage, ref bool IsExitOption, ref int NewMenuTargetPage, bool isStartPage)
         {
             if (CurrentMenu == null)
                 return false;
@@ -102,7 +102,7 @@ namespace ArchCorpUtilities.Models.Menus
                 var Domain = CurrentMenu.Domain;
                 _ = Enum.TryParse(ItemName, out Domain);
 
-                var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, Domain, NewMenuTargetPage);
+                var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, Domain, NewMenuTargetPage, "None", "None", false, isStartPage);
                 //Re-Add it...
                 if (IsExitMenuItem != null)
                 {
@@ -194,6 +194,9 @@ namespace ArchCorpUtilities.Models.Menus
                             L.Log($"Length of {Content.Length}", SessionID, 1);
 
                         var SplitCommands = Content.Split("\r\n");
+
+                        ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
+                        bool IsStartPage = true;
                         foreach (var SplitCommand in SplitCommands)
                         {
                             if (SessionID != null)
@@ -224,22 +227,6 @@ namespace ArchCorpUtilities.Models.Menus
                                     else
                                         CH.Feedback($"{Resource.ModelFileNotCreated} - {EntityName}");
 
-                                    try
-                                    {
-                                        Process process = new()
-                                        {
-                                            StartInfo = new ProcessStartInfo("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat")
-                                        };
-                                        process.Start();
-                                        process.WaitForExit();
-                                        process.Dispose();
-                                        CH.Feedback($"Deployed the changes to the code.");
-                                    }
-                                    catch (Exception)
-                                    {
-                                        CH.Feedback($"Could not deploy the changes to the code.");
-                                    }
-
                                     if (CurrentMenu != null)
                                     {
                                         var Page = CurrentMenu.Page;
@@ -247,9 +234,10 @@ namespace ArchCorpUtilities.Models.Menus
                                         var ParentPage = CurrentMenu.ParentPage;
                                         var NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
 
-                                        if (MenuName.Length > 0 && EntityName.Length > 0)
-                                            if (GenerateMenuItems(CurrentMenu, ref MenuName, EntityName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage))
+                                        if (MenuName.Length > 0 && EntityName.Length > 0)                                            
+                                            if (GenerateMenuItems(CurrentMenu, ref MenuName, EntityName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, IsStartPage))
                                             {
+                                                IsStartPage = false;
                                                 CH.Feedback($"Menus (Add, Remove, Edit, View, Search, import, save etc.) created for - {EntityName}");
                                                 if (MH.ExportMenus($"{GeneratePath}_Menus"))
                                                     CH.Feedback($"Menus exported for - {EntityName} - {GeneratePath}\\Menus{CodeGenHelper.CurrentGuid}");
@@ -273,6 +261,7 @@ namespace ArchCorpUtilities.Models.Menus
                             }
                         }
 
+                        ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
                         return true;
                     }
                     else
@@ -292,6 +281,25 @@ namespace ArchCorpUtilities.Models.Menus
             }
 
             return false;
+        }
+
+        private static void ExecuteCMD(string CMDPath)
+        {
+            try
+            {
+                Process process = new()
+                {
+                    StartInfo = new ProcessStartInfo(CMDPath)
+                };
+                process.Start();
+                process.WaitForExit();
+                process.Dispose();
+                CH.Feedback($"Deployed the changes to the code.");
+            }
+            catch (Exception)
+            {
+                CH.Feedback($"Could not deploy the changes to the code.");
+            }
         }
 
         private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
@@ -406,7 +414,7 @@ namespace ArchCorpUtilities.Models.Menus
             }
         }
 
-        private static bool AddNewMenuItem(string displayName, bool isBack, int page, string pageHeading, bool isExitOption, UniversalUtilities.MenuDomain domain, int newMenuTargetPage, string hideRule = "None", string targetTask = "None", bool isDefault = false)
+        private static bool AddNewMenuItem(string displayName, bool isBack, int page, string pageHeading, bool isExitOption, UniversalUtilities.MenuDomain domain, int newMenuTargetPage, string hideRule = "None", string targetTask = "None", bool isDefault = false, bool isStartPage = false)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
             {
@@ -430,7 +438,7 @@ namespace ArchCorpUtilities.Models.Menus
                 false,
                 "UserAdded",
                 null,
-                domain);
+                domain, isStartPage);
                 // Add the item to the menu structure.
                 MH.Menu.Add(NewMenuItem);
                 return true;
@@ -497,7 +505,8 @@ namespace ArchCorpUtilities.Models.Menus
 
         internal static void Save()
         {
-            if (MH.ExportMenus())
+            CH.Feedback("Export the menu maintenance as well? (Y/N)");
+            if (MH.ExportMenus("Menus", !CH.GetInput().Contains('Y')))
                 CH.Feedback($"{Resource.SaveMenusSuccess} - {U.GetCurrentDate()}");
         }
 

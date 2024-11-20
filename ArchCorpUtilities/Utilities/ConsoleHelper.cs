@@ -19,14 +19,12 @@ namespace ArchCorpUtilities.Utilities
         {
             return FeedbackSB.ToString();
         }
-
+        
         public static void ClearFeedback()
         {
             FeedbackSB.Clear();
         }
-
-
-
+        
         public static void Feedback(string? feedback, bool visible = true)
         {
             feedback ??= "";
@@ -66,13 +64,15 @@ namespace ArchCorpUtilities.Utilities
                 if (input != null)
                 {
                     FeedbackSB.AppendLine($"Input received: {input}");
-                    return input;
+                    FeedbackSB.AppendLine($"Trimmed the Input received: {input.Trim()}");
+                    return input.Trim();
                 }
             }
             if (IsSimulate && simInput != null)
             {
                 FeedbackSB.AppendLine($"Simulate: {simInput}");
-                return simInput;
+                FeedbackSB.AppendLine($"Simulate Trimmed: {simInput.Trim()}");
+                return simInput.Trim();
             }
 
             return string.Empty;

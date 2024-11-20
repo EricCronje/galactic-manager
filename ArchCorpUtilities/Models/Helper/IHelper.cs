@@ -5,7 +5,6 @@ namespace ArchCorpUtilities.Models.Helper
     public interface IHelper<T>
     {
         public string? SessionID { get; set; }
-        public List<T>? Items { get; set; }
         Patina.Patina Page { get; set; }
 
         public bool IsItemsOnThePage();
@@ -21,7 +20,7 @@ namespace ArchCorpUtilities.Models.Helper
         /// Refresh on the add, remove, edit, search, view page
         /// can be called from the "DefaultTasks"
         /// </summary>
-        public bool Refresh(List<T> modelList, U.Navigation navigate = U.Navigation.FirstPage);
+        public bool Refresh(U.Navigation navigate = U.Navigation.FirstPage);
 
         /// <summary>
         /// Call Add(T)

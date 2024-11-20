@@ -1,4 +1,4 @@
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:29:19 - {64b62547-252c-4706-a962-7f21c734af25}
+// Generated Code - Version: <Version> - <Date> - {91430f8b-6f80-4c3e-9376-72b046fb8d41}
 
 using ArchCorpUtilities.Models;
 namespace ArchCorpUtilities.GeneratedModels.BuildingsModel;
@@ -25,5 +25,5 @@ public class Buildings
         }
     }
     public void SetDisplayId(int displayId) { DisplayId = displayId; }
-    public override string ToString() {return $"{DisplayId}) {Name}";}
+    public override string ToString() => $"{DisplayId}) {Name}";
 }

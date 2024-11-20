@@ -1,4 +1,4 @@
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:29:19 - {64b62547-252c-4706-a962-7f21c734af25}
+// Generated Code - Version: <Version> - <Date> - {91430f8b-6f80-4c3e-9376-72b046fb8d41}
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -10,27 +10,25 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
     public class BuildingsHelper : IHelper<Buildings>, IDisposable
 	{
         public string? SessionID { get; set; }
-        public List<Buildings>? Items { get; set; }
         public List<Buildings>? EntitiesOnThePage { get; set; }
         public Patina.Patina Page { get; set; }
-        public BuildingsMockRepository<Buildings> Repository { get; set; }
+        public BuildingsMockRepository<Buildings>? Repository { get; set; }
        public BuildingsHelper(string? sessionID)
 		{
             SessionID = sessionID;
-            Items = [];
-            Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Items?.Count));
             Repository = new("-Buildings");
+            Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
         public bool View(U.Navigation navigate = U.Navigation.FirstPage)
 			{
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            var orderedEntities = Items?.OrderBy(p => p.Index).ToList();
-           EntitiesOnThePage = U.ViewWithPagination("Buildings", Page, orderedEntities, navigate);
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+            var orderedEntities = Repository?.OrderByIndex();
+            EntitiesOnThePage = U.ViewWithPagination("Buildings", Page, orderedEntities, navigate);
             return true;
 			}
         public bool Add(int? simChoice = null, string[]? simInput = null)
         {
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             CH.Feedback("Please provide the item name: ");
             var Input = CH.GetInput(simInput?[0]);
             if(!string.IsNullOrWhiteSpace(Input))
@@ -42,7 +40,7 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
                     return false;
                 }
 
-                Items?.Add(new(Input, 0));
+                Repository?.Add(new(Input, 0));
                 CH.Feedback("Item added.");
                 ResetPageMaxCount();
                 ReIndexDisplayId();
@@ -55,12 +53,12 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
         }
         public void Dispose()
         {
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             GC.SuppressFinalize(this);
         }
         public bool Edit(int? simChoice, string[]? simInput)
         {
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        try
 	        {
 	            Buildings? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
@@ -71,13 +69,13 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	                var Input = CH.GetInput(simInput?[1]);
 	                if (!string.IsNullOrWhiteSpace(Input))
 	                {
-	                    var NotFound = Items?.FirstOrDefault(i => (i.Name != null && i.Name.Equals(Input, StringComparison.CurrentCultureIgnoreCase)));
+	                    var NotFound = Repository?.GetAllContainingName(Input);
 	                    if (NotFound == null)
 	                    {
 	                        EntitiesOnThePage = [new(Input, 0)];
-	                        Items?.Add(EntitiesOnThePage[0]);
+	                        Repository?.Add(EntitiesOnThePage[0]);
 	                        if (Entity != null)
-		                      Items?.Remove(Entity);
+		                      Repository?.Remove(Entity);
 	                        Page = new Patina.Patina(1, 1);
 	                        ResetPageMaxCount();
 	                        ReIndexDisplayId();
@@ -112,12 +110,12 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
         }
         public bool IsItemsOnThePage()
         {
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             return !(EntitiesOnThePage == null || (EntitiesOnThePage != null && EntitiesOnThePage.Count == 0));
         }
         public bool Search(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             CH.Feedback("Enter an item name to search for");
 
             var Input = CH.GetInput(simInput?[0]);
@@ -126,9 +124,7 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
                 CH.Feedback("No Items Name Was Entered");
             else 
             {
-
-                List<Buildings>? Entities = Items?.Where(c => c.Name != null && c.Name.ToUpper().Contains(Input.ToUpper(), StringComparison.CurrentCultureIgnoreCase)).ToList<Buildings>();
-
+                List<Buildings>? Entities = Repository?.GetAllContainingName(Input);
                 if (Entities != null && Entities.Count > 0)
                 {
                     Page = new Patina.Patina(5, Convert.ToUInt32(Entities.Count));
@@ -149,24 +145,24 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 
             return false;
 			}
-        public bool Refresh(List<Buildings> modelList, U.Navigation navigate = U.Navigation.FirstPage)
+        public bool Refresh(U.Navigation navigate = U.Navigation.FirstPage)
         {
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             ReIndexDisplayId();
             ResetPageMaxCount();
-            var orderedEntities = modelList?.OrderBy(p => p.Index).ToList();
-           EntitiesOnThePage = U.ViewWithPagination("Buildings", Page, orderedEntities, navigate);
+            var orderedEntities = Repository?.OrderByIndex();
+            EntitiesOnThePage = U.ViewWithPagination("Buildings", Page, orderedEntities, navigate);
             return true;
         }
         public bool Remove(int? simChoice = null, string[]? simInput = null)
 			{
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 
             //List the items
             var CurrentBuildings = ViewAndSelectItem(simInput?[0], "Select the item to remove");
 
-            if (Items != null && CurrentBuildings != null)
-                if (Items.Remove(CurrentBuildings))
+            if (Repository != null && CurrentBuildings != null)
+                if (Repository.Remove(CurrentBuildings))
                 {
                     CH.Feedback("Item removed.");
                     ResetPageMaxCount();
@@ -189,48 +185,49 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
             return false;
 			}
         public bool Save(int? simChoice = null, string[]? simInput = null)
+		{
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+			var Path = "Buildings";
+			if (Repository?.Count() > 0)
 			{
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-
-            var Path = "Buildings";
-
-            if (Items != null && Items.Count > 0)
-            {
-                StringBuilder sb = new();
-                try
-                {
-                    sb.AppendLine($"BuildingsName|BuildingsGuid");
-                    foreach (var item in Items.OrderBy(c => c.Name))
-                    {
-                        sb.AppendLine($"{ item.Name}|{ item.BuildingsGuid}");
-                    }
-
-                    if (File.Exists(Path))
-                        File.Delete(Path);
-
-                    File.AppendAllText(Path, sb.ToString());
-                    CH.Feedback($"Saved the item successfully - {U.GetCurrentDate()}");
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    CH.Feedback($"Items was not saved. - Error {ex.Message}");
-                    return false;
-                }
-                finally
-                {
-                    sb?.Clear();
-                }
-            }
-            else
-            {
-                CH.Feedback("No data to save");
-            }
-            return false;
+				StringBuilder sb = new();
+				try
+					{
+					sb.AppendLine($"BuildingsName|BuildingsGuid");
+					var OrderedList = Repository.OrderByName();
+					if(OrderedList != null)
+					{
+						foreach (Buildings item in OrderedList)
+						{
+							sb.AppendLine($"{ item.Name}|{ item.BuildingsGuid}");
+						}
+						if (File.Exists(Path))
+							File.Delete(Path);
+						File.AppendAllText(Path, sb.ToString());
+						CH.Feedback($"Saved the item successfully - {U.GetCurrentDate()}");
+						return true;
+					}
+					return false;
+				}
+				catch (Exception ex)
+				{
+					CH.Feedback($"Items was not saved. - Error {ex.Message}");
+					return false;
+				}
+				finally
+				{
+					sb?.Clear();
+				}
 			}
-        public bool Load(int? simChoice = null, string[]? simInput = null)
+			else
 			{
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+				CH.Feedback("No data to save");
+			}
+			return false;
+		}
+        public bool Load(int? simChoice = null, string[]? simInput = null)
+		{
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        var path = "Buildings";
 	        try
 	        {
@@ -248,8 +245,8 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	                        {
 	                            string Name = LineItem[0].Trim();
 	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[1].Trim();
-	                            var Entity = Items?.FirstOrDefault(c => c.BuildingsGuid == GUID);
-	                            var EntityItem = Items?.FirstOrDefault(c => c.Name == Name);
+	                            var Entity = Repository?.GetByGUID(GUID)?.ToList()[0];
+	                            var EntityItem = Repository?.GetByName(Name)?.ToList()[0];
 								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.BuildingsGuid;
 
 								if (Entity == null)
@@ -262,7 +259,7 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 									{
 									if (SessionID != null)
 										L.Log($"Item found - {Name}", SessionID);
-									Items?.Add(new Buildings(Name, 0, GUID));
+									Repository?.Add(new Buildings(Name, 0, GUID));
 									CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
 									ReIndexDisplayId();
 									ResetPageMaxCount();
@@ -295,11 +292,11 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
 	            CH.Feedback($"Error in the loading of the items {ex.Message} {path}");
 	        }
 	        return false;
-			}
+		}
         public void ReIndexDisplayId()
         {
-            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            var OrderedModels = Items?.OrderBy(c => c.Name).ToList();
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+            var OrderedModels = Repository?.OrderByName();
             if (OrderedModels != null)
                 for (int i = 0; i < OrderedModels.Count; i++)
                 {
@@ -311,11 +308,11 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
         }
         public void ResetPageMaxCount()
         {
-            Page = new Patina.Patina(5, Convert.ToUInt32(Items?.Count));
+            Page = new Patina.Patina(5, Convert.ToUInt32(Repository?.Count()));
         }
         private Buildings? ViewAndSelectItem(string? simInput, string heading)
         {
-            var orderedEntities = EntitiesOnThePage ?? Items?.OrderBy(p => p.Index).ToList();
+            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);
             if (EntitiesOnThePage == null) { return null; }
@@ -330,19 +327,21 @@ namespace ArchCorpUtilities.GeneratedModels.BuildingsModel
         }
         public bool LoadDefaults()
         {
-            Items?.Clear(); Items = Repository.All()?.ToList(); return true;
+            Repository?.All()?.ToList(); return true;
         }
         private bool DuplicateFound(string Input)
         {
-            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Length > 0 && p.Name.Equals(Input)) != null;
+            return Repository?.GetByName(Input)?.Count() > 0;
         }
         internal string? GetName(string? guid)
         {
-            return Items?.FirstOrDefault(p => p.BuildingsGuid != null && p.BuildingsGuid.Equals(guid))?.Name;
+            if (guid == null) { return null; }
+            return Repository?.GetByGUID(guid)?.ToList()[0].Name;
         }
         internal string? GetGuid(string? name)
         {
-            return Items?.FirstOrDefault(p => p.Name != null && p.Name.Equals(name))?.BuildingsGuid;
+            if (name == null) { return null; }
+            return Repository?.GetByName(name)?.ToList()[0].BuildingsGuid;
         }
 	}
 }

@@ -1,39 +1,3 @@
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:15 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:14 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:14 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:13 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:13 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:13 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:12 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:12 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:12 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:11 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:11 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:10 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:09 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:08 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:07 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:07 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:22:06 - {c1d05dfd-4286-4a76-b6a6-7374f9cebc98}
-
-// Generated Code - Version: 23.11.25 - 2024/11/20 17:17:26 - {bc074cbe-aae5-4d1e-aa83-fa69cd2e48f4}
-
 // Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
 
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
@@ -56,36 +20,8 @@ namespace ArchCorpUtilities.Utilities
             Menu,
 			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
 	
-            Beacons,
-Buildings
-,
-Planets,
-Sites,
-Fleets,
-Ships,
-Personel,
-RoleGroups,
-Roles,
-Users,
-LinkSitesToPlanets,
-BuildingSite,
-BuildingType,
-PlanetType,
-Personnel,
-PersonnelType,
-ShipType,
-Routes,
-LinkBuildingsTypesBuildings,
-LinkBuildingsSites,
-LinkSitePlanet,
-LinkPlanetTypesPlanet,
-LinkPersonnelShip,
-LinkPersonnelPersonnelType,
-LinkShipFleet,
-LinkShipTypeShip,
-LinkUserRole,
-LinkRoleRoleGroup,
-			LinkBeaconRoute
+            Beacons,Buildings,Planets,Sites,Fleets,Ships,Personel,RoleGroups,Roles,Users,
+			LinkSitesToPlanets
 			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
 	
         }
