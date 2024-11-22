@@ -5,7 +5,8 @@ namespace TestProjectCodeGen
     public class UnitTestCodeGen
     {
         [Fact]
-        public void ValidTestGenCode_GetBackup_Create_AlphaPrime()
+        public void ValidTestGenCode_GetBackup_Create_
+            ()
         {
             TestGenCode(true, "AlphaPrime");
             RemoveCreatedModelFiles("AlphaPrime");
@@ -45,6 +46,10 @@ namespace TestProjectCodeGen
         [Fact]
         public void ValidTestGenCode_NoBackup_Create_Brent_Charlie()
         {
+            RemoveCreatedModelFiles("Brent");
+            RemoveCreatedModelFiles("Charlie");
+            RestoreOriginalModels();
+
             TestGenCode(true, "Brent");
             TestGenCode(false, "Charlie");
 
@@ -87,7 +92,7 @@ namespace TestProjectCodeGen
 
             Assert.Contains("{B03F74F5-9862-4916-9EF1-82DD253A5BC3}", Context); // View
             Assert.Contains("case U.MenuDomain.Charlie: L.Log(\"Charlie-View\", SessionID, 1);", Context); // View
-            Assert.Contains("if (A.CharlieHelper != null && A.CharlieHelper.Items != null) { A.CharlieHelper?.Refresh(A.CharlieHelper.Items); }", Context); // View
+            Assert.Contains("case U.MenuDomain.Charlie: L.Log(\"Charlie-View\", SessionID, 1); A.CharlieHelper?.Refresh(); break;", Context); // View
 
             Assert.Contains("{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}", Context); // First
             var Entity = "Charlie";
@@ -188,9 +193,7 @@ namespace TestProjectCodeGen
             Entity = "Charlie";
             Assert.Contains("{B2FED166-7FCF-4163-8507-EB1CC28B6435}", Context); // Refresh
             Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Refresh
-            Assert.Contains($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1);", Context); // Refresh
-            Assert.Contains($"if (A.{Entity}Helper != null && A.{Entity}Helper.Items != null && A.{Entity}Helper.Items.Count > 0)", Context); // Refresh
-            Assert.Contains($"{{A.{Entity}Helper.Refresh(A.{Entity}Helper.Items);}}", Context); // Refresh
+            Assert.Contains($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.BuildingsHelper?.Refresh(); break;", Context); // Refresh
 
             Entity = "Charlie";
             Assert.Contains("{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}", Context); // Hidden
@@ -205,18 +208,22 @@ namespace TestProjectCodeGen
             RemoveCreatedModelFiles("Brent");
             RemoveCreatedModelFiles("Charlie");
             RestoreOriginalModels();
+            
         }
 
         private static void RemoveCreatedModelFiles(string Entity)
         {
             var CSFile = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}.cs";
             var CSFileHelper = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}Helper.cs";
+            var Repository = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model\\{Entity}MockRepository.cs";
             var GeneratedFolder = $"{CodeGen.WorkingFolder}\\GeneratedModels\\{Entity}Model";
 
             if (File.Exists(CSFile))
                 File.Delete(CSFile);
             if (File.Exists(CSFileHelper))
                 File.Delete(CSFileHelper);
+            if (File.Exists (Repository))
+                File.Delete(Repository);
             if (Directory.Exists(GeneratedFolder))
                 Directory.Delete(GeneratedFolder);
 

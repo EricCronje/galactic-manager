@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using static ArchCorpUtilities.Utilities.CodeGenHelper;
 using L = Logger.Logger;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
@@ -76,8 +77,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception err)
             {
+                if (SessionID != null) { L.Log($"Error in AlterCode - {err.Message} -- {err.InnerException?.Message} -- {SearchString}", SessionID, 9); }                
                 return false;
             }
         }
@@ -99,7 +101,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"//{SearchString}");
             stringBuilder.Append(codeAltered);
             stringBuilder.AppendLine($"{Tabs}//{SearchString}");
-            stringBuilder.Append(SelectedContext[2].AsSpan(2)); // remove the linefeed
+            U.RemoveFirstLineFeed(SelectedContext[2], stringBuilder);
             var AlteredFile = stringBuilder.ToString();
             stringBuilder.Clear();
             return AlteredFile;
@@ -115,7 +117,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 if (File.Exists(EntityFile))
                     File.Delete(EntityFile);
 
-                TemplateCode = GetGeneratedCodeHeader() + TemplateCode;
+                TemplateCode = U.GetGeneratedCodeHeader() + TemplateCode;
 
                 File.WriteAllText(EntityFile, TemplateCode);
                 return true;
@@ -149,7 +151,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"                CH.Feedback(\"No Items Name Was Entered\");");
             stringBuilder.AppendLine($"            else ");
             stringBuilder.AppendLine($"            {{");
-            stringBuilder.AppendLine($"                List<Buildings>? Entities = Repository?.GetAllContainingName(Input);");
+            stringBuilder.AppendLine($"                List<{entity}>? Entities = Repository?.GetAllContainingName(Input);");
             stringBuilder.AppendLine($"                if (Entities != null && Entities.Count > 0)");
             stringBuilder.AppendLine($"                {{");
             stringBuilder.AppendLine($"                    Page = new Patina.Patina(5, Convert.ToUInt32(Entities.Count));");
@@ -289,7 +291,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void SaveLogic(StringBuilder stringBuilder, string entity, string? lHLink, string? rHLink)
         {
-            stringBuilder.AppendLine($"\t\t\tvar Path = \"Buildings\";");
+            stringBuilder.AppendLine($"\t\t\tvar Path = \"{entity}\";");
             stringBuilder.AppendLine($"\t\t\tif (Repository?.Count() > 0)");
             stringBuilder.AppendLine($"\t\t\t{{");
             stringBuilder.AppendLine($"\t\t\t\tStringBuilder sb = new();");
@@ -347,7 +349,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"\t                var Input = CH.GetInput(simInput?[1]);");
             stringBuilder.AppendLine($"\t                if (!string.IsNullOrWhiteSpace(Input))");
             stringBuilder.AppendLine($"\t                {{");
-            stringBuilder.AppendLine($"\t                    var NotFound = Repository?.GetAllContainingName(Input);");
+            stringBuilder.AppendLine($"\t                    var NotFound = Repository?.GetByName(Input);");
             stringBuilder.AppendLine($"\t                    if (NotFound == null)");
             stringBuilder.AppendLine($"\t                    {{");
             if (lHLink == null && rHLink == null)
@@ -396,7 +398,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"            //List the items");
             stringBuilder.AppendLine($"            var Current{entity} = ViewAndSelectItem(simInput?[0], \"Select the item to remove\");");
             stringBuilder.AppendLine($"");
-            stringBuilder.AppendLine($"            if (Repository != null && CurrentBuildings != null)");
+            stringBuilder.AppendLine($"            if (Repository != null && Current{entity} != null)");
             stringBuilder.AppendLine($"                if (Repository.Remove(Current{entity}))");
             stringBuilder.AppendLine($"                {{");
             stringBuilder.AppendLine($"                    CH.Feedback(\"Item removed.\");");
@@ -733,12 +735,12 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine("        }");
         }
 
-        private static void GetGuidLogic(StringBuilder stringBuilder)
+        private static void GetGuidLogic(StringBuilder stringBuilder, string entity)
         {
             stringBuilder.AppendLine($"        internal string? GetGuid(string? name)");
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            if (name == null) {{ return null; }}");
-            stringBuilder.AppendLine($"            return Repository?.GetByName(name)?.ToList()[0].BuildingsGuid;");
+            stringBuilder.AppendLine($"            return Repository?.GetByName(name)?.ToList()[0].{entity}Guid;");
             stringBuilder.AppendLine($"        }}");
         }
 
@@ -876,12 +878,14 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
             stringBuilder.AppendLine($"using ArchCorpUtilities.Models;");
             stringBuilder.AppendLine($"using AL = ArchCorpUtilities.Models.ArchLoader;");
+            stringBuilder.AppendLine($"using L = Logger.Logger;");
             stringBuilder.AppendLine($"namespace ArchCorpUtilities.GeneratedModels.{entity}Model");
             stringBuilder.AppendLine($"    {{");
             stringBuilder.AppendLine($"        public class {entity}MockRepository<T>(string postFix) : IRepository<{entity}>, IDisposable");
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            private readonly List<{entity}>? Items = [];");
             stringBuilder.AppendLine($"            string PostFix {{ get; set; }} = postFix;");
+            stringBuilder.AppendLine($"            public string? SessionId {{ get; set; }}");
             stringBuilder.AppendLine($"            public void Add({entity}? entity)");
             stringBuilder.AppendLine($"            {{");
             stringBuilder.AppendLine($"                if (Items != null && entity != null) {{ Items?.Add(entity); }}");
@@ -891,8 +895,8 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
             if (RHLink != null && LHLink != null)
             {
-                stringBuilder.AppendLine($"            var {RHLink}Items = AL.{RHLink}Helper?.Items;");
-                stringBuilder.AppendLine($"            var {LHLink}Items = AL.{LHLink}Helper?.Items;");
+                stringBuilder.AppendLine($"            var {RHLink}Items = AL.{RHLink}Helper?.Repository?.All()?.ToList();");
+                stringBuilder.AppendLine($"            var {LHLink}Items = AL.{LHLink}Helper?.Repository?.All()?.ToList();");
                 stringBuilder.AppendLine($"            if ({RHLink}Items != null && {LHLink}Items != null)");
                 stringBuilder.AppendLine($"                for (int i = 0; i < {RHLink}Items.Count; i++)");
                 stringBuilder.AppendLine($"                {{");
@@ -904,11 +908,11 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
             if (RHLink == null && LHLink == null)
             {
-                stringBuilder.AppendLine($"                string[] ItemsToAdd = [\"Alpha\", \"Beta\", \"Charlie\", \"Delta\", \"Echo\", \"Foxtrot\", \"Golf\", \"Hotel\", \"India\", \"Juliet\", \"Kilo\", \"Lima\", \"Mike\", \"November\", \"October\", \"Papa\", \"Quebec\", \"Romeo\", \"Sierra\", \"Tango\"];");
+                stringBuilder.AppendLine($"                string[] ItemsToAdd = [\"Alpha\", \"Beta\", \"Charlie\", \"Delta\", \"Echo\", \"Foxtrot\", \"Golf\", \"Hotel\"];");
                 stringBuilder.AppendLine($"                foreach (var item in ItemsToAdd)");
                 stringBuilder.AppendLine($"                {{");
                 stringBuilder.AppendLine($"                    {entity} NewEntity = new($\"{{item}}{{PostFix}}\", 0, Guid.NewGuid().ToString());");
-                stringBuilder.AppendLine($"                    if (Items != null && !Items.Contains(NewEntity))");
+                stringBuilder.AppendLine($"                    if (Items != null && GetAllContainingName(NewEntity.Name)?.Count == 0)");
                 stringBuilder.AppendLine($"                        Add(NewEntity);");
                 stringBuilder.AppendLine($"                }}");
             }
@@ -925,7 +929,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"            public IEnumerable<{entity}>? GetByGUID(string guid)");
             stringBuilder.AppendLine($"            {{");
             stringBuilder.AppendLine($"                if (Items == null) {{ return null; }}");
-            stringBuilder.AppendLine($"                var Result = Items.Where(p => p.BuildingsGuid != null && p.BuildingsGuid == guid);");
+            stringBuilder.AppendLine($"                var Result = Items.Where(p => p.{entity}Guid != null && p.{entity}Guid == guid);");
             stringBuilder.AppendLine($"                if (!Result.Any()) return null;");
             stringBuilder.AppendLine($"                return Result;");
             stringBuilder.AppendLine($"            }}");
@@ -968,11 +972,20 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"            public List<{entity}>? GetAllContainingName(string? input)");
             stringBuilder.AppendLine($"            {{");
             stringBuilder.AppendLine($"                if (input == null) return null;");
-            stringBuilder.AppendLine($"                var Result = Items?.Where(c => c.Name != null && c.Name.ToUpper().Contains(input.ToUpper(), StringComparison.CurrentCultureIgnoreCase)).ToList();");
-            stringBuilder.AppendLine($"                if (Result?.Count == 0) return null;");
-            stringBuilder.AppendLine($"                return Result;");
+            stringBuilder.AppendLine($"                if (Items == null) return null;");
+            stringBuilder.AppendLine($"                try");
+            stringBuilder.AppendLine($"                {{");
+            stringBuilder.AppendLine($"                    var Result = Items?.Where(c => c.Name != null && c.Name.Contains(input, StringComparison.CurrentCultureIgnoreCase)).ToList();");
+            stringBuilder.AppendLine($"                    if (Result?.Count == 0) return Result;");
+            stringBuilder.AppendLine($"                    return Result;");
+            stringBuilder.AppendLine($"                }}");
+            stringBuilder.AppendLine($"                catch (Exception ex)");
+            stringBuilder.AppendLine($"                {{");
+            stringBuilder.AppendLine($"                    if (SessionId != null)");
+            stringBuilder.AppendLine($"                        L.Log($\"Error in GetAllContainingName - {{ex.Message}} -- {{ex.InnerException?.Message}}\", SessionId, 9);");
+            stringBuilder.AppendLine($"                    return null;");
+            stringBuilder.AppendLine($"                }}");
             stringBuilder.AppendLine($"            }}");
-
             stringBuilder.AppendLine($"        }}");
             stringBuilder.AppendLine($"    }}");
 
@@ -1012,7 +1025,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 LoadDefaultsLogic(stringBuilder);
                 DuplicateFoundLogic(stringBuilder);
                 GetNameLogic(stringBuilder);
-                GetGuidLogic(stringBuilder);
+                GetGuidLogic(stringBuilder, entity);
                 ScopeEndLogic(stringBuilder, "\t");
                 ScopeEndLogic(stringBuilder, "");
                 return stringBuilder.ToString();

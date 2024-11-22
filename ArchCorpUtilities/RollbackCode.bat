@@ -8,4 +8,4 @@ Robocopy C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Backup\{CAA
 Robocopy C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Backup\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\GeneratedModels C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities\GeneratedModels /S
 Robocopy C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Backup\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\Models\ C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Models\ ArchLoader.cs TargetTaskHelper.cs
 Robocopy C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Backup\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\Utilities\ C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Utilities\ UniversalUtilities.cs
-del C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorporationDemo\bin\Debug\net8.0\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} /Q
+REM del C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorporationDemo\bin\Debug\net8.0\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} /Q

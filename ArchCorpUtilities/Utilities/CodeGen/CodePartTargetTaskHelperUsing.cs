@@ -1,21 +1,20 @@
 ﻿using System.Text;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
-    internal class CodePartTargetTaskHelperUsing : CodePart
+    internal class CodePartTargetTaskHelperUsing(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID) : CodePart(baseFolder, targetFile, entity, searchString, workingFolder, heading, searchStringPostPart, sessionID)
     {
-        public CodePartTargetTaskHelperUsing(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID) : base(baseFolder, targetFile, entity, searchString, workingFolder, heading, searchStringPostPart, sessionID)
-        {
-        }
+        private readonly string _searchStringPostPart = searchStringPostPart;
 
         internal override string ModifyCode(string CodeToAlter)
         {
-            StringBuilder stringBuilder = new();
-            //var CodeToAlterLineFeedsAtTheEnd = CodeToAlter.Replace("\r\n", "").Replace(";", ";\r\n");
-            stringBuilder.Append(CodeToAlter.AsSpan(2));
-            stringBuilder.AppendLine($"using ArchCorpUtilities.GeneratedModels.{Entity}Model;");
-            var AlteredCode = stringBuilder.ToString();
-            stringBuilder.Clear();
+            var NewCode = $"using ArchCorpUtilities.GeneratedModels.{Entity}Model;";
+
+            if (string.IsNullOrWhiteSpace(NewCode) && NewCode.Length == 0) { return "<NoAction>"; }
+
+            var AlteredCode = U.ProcessingCodeToAlter(NewCode, _searchStringPostPart, CodeToAlter, false);
+
             return AlteredCode;
         }
 

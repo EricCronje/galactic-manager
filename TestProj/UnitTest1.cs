@@ -12,9 +12,8 @@ namespace TestProJ
 
 
             string[] Entity = ["Buildings", "Beacons"];
-            string Scenario = "Scenario_1_";
             #region Getting the Building and Beacons menu items. Copying the file current Guid e.g.
-            var CurrentGuid = CodeGenHelper.CurrentGuid;
+            var CurrentGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}"; //
             var SourcePath = $"{CodeGenHelper.WorkingFolder}\\SavedMenus\\{CurrentGuid}";
             var TargetPath = $"{Environment.CurrentDirectory}\\{CurrentGuid}";
 
@@ -112,22 +111,29 @@ namespace TestProJ
 
                 #endregion
                 #region Create a file if the result and expected does not match
+                var FailedTestPath = $"{CodeGenHelper.WorkingFolder}\\TestResults\\{CodeGenHelper.CurrentGuid}";
+
+                if (!Directory.Exists($"{CodeGenHelper.WorkingFolder}\\TestResults"))
+                    Directory.CreateDirectory($"{CodeGenHelper.WorkingFolder}\\TestResults");
+                if (!Directory.Exists($"{CodeGenHelper.WorkingFolder}\\TestResults\\{CodeGenHelper.CurrentGuid}"))
+                    Directory.CreateDirectory($"{CodeGenHelper.WorkingFolder}\\TestResults\\{CodeGenHelper.CurrentGuid}");
+
                 if (ExpectedValue != Result)
                 {
-                    if (File.Exists("Result"))
-                        File.Delete("Result");
-                    if (File.Exists("Expected"))
-                        File.Delete("Expected");
-                    File.WriteAllText("Result", Result);
-                    File.WriteAllText("Expected", ExpectedValue);
+
+                    if (File.Exists($"{FailedTestPath}\\Result"))
+                        File.Delete($"{FailedTestPath}\\Result");
+                    if (File.Exists($"{FailedTestPath}\\Expected"))
+                        File.Delete($"{FailedTestPath}\\Expected");
+                    File.WriteAllText($"{FailedTestPath}\\Result", Result);
+                    File.WriteAllText($"{FailedTestPath}\\Expected", ExpectedValue);
                 }
                 else
                 {
-                    if (File.Exists("Result"))
-                        File.Delete("Result");
-                    if (File.Exists("Expected"))
-                        File.Delete("Expected");
-
+                    if (File.Exists($"{FailedTestPath}\\Result"))
+                        File.Delete($"{FailedTestPath}\\Result");
+                    if (File.Exists($"{FailedTestPath}\\Expected"))
+                        File.Delete($"{FailedTestPath}\\Expected");
                 }
                 #endregion
                 #region Check if expected matches result
@@ -184,26 +190,26 @@ namespace TestProJ
                 #region Create a file if the result and expected does not match
                 if (ExpectedValue != Result)
                 {
-                    if (File.Exists("Result"))
-                        File.Delete("Result");
-                    if (File.Exists("Expected"))
-                        File.Delete("Expected");
-                    File.WriteAllText("Result", Result);
-                    File.WriteAllText("Expected", ExpectedValue);
+
+                    if (File.Exists($"{FailedTestPath}\\Result"))
+                        File.Delete($"{FailedTestPath}\\Result");
+                    if (File.Exists($"{FailedTestPath}\\Expected"))
+                        File.Delete($"{FailedTestPath}\\Expected");
+                    File.WriteAllText($"{FailedTestPath}\\Result", Result);
+                    File.WriteAllText($"{FailedTestPath}\\Expected", ExpectedValue);
                 }
                 else
                 {
-                    if (File.Exists("Result"))
-                        File.Delete("Result");
-                    if (File.Exists("Expected"))
-                        File.Delete("Expected");
+                    if (File.Exists($"{FailedTestPath}\\Result"))
+                        File.Delete($"{FailedTestPath}\\Result");
+                    if (File.Exists($"{FailedTestPath}\\Expected"))
+                        File.Delete($"{FailedTestPath}\\Expected");
                 }
                 #endregion
                 #region Check if expected matches result
                 Assert.True(ExpectedValue == Result);
                 #endregion
                 #region Save test results
-                var ResultsPath = $"{CodeGenHelper.WorkingFolder}\\TestResults\\{CodeGenHelper.CurrentGuid}\\{Scenario}{CodeGenHelper.CurrentGuid}_{Entity[i]}";
 
                 if (!Directory.Exists($"{CodeGenHelper.WorkingFolder}\\TestResults"))
                     Directory.CreateDirectory($"{CodeGenHelper.WorkingFolder}\\TestResults");
@@ -213,7 +219,7 @@ namespace TestProJ
                 #endregion
 
                 #region Test if you can add duplicate items?
-                Scenario = "Scenario_2_";
+                string Scenario = "Scenario_2_";
                 AddValues = ["TestDuplicate"];
                 EditValues = ["8", "TestDuplicate"];
                 SearchValues = ["TestDuplicate"];
@@ -280,7 +286,7 @@ namespace TestProJ
                 Assert.True(ExpectedValue == Result);
                 #endregion
                 #region Save test results
-                ResultsPath = $"{CodeGenHelper.WorkingFolder}\\TestResults\\{CodeGenHelper.CurrentGuid}\\{Scenario}{CodeGenHelper.CurrentGuid}_{Entity[i]}";
+                var ResultsPath = $"{CodeGenHelper.WorkingFolder}\\TestResults\\{CodeGenHelper.CurrentGuid}\\{Scenario}{CodeGenHelper.CurrentGuid}_{Entity[i]}";
 
                 if (!Directory.Exists($"{CodeGenHelper.WorkingFolder}\\TestResults"))
                     Directory.CreateDirectory($"{CodeGenHelper.WorkingFolder}\\TestResults");

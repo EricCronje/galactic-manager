@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Utilities.CodeGen;
 
@@ -7,8 +8,8 @@ public class CodePartRefresh(string baseFolder, string targetFile, string entity
     internal override string ModifyCode(string CodeToAlter)
     {
         StringBuilder stringBuilder = new();
-        stringBuilder.Append(CodeToAlter.AsSpan(2));
-        stringBuilder.AppendLine($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.BuildingsHelper?.Refresh(); break;");
+        U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
+        stringBuilder.AppendLine($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.{Entity}Helper?.Refresh(); break;");
         var CodeAltered = stringBuilder.ToString();
         stringBuilder.Clear();
         return CodeAltered;

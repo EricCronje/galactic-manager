@@ -1,26 +1,25 @@
 ﻿using ArchCorpUtilities.Utilities.CodeGen;
 using System.Text;
-
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 namespace ArchCorpUtilities.Utilities
 {
     internal class CodePartMenuEnum : CodePart
     {
-        public CodePartMenuEnum(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID) : base(baseFolder, targetFile, entity, searchString, workingFolder, heading, searchStringPostPart, sessionID)
+        private readonly string _entity;
+        private readonly string _tabs;
+
+        public CodePartMenuEnum(string baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string tabs, string sessionID) : base(baseFolder, targetFile, entity, searchString, workingFolder, heading, tabs, sessionID)
         {
+            _entity = entity;
+            _tabs = tabs;
         }
 
-        internal override string ModifyCode(string CodeToAlter)
+        internal override string ModifyCode(string codeToAlter)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            CodeToAlter = CodeToAlter.Replace("\n\t\t\t", "");
-            stringBuilder.Append(CodeToAlter.AsSpan(2));
-            stringBuilder.AppendLine(",");
-            stringBuilder.Append("\t\t\t");
-            stringBuilder.Append(Entity);
-            stringBuilder.Append("\n\t\t\t");
-            var AlteredCode = stringBuilder.ToString();
-            stringBuilder.Clear();
+            var AlteredCode = U.ProcessingCodeToAlter(_entity, _tabs, codeToAlter);
             return AlteredCode;
         }
+
+        
     }
 }

@@ -71,7 +71,7 @@ namespace ArchCorpUtilities.Utilities
             if (IsSimulate && simInput != null)
             {
                 FeedbackSB.AppendLine($"Simulate: {simInput}");
-                FeedbackSB.AppendLine($"Simulate Trimmed: {simInput.Trim()}");
+                if (SessionID != null) { L.Log($"Simulate Trimmed: {simInput.Trim()}", SessionID, 5); }                
                 return simInput.Trim();
             }
 

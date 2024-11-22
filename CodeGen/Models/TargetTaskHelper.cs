@@ -1,5 +1,4 @@
-// Generated Code - Version: <Version> - <Date> - {91430f8b-6f80-4c3e-9376-72b046fb8d41}
-// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
+// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
 
 using ArchCorpUtilities.Utilities;
 
@@ -10,10 +9,8 @@ using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using MMH = ArchCorpUtilities.Models.Menus.MenuMaintenanceHelper;
 
 //{EA6AE6CA-7E51-43DE-95F9-FF66E27AE130}
-using A = ArchCorpUtilities.Models.ArchLoader;
 //{EA6AE6CA-7E51-43DE-95F9-FF66E27AE130}
 //{24D86755-6962-4074-BD9F-73E8FE0A5F68}
-using ArchCorpUtilities.GeneratedModels.BuildingsModel;
 //{24D86755-6962-4074-BD9F-73E8FE0A5F68}
 
 namespace ArchCorpUtilities.Models
@@ -62,15 +59,6 @@ namespace ArchCorpUtilities.Models
                                     }
                                     break;
                                 //{2D8B5F74-6CC5-4C0F-AB99-8E596C463DA0}
-								case U.MenuDomain.Buildings:
-                                    if (SessionID != null)
-                                        L.Log("Menu - NoData", SessionID, 1);
-                                    if (A.BuildingsHelper != null && !A.BuildingsHelper.IsItemsOnThePage())
-                                    {
-                                        item.IsHidden = true;
-                                        ResetPage = true;
-                                    }
-                                    break;
 								//{2D8B5F74-6CC5-4C0F-AB99-8E596C463DA0}
                                 default: break;
                             }
@@ -114,7 +102,6 @@ namespace ArchCorpUtilities.Models
                         {                            
                             case U.MenuDomain.Menu: L.Log("Menu-Add", SessionID, 1); MMH.Add(simInputValues); break;
                             //{A6E3C6F1-D649-45CE-8C05-3A87466618A9}
-							case U.MenuDomain.Buildings: L.Log("Buildings-Add", SessionID, 1); A.BuildingsHelper?.Add(simChoice, simInputValues); break;
 							//{A6E3C6F1-D649-45CE-8C05-3A87466618A9}
                             default: break;
                         }
@@ -125,7 +112,6 @@ namespace ArchCorpUtilities.Models
                         {                            
                             case U.MenuDomain.Menu: L.Log("Menu-View", SessionID, 1); MMH.InitialView(); break;
                             //{B03F74F5-9862-4916-9EF1-82DD253A5BC3}
-							case U.MenuDomain.Buildings: L.Log("Buildings-View", SessionID, 1); A.BuildingsHelper?.Refresh(); break;
 							//{B03F74F5-9862-4916-9EF1-82DD253A5BC3}
                             default: break;
                         }
@@ -140,10 +126,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.View(U.Navigation.FirstPage);
                                 break;
                             //{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings- FirstPage", SessionID, 1);
-								A.BuildingsHelper?.View(U.Navigation.FirstPage);
-								break;
 							//{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}
                               
                             default:
@@ -161,10 +143,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.View(U.Navigation.LastPage);
                                 break;
                             //{39C53717-4163-4B33-B652-4AA3B4D28C5B}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings- LastPage", SessionID, 1);
-								A.BuildingsHelper?.View(U.Navigation.LastPage);
-								break;
 							//{39C53717-4163-4B33-B652-4AA3B4D28C5B}
                             default:
                                 break;
@@ -180,10 +158,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.View(U.Navigation.NextPage);
                                 break;
                             //{BBDE47EF-8937-4545-A019-652A8A306B6E}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-NextPage", SessionID, 1);
-								A.BuildingsHelper?.View(U.Navigation.NextPage);
-								break;
 							//{BBDE47EF-8937-4545-A019-652A8A306B6E}
                             default:
                                 break;
@@ -199,10 +173,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.View(U.Navigation.PreviousPage);
                                 break;
                             //{90D2D480-6963-441E-B2C4-E0EADC878A83}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-PreviousPage", SessionID, 1);
-								A.BuildingsHelper?.View(U.Navigation.PreviousPage);
-								break;
 							//{90D2D480-6963-441E-B2C4-E0EADC878A83}
                             default:
                                 break;
@@ -217,10 +187,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.Edit(simChoice.ToString(), simInput);
                                 break;
                             //{74A75AB1-1AB2-46C7-B63F-39F52AF0049A}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-Edit", SessionID, 1);
-								A.BuildingsHelper?.Edit(simChoice, simInputValues);
-								break;
 							//{74A75AB1-1AB2-46C7-B63F-39F52AF0049A}
                             default:
                                 break;
@@ -235,10 +201,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.Remove(simChoice.ToString());
                                 break;
                             //{11002DF2-E6AB-485E-B896-C3ED92706E30}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-Remove", SessionID, 1);
-								A.BuildingsHelper?.Remove(simChoice, simInputValues);
-								break;
 							//{11002DF2-E6AB-485E-B896-C3ED92706E30}
                             default:
                                 break;
@@ -253,10 +215,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.Save();
                                 break;
                             //{36DE75D7-A730-4F6B-A7C9-4660245BD895}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-Save", SessionID, 1);
-								A.BuildingsHelper?.Save();
-								break;
 							//{36DE75D7-A730-4F6B-A7C9-4660245BD895}
                             default:
                                 break;
@@ -271,10 +229,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.Load();
                                 break;
                             //{BD92B12F-6AB8-420C-9A4B-654233721FB7}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-Load", SessionID, 1);
-								A.BuildingsHelper?.Load();
-								break;
 							//{BD92B12F-6AB8-420C-9A4B-654233721FB7}
                             default:
                                 break;
@@ -289,10 +243,6 @@ namespace ArchCorpUtilities.Models
                                 MMH.Search(simChoice, simInputValues);
                                 break;
                             //{F745E72F-A908-4AB1-AF8B-E3FDE13BF46E}
-							case U.MenuDomain.Buildings:
-								L.Log("Buildings-Search", SessionID, 1);
-								A.BuildingsHelper?.Search(simChoice, simInputValues);
-								break;
 							//{F745E72F-A908-4AB1-AF8B-E3FDE13BF46E}
                             default:
                                 break;
@@ -305,7 +255,6 @@ namespace ArchCorpUtilities.Models
                         {
                             case U.MenuDomain.Menu: L.Log("Menu-Refresh", SessionID, 1); MMH.Refresh(); break;
                             //{B2FED166-7FCF-4163-8507-EB1CC28B6435}
-							case U.MenuDomain.Buildings: L.Log("Buildings-View", SessionID, 1); A.BuildingsHelper?.Refresh(); break;
 							//{B2FED166-7FCF-4163-8507-EB1CC28B6435}
                             default:
                                 break;
@@ -348,10 +297,6 @@ namespace ArchCorpUtilities.Models
                     ApplyHiddenRules(MMH.MenuPage);
                     break;
                 //{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}
-				case U.MenuDomain.Buildings:
-					if (A.BuildingsHelper != null && ApplyHiddenRules(A.BuildingsHelper.Page) && doReIndex)
-					{A.BuildingsHelper.ReIndexDisplayId();}
-					break;
 				//{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}
                 default:
                     break;

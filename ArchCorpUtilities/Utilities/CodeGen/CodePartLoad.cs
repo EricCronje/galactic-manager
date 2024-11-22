@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
@@ -8,7 +9,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         {
             StringBuilder stringBuilder = new();
             var Tabs = "\t\t\t\t\t\t\t\t";
-            stringBuilder.Append(CodeToAlter.AsSpan(2));
+            U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
             stringBuilder.AppendLine($"case U.MenuDomain.{Entity}:");
             stringBuilder.AppendLine($"{Tabs}L.Log(\"{Entity}-Load\", SessionID, 1);");
             stringBuilder.AppendLine($"{Tabs}A.{Entity}Helper?.Load();");

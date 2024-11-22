@@ -1,5 +1,4 @@
-// Generated Code - Version: <Version> - <Date> - {91430f8b-6f80-4c3e-9376-72b046fb8d41}
-// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
+// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
 
 using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
@@ -11,7 +10,6 @@ using TTH = ArchCorpUtilities.Models.TargetTaskHelper;
 using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
-using BuildingsHelper = ArchCorpUtilities.GeneratedModels.BuildingsModel.BuildingsHelper;
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 
 using ArchCorpUtilities.Models.Menus;
@@ -24,7 +22,6 @@ namespace ArchCorpUtilities.Models
         public static string SessionID { get; }
 
         //{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
-		internal static BuildingsHelper? BuildingsHelper = null;
 		//{048A4DD6-2F1B-4178-A732-E3B50D3F0791}
 
         static ArchLoader()
@@ -37,7 +34,6 @@ namespace ArchCorpUtilities.Models
             CodeGen.SessionID = SessionID;
 
             //{9ED7AF33-DE0E-45C3-821F-4669558AD744}
-			BuildingsHelper = new(SessionID);
 			//{9ED7AF33-DE0E-45C3-821F-4669558AD744}
 
         }
@@ -50,7 +46,6 @@ namespace ArchCorpUtilities.Models
             }
 
             //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
-			BuildingsHelper?.LoadDefaults();
 			//{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
 
             if (File.Exists(CodeGenHelper.CurrentGuid))

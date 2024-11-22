@@ -1,10 +1,11 @@
-// Generated Code - Version: 23.11.25 - 2024/11/18 21:08:58 - {3a6d9981-e6ad-4c67-848b-61b518dfa8f8}
+// Generated Code - Version: 23.11.25 - 2024/11/21 18:51:08 - {fdf41348-cd51-48d1-bcf1-1c828e7f032c}
 
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using IC = InvalidCharacters.InvalidCharacters;
+using System.Text;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -19,11 +20,7 @@ namespace ArchCorpUtilities.Utilities
             None,
             Menu,
 			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
-	
-            Beacons,Buildings,Planets,Sites,Fleets,Ships,Personel,RoleGroups,Roles,Users,
-			LinkSitesToPlanets
 			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
-	
         }
 
 
@@ -139,6 +136,119 @@ namespace ArchCorpUtilities.Utilities
                 InvalidCharacters?.Dispose();
             }
         }
+
         //{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}
+
+        internal static bool RemoveFirstLineFeed(string? context, StringBuilder stringBuilder)
+        {
+            try
+            {
+                if (context == null) { return false; }                
+                if (context != null && context.Length > 0 && context.StartsWith(Environment.NewLine)) { context = context.AsSpan(2).ToString(); }
+                if (context != null && context.Length > 0) { stringBuilder.Append(context); return true; }
+                return false;
+            }
+            catch (Exception err)
+            {
+                if (SessionID != null)
+                    L.Log($"Error in RemoveLineFeed - {err.Message} -- {err.InnerException?.Message}", SessionID, 9);
+                return false;
+            }            
+        }
+
+        public static string ProcessingCodeToAlter(string newCode, string tabs, string codeToAlter, bool addComma = true)
+        {
+            StringBuilder StringBuilder = new();
+            try
+            {
+                tabs ??= string.Empty;
+                List<string> Existing = [];
+                codeToAlter = codeToAlter.Replace("\t", "");
+                var SplitContext = codeToAlter.Split("\r\n");
+                foreach (var item in SplitContext)
+                    if (item.Length > 3)
+                            Existing.Add(item);
+
+                Existing.Add(newCode);
+                if (Existing != null && Existing.Count > 0)
+                    for (int i = 0; i < Existing.Count; i++)
+                    {
+                        StringBuilder.Append($"{tabs}{Existing[i]}");
+                        if (addComma && i != (Existing.Count - 1) && !Existing[i].EndsWith(',')) { StringBuilder.Append(','); }
+                        StringBuilder.Append(Environment.NewLine);
+                    }
+                var Result = StringBuilder.ToString();
+                return Result;
+            }
+            catch (Exception err)
+            {
+                L.Log($"Error in ProcessingCodeToAlter - {err.Message} -- {err.InnerException?.Message}");
+                return "<Error>";
+            }
+            finally
+            {
+                StringBuilder.Clear();
+            }
+        }
+
+        public static string GetGeneratedCodeHeader()
+        {
+            return $"// Generated Code - Version: {U.GetVersion()} - {U.GetCurrentDate()} - {{{SessionID}}}\n\r";
+        }
+
+        public static bool ClearGeneratedHeaders()
+        {
+
+            List<string> HeaderSources = [];
+
+            try
+            {
+                HeaderSources.Add("\\Models\\TargetTaskHelper.cs");
+                HeaderSources.Add("\\Models\\ArchLoader.cs");
+                HeaderSources.Add("\\Utilities\\UniversalUtilities.cs");
+
+                foreach (var item in HeaderSources)
+                {
+                    var Path = $"{CodeGenHelper.WorkingFolder}\\{item}";
+                    if (File.Exists(Path))
+                    {
+                        var Content = File.ReadAllText(Path);
+                        var SplitContent = Content.Split("\n\r");
+                        StringBuilder stringBuilder = new();
+                        var Counter = 0;
+                        foreach (string v in SplitContent)
+                        {
+
+                            if (v.Length > 0)
+                            {
+                                if (v.Contains("Generated"))
+                                    Counter++;
+                                else
+                                    break;
+                            }
+                        }
+                        stringBuilder.Append(GetGeneratedCodeHeader());
+                        stringBuilder.AppendJoin("\n\r", SplitContent.ToList().GetRange(Counter, SplitContent.Length - Counter)).ToString();
+                        var Output = stringBuilder.ToString();
+                        stringBuilder.Clear();
+                        File.Delete(Path);
+                        File.WriteAllText(Path, Output);
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+
+        }
+
     }
 }
+
+
+
+

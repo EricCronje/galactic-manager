@@ -37,11 +37,11 @@ public static class CodeGenHelper
             return false;
 
         List<CodePart> codeVault = [];
-        var Header = GetGeneratedCodeHeader();
+        var Header = U.GetGeneratedCodeHeader();
 
         if (menuType == MenuTypeEnum.Manage || menuType == MenuTypeEnum.Link)
         {
-            CodePartMenuEnum codePartMenuEnum = new("\\Utilities", "UniversalUtilities.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            CodePartMenuEnum codePartMenuEnum = new("\\Utilities", "UniversalUtilities.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartMenuEnum);
 
             CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
@@ -130,60 +130,7 @@ public static class CodeGenHelper
         return true;
     }
 
-    public static string GetGeneratedCodeHeader()
-    {
-        return $"// Generated Code - Version: {U.GetVersion()} - {U.GetCurrentDate()} - {{{SessionID}}}\n\r";
-    }
 
-    public static bool ClearGeneratedHeaders()
-    {
-
-        List<string> HeaderSources = [];
-
-        try
-        {
-            HeaderSources.Add("\\Models\\TargetTaskHelper.cs");
-            HeaderSources.Add("\\Models\\ArchLoader.cs");
-            HeaderSources.Add("\\Utilities\\UniversalUtilities.cs");
-
-            foreach (var item in HeaderSources)
-            {
-                var Path = $"{WorkingFolder}\\{item}";
-                if (File.Exists(Path))
-                {
-                    var Content = File.ReadAllText(Path);
-                    var SplitContent = Content.Split("\n\r");
-                    StringBuilder stringBuilder = new();
-                    var Counter = 0;
-                    foreach (string v in SplitContent)
-                    {
-
-                        if (v.Length > 0)
-                        {
-                            if (v.Contains("Generated"))
-                                Counter++;
-                            else
-                                break;
-                        }
-                    }
-                    stringBuilder.Append(GetGeneratedCodeHeader());
-                    stringBuilder.AppendJoin("\n\r", SplitContent.ToList().GetRange(Counter, SplitContent.Length - Counter)).ToString();
-                    var Output = stringBuilder.ToString();
-                    stringBuilder.Clear();
-                    File.Delete(Path);
-                    File.WriteAllText(Path, Output);
-                }
-            }
-            return true;
-        }
-        catch (Exception)
-        {
-            return false;
-            throw;
-        }
-
-
-    }
 
 
 }

@@ -195,7 +195,7 @@ namespace ArchCorpUtilities.Models.Menus
 
                         var SplitCommands = Content.Split("\r\n");
 
-                        ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
+                        //ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
                         bool IsStartPage = true;
                         foreach (var SplitCommand in SplitCommands)
                         {
@@ -226,6 +226,15 @@ namespace ArchCorpUtilities.Models.Menus
                                     }
                                     else
                                         CH.Feedback($"{Resource.ModelFileNotCreated} - {EntityName}");
+
+                                    if (U.ClearGeneratedHeaders())
+                                        CH.Feedback($"Header information created.");
+                                    else
+                                    {
+                                        CH.Feedback($"Header information was not created.");
+                                        if (SessionID != null) { L.Log($"Error -- Headers not created", SessionID, 9); }                                        
+                                    }
+                                        
 
                                     if (CurrentMenu != null)
                                     {
@@ -261,6 +270,7 @@ namespace ArchCorpUtilities.Models.Menus
                             }
                         }
 
+                        
                         ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
                         return true;
                     }
