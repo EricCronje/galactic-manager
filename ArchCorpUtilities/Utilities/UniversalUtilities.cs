@@ -157,9 +157,12 @@ namespace ArchCorpUtilities.Utilities
                 if (Existing != null && Existing.Count > 0)
                     for (int i = 0; i < Existing.Count; i++)
                     {
-                        StringBuilder.Append($"{tabs}{Existing[i]}");
-                        if (addComma && i != (Existing.Count - 1) && !Existing[i].EndsWith(',')) { StringBuilder.Append(','); }
-                        StringBuilder.Append(Environment.NewLine);
+                        if (Existing[i].Trim().Length > 0)
+                        {
+                            StringBuilder.Append($"{tabs}{Existing[i]}");
+                            if (addComma && i != (Existing.Count - 1) && !Existing[i].EndsWith(',')) { StringBuilder.Append(','); }
+                            StringBuilder.Append(Environment.NewLine);
+                        }
                     }
                 var Result = StringBuilder.ToString();
                 return Result;
@@ -190,6 +193,7 @@ namespace ArchCorpUtilities.Utilities
                 HeaderSources.Add("\\Models\\TargetTaskHelper.cs");
                 HeaderSources.Add("\\Models\\ArchLoader.cs");
                 HeaderSources.Add("\\Utilities\\UniversalUtilities.cs");
+                HeaderSources.Add("EnumLib.cs");
 
                 foreach (var item in HeaderSources)
                 {

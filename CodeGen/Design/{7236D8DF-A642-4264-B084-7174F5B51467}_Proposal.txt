@@ -25,20 +25,33 @@ So far - the write up took [50] [Admin] - saves time on explaining later.
 Making the initial changes - Creating the "EnumLib" [50]
 Implementing the "EnumLib" in the code where used so far. [50]
 
+Lessons learned:
+---------------
+
+- If the system change something it is dependant on - it will fail every time.
+  - How to avoid - ask "What is it dependent on - don't change that."
+- Better to seperate the generation tool from what is being generated.
+- Do not name the variables the same as the type.
+- Always check if the action happened or not.
+  - Example the 2 files was not copied but was left from previous tests.
+	Thus it looked like it is working.
+
+- Using the current GUID {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} -  as a clean slate. It is the starting point.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Summary:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Type				Description								Time Estimate		Actual Time		Resource(s)		When		Authorized		Motivation		Status		Percentage
 ----				-----------								-------------		-----------		-----------		----		----------		----------		------		----------
-Admin				Write up								[200]				[100]			BT10			20241123	No								Completed	100
+Admin				Write up								[200]				[100]			BT10			20241123	No								Completed	
 
-Dev-Add				EnumLib.dll								[50]				[50]			BT10			20241123	No								Completed	100
+Dev-Add				EnumLib.dll								[50]				[50]			BT10			20241123	No								Completed	
 
 Dev-Mod				Changing ArchCorpUtilities.dll
 					Remapping "UniversalUtilities" (U)
 					to "EnumLib" (E)						
-					Affected files (3):						[100]				[50]			BT10			20241123	No								Completed	100
+					Affected files (3):						[100]				[50]			BT10			20241123	No								Completed	
 
 Dev-Mod				CodeGen project.						[100]				[50]				BT10			20241123	No											
 					- Change working folder path								[]				BT10			20241123	No								Completed   
@@ -52,11 +65,11 @@ Dev-Mod				The generated code for:
 					(Add using E = EnumLib.EnumLib;)
 					- Helpers
 					- POCOs
-					- MockRepository						[100]				[?]				BT10			20241123	No								Started				
-					
-<Option 1>					
-Test-Manual-Dev		Test with Manage, helpers				[100]				[?]				BT10			20241123	No				
-Test-Manual-Dev		Test with link							[100]				[?]
+					- MockRepository						[100]				[25]			BT10			20241123	No								Completed				
+																								
+<Option 1>					                                                                    
+Test-Manual-Dev		Test with Manage, helpers				[100]				[50]			BT10			20241123	No								Completed				
+Test-Manual-Dev		Test with link							[100]				[50]			BT10			20241123	No								Completed
 
 <Option 2>					
 Dev-Add				Add test project - to tests 
@@ -173,4 +186,12 @@ Utilities.CodeGen.CodePart.MenuTypeEnum			E.MenuTypeEnum
 Add to the top of the files:
 
 using E = EnumLib.EnumLib;
+
+
+using M = MenuEnumLib.MenuEnumLib;
+
+Change				To
+E.MenuTypeEnum		M.MenuTypeEnum
+E.CodeTemplateEnum	M.CodeTemplateEnum
+
 

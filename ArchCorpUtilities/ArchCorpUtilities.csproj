@@ -19,6 +19,7 @@
     <ProjectReference Include="..\EnumLib\EnumLib.csproj" />
     <ProjectReference Include="..\InvalidCharacters\InvalidCharacters.csproj" />
     <ProjectReference Include="..\Logger\Logger.csproj" />
+    <ProjectReference Include="..\MenuEnumLib\MenuEnumLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

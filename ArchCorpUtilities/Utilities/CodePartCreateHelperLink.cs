@@ -1,5 +1,6 @@
 ﻿using ArchCorpUtilities.Utilities.CodeGen;
 using E = EnumLib.EnumLib;
+using M = MenuEnumLib.MenuEnumLib;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -7,7 +8,7 @@ namespace ArchCorpUtilities.Utilities
     {
         public override bool AlterCode()
         {
-            return CreateCode(E.CodeTemplateEnum.HelperLink, Entity, BaseFolder, LHLink, RHLink);
+            return CreateCode(M.CodeTemplateEnum.HelperLink, Entity, BaseFolder, LHLink, RHLink);
         }
     }
 }

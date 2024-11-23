@@ -8,6 +8,7 @@ using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using Page = Patina.Patina;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using E = EnumLib.EnumLib;
+using M = MenuEnumLib.MenuEnumLib;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -219,7 +220,7 @@ namespace ArchCorpUtilities.Models.Menus
                                     var LinkGuidOnTheLeft = SplitLine[3];
                                     var LinkGuidOnTheRight = SplitLine[4];
 
-                                    _ = Enum.TryParse(MenuType, out E.MenuTypeEnum MenuTypeEnum);
+                                    _ = Enum.TryParse(MenuType, out M.MenuTypeEnum MenuTypeEnum);
 
                                     if (CodeGen.CreateDefaultCode(EntityName, MenuTypeEnum, LinkGuidOnTheLeft == "None" ? null : LinkGuidOnTheLeft, LinkGuidOnTheRight == "None" ? null : LinkGuidOnTheRight))
                                     {

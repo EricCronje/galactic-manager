@@ -45,6 +45,17 @@ namespace CLILib
                     return $"Success|GenerateCode|{args?[1]}";
                 }
             }
+
+            if (args?[0].ToLower() == "-r")
+            {
+                return $"Success|RollBack|None";
+            }
+
+            if (args?[0].ToLower() == "-d")
+            {
+                return $"Success|Deploy|None";
+            }
+
             return $"Failed|None|None";
         }
 

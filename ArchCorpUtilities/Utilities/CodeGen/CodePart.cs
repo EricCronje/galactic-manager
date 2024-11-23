@@ -5,6 +5,7 @@ using static ArchCorpUtilities.Utilities.CodeGenHelper;
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using E = EnumLib.EnumLib;
+using M = MenuEnumLib.MenuEnumLib;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
@@ -108,7 +109,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             return AlteredFile;
         }
 
-        public static bool CreateCode(E.CodeTemplateEnum codeTemplate, string entity, string basePath, string? lHLinkGuid = null, string? rhLinkGuid = null)
+        public static bool CreateCode(M.CodeTemplateEnum codeTemplate, string entity, string basePath, string? lHLinkGuid = null, string? rhLinkGuid = null)
         {
             var TemplateCode = GenCode(codeTemplate, entity, lHLinkGuid, rhLinkGuid);
             if (TemplateCode != "<NoData>")
@@ -475,6 +476,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine("using ArchCorpUtilities.Models.Helper;");
             stringBuilder.AppendLine("using System.Text;");
             stringBuilder.AppendLine("using AL = ArchCorpUtilities.Models.ArchLoader;");
+            stringBuilder.AppendLine("using E = EnumLib.EnumLib;");
         }
 
         private static void LoggingLogic(StringBuilder stringBuilder)
@@ -484,7 +486,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static List<CodeTemplate>? Repository;
 
-        private static string GetTemplate(E.CodeTemplateEnum name, string entity, string? lhLink = null, string? rhLink = null)
+        private static string GetTemplate(M.CodeTemplateEnum name, string entity, string? lhLink = null, string? rhLink = null)
         {
             Repository = GetMockData(lhLink, rhLink);
             string? Template = Repository.FirstOrDefault(p => p.Name.ToUpper().Equals(name.ToString().ToUpper()))?.Code;
@@ -492,19 +494,19 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             {
                 switch (name)
                 {
-                    case E.CodeTemplateEnum.POCO:
+                    case M.CodeTemplateEnum.POCO:
                         Template = PocoCodeTemplate(entity);
                         break;
-                    case E.CodeTemplateEnum.POCOLink:
+                    case M.CodeTemplateEnum.POCOLink:
                         Template = PocoCodeTemplate(entity, true, lhLink, rhLink);
                         break;
-                    case E.CodeTemplateEnum.Helper:
+                    case M.CodeTemplateEnum.Helper:
                         Template = HelperCodeTemplate($"{entity}Model", $"{entity}");
                         break;
-                    case E.CodeTemplateEnum.HelperLink:
+                    case M.CodeTemplateEnum.HelperLink:
                         Template = HelperCodeTemplate($"{entity}Model", $"{entity}");
                         break;
-                    case E.CodeTemplateEnum.MockRepository:
+                    case M.CodeTemplateEnum.MockRepository:
                         Template = MockRepositoryTemplate(entity);
                         break;
                     default:
@@ -517,7 +519,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             return "<NoData>";
         }
 
-        private static string? GenCode(E.CodeTemplateEnum name, string entity, string? lhLinkGuid = null, string? rhLinkGuid = null)
+        private static string? GenCode(M.CodeTemplateEnum name, string entity, string? lhLinkGuid = null, string? rhLinkGuid = null)
         {
             #region Log that the GenCode method is running.
             #endregion
@@ -569,16 +571,16 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         }
 
-        private static string GetEntityPath(E.CodeTemplateEnum codeTemplate, string entity, string baseFolder)
+        private static string GetEntityPath(M.CodeTemplateEnum codeTemplate, string entity, string baseFolder)
         {
             var PrePath = $"{WorkingFolder}{baseFolder}\\{entity}Model\\{entity}";
             string? Path = codeTemplate switch
             {
-                E.CodeTemplateEnum.HelperLink => $"{PrePath}Helper.cs",
-                E.CodeTemplateEnum.Helper => $"{PrePath}Helper.cs",
-                E.CodeTemplateEnum.POCO => $"{PrePath}.cs",
-                E.CodeTemplateEnum.POCOLink => $"{PrePath}.cs",
-                E.CodeTemplateEnum.MockRepository => $"{PrePath}MockRepository.cs",
+                M.CodeTemplateEnum.HelperLink => $"{PrePath}Helper.cs",
+                M.CodeTemplateEnum.Helper => $"{PrePath}Helper.cs",
+                M.CodeTemplateEnum.POCO => $"{PrePath}.cs",
+                M.CodeTemplateEnum.POCOLink => $"{PrePath}.cs",
+                M.CodeTemplateEnum.MockRepository => $"{PrePath}MockRepository.cs",
                 _ => $"{PrePath}.cs",
             };
             return Path;

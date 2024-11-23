@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLILib", "CLILib\CLILib.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GenCode_Project", "GenCode_Project", "{4515829C-3631-4913-9C7B-9B30D265B18B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumLib", "EnumLib\EnumLib.csproj", "{FB862A62-A282-4AF8-9CF2-DB24F2EB2584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumLib", "EnumLib\EnumLib.csproj", "{FB862A62-A282-4AF8-9CF2-DB24F2EB2584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuEnumLib", "MenuEnumLib\MenuEnumLib.csproj", "{C0FF3D6B-305E-4D6F-8ADF-ACF0BAE492A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,10 @@ Global
 		{FB862A62-A282-4AF8-9CF2-DB24F2EB2584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB862A62-A282-4AF8-9CF2-DB24F2EB2584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB862A62-A282-4AF8-9CF2-DB24F2EB2584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FF3D6B-305E-4D6F-8ADF-ACF0BAE492A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FF3D6B-305E-4D6F-8ADF-ACF0BAE492A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FF3D6B-305E-4D6F-8ADF-ACF0BAE492A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FF3D6B-305E-4D6F-8ADF-ACF0BAE492A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

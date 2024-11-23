@@ -7,6 +7,7 @@ using G = ArchCorpUtilities.Utilities.CodeGenHelper;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using System.Runtime.CompilerServices;
 using E = EnumLib.EnumLib;
+using M = MenuEnumLib.MenuEnumLib;
 
 namespace GenCodeLib
 {
@@ -41,17 +42,28 @@ namespace GenCodeLib
 
             GenerateCode(GuidPath, Action, ref Content, ref SplitItems);
 
-            CH.GetInput();
+            if (Action == "RollBack")
+                RollBackCode();
+
+            if (Action == "Deploy")
+                DeployCode();
+
         }
+
+        private void RollBackCode()
+        {
+            CH.Feedback("Rolling back the code ...");
+            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
+        }
+
 
         private void GenerateCode(string GuidPath, string Action, ref string Content, ref string[]? SplitItems)
         {
             bool DeployCode = false;
+            RollBackCode();
 
             if (IsGenerateCode(GuidPath, Action, ref Content, ref SplitItems) && SplitItems != null)
             {
-                CH.Feedback("Rolling back the code ...");
-                U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
 
                 CH.Feedback("Setting configuration ...");
                 G.CurrentGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}";
@@ -77,7 +89,7 @@ namespace GenCodeLib
                         var LhLink = SplitLines[3];
                         var RhLink = SplitLines[4];
 
-                        _ = Enum.TryParse(EntityType, out E.MenuTypeEnum MenuType);
+                        _ = Enum.TryParse(EntityType, out M.MenuTypeEnum MenuType);
 
                         CH.Feedback($"Processing {Entity} -- {EntityType} --- {LhLink} - {RhLink}");
 
@@ -110,11 +122,16 @@ namespace GenCodeLib
 
                 if (DeployCode)
                 {
-                    CH.Feedback("Deploying code ...");
-                    U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
+                    GenCodeLib.DeployCode();
                 }
 
             }
+        }
+
+        private static void DeployCode()
+        {
+            CH.Feedback("Deploying code ...");
+            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
         }
 
         private static bool IsGenerateCode(string GuidPath, string Action, ref string Content, ref string[]? SplitItems)
