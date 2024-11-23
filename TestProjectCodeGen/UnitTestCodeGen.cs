@@ -87,117 +87,117 @@ namespace TestProjectCodeGen
             Assert.Contains("using A = ArchCorpUtilities.Models.ArchLoader;", Context); //Using - GUID marker
 
             Assert.Contains("//{A6E3C6F1-D649-45CE-8C05-3A87466618A9}", Context); // 
-            Assert.Contains($"case U.MenuDomain.Charlie: L.Log(\"Charlie-Add\", SessionID, 1); A.CharlieHelper?.Add(simChoice, simInputValues); break;", Context); // Add
-            Assert.Contains($"case U.MenuDomain.Brent: L.Log(\"Brent-Add\", SessionID, 1); A.BrentHelper?.Add(simChoice, simInputValues); break;", Context); // Add
+            Assert.Contains($"case E.MenuDomain.Charlie: L.Log(\"Charlie-Add\", SessionID, 1); A.CharlieHelper?.Add(simChoice, simInputValues); break;", Context); // Add
+            Assert.Contains($"case E.MenuDomain.Brent: L.Log(\"Brent-Add\", SessionID, 1); A.BrentHelper?.Add(simChoice, simInputValues); break;", Context); // Add
 
             Assert.Contains("{B03F74F5-9862-4916-9EF1-82DD253A5BC3}", Context); // View
-            Assert.Contains("case U.MenuDomain.Charlie: L.Log(\"Charlie-View\", SessionID, 1);", Context); // View
-            Assert.Contains("case U.MenuDomain.Charlie: L.Log(\"Charlie-View\", SessionID, 1); A.CharlieHelper?.Refresh(); break;", Context); // View
+            Assert.Contains("case E.MenuDomain.Charlie: L.Log(\"Charlie-View\", SessionID, 1);", Context); // View
+            Assert.Contains("case E.MenuDomain.Charlie: L.Log(\"Charlie-View\", SessionID, 1); A.CharlieHelper?.Refresh(); break;", Context); // View
 
             Assert.Contains("{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}", Context); // First
             var Entity = "Charlie";
             Assert.Contains($"{{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}}", Context); // First
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // First
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // First
             Assert.Contains($"L.Log(\"{Entity}- FirstPage\", SessionID, 1);", Context); // First
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.FirstPage);", Context); // First
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.FirstPage);", Context); // First
             Entity = "Brent";
             Assert.Contains($"{{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}}", Context); // First
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // First
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // First
             Assert.Contains($"L.Log(\"{Entity}- FirstPage\", SessionID, 1);", Context); // First
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.FirstPage);", Context); // First
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.FirstPage);", Context); // First
 
             Entity = "Charlie";
             Assert.Contains("{39C53717-4163-4B33-B652-4AA3B4D28C5B}", Context); // Last
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Last
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Last
             Assert.Contains($"L.Log(\"{Entity}- LastPage\", SessionID, 1);", Context); // Last
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.LastPage);", Context); // Last
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.LastPage);", Context); // Last
 
             Entity = "Brent";
             Assert.Contains("{39C53717-4163-4B33-B652-4AA3B4D28C5B}", Context); // Last
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Last
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Last
             Assert.Contains($"L.Log(\"{Entity}- LastPage\", SessionID, 1);", Context); // Last
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.LastPage);", Context); // Last
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.LastPage);", Context); // Last
 
             Entity = "Charlie";
             Assert.Contains("{BBDE47EF-8937-4545-A019-652A8A306B6E}", Context); // Next
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Next
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Next
             Assert.Contains($"{Entity}-NextPage", Context); // Next
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.NextPage);", Context); // Next
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.NextPage);", Context); // Next
 
             Entity = "Brent";
             Assert.Contains("{BBDE47EF-8937-4545-A019-652A8A306B6E}", Context); // Next
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Next
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Next
             Assert.Contains($"{Entity}-NextPage", Context); // Next
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.NextPage);", Context); // Next
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.NextPage);", Context); // Next
 
             Entity = "Charlie";
             Assert.Contains("{90D2D480-6963-441E-B2C4-E0EADC878A83}", Context); // Previous
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Previous
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Previous
             Assert.Contains($"L.Log(\"{Entity}-PreviousPage\", SessionID, 1);", Context); // Previous
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.PreviousPage);", Context); // Previous
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.PreviousPage);", Context); // Previous
 
             Entity = "Brent";
             Assert.Contains("{90D2D480-6963-441E-B2C4-E0EADC878A83}", Context); // Previous
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Previous
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Previous
             Assert.Contains($"L.Log(\"{Entity}-PreviousPage\", SessionID, 1);", Context); // Previous
-            Assert.Contains($"A.{Entity}Helper?.View(U.Navigation.PreviousPage);", Context); // Previous
+            Assert.Contains($"A.{Entity}Helper?.View(E.Navigation.PreviousPage);", Context); // Previous
 
             Entity = "Charlie";
             Assert.Contains("{74A75AB1-1AB2-46C7-B63F-39F52AF0049A}", Context); // Previous
             Assert.Contains($"L.Log(\"{Entity}-Edit\", SessionID, 1);", Context);
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Previous
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Previous
             Assert.Contains($"A.{Entity}Helper?.Edit(simChoice, simInputValues);", Context); // Previous
 
             Entity = "Brent";
             Assert.Contains("{74A75AB1-1AB2-46C7-B63F-39F52AF0049A}", Context); // Previous
             Assert.Contains($"L.Log(\"{Entity}-Edit\", SessionID, 1);", Context);
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Previous
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Previous
             Assert.Contains($"A.{Entity}Helper?.Edit(simChoice, simInputValues);", Context); // Previous
 
             Entity = "Charlie";
             Assert.Contains("{11002DF2-E6AB-485E-B896-C3ED92706E30}", Context); // Remove
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Remove
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Remove
             Assert.Contains($"L.Log(\"{Entity}-Remove\", SessionID, 1);", Context); // Remove
             Assert.Contains($"A.{Entity}Helper?.Remove(simChoice, simInputValues);", Context); // Remove
 
             Entity = "Brent";
             Assert.Contains("{11002DF2-E6AB-485E-B896-C3ED92706E30}", Context); // Remove
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Remove
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Remove
             Assert.Contains($"L.Log(\"{Entity}-Remove\", SessionID, 1);", Context); // Remove
             Assert.Contains($"A.{Entity}Helper?.Remove(simChoice, simInputValues);", Context); // Remove
 
             Entity = "Charlie";
             Assert.Contains("{36DE75D7-A730-4F6B-A7C9-4660245BD895}", Context); // Save
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Save
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Save
             Assert.Contains($"L.Log(\"{Entity}-Save\", SessionID, 1);", Context); // Save
             Assert.Contains($"A.{Entity}Helper?.Save();", Context); // Save
 
             Entity = "Brent";
             Assert.Contains("{36DE75D7-A730-4F6B-A7C9-4660245BD895}", Context); // Save
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Save
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Save
             Assert.Contains($"L.Log(\"{Entity}-Save\", SessionID, 1);", Context); // Save
             Assert.Contains($"A.{Entity}Helper?.Save();", Context); // Save
 
             Entity = "Brent";
             Assert.Contains("{36DE75D7-A730-4F6B-A7C9-4660245BD895}", Context); // Load
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Load
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Load
             Assert.Contains($"L.Log(\"{Entity}-Load\", SessionID, 1);", Context); // Load
             Assert.Contains($"A.{Entity}Helper?.Load();", Context); // Load
 
             Entity = "Charlie";
             Assert.Contains("{F745E72F-A908-4AB1-AF8B-E3FDE13BF46E}", Context); // Search
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Search
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Search
             Assert.Contains($"L.Log(\"{Entity}-Search\", SessionID, 1);", Context); // Search
             Assert.Contains($"A.{Entity}Helper?.Load();", Context); // Search
 
             Entity = "Charlie";
             Assert.Contains("{B2FED166-7FCF-4163-8507-EB1CC28B6435}", Context); // Refresh
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Refresh
-            Assert.Contains($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.BuildingsHelper?.Refresh(); break;", Context); // Refresh
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Refresh
+            Assert.Contains($"case E.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.BuildingsHelper?.Refresh(); break;", Context); // Refresh
 
             Entity = "Charlie";
             Assert.Contains("{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}", Context); // Hidden
-            Assert.Contains($"case U.MenuDomain.{Entity}:", Context); // Hidden
+            Assert.Contains($"case E.MenuDomain.{Entity}:", Context); // Hidden
             Assert.Contains($"\tif (A.{Entity}Helper != null && ApplyHiddenRules(A.{Entity}Helper.Page) && doReIndex)", Context); // Hidden
             Assert.Contains($"\t{{A.{Entity}Helper.ReIndexDisplayId();}}", Context); // Hidden
 

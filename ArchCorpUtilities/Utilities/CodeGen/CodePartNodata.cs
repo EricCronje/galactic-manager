@@ -10,7 +10,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
             StringBuilder AlteredCode = new();
             U.RemoveFirstLineFeed(CodeToAlter, AlteredCode);
-            AlteredCode.AppendLine($"case U.MenuDomain.{Entity}:");
+            AlteredCode.AppendLine($"case E.MenuDomain.{Entity}:");
             AlteredCode.AppendLine("                                    if (SessionID != null)");
             AlteredCode.AppendLine("                                        L.Log(\"Menu - NoData\", SessionID, 1);");
             AlteredCode.AppendLine($"                                    if (A.{Entity}Helper != null && !A.{Entity}Helper.IsItemsOnThePage())");

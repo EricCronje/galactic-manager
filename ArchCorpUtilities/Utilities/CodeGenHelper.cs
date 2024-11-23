@@ -2,6 +2,7 @@
 using System.Text;
 using static ArchCorpUtilities.Utilities.CodeGen.CodePart;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Utilities;
 
@@ -9,7 +10,6 @@ public static class CodeGenHelper
 {
     public static string? SessionID { get; set; }
     public static string WorkingFolder { get; set; }
-    public static string TargetWorkingFolder { get; set; }
     public static string Version { get; set; }
     public static string BackupFolder { get; set; }
     public static string CurrentGuid { get; set; }
@@ -24,14 +24,14 @@ public static class CodeGenHelper
         TestGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}";
 
         WorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen";
-        TargetWorkingFolder = @"C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\ArchCorpUtilities";
+
         Version = "23.11.25";
         CurrentGuid = DevGuid;
         BackupFolder = $"\\Backup\\{CurrentGuid}";
     }
 
 
-    public static bool CreateDefaultCode(string entity, MenuTypeEnum menuType = MenuTypeEnum.Manage, string? lHLink = null, string? rHLink = null)
+    public static bool CreateDefaultCode(string entity, E.MenuTypeEnum menuType = E.MenuTypeEnum.Manage, string? lHLink = null, string? rHLink = null)
     {
         if (string.IsNullOrWhiteSpace(entity))
             return false;
@@ -39,9 +39,9 @@ public static class CodeGenHelper
         List<CodePart> codeVault = [];
         var Header = U.GetGeneratedCodeHeader();
 
-        if (menuType == MenuTypeEnum.Manage || menuType == MenuTypeEnum.Link)
+        if (menuType == E.MenuTypeEnum.Manage || menuType == E.MenuTypeEnum.Link)
         {
-            CodePartMenuEnum codePartMenuEnum = new("\\Utilities", "UniversalUtilities.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "\t\t\t", SessionID ?? "TBA");
+            CodePartMenuEnum codePartMenuEnum = new("", "EnumLib.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartMenuEnum);
 
             CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
@@ -114,7 +114,7 @@ public static class CodeGenHelper
             codeVault.Add(codePartCreatMockReposirory);
         }
 
-        if (menuType == MenuTypeEnum.Link)
+        if (menuType == E.MenuTypeEnum.Link)
         {
             CodePartCreatePogoLink codePartCreatePogoLink = new("\\GeneratedModels", $"{entity}.cs", entity, "{BC048EB7-5741-4D41-8608-208AEFDE31E1}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
             codeVault.Add(codePartCreatePogoLink);

@@ -7,6 +7,7 @@ using L = Logger.Logger;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using Page = Patina.Patina;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -24,7 +25,7 @@ namespace ArchCorpUtilities.Models.Menus
             MenuPage = new(40, Convert.ToUInt16(MH.Menu.Count));
         }
 
-        internal static void View(U.Navigation navigate = U.Navigation.FirstPage)
+        internal static void View(E.Navigation navigate = E.Navigation.FirstPage)
         {
             var orderedMenus = MH.Menu?.OrderBy(p => p.Index).ToList();
             MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage, orderedMenus, navigate);
@@ -38,7 +39,7 @@ namespace ArchCorpUtilities.Models.Menus
         internal static void InitialView()
         {
             PrepareMenuWrapper(MH.Menu);
-            View(U.Navigation.FirstPage);
+            View(E.Navigation.FirstPage);
         }
 
         private static void PrepareMenuWrapper(List<MenuItem> menu)
@@ -64,7 +65,7 @@ namespace ArchCorpUtilities.Models.Menus
             PrepareMenuWrapper(MH.Menu);
             var orderedMenus = MH.Menu?.Where(p => p.Level == 0).OrderBy(p => p.Index).ToList();
             MenuPage = new Page(40, Convert.ToUInt16(orderedMenus?.Count));
-            MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage, orderedMenus, U.Navigation.FirstPage);
+            MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage, orderedMenus, E.Navigation.FirstPage);
         }
 
         internal static void Add(string[]? simInputValues = null)
@@ -195,7 +196,7 @@ namespace ArchCorpUtilities.Models.Menus
 
                         var SplitCommands = Content.Split("\r\n");
 
-                        //ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
+                        
                         bool IsStartPage = true;
                         foreach (var SplitCommand in SplitCommands)
                         {
@@ -218,7 +219,7 @@ namespace ArchCorpUtilities.Models.Menus
                                     var LinkGuidOnTheLeft = SplitLine[3];
                                     var LinkGuidOnTheRight = SplitLine[4];
 
-                                    _ = Enum.TryParse(MenuType, out Utilities.CodeGen.CodePart.MenuTypeEnum MenuTypeEnum);
+                                    _ = Enum.TryParse(MenuType, out E.MenuTypeEnum MenuTypeEnum);
 
                                     if (CodeGen.CreateDefaultCode(EntityName, MenuTypeEnum, LinkGuidOnTheLeft == "None" ? null : LinkGuidOnTheLeft, LinkGuidOnTheRight == "None" ? null : LinkGuidOnTheRight))
                                     {
@@ -269,9 +270,7 @@ namespace ArchCorpUtilities.Models.Menus
                                     L.Log($"Abort - No lines", SessionID, 1);
                             }
                         }
-
-                        
-                        ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
+                                                
                         return true;
                     }
                     else
@@ -293,24 +292,7 @@ namespace ArchCorpUtilities.Models.Menus
             return false;
         }
 
-        private static void ExecuteCMD(string CMDPath)
-        {
-            try
-            {
-                Process process = new()
-                {
-                    StartInfo = new ProcessStartInfo(CMDPath)
-                };
-                process.Start();
-                process.WaitForExit();
-                process.Dispose();
-                CH.Feedback($"Deployed the changes to the code.");
-            }
-            catch (Exception)
-            {
-                CH.Feedback($"Could not deploy the changes to the code.");
-            }
-        }
+
 
         private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
         {
@@ -321,7 +303,7 @@ namespace ArchCorpUtilities.Models.Menus
             bool IsExitOption;
             int NewMenuTargetPage;
             bool IsDefault = false;
-            U.MenuDomain menuDomain = MenuDomain.None;
+            E.MenuDomain menuDomain = E.MenuDomain.None;
 
             if (NewViewMenu != null)
             {
@@ -375,7 +357,7 @@ namespace ArchCorpUtilities.Models.Menus
                 ParentPage = Page;
                 IsExitOption = false;
 
-                U.MenuDomain MenuDomainOption = U.MenuDomain.None;
+                E.MenuDomain MenuDomainOption = E.MenuDomain.None;
 
                 foreach (var subDisplayName in DisplayNamesList)
                 {
@@ -398,7 +380,7 @@ namespace ArchCorpUtilities.Models.Menus
                 return false;
         }
 
-        private static void CreateBackAndExitMenuOptions(MenuDomain menuDomainOption, MenuItem? CurrentMenu, int Page)
+        private static void CreateBackAndExitMenuOptions(E.MenuDomain menuDomainOption, MenuItem? CurrentMenu, int Page)
         {
 
             string DisplayName;
@@ -424,7 +406,7 @@ namespace ArchCorpUtilities.Models.Menus
             }
         }
 
-        private static bool AddNewMenuItem(string displayName, bool isBack, int page, string pageHeading, bool isExitOption, UniversalUtilities.MenuDomain domain, int newMenuTargetPage, string hideRule = "None", string targetTask = "None", bool isDefault = false, bool isStartPage = false)
+        private static bool AddNewMenuItem(string displayName, bool isBack, int page, string pageHeading, bool isExitOption, E.MenuDomain domain, int newMenuTargetPage, string hideRule = "None", string targetTask = "None", bool isDefault = false, bool isStartPage = false)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
             {
@@ -538,7 +520,7 @@ namespace ArchCorpUtilities.Models.Menus
             if (MenuItemsOnThePage != null)
             {
                 var orderedMenus = MenuItemsOnThePage?.OrderBy(p => p.Index).ToList();
-                MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage, orderedMenus, U.Navigation.FirstPage);
+                MenuItemsOnThePage = U.ViewWithPagination("Current menu structure", MenuPage, orderedMenus, E.Navigation.FirstPage);
 
             }
             CH.Feedback(Resource.SelectMenuItem);

@@ -1,0 +1,176 @@
+--------------------------------------------
+Relocating the enumerations to "EnumLib.dll"
+--------------------------------------------
+
+The UniversalUtilities class , generated part of the ArchCorpUtilities.dll have a draw back. 
+When new items was created Methods, properties in the UniversalUtilities - it would dissapear after the codeGen.
+Because it was not part of the generation logic only the enumerations was generated. Which consist of Navigation, MenuDomain, CodeTemplateEnum, MenuTypeEnum and CommandEnum.
+Which is used in alot of places (over 20 places estimated.).
+
+Intermediate solution - copy the changed files back to the backup folder with the cirrent GUID. Issue - it is a lot of work. Changing in multiple places.
+Problem the rollback copies the backup item into place. If the changes are not there then pooF!!! all gone. Redo... Arghhhh. :(
+
+(Light bulp!) Solution, created a new dll called "EnumLib.dll". Which only contains the enumeration mentioned.
+Plan is to generate this code for the "EnumLib.dll". Re-mamped all the code not to use the UniverasalUtilities but now "EnumLib".
+As "using E = EnumLib.EnumLib;". Replaced U.<Enum> with E.<Enum>.
+
+Change the code gen code to generate this file. Add the file in to the rollback batch file. Change the generation code to now make the change in the "EnumLib"
+instead of the "UniversalUtilities". Roadblock though - the working folder needs to move one level back :0. Thus update all the places where the this happen as well. :(.
+
+[The buterfly flaps its wings!] And a tornado strikes on mars and the ring of jupiter shifts.
+
+"But how much will this all cost?" It will reduce rework. Decrease the contact points in "UniversalUtilities". Reduce memory work - free up capacity for something else :).
+
+So far - the write up took [50] [Admin] - saves time on explaining later.
+Making the initial changes - Creating the "EnumLib" [50]
+Implementing the "EnumLib" in the code where used so far. [50]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Type				Description								Time Estimate		Actual Time		Resource(s)		When		Authorized		Motivation		Status		Percentage
+----				-----------								-------------		-----------		-----------		----		----------		----------		------		----------
+Admin				Write up								[200]				[100]			BT10			20241123	No								Completed	100
+
+Dev-Add				EnumLib.dll								[50]				[50]			BT10			20241123	No								Completed	100
+
+Dev-Mod				Changing ArchCorpUtilities.dll
+					Remapping "UniversalUtilities" (U)
+					to "EnumLib" (E)						
+					Affected files (3):						[100]				[50]			BT10			20241123	No								Completed	100
+
+Dev-Mod				CodeGen project.						[100]				[50]				BT10			20241123	No											
+					- Change working folder path								[]				BT10			20241123	No								Completed   
+					- Generate EnumLib.cs 
+					  not UniversalUtilities.cs									[]				BT10			20241123	No								Completed		
+					- Change Rollback											[]				BT10			20241123	No								Completed
+					- Change CopyCode											[25]
+					- Change gen code.											[25]			BT10			20241123	No								Completed
+					
+Dev-Mod				The generated code for:																										
+					(Add using E = EnumLib.EnumLib;)
+					- Helpers
+					- POCOs
+					- MockRepository						[100]				[?]				BT10			20241123	No								Started				
+					
+<Option 1>					
+Test-Manual-Dev		Test with Manage, helpers				[100]				[?]				BT10			20241123	No				
+Test-Manual-Dev		Test with link							[100]				[?]
+
+<Option 2>					
+Dev-Add				Add test project - to tests 
+					"To be tested".							[25]				[?]				BT10			20241123	No
+
+<Option 3>					
+Dev-Add				Generate tests for
+					"To be tested".							[200]				[?]				BT10			20241123	No				The menu options change every time.
+																																			Only the top part.
+																																			- Need a menu list with all the options.
+																																			  (We can get that - export the menus!)
+																																			- Need a unique identifiers.
+																																			  (Do not have that.)
+																																			  - All standard: (single range of GUIDS)
+																																				- View
+																																				- Add
+																																				- Remove
+																																				- Search
+																																				- Edit
+																																				- Load
+																																				- Save
+																																			  - All entities: (Can - generate it - store it?)
+																																				- Sites
+																																				- Buildings
+																																				- Beacons
+																																				- Link buildings to sites
+																																				- (So far ...)
+																																			  (Do not have a central storage)
+																																			  - Create API
+																																				Host the multiple repositories.
+																																				- Request
+																																				  - Sites
+																																				  - Buildings
+																																				  - Beacons
+																																				  - Link buildings to sites
+																																				- Paginated (Pages - 10 items per time.)
+																																				- Requests
+																																				  - All
+																																				  - GetByID
+																																				  - GetByGUID
+																																				  - GetByName
+																																				  - GetByNameContains
+																																				- Navigation control
+																																				  - Somehow specify
+																																					- Next
+																																					- Prev
+																																					- Resend
+																																				- API
+																																					Keep track of who
+																																					(Session ID)
+																																					CreateSession
+																																					CloseSession
+																																					Authorized?
+																																					Bookings?
+																																						- Booking Number (GUID)
+																																						- Client Number (GUID)
+																																						- Contact
+																																							- Email
+																																							- SMS
+																																						- Booking program
+																																							- Confirm - to continue
+																																							
+					
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** To be tested
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Type				Description								Time Estimate		Actual Time		Resource(s)		When		Authorized		Motivation
+----				-----------								-------------		-----------		-----------		----		----------		----------
+Tesy				- Manage
+						- Add
+						- View
+						- Search
+						- Remove
+						- Save
+						- Load
+
+					- Link
+						- Add
+						- View
+						- Search
+						- Remove
+						- Save
+						- Load
+					
+					Affected items:
+					
+					- Manage:
+						- Buildings
+						- Sites
+						- Beacons
+					
+					- Link 
+						- BuildingsToSites					[200]				[?]			BT10			20241123		No				After adding new items
+																																			The tests will change.
+																																			If this can be generated.
+																																			It will save time.
+																																			Else we spend 200 plus 
+																																			every time.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+** EnumLib.cs	
+   - Location: "C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\EnumLib\EnumLib.cs"
+   
+**
+Replace											With
+-------											----
+U.MenuDomain									E.MenuDomain
+U.Navigation									E.Navigation
+UniversalUtilities.MenuDomain					E.MenuDomain
+				
+CodeTemplateEnum								E.CodeTemplateEnum
+MenuTypeEnum									E.MenuTypeEnum
+Utilities.CodeGen.CodePart.MenuTypeEnum			E.MenuTypeEnum
+Add to the top of the files:
+
+using E = EnumLib.EnumLib;
+

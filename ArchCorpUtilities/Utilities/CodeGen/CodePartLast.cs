@@ -10,9 +10,9 @@ public class CodePartLast(string baseFolder, string targetFile, string entity, s
         StringBuilder stringBuilder = new();
         var Tabs = "\t\t\t\t\t\t\t\t";
         U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
-        stringBuilder.AppendLine($"case U.MenuDomain.{Entity}:");
+        stringBuilder.AppendLine($"case E.MenuDomain.{Entity}:");
         stringBuilder.AppendLine($"{Tabs}L.Log(\"{Entity}- LastPage\", SessionID, 1);");
-        stringBuilder.AppendLine($"{Tabs}A.{Entity}Helper?.View(U.Navigation.LastPage);");
+        stringBuilder.AppendLine($"{Tabs}A.{Entity}Helper?.View(E.Navigation.LastPage);");
         stringBuilder.AppendLine($"{Tabs}break;");
         var CodeAltered = stringBuilder.ToString();
         stringBuilder.Clear();

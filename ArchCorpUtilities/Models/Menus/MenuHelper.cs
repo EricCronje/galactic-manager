@@ -3,6 +3,7 @@ using System.Text;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -86,7 +87,7 @@ namespace ArchCorpUtilities.Models.Menus
 
             List<MenuItem> list =
             [
-                new MenuItem("Manage Menus", PageNumber, PageHeading, false, 10, "None", false, false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu, true),
+                new MenuItem("Manage Menus", PageNumber, PageHeading, false, 10, "None", false, false, "None", false, "Internal", null, E.MenuDomain.Menu, true),
                 new MenuItem("Exit", PageNumber, PageHeading, true),
             ];
 
@@ -105,61 +106,61 @@ namespace ArchCorpUtilities.Models.Menus
             //View Menus
             PageHeading = "View Menus - Sub Menu";
             PageNumber = 11;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "View", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "View", false, true, "None", false, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
             list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //Add Menus
             PageHeading = "Add Menu - Sub Menu";
             PageNumber = 12;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, false, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Add a menu item", PageNumber, PageHeading, false, 0, "Add", false, true, "None", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, false, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, false, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, false, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, false, "None", false, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Add a menu item", PageNumber, PageHeading, false, 0, "Add", false, true, "None", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, false, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, false, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, false, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
             list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //Remove Menus
             PageHeading = "Remove Menu - Sub Menu";
             PageNumber = 13;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Remove a menu item", PageNumber, PageHeading, false, 0, "Remove", false, true, "None", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, true, "None", false, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Remove a menu item", PageNumber, PageHeading, false, 0, "Remove", false, true, "None", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
             list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //Edit Menus
             PageHeading = "Edit Menu - Sub Menu";
             PageNumber = 14;
-            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Edit a menu item", PageNumber, PageHeading, false, 0, "Edit", false, true, "None", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
-            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Refresh", PageNumber, PageHeading, false, 0, "Refresh", false, true, "None", false, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Edit a menu item", PageNumber, PageHeading, false, 0, "Edit", false, true, "None", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Next Page", PageNumber, PageHeading, false, 0, "NextPage", false, true, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Previous Page", PageNumber, PageHeading, false, 0, "PreviousPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("First Page", PageNumber, PageHeading, false, 0, "FirstPage", false, true, "FirstPage", true, "Internal", null, E.MenuDomain.Menu));
+            list.Add(new MenuItem("Last Page", PageNumber, PageHeading, false, 0, "LastPage", false, true, "LastPage", true, "Internal", null, E.MenuDomain.Menu));
             list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //Save Menus to a file
             PageHeading = "Save Menus - Sub Menu";
             PageNumber = 15;
-            list.Add(new MenuItem("Save menus to a file", PageNumber, PageHeading, false, 0, "Save", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Save menus to a file", PageNumber, PageHeading, false, 0, "Save", false, true, "None", false, "Internal", null, E.MenuDomain.Menu));
             list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
             //Load Menus from a file
             PageHeading = "Load Menus - Sub Menu";
             PageNumber = 16;
-            list.Add(new MenuItem("Load menus from a file", PageNumber, PageHeading, false, 0, "Load", false, true, "None", false, "Internal", null, UniversalUtilities.MenuDomain.Menu));
+            list.Add(new MenuItem("Load menus from a file", PageNumber, PageHeading, false, 0, "Load", false, true, "None", false, "Internal", null, E.MenuDomain.Menu));
             list.Add(new MenuItem("Back to Manage Menus", PageNumber, PageHeading, false, 10, "None", true));
             list.Add(new MenuItem("Exit", PageNumber, PageHeading, true));
 
@@ -237,7 +238,7 @@ namespace ArchCorpUtilities.Models.Menus
                                 _ = Int32.TryParse(LineParts[8], out int Page);
                                 string PageHeading = LineParts[9];
                                 _ = bool.TryParse(LineParts[10], out bool IsBack);
-                                _ = Enum.TryParse(LineParts[11], out UniversalUtilities.MenuDomain Domain);
+                                _ = Enum.TryParse(LineParts[11], out E.MenuDomain Domain);
                                 bool IsStartPage = false;
 
                                 if (LineParts.Length > 12)

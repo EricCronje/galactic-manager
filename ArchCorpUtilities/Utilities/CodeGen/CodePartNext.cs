@@ -10,9 +10,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             StringBuilder stringBuilder = new();
             var Tabs = "\t\t\t\t\t\t\t";
             U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
-            stringBuilder.AppendLine($"case U.MenuDomain.{Entity}:");
+            stringBuilder.AppendLine($"case E.MenuDomain.{Entity}:");
             stringBuilder.AppendLine($"{Tabs}\tL.Log(\"{Entity}-NextPage\", SessionID, 1);");
-            stringBuilder.AppendLine($"{Tabs}\tA.{Entity}Helper?.View(U.Navigation.NextPage);");
+            stringBuilder.AppendLine($"{Tabs}\tA.{Entity}Helper?.View(E.Navigation.NextPage);");
             stringBuilder.AppendLine($"{Tabs}\tbreak;");
             var CodeAltered = stringBuilder.ToString();
             stringBuilder.Clear();

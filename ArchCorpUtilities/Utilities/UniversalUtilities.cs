@@ -6,33 +6,17 @@ using L = Logger.Logger;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using IC = InvalidCharacters.InvalidCharacters;
 using System.Text;
+using System.Diagnostics;
+using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Utilities
 {
 
     public class UniversalUtilities
     {
-        public static string? SessionID { get; internal set; }
+        public static string? SessionID { get; set; }
 
-
-        public enum MenuDomain
-        {
-            None,
-            Menu,
-			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
-			//{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}
-        }
-
-
-        public enum Navigation
-        {
-            FirstPage,
-            LastPage,
-            NextPage,
-            PreviousPage,
-        }
-
-        public static List<T>? ViewWithPagination<T>(string heading, Patina.Patina page, List<T>? modelList, U.Navigation navigation = U.Navigation.FirstPage, int GoToPageNumber = -1)
+        public static List<T>? ViewWithPagination<T>(string heading, Patina.Patina page, List<T>? modelList, E.Navigation navigation = E.Navigation.FirstPage, int GoToPageNumber = -1)
         {
             if (SessionID != null)
                 L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
@@ -64,7 +48,7 @@ namespace ArchCorpUtilities.Utilities
                 CH.Feedback($"{Resource.NoData}\n");
         }
 
-        public static List<T>? GetPaginatedList<T>(List<T>? items, U.Navigation navigation, Patina.Patina page, int GoToPageNumber = 0)
+        public static List<T>? GetPaginatedList<T>(List<T>? items, E.Navigation navigation, Patina.Patina page, int GoToPageNumber = 0)
         {
             if (SessionID != null)
                 L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
@@ -76,16 +60,16 @@ namespace ArchCorpUtilities.Utilities
                 {
                     switch (navigation)
                     {
-                        case U.Navigation.FirstPage:
+                        case E.Navigation.FirstPage:
                             page.GoToFirstPage();
                             break;
-                        case U.Navigation.LastPage:
+                        case E.Navigation.LastPage:
                             page.GoToLastPage();
                             break;
-                        case U.Navigation.NextPage:
+                        case E.Navigation.NextPage:
                             page.GetNextPage();
                             break;
-                        case U.Navigation.PreviousPage:
+                        case E.Navigation.PreviousPage:
                             page.GetPreviousPage();
                             break;
                         default:
@@ -246,6 +230,24 @@ namespace ArchCorpUtilities.Utilities
 
         }
 
+        public static void ExecuteCMD(string CMDPath, string success = "Deployed the changes to the code.", string fail = "Could not deploy the changes to the code.")
+        {
+            try
+            {
+                Process process = new()
+                {
+                    StartInfo = new ProcessStartInfo(CMDPath)
+                };
+                process.Start();
+                process.WaitForExit();
+                process.Dispose();
+                CH.Feedback(success);
+            }
+            catch (Exception)
+            {
+                CH.Feedback(fail);
+            }
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using ArchCorpUtilities.Utilities;
+using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -29,7 +30,7 @@ namespace ArchCorpUtilities.Models.Menus
 
 
 
-        public UniversalUtilities.MenuDomain Domain { get; set; }
+        public E.MenuDomain Domain { get; set; }
 
         public int Level { get; set; }
 
@@ -46,7 +47,7 @@ namespace ArchCorpUtilities.Models.Menus
             bool isHidden = false,
             string? source = "Internal",
             string? idGuidMenu = null,
-            UniversalUtilities.MenuDomain domain = UniversalUtilities.MenuDomain.None,
+            E.MenuDomain domain = E.MenuDomain.None,
             bool isStartPage = false,
             int level = 0
             )

@@ -9,7 +9,7 @@ public class CodePartRefresh(string baseFolder, string targetFile, string entity
     {
         StringBuilder stringBuilder = new();
         U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
-        stringBuilder.AppendLine($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.{Entity}Helper?.Refresh(); break;");
+        stringBuilder.AppendLine($"case E.MenuDomain.{Entity}: L.Log(\"{Entity}-View\", SessionID, 1); A.{Entity}Helper?.Refresh(); break;");
         var CodeAltered = stringBuilder.ToString();
         stringBuilder.Clear();
         return CodeAltered;

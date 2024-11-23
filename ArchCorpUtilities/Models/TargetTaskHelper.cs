@@ -7,6 +7,7 @@ using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
 using MMH = ArchCorpUtilities.Models.Menus.MenuMaintenanceHelper;
+using E = EnumLib.EnumLib;
 
 //{EA6AE6CA-7E51-43DE-95F9-FF66E27AE130}
 //{EA6AE6CA-7E51-43DE-95F9-FF66E27AE130}
@@ -49,7 +50,7 @@ namespace ArchCorpUtilities.Models
                         case "NoData":
                             switch (item?.Domain)
                             {                                
-                                case U.MenuDomain.Menu:
+                                case E.MenuDomain.Menu:
                                     if (SessionID != null)
                                         L.Log("Menu-NoData", SessionID, 1);
                                     if (!MMH.IsMenusOnThePage())
@@ -100,7 +101,7 @@ namespace ArchCorpUtilities.Models
                     case "Add":
                         switch (MenuItem?.Domain)
                         {                            
-                            case U.MenuDomain.Menu: L.Log("Menu-Add", SessionID, 1); MMH.Add(simInputValues); break;
+                            case E.MenuDomain.Menu: L.Log("Menu-Add", SessionID, 1); MMH.Add(simInputValues); break;
                             //{A6E3C6F1-D649-45CE-8C05-3A87466618A9}
 							//{A6E3C6F1-D649-45CE-8C05-3A87466618A9}
                             default: break;
@@ -110,7 +111,7 @@ namespace ArchCorpUtilities.Models
                     case "View":
                         switch (MenuItem?.Domain)
                         {                            
-                            case U.MenuDomain.Menu: L.Log("Menu-View", SessionID, 1); MMH.InitialView(); break;
+                            case E.MenuDomain.Menu: L.Log("Menu-View", SessionID, 1); MMH.InitialView(); break;
                             //{B03F74F5-9862-4916-9EF1-82DD253A5BC3}
 							//{B03F74F5-9862-4916-9EF1-82DD253A5BC3}
                             default: break;
@@ -121,9 +122,9 @@ namespace ArchCorpUtilities.Models
                     case "First":
                         switch (MenuItem?.Domain)
                         {                           
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-FirstPage", SessionID, 1);
-                                MMH.View(U.Navigation.FirstPage);
+                                MMH.View(E.Navigation.FirstPage);
                                 break;
                             //{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}
 							//{ADECB8B3-1779-4107-9DF5-9E250E31AFDD}
@@ -138,9 +139,9 @@ namespace ArchCorpUtilities.Models
                     case "Last":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-LastPage", SessionID, 1);
-                                MMH.View(U.Navigation.LastPage);
+                                MMH.View(E.Navigation.LastPage);
                                 break;
                             //{39C53717-4163-4B33-B652-4AA3B4D28C5B}
 							//{39C53717-4163-4B33-B652-4AA3B4D28C5B}
@@ -153,9 +154,9 @@ namespace ArchCorpUtilities.Models
                     case "Next":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-NextPage", SessionID, 1);
-                                MMH.View(U.Navigation.NextPage);
+                                MMH.View(E.Navigation.NextPage);
                                 break;
                             //{BBDE47EF-8937-4545-A019-652A8A306B6E}
 							//{BBDE47EF-8937-4545-A019-652A8A306B6E}
@@ -168,9 +169,9 @@ namespace ArchCorpUtilities.Models
                     case "Previous":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-PreviousPage", SessionID, 1);
-                                MMH.View(U.Navigation.PreviousPage);
+                                MMH.View(E.Navigation.PreviousPage);
                                 break;
                             //{90D2D480-6963-441E-B2C4-E0EADC878A83}
 							//{90D2D480-6963-441E-B2C4-E0EADC878A83}
@@ -182,7 +183,7 @@ namespace ArchCorpUtilities.Models
                     case "Edit":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-Edit", SessionID, 1);
                                 MMH.Edit(simChoice.ToString(), simInput);
                                 break;
@@ -196,7 +197,7 @@ namespace ArchCorpUtilities.Models
                     case "Remove":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-Remove", SessionID, 1);
                                 MMH.Remove(simChoice.ToString());
                                 break;
@@ -210,7 +211,7 @@ namespace ArchCorpUtilities.Models
                     case "Save":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-Save", SessionID, 1);
                                 MMH.Save();
                                 break;
@@ -224,7 +225,7 @@ namespace ArchCorpUtilities.Models
                     case "Load":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-Load", SessionID, 1);
                                 MMH.Load();
                                 break;
@@ -238,7 +239,7 @@ namespace ArchCorpUtilities.Models
                     case "Search":
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu:
+                            case E.MenuDomain.Menu:
                                 L.Log("Menu-Search", SessionID, 1);
                                 MMH.Search(simChoice, simInputValues);
                                 break;
@@ -253,7 +254,7 @@ namespace ArchCorpUtilities.Models
                         
                         switch (MenuItem?.Domain)
                         {
-                            case U.MenuDomain.Menu: L.Log("Menu-Refresh", SessionID, 1); MMH.Refresh(); break;
+                            case E.MenuDomain.Menu: L.Log("Menu-Refresh", SessionID, 1); MMH.Refresh(); break;
                             //{B2FED166-7FCF-4163-8507-EB1CC28B6435}
 							//{B2FED166-7FCF-4163-8507-EB1CC28B6435}
                             default:
@@ -293,7 +294,7 @@ namespace ArchCorpUtilities.Models
             // Apply hiding rules per menu domain - one domain per page ...
             switch (CurrentMenu)
             {
-                case U.MenuDomain.Menu:
+                case E.MenuDomain.Menu:
                     ApplyHiddenRules(MMH.MenuPage);
                     break;
                 //{5ED05F9F-E960-4964-AD0F-89E21CCCD9F5}

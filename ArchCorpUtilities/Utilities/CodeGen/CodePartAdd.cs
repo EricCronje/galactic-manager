@@ -9,7 +9,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         {
             StringBuilder stringBuilder = new();
             U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);            
-            stringBuilder.AppendLine($"case U.MenuDomain.{Entity}: L.Log(\"{Entity}-Add\", SessionID, 1); A.{Entity}Helper?.Add(simChoice, simInputValues); break;");
+            stringBuilder.AppendLine($"case E.MenuDomain.{Entity}: L.Log(\"{Entity}-Add\", SessionID, 1); A.{Entity}Helper?.Add(simChoice, simInputValues); break;");
             var CodeAltered = stringBuilder.ToString();
             stringBuilder.Clear();
             return CodeAltered;

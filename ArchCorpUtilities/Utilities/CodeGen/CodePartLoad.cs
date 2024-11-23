@@ -10,7 +10,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             StringBuilder stringBuilder = new();
             var Tabs = "\t\t\t\t\t\t\t\t";
             U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
-            stringBuilder.AppendLine($"case U.MenuDomain.{Entity}:");
+            stringBuilder.AppendLine($"case E.MenuDomain.{Entity}:");
             stringBuilder.AppendLine($"{Tabs}L.Log(\"{Entity}-Load\", SessionID, 1);");
             stringBuilder.AppendLine($"{Tabs}A.{Entity}Helper?.Load();");
             stringBuilder.AppendLine($"{Tabs}break;");

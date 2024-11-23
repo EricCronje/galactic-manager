@@ -4,6 +4,7 @@ using System.Text;
 using static ArchCorpUtilities.Utilities.CodeGenHelper;
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Utilities.CodeGen
 {
@@ -107,7 +108,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             return AlteredFile;
         }
 
-        public static bool CreateCode(CodeTemplateEnum codeTemplate, string entity, string basePath, string? lHLinkGuid = null, string? rhLinkGuid = null)
+        public static bool CreateCode(E.CodeTemplateEnum codeTemplate, string entity, string basePath, string? lHLinkGuid = null, string? rhLinkGuid = null)
         {
             var TemplateCode = GenCode(codeTemplate, entity, lHLinkGuid, rhLinkGuid);
             if (TemplateCode != "<NoData>")
@@ -483,7 +484,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static List<CodeTemplate>? Repository;
 
-        private static string GetTemplate(CodeTemplateEnum name, string entity, string? lhLink = null, string? rhLink = null)
+        private static string GetTemplate(E.CodeTemplateEnum name, string entity, string? lhLink = null, string? rhLink = null)
         {
             Repository = GetMockData(lhLink, rhLink);
             string? Template = Repository.FirstOrDefault(p => p.Name.ToUpper().Equals(name.ToString().ToUpper()))?.Code;
@@ -491,19 +492,19 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             {
                 switch (name)
                 {
-                    case CodeTemplateEnum.POCO:
+                    case E.CodeTemplateEnum.POCO:
                         Template = PocoCodeTemplate(entity);
                         break;
-                    case CodeTemplateEnum.POCOLink:
+                    case E.CodeTemplateEnum.POCOLink:
                         Template = PocoCodeTemplate(entity, true, lhLink, rhLink);
                         break;
-                    case CodeTemplateEnum.Helper:
+                    case E.CodeTemplateEnum.Helper:
                         Template = HelperCodeTemplate($"{entity}Model", $"{entity}");
                         break;
-                    case CodeTemplateEnum.HelperLink:
+                    case E.CodeTemplateEnum.HelperLink:
                         Template = HelperCodeTemplate($"{entity}Model", $"{entity}");
                         break;
-                    case CodeTemplateEnum.MockRepository:
+                    case E.CodeTemplateEnum.MockRepository:
                         Template = MockRepositoryTemplate(entity);
                         break;
                     default:
@@ -516,22 +517,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             return "<NoData>";
         }
 
-        public enum CodeTemplateEnum
-        {
-            Helper,
-            POCO,
-            POCOLink,
-            HelperLink,
-            MockRepository
-        }
-
-        public enum MenuTypeEnum
-        {
-            None,
-            Link,
-            Manage
-        }
-        private static string? GenCode(CodeTemplateEnum name, string entity, string? lhLinkGuid = null, string? rhLinkGuid = null)
+        private static string? GenCode(E.CodeTemplateEnum name, string entity, string? lhLinkGuid = null, string? rhLinkGuid = null)
         {
             #region Log that the GenCode method is running.
             #endregion
@@ -583,16 +569,16 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         }
 
-        private static string GetEntityPath(CodeTemplateEnum codeTemplate, string entity, string baseFolder)
+        private static string GetEntityPath(E.CodeTemplateEnum codeTemplate, string entity, string baseFolder)
         {
             var PrePath = $"{WorkingFolder}{baseFolder}\\{entity}Model\\{entity}";
             string? Path = codeTemplate switch
             {
-                CodeTemplateEnum.HelperLink => $"{PrePath}Helper.cs",
-                CodeTemplateEnum.Helper => $"{PrePath}Helper.cs",
-                CodeTemplateEnum.POCO => $"{PrePath}.cs",
-                CodeTemplateEnum.POCOLink => $"{PrePath}.cs",
-                CodeTemplateEnum.MockRepository => $"{PrePath}MockRepository.cs",
+                E.CodeTemplateEnum.HelperLink => $"{PrePath}Helper.cs",
+                E.CodeTemplateEnum.Helper => $"{PrePath}Helper.cs",
+                E.CodeTemplateEnum.POCO => $"{PrePath}.cs",
+                E.CodeTemplateEnum.POCOLink => $"{PrePath}.cs",
+                E.CodeTemplateEnum.MockRepository => $"{PrePath}MockRepository.cs",
                 _ => $"{PrePath}.cs",
             };
             return Path;
@@ -630,7 +616,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void ViewLogicInternal(string entity, StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine("        public bool View(U.Navigation navigate = U.Navigation.FirstPage)");
+            stringBuilder.AppendLine("        public bool View(E.Navigation navigate = E.Navigation.FirstPage)");
             ScopeStartLogic(stringBuilder, "\t\t\t");
             LoggingLogic(stringBuilder);
             ViewLogic(stringBuilder, entity);
@@ -684,7 +670,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void RefreshLogicInternal(string entity, StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"        public bool Refresh(U.Navigation navigate = U.Navigation.FirstPage)");
+            stringBuilder.AppendLine($"        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage)");
             stringBuilder.AppendLine("        {");
             LoggingLogic(stringBuilder);
             RefreshLogic(stringBuilder, entity);
@@ -784,7 +770,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();");
             stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
-            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, U.Navigation.FirstPage);");
+            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, E.Navigation.FirstPage);");
             stringBuilder.AppendLine($"            if (EntitiesOnThePage == null) {{ return null; }}");
             stringBuilder.AppendLine($"            CH.Feedback(heading);");
             stringBuilder.AppendLine($"            _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);");

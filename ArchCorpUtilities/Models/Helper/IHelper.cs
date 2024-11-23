@@ -1,4 +1,4 @@
-﻿using U = ArchCorpUtilities.Utilities.UniversalUtilities;
+﻿using E = EnumLib.EnumLib;
 
 namespace ArchCorpUtilities.Models.Helper
 {
@@ -14,13 +14,13 @@ namespace ArchCorpUtilities.Models.Helper
         /// GenView
         /// </summary>
         /// <param name="navigate"></param>
-        public bool View(U.Navigation navigate = U.Navigation.FirstPage);
+        public bool View(E.Navigation navigate = E.Navigation.FirstPage);
 
         /// <summary>
         /// Refresh on the add, remove, edit, search, view page
         /// can be called from the "DefaultTasks"
         /// </summary>
-        public bool Refresh(U.Navigation navigate = U.Navigation.FirstPage);
+        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage);
 
         /// <summary>
         /// Call Add(T)

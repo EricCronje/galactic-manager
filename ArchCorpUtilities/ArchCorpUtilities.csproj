@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EnumLib\EnumLib.csproj" />
     <ProjectReference Include="..\InvalidCharacters\InvalidCharacters.csproj" />
     <ProjectReference Include="..\Logger\Logger.csproj" />
   </ItemGroup>
