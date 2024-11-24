@@ -663,6 +663,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"                    selectionHeading = \"Select the item from the {rHLink}\";");
             stringBuilder.AppendLine($"                    heading = \"Select the {rHLink} item\";");
             stringBuilder.AppendLine($"                    RhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper)?.{rHLink}Guid;");
+            stringBuilder.AppendLine($"                    if (InputLinks.ToLower() == \"A\") {{ break; }}");
             stringBuilder.AppendLine($"                }}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"                if (U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid))");
@@ -818,6 +819,31 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"        public {entity}? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)");
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();");
+            stringBuilder.AppendLine($"            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);");
+            stringBuilder.AppendLine($"        }}");
+        }
+
+        private static void ViewAndSelectLinkItemLogic(string entity, StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine($"        public {entity}? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();");
+            stringBuilder.AppendLine($"            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);");
+            stringBuilder.AppendLine($"        }}");
+        }
+
+        private static void SetLinkItemLogic(string entity, StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine($"        public void SetLinkItem(string? simInput, {entity} entity, bool linked = true)");
+            stringBuilder.AppendLine($"        {{");
+            stringBuilder.AppendLine($"            entity.IsLinked = linked;");
+            stringBuilder.AppendLine($"        }}");
+        }
+
+        private static void ViewAndSelectInternal(string entity, StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine($"        private {entity}? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<{entity}>? orderedEntities)");
+            stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
             stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigation);");
             stringBuilder.AppendLine($"            if (EntitiesOnThePage == null) {{ return null; }}");
@@ -853,6 +879,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 stringBuilder.AppendLine("    public int Index { get; set; }");
                 stringBuilder.AppendLine("    public int DisplayId { get; internal set; }");
                 stringBuilder.AppendLine("    public string? " + entity + "Guid {get; internal set; }");
+                stringBuilder.AppendLine("    public bool IsLinked {get; set; }");
                 if (!isLink)
                     stringBuilder.AppendLine($"    public {entity}(string? name, int id, string guid = \"\")");
                 else
@@ -1056,6 +1083,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 ReIndexDisplayIdLogic(entity, stringBuilder);
                 ResetPageMaxCountLogic(stringBuilder);
                 ViewAndSelectItemLogic(entity, stringBuilder);
+                ViewAndSelectInternal(entity, stringBuilder);
+                ViewAndSelectLinkItemLogic(entity, stringBuilder);
+                SetLinkItemLogic(entity, stringBuilder);
                 ResetEntitiesOnThePageLogic(stringBuilder);
                 LoadDefaultsLogic(stringBuilder);
                 DuplicateFoundLogic(stringBuilder);

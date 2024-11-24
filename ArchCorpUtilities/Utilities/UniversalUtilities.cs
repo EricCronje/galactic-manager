@@ -260,18 +260,22 @@ namespace ArchCorpUtilities.Utilities
             T? Entity = default;
             E.Navigation navigation = E.Navigation.FirstPage;
             
-            while (Entity == null || !input.Equals("A", StringComparison.CurrentCultureIgnoreCase))
+            while (Entity == null)
             {
                 CH.ClearScreen();
                 CH.Feedback(heading);
                 entityHelper.ResetEntitiesOnThePage();
                 if (entityHelper != null)
                 {
-                    Entity = entityHelper.ViewAndSelectItem(simInput?[0], selectionHeading, navigation);
-                    if (Entity != null) { return Entity; }
+                    Entity = entityHelper.ViewAndSelectLinkItem(simInput?[0], selectionHeading, navigation);
+                    if (Entity != null) { entityHelper.SetLinkItem(simInput?[0], Entity); return Entity; }
 
                     CH.Feedback("N (Next), P (Previous), L (Last), A (Abort)");
                     input = CH.GetInput(simInput?[0]);
+
+                    if (input.Equals("A", StringComparison.CurrentCultureIgnoreCase))
+                        break;
+
                     switch (input.ToUpper())
                     {
                         case "N":
