@@ -76,7 +76,14 @@ namespace ArchCorpUtilities.Utilities
             }
 
             return string.Empty;
+        }              
+
+        public static void ClearScreen()
+        {
+            if (!IsSimulate) { Console.Clear(); }
+            Feedback("<ClearScreen>", false);
         }
         //{87EF7E35-47F0-4483-A92B-914466E545D7}
+
     }
 }

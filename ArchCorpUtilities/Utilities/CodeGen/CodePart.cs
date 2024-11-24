@@ -605,7 +605,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void ConstructorLogic(string entity, StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"       public {entity}Helper(string? sessionID)");
+            stringBuilder.AppendLine($"        public {entity}Helper(string? sessionID)");
             ScopeStartLogic(stringBuilder, "\t\t");
             stringBuilder.AppendLine("            SessionID = sessionID;");
             stringBuilder.AppendLine($"            Repository = new(\"-{entity}\");");
@@ -616,10 +616,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         private static void ViewLogicInternal(string entity, StringBuilder stringBuilder)
         {
             stringBuilder.AppendLine("        public bool View(E.Navigation navigate = E.Navigation.FirstPage)");
-            ScopeStartLogic(stringBuilder, "\t\t\t");
+            ScopeStartLogic(stringBuilder, "\t\t");
             LoggingLogic(stringBuilder);
             ViewLogic(stringBuilder, entity);
-            ScopeEndLogic(stringBuilder, "\t\t\t");
+            ScopeEndLogic(stringBuilder, "\t\t");
         }
 
         private static void AddLogicInternal(StringBuilder stringBuilder)
@@ -639,8 +639,8 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         private static void AddLinkLogic(StringBuilder stringBuilder, string? lHLink, string? rHLink)
         {
             stringBuilder.AppendLine($"			CH.Feedback(\"Please provide the item name: \");");
-            stringBuilder.AppendLine($"         var Input = CH.GetInput(simInput?[0]);");
-            stringBuilder.AppendLine($"         if (!string.IsNullOrWhiteSpace(Input))");
+            stringBuilder.AppendLine($"			var Input = CH.GetInput(simInput?[0]);");
+            stringBuilder.AppendLine($"			if (!string.IsNullOrWhiteSpace(Input))");
             stringBuilder.AppendLine($"			{{");
             stringBuilder.AppendLine($"				if (DuplicateFound(Input))");
             stringBuilder.AppendLine($"				{{");
@@ -651,20 +651,22 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"				string? LhGuid = null;");
             stringBuilder.AppendLine($"				string? RhGuid = null;");
             stringBuilder.AppendLine($"");
-            stringBuilder.AppendLine($"             var InputLinks = \"\";");
-            stringBuilder.AppendLine($"             while (InputLinks.ToUpper() != \"x\")");
-            stringBuilder.AppendLine($"				{{");
-            stringBuilder.AppendLine($"                 CH.Feedback(\"Select the {lHLink} item\");");
-            stringBuilder.AppendLine($"                 LhGuid = Guid.NewGuid().ToString();");
+            stringBuilder.AppendLine($"				var InputLinks = \"\";");
             stringBuilder.AppendLine($"");
-            stringBuilder.AppendLine($"                 CH.Feedback(\"Select the {rHLink} item\");");
-            stringBuilder.AppendLine($"                 RhGuid = Guid.NewGuid().ToString();");
-            stringBuilder.AppendLine($"				    break;");
-            stringBuilder.AppendLine($"				    //InputLinks = CH.GetInput(simInput?[0]);");
-            stringBuilder.AppendLine($"             }}");
+            stringBuilder.AppendLine($"				while (!(U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid)))");
+            stringBuilder.AppendLine($"                {{");
+            stringBuilder.AppendLine($"					var LhHelper = AL.{lHLink}Helper;");
+            stringBuilder.AppendLine($"					var selectionHeading = \"Select the item from the {lHLink}\";");
+            stringBuilder.AppendLine($"					var heading = \"Select the {lHLink} item\";");
+            stringBuilder.AppendLine($"                    LhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper)?.{lHLink}Guid;");
+            stringBuilder.AppendLine($"                    var RhHelper = AL.{rHLink}Helper;");
+            stringBuilder.AppendLine($"                    selectionHeading = \"Select the item from the {rHLink}\";");
+            stringBuilder.AppendLine($"                    heading = \"Select the {rHLink} item\";");
+            stringBuilder.AppendLine($"                    RhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper)?.{rHLink}Guid;");
+            stringBuilder.AppendLine($"                }}");
             stringBuilder.AppendLine($"");
-            stringBuilder.AppendLine($"				if (IsValidGuid(LhGuid) && IsValidGuid(RhGuid))");
-            stringBuilder.AppendLine($"				{{");
+            stringBuilder.AppendLine($"                if (U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid))");
+            stringBuilder.AppendLine($"                {{");
             stringBuilder.AppendLine($"					Repository?.Add(new(Input, 0, LhGuid, RhGuid));");
             stringBuilder.AppendLine($"					CH.Feedback(\"Item added.\");");
             stringBuilder.AppendLine($"					ResetPageMaxCount();");
@@ -675,9 +677,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"					CH.Feedback(\"Invalid name or empty or invalid links - No item added.\");");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"				return false;");
-            stringBuilder.AppendLine($"			}}");
+            stringBuilder.AppendLine($"				}}");
             stringBuilder.AppendLine($"");
-            stringBuilder.AppendLine($"			return false;");
+            stringBuilder.AppendLine($"				return false;");
         }
 
         private static void DisposeLogic(StringBuilder stringBuilder)
@@ -799,13 +801,12 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         {
             stringBuilder.AppendLine($"        public bool LoadDefaults()");
             stringBuilder.AppendLine($"        {{");
-            stringBuilder.AppendLine($"            Repository?.All()?.ToList(); return true;");
+            stringBuilder.AppendLine($"            Repository?.All()?.ToList(); ReIndexDisplayId(); return true;");
             stringBuilder.AppendLine($"        }}");
         }
-
         private static void ResetEntitiesOnThePageLogic(StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"        private void ResetEntitiesOnThePage()");
+            stringBuilder.AppendLine($"        public void ResetEntitiesOnThePage()");
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine("            if (SessionID != null) { L.Log(\"Entities was reset.\", SessionID, 4);}");
             stringBuilder.AppendLine($"               EntitiesOnThePage = null;");
@@ -814,11 +815,11 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void ViewAndSelectItemLogic(string entity, StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"        public {entity}? ViewAndSelectItem(string? simInput, string heading)");
+            stringBuilder.AppendLine($"        public {entity}? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)");
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();");
             stringBuilder.AppendLine($"            Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));");
-            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, E.Navigation.FirstPage);");
+            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigation);");
             stringBuilder.AppendLine($"            if (EntitiesOnThePage == null) {{ return null; }}");
             stringBuilder.AppendLine($"            CH.Feedback(heading);");
             stringBuilder.AppendLine($"            _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);");
@@ -1060,7 +1061,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 DuplicateFoundLogic(stringBuilder);
                 GetNameLogic(stringBuilder);
                 GetGuidLogic(stringBuilder, entity);
-                IsValidGuid(stringBuilder);
+                //IsValidGuid(stringBuilder);
                 ScopeEndLogic(stringBuilder, "\t");
                 ScopeEndLogic(stringBuilder, "");
                 return stringBuilder.ToString();
@@ -1077,12 +1078,5 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             }
         }
 
-        private static void IsValidGuid(StringBuilder stringBuilder)
-        {
-            stringBuilder.AppendLine($"        private bool IsValidGuid(string? guid)");
-            stringBuilder.AppendLine($"        {{");
-            stringBuilder.AppendLine($"            return !string.IsNullOrWhiteSpace(guid);");
-            stringBuilder.AppendLine($"        }}");
-        }
     }
 }

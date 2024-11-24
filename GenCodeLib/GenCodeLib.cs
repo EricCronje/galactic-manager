@@ -41,24 +41,24 @@ namespace GenCodeLib
             GenerateCode(GuidPath, Action, ref Content, ref SplitItems);
 
             if (Action == "RollBack")
-                RollBackCode();
+                RollBackCode("Roll back successful.", "Roll back failed.");
 
             if (Action == "Deploy")
                 DeployCode();
 
         }
 
-        private void RollBackCode()
+        private void RollBackCode(string success, string failed)
         {
             CH.Feedback("Rolling back the code ...");
-            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat");
+            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat", success, failed);
         }
 
 
         private void GenerateCode(string GuidPath, string Action, ref string Content, ref string[]? SplitItems)
         {
             bool DeployCode = false;
-            RollBackCode();
+            RollBackCode("Roll back successful", "Roll back failed.");
             StringBuilder Summary = new StringBuilder();
 
             if (IsGenerateCode(GuidPath, Action, ref Content, ref SplitItems) && SplitItems != null)

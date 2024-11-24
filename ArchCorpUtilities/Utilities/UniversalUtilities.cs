@@ -8,6 +8,7 @@ using IC = InvalidCharacters.InvalidCharacters;
 using System.Text;
 using System.Diagnostics;
 using E = EnumLib.EnumLib;
+using ArchCorpUtilities.Models.Helper;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -252,6 +253,55 @@ namespace ArchCorpUtilities.Utilities
                 CH.Feedback(fail);
             }
         }
+
+        static public T? SelectEntityFromTheList<T>(string[]? simInput, ref string input, string heading, string selectionHeading, IHelper<T>? entityHelper)
+        {
+            if (entityHelper == null) { return default; }
+            T? Entity = default;
+            E.Navigation navigation = E.Navigation.FirstPage;
+            
+            while (Entity == null || !input.Equals("A", StringComparison.CurrentCultureIgnoreCase))
+            {
+                CH.ClearScreen();
+                CH.Feedback(heading);
+                entityHelper.ResetEntitiesOnThePage();
+                if (entityHelper != null)
+                {
+                    Entity = entityHelper.ViewAndSelectItem(simInput?[0], selectionHeading, navigation);
+                    if (Entity != null) { return Entity; }
+
+                    CH.Feedback("N (Next), P (Previous), L (Last), A (Abort)");
+                    input = CH.GetInput(simInput?[0]);
+                    switch (input.ToUpper())
+                    {
+                        case "N":
+                            navigation = E.Navigation.NextPage;
+                            break;
+                        case "P":
+                            navigation = E.Navigation.PreviousPage;
+                            break;
+                        case "F":
+                            navigation = E.Navigation.FirstPage;
+                            break;
+                        case "L":
+                            navigation = E.Navigation.LastPage;
+                            break;
+                        default:
+                            break;
+                    }
+
+                }                
+                else
+                    break;
+            }
+
+            return default;
+        }
+        static public bool IsValidGuid(string? guid)
+        {
+            return !string.IsNullOrWhiteSpace(guid);
+        }
+
     }
 }
 

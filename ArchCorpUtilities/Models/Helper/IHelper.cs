@@ -83,5 +83,8 @@ namespace ArchCorpUtilities.Models.Helper
 
         public void ResetPageMaxCount();
 
+        public T? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
+
+        public void ResetEntitiesOnThePage();
     }
 }
