@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GenMenu": {
+      "commandName": "Project",
+      "commandLineArgs": "-g \"C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\CodeGen\\Generate\\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\" \"{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\""
+    }
+  }
+}

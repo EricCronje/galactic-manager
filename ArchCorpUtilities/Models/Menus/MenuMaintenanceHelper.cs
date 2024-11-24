@@ -197,7 +197,7 @@ namespace ArchCorpUtilities.Models.Menus
 
                         var SplitCommands = Content.Split("\r\n");
 
-                        
+
                         bool IsStartPage = true;
                         foreach (var SplitCommand in SplitCommands)
                         {
@@ -234,9 +234,9 @@ namespace ArchCorpUtilities.Models.Menus
                                     else
                                     {
                                         CH.Feedback($"Header information was not created.");
-                                        if (SessionID != null) { L.Log($"Error -- Headers not created", SessionID, 9); }                                        
+                                        if (SessionID != null) { L.Log($"Error -- Headers not created", SessionID, 9); }
                                     }
-                                        
+
 
                                     if (CurrentMenu != null)
                                     {
@@ -245,7 +245,7 @@ namespace ArchCorpUtilities.Models.Menus
                                         var ParentPage = CurrentMenu.ParentPage;
                                         var NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
 
-                                        if (MenuName.Length > 0 && EntityName.Length > 0)                                            
+                                        if (MenuName.Length > 0 && EntityName.Length > 0)
                                             if (GenerateMenuItems(CurrentMenu, ref MenuName, EntityName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, IsStartPage))
                                             {
                                                 IsStartPage = false;
@@ -271,7 +271,7 @@ namespace ArchCorpUtilities.Models.Menus
                                     L.Log($"Abort - No lines", SessionID, 1);
                             }
                         }
-                                                
+
                         return true;
                     }
                     else
@@ -293,7 +293,97 @@ namespace ArchCorpUtilities.Models.Menus
             return false;
         }
 
+        public static bool GenerateDefaultMenus(string generatePath, string[]? simInputValues)
+        {
+            
 
+            if (simInputValues != null) { generatePath = simInputValues[0]; }
+
+            if (generatePath == null )
+            {
+                if (SessionID != null) { L.Log($"Found a generate file {generatePath}", SessionID, 9); }
+                return false;
+            }
+
+            var CurrentMenu = MH.Menu.FirstOrDefault(p => p.IsStartPage);
+
+            bool IsBack = false;
+            var IsExitOption = false;
+
+            //GeneratePath = $"{CodeGenHelper.WorkingFolder}\\Generate\\{CodeGenHelper.CurrentGuid}";
+            if (generatePath.Length > 0 && File.Exists(generatePath))
+            {
+                if (SessionID != null) { L.Log($"Found a generate file {generatePath}", SessionID, 1); }
+
+                var Content = File.ReadAllText(generatePath);
+                if (Content != null && Content.Length > 0)
+                {
+                    if (SessionID != null) { L.Log($"Length of {Content.Length}", SessionID, 1); }
+                    var SplitCommands = Content.Split("\r\n");
+                    bool IsStartPage = true;
+
+                    foreach (var SplitCommand in SplitCommands)
+                    {
+                        if (SessionID != null) { L.Log($"Found line count of {Content.Length}", SessionID, 1); }                            
+
+                        if (SplitCommand.Length > 0)
+                        {
+                            if (SessionID != null) { L.Log($"Found command of length {SplitCommand.Length}", SessionID, 1); }                                
+
+                            var SplitLine = SplitCommand.Split("|");
+                            if (SplitLine.Length == 5)
+                            {
+                                if (SessionID != null) { L.Log($"Found command of length {SplitCommand.Length}", SessionID, 1); }
+                                
+                                var MenuName = SplitLine[0];
+                                var EntityName = SplitLine[1];
+                                var MenuType = SplitLine[2];
+                                var LinkGuidOnTheLeft = SplitLine[3];
+                                var LinkGuidOnTheRight = SplitLine[4];
+
+                                _ = Enum.TryParse(MenuType, out M.MenuTypeEnum MenuTypeEnum);
+
+                                if (CurrentMenu != null)
+                                {
+                                    var Page = CurrentMenu.Page;
+                                    var PageHeading = CurrentMenu.PageHeading;
+                                    var ParentPage = CurrentMenu.ParentPage;
+                                    var NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
+
+                                    if (MenuName.Length > 0 && EntityName.Length > 0)
+                                        if (GenerateMenuItems(CurrentMenu, ref MenuName, EntityName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, IsStartPage))
+                                        {
+                                            IsStartPage = false;
+                                            CH.Feedback($"Menus (Add, Remove, Edit, View, Search, import, save etc.) created for - {EntityName}");
+                                            if (MH.ExportMenus($"{generatePath}_Menus"))
+                                                CH.Feedback($"Menus exported for - {EntityName} - {generatePath}\\Menus{CodeGenHelper.CurrentGuid}");
+                                            else
+                                                CH.Feedback("Menus was not saved.");
+                                        }
+                                }
+                                else
+                                    CH.Feedback($"No start page - {EntityName}");
+                            }
+                            else
+                                if (SessionID != null) { L.Log($"Abort - not enough fields.", SessionID, 1); }
+                        }
+                        else
+                            if (SessionID != null) { L.Log($"Abort - No lines", SessionID, 1); }                                
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    if (SessionID != null)
+                        L.Log($"Abort - Empty file.", SessionID, 1);
+                    return false;
+                }
+
+            }
+
+            return false;
+        }
 
         private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
         {

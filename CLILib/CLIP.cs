@@ -42,6 +42,38 @@ namespace CLILib
             {
                 if (args?[1].Length > 0)
                 {
+                    return $"Success|GenerateMenu|{args?[1]}";
+                }
+            }
+
+            if (args?[0].ToLower() == "-r")
+            {
+                return $"Success|RollBackMenu|None";
+            }
+
+            if (args?[0].ToLower() == "-d")
+            {
+                return $"Success|DeployMenu|None";
+            }
+
+            return $"Failed|None|None";
+        }
+
+        public void Dispose()
+        {
+            InstructionsSB?.Clear();
+            GC.SuppressFinalize( this );
+        }
+
+        public static string ProcessArgsCode(string[] args)
+        {
+            if (args.Length == 0)
+                CH.Feedback(GetInstructions());
+
+            if (args?[0].ToLower() == "-g")
+            {
+                if (args?[1].Length > 0)
+                {
                     return $"Success|GenerateCode|{args?[1]}";
                 }
             }
@@ -57,12 +89,6 @@ namespace CLILib
             }
 
             return $"Failed|None|None";
-        }
-
-        public void Dispose()
-        {
-            InstructionsSB?.Clear();
-            GC.SuppressFinalize( this );
         }
     }
 }

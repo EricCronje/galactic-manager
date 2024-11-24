@@ -5,8 +5,6 @@ using C = CLILib.CLIP;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using G = ArchCorpUtilities.Utilities.CodeGenHelper;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
-using System.Runtime.CompilerServices;
-using E = EnumLib.EnumLib;
 using M = MenuEnumLib.MenuEnumLib;
 
 namespace GenCodeLib
@@ -32,7 +30,7 @@ namespace GenCodeLib
             CH.IsSimulate = (simulate != null);
             F.AddArgsReceivedToFeedback(simulate ?? args);
 
-            var Result = C.ProcessArgs(args);
+            var Result = C.ProcessArgsCode(args);
 
             var SplitResult = Result.Split('|');
             string? GuidPath = SplitResult[2];
@@ -61,22 +59,34 @@ namespace GenCodeLib
         {
             bool DeployCode = false;
             RollBackCode();
+            StringBuilder Summary = new StringBuilder();
 
             if (IsGenerateCode(GuidPath, Action, ref Content, ref SplitItems) && SplitItems != null)
             {
 
-                CH.Feedback("Setting configuration ...");
-                G.CurrentGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}";
-                CH.Feedback($"GUID: {G.CurrentGuid}");
+                
+                G.CurrentGuid = "{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}";                
                 G.SessionID = Guid.NewGuid().ToString();
-                CH.Feedback($"SessionID: {G.SessionID}");
                 G.WorkingFolder = "C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\CodeGen\\";
-                CH.Feedback($"WorkingFolder: {G.WorkingFolder}");
                 G.BackupFolder = $"{G.WorkingFolder}\\Backup";
-                CH.Feedback($"BackupFolder: {G.BackupFolder}");
                 SessionId = G.SessionID;
                 CH.SessionID = SessionId;
                 U.SessionID = SessionId;
+
+                CH.Feedback("Setting configuration ...");
+                CH.Feedback($"GUID: {G.CurrentGuid}");
+                CH.Feedback($"SessionID: {G.SessionID}");
+                CH.Feedback($"WorkingFolder: {G.WorkingFolder}");
+                CH.Feedback($"BackupFolder: {G.BackupFolder}");
+
+                Summary.AppendLine($"----------------------------------------------------------------------------");
+                Summary.AppendLine("Setting configuration ...");
+                Summary.AppendLine($"GUID: {G.CurrentGuid}");
+                Summary.AppendLine($"SessionID: {G.SessionID}");
+                Summary.AppendLine($"WorkingFolder: {G.WorkingFolder}");
+                Summary.AppendLine($"BackupFolder: {G.BackupFolder}");
+                Summary.AppendLine($"----------------------------------------------------------------------------");
+
                 foreach (var Item in SplitItems)
                 {
                     var SplitLines = Item.Split('|');
@@ -99,6 +109,7 @@ namespace GenCodeLib
                             {
                                 L.Log($"Generated code {Entity}", SessionId, 5);
                                 CH.Feedback($"Generated code {Entity}");
+                                Summary.AppendLine($"Generated code {Entity}");
                                 DeployCode = true;
                             }
                         }
@@ -106,8 +117,9 @@ namespace GenCodeLib
                         {
                             if (SessionId != null)
                             {
-                                L.Log($"Did NOT generated code {Entity}", SessionId, 5);
-                                CH.Feedback($"did NOT generated code {Entity}");
+                                L.Log($"Did NOT generate code {Entity}", SessionId, 5);
+                                CH.Feedback($"did NOT generate code {Entity}");
+                                Summary.AppendLine($"did NOT generate code {Entity}");
                             }
                         }
                     }
@@ -123,6 +135,7 @@ namespace GenCodeLib
                 if (DeployCode)
                 {
                     GenCodeLib.DeployCode();
+                    CH.Feedback(Summary.ToString());
                 }
 
             }

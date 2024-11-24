@@ -1,0 +1,49 @@
+--------------------------------------------
+MenuGen
+--------------------------------------------
+
+In the begining the creation of code and the menu was combined.
+The problem was that the tool had to be run twice. The menus needed the code to be in place in order to 
+allocate a domain. If there is no domain then the system does not know what functionality to use and 
+menu options does not work. When code gen was run the second time - the code was in place and the menus 
+could alocated the domain.
+
+Solution the code gen was generated - this creates the code.
+Now the menu needs to be created. But only if the code gen tool was run.
+Or alternatively - genrate the menus.
+test the menus and check if there are any None domains.
+Tf the count is higher than 1 then - warn and do not generate the menus - 
+ask the codegen to be run first.
+
+Command to be added now is "-g" with the <Path> to the GUID path. The tool will then create the 
+Menus with the GUID number in Generate and the GUID number.
+
+Rollback could remove the menu GUID.
+Copycode could copy the menu that was generated to the actual working folder.
+
+But it means that the copycode and the rollbck code must be in the GUID folder ... because the Guid is different 
+an new copycode and rollback batch file is needed. Maybe generate it as well? But not part of this scope.
+
+
+** Using the current GUID {CAA55BEC-8E9F-42F8-8B7B-F52B625D9708} -  as a clean slate. It is the starting point.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Type				Description								Time Estimate		Actual Time		Resource(s)		When		Authorized		Motivation				Status		Percentage
+----				-----------								-------------		-----------		-----------		----		----------		----------				------		----------
+Admin				Setup this document						[100]				[75]			TB10			20241123	No				Need a seperate tool	Completed	100
+																																			to generate the menu 
+																																			structures.
+Dev					Create a new console
+					app.									[]					[]				TB10			20241123	No										-			0
+					(Dotnet new console -n "MenuGen")
+Dev					Create MenuHelperLib.dll				[25]				[]				TB10			20241123	No				-						-			0
+					(Dotnet new classlib -n "MenuHelperLib")
+Dev					Add instructions if the args is empty	[]					[]				TB10			20241123	No				-						-			0
+Dev					Add command -g <Path>					[200]				[]				TB10			20241123	No				-						-			0
+Dev-Test			Test if the menu creates				[100]				[]				TB10			20241123	No				-						-			0
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
