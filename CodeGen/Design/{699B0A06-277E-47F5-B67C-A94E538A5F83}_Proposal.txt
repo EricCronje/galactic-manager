@@ -1,0 +1,89 @@
+-----------------
+Reposities design
+-----------------
+
+The problem is that there are alot of repositories (Mock ones for Arch Corp.
+Some of the examples are: 
+ - Beacons
+   - Holding the list of beacons
+ 
+ - Buildings
+   - List of Hmmm buildings.
+ 
+ - Sites
+   - List of the sites where a building can be placed.
+   
+ - Link Buildings To Sites
+   - List of links to the buildings.
+   
+  It will increase - at some stage this need to be writen to a database.
+  There are four places where this is called.
+   
+Ok , what is the issue. The repositories live in the helper classes for each.
+
+Need a central place to say - look for Arch's Repositories.
+Central place to hook up to a database.
+ 
+Ask for a repository in Arch for instance for:
+ - Beacons
+ - Buildings
+ - Sites
+ - Link Buildings To Sites
+
+Use the repository to update the data and retrieve the data:
+
+GetByName
+GetByConainsName
+GetByGuid
+GetByID
+
+Which need to return a list of:
+- Beacons
+ - Buildings
+ - Sites
+ - Link Buildings To Sites
+etc.
+
+This blueprint exist in the IRepository
+which is implemented for each of the entities.
+
+Just need to wrap this in a Repositories class.
+Could give every repository its own Guid. 
+GetRepositoryByGuid (<Guid>)
+GetRepositoryByName (<Name>)
+
+Considerations:
+
+IRepository.cs - need to move to RepositoriesLib.dll
+RepositoriesLib.dll - need to be added as dependency to ArchCorpUtilities.dll
+Created -- {EF292CFC-8576-451B-81C8-DF87C1AEF4C9} to be used in:
+Repositories
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary:
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Type				Description								Time Estimate		Actual Time		Resource(s)		When		Authorized		Motivation				Status		Percentage
+----				-----------								-------------		-----------		-----------		----		----------		----------				------		----------
+Admin				Setup this document						[100]				[50]			TB10			20241125	No				Need a seperate tool	Completed	100
+																																			to generate the menu 
+																																			structures.
+Dev					Create a new API.						[200]				[]				TB10			20241125	No										-			0
+
+Dev					Create RepositoriesLib.dll				[200]				[]				TB10			20241125	No				-						-			0
+					- IRepositories - Move to
+					RepositoriesLib.dll
+					- Change gen code to
+					to generate the repositories part
+					in the RepositoriesLib.dll.
+					- Change Rollback batch file to
+					
+					- Change the useage of the 
+					Repository
+					to use the RepositoriesLib.
+				
+Dev-Test			Create Test for repositories			[100]				[]				TB10			20241125	No				-						-			0
+
+Dev-Implement		Add to the code of the Helpers			[100]				[]				TB10			20241125	No				-						-			0
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

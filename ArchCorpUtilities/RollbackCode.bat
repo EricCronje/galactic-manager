@@ -20,3 +20,4 @@ REM Copy ArchLoader.cs, TargetTaskHelper.cs from generated to the actual working
 Robocopy C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Backup\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\Models\ C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Models\ ArchLoader.cs TargetTaskHelper.cs
 REM Copy EnumLib.cs from generated to the actual working folder.
 Robocopy C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\CodeGen\Backup\{CAA55BEC-8E9F-42F8-8B7B-F52B625D9708}\ C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\EnumLib\ EnumLib.cs
+

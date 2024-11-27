@@ -8,14 +8,17 @@
             POCO,
             POCOLink,
             HelperLink,
-            MockRepository
+            MockRepository,
+            POCOHierarchy,
+            HierarchyHelper
         }
 
         public enum MenuTypeEnum
         {
             None,
             Link,
-            Manage
+            Manage,
+            Hierarchy
         }
     }
 }

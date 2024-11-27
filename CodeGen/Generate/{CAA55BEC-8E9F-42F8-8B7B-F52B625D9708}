@@ -1,4 +1,10 @@
 Manage Sites|Sites|Manage|None|None
 Manage Buildings|Buildings|Manage|None|None
-Manage Beacons|Beacons|Manage|None|None
 Link Buildings To Sites|LinkBuildingToSite|Link|Buildings|Sites
+Manage BuildingType|BuildingTypes|Manage|None|None
+Link Buildings To BuildingTypes|LinkBuildingToBuildingsTypes|Link|Buildings|BuildingTypes
+Manage Ships|Ships|Manage|None|None
+Manage ShipTypes|ShipTypes|Manage|None|None
+Link Ships To Ship Types|LinkShipToShipType|Link|Ships|ShipTypes
+Manage Beacons|Beacons|Manage|None|None
+Building Tree|BuidlingTree|Hierarchy|Buildings|None

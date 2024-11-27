@@ -306,6 +306,26 @@ namespace ArchCorpUtilities.Utilities
             return !string.IsNullOrWhiteSpace(guid);
         }
 
+        internal static string? GetTemplate(string? entity, string? lhLink, string codePath)
+        {
+            try
+            {
+                if (File.Exists(codePath))
+                {
+                    var Content = File.ReadAllText(codePath);
+
+                    Content = Content.Replace("~Entity~", entity).Replace("~LhLink~", lhLink);
+
+                    return Content;
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+            return null;
+        }
     }
 }
 

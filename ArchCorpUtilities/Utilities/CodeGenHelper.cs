@@ -40,7 +40,7 @@ public static class CodeGenHelper
         List<CodePart> codeVault = [];
         var Header = U.GetGeneratedCodeHeader();
 
-        if (menuType == M.MenuTypeEnum.Manage || menuType == M.MenuTypeEnum.Link)
+        if (menuType == M.MenuTypeEnum.Manage || menuType == M.MenuTypeEnum.Link || menuType == M.MenuTypeEnum.Hierarchy)
         {
             CodePartMenuEnum codePartMenuEnum = new("", "EnumLib.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartMenuEnum);

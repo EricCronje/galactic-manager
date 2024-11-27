@@ -145,6 +145,7 @@ namespace GenCodeLib
         {
             CH.Feedback("Deploying code ...");
             U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
+            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployGenMenu.bat");            
         }
 
         private static bool IsGenerateCode(string GuidPath, string Action, ref string Content, ref string[]? SplitItems)
