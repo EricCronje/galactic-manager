@@ -254,7 +254,7 @@ namespace ArchCorpUtilities.Utilities
             }
         }
 
-        static public T? SelectEntityFromTheList<T>(string[]? simInput, ref string input, string heading, string selectionHeading, IHelper<T>? entityHelper)
+        static public T? SelectEntityFromTheList<T>(string[]? simInput, ref string input, string heading, string selectionHeading, IHelper<T>? entityHelper, bool getLinkableItem = true)
         {
             if (entityHelper == null) { return default; }
             T? Entity = default;
@@ -267,7 +267,10 @@ namespace ArchCorpUtilities.Utilities
                 entityHelper.ResetEntitiesOnThePage();
                 if (entityHelper != null)
                 {
-                    Entity = entityHelper.ViewAndSelectLinkItem(simInput?[0], selectionHeading, navigation);
+                    if (getLinkableItem)
+                        Entity = entityHelper.ViewAndSelectLinkItem(simInput?[0], selectionHeading, navigation);
+                    if (!getLinkableItem)
+                        Entity = entityHelper.ViewAndSelectLinkedItem(simInput?[0], selectionHeading, navigation);
                     if (Entity != null) { entityHelper.SetLinkItem(simInput?[0], Entity); return Entity; }
 
                     CH.Feedback("N (Next), P (Previous), L (Last), A (Abort)");

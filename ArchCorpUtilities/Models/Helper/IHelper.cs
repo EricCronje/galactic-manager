@@ -87,6 +87,8 @@ namespace ArchCorpUtilities.Models.Helper
 
         public T? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
 
+        public T? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
+
         public void SetLinkItem(string? simInput, T entity, bool linked = true);
 
         public void ResetEntitiesOnThePage();

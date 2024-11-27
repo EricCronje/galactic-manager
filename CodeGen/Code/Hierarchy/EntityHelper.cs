@@ -16,7 +16,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         public ~Entity~Helper(string? sessionID)
 		{
             SessionID = sessionID;
-            Repository = new("-~Entity~");
+            Repository = new();
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
         public bool View(E.Navigation navigate = E.Navigation.FirstPage)
@@ -39,12 +39,60 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                     CH.Feedback("Duplicate entry found - operation aborted.");
                     return false;
                 }
+                if (DuplicateFound(Input))
+                {
+                    CH.Feedback("Duplicate entry found - operation aborted.");
+                    return false;
+                }
 
-                Repository?.Add(new(Input, 0));
-                CH.Feedback("Item added.");
-                ResetPageMaxCount();
-                ReIndexDisplayId();
-                return true;
+                string? ParentGuid = null;
+                string? ChildGuid = null;
+
+                var InputLinks = "";
+				bool Continue = true;
+                while (Continue)
+                {
+                    var Parent = AL.~LhLink~Helper;
+                    var selectionHeading = "Select the first item (Parent) from the ~LhLink~ to be linked.";
+                    var heading = "Select the ~LhLink~ item";
+                    if (AL.~LhLink~Helper?.Repository?.GetLinked()?.Count() == 0)
+                    {
+						//All items,
+						ParentGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Parent)?.~LhLink~Guid;
+						if (InputLinks.ToLower() == "a") { Continue = false; }
+					}
+					else
+					{
+						//Only what is selected,
+						ParentGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Parent, false)?.~LhLink~Guid;
+                        if (InputLinks.ToLower() == "a") { Continue = false; }
+                    }
+                    
+                    if (Continue)
+                    {
+                        var Child = AL.~LhLink~Helper;
+                        selectionHeading = "Select the item from the ~LhLink~ (Child) (To link to the first item.)";
+                        heading = "Select the ~LhLink~ item";
+                        ChildGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Child, true)?.~LhLink~Guid;
+                        if (InputLinks.ToLower() == "a") { Continue = false; }
+                    }
+                    
+                    if (Continue)
+                        Continue = !(U.IsValidGuid(ParentGuid) && U.IsValidGuid(ChildGuid));
+                }
+
+                if (ParentGuid != null && ChildGuid != null && U.IsValidGuid(ParentGuid) && U.IsValidGuid(ChildGuid))
+                {
+                    Repository?.Add(new(Input, 0, "", ParentGuid, ChildGuid));
+                    CH.Feedback("Item added.");
+                    ResetPageMaxCount();
+                    ReIndexDisplayId();
+                    return true;
+                }
+                else
+                    CH.Feedback("Invalid name or empty or invalid links - No item added.");
+
+                return false;
             }
             else
                 CH.Feedback("Invalid Name or empty - No item added.");
@@ -327,6 +375,11 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         public ~Entity~? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();
+            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
+        }
+        public ~Entity~? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        {
+            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
         public void SetLinkItem(string? simInput, ~Entity~ entity, bool linked = true)

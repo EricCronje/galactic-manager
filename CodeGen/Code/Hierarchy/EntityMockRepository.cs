@@ -3,10 +3,9 @@ using AL = ArchCorpUtilities.Models.ArchLoader;
 using L = Logger.Logger;
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
     {
-        public class ~Entity~MockRepository<T>(string postFix) : IRepository<~Entity~>, IDisposable
+        public class ~Entity~MockRepository<T>() : IRepository<~Entity~>, IDisposable
         {
             private readonly List<~Entity~>? Items = [];
-            string PostFix { get; set; } = postFix;
             public string? SessionId { get; set; }
             public void Add(~Entity~? entity)
             {
@@ -16,10 +15,11 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             {
             var ~LhLink~Items = AL.~LhLink~Helper?.Repository?.All()?.ToList();
             if (~LhLink~Items != null)
-                for (int i = 0; i < SitesItems.Count; i++)
+                for (int i = 0; i < ~LhLink~Items.Count; i++)
                 {
                     ~LhLink~Model.~LhLink~? ~LhLink~ = ~LhLink~Items[i];
-                    Items?.Add(new ~Entity~($"{~LhLink~.Name}", 0, ~LhLink~.~LhLink~Guid));
+                    if (~LhLink~ != null)
+                        Items?.Add(new ~Entity~($"{~LhLink~.Name}", 0, ~LhLink~.~LhLink~Guid));
                 }
                 return Items;
             }

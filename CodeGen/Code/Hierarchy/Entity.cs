@@ -10,23 +10,25 @@ public class ~Entity~
     public string? ~Entity~Guid {get; internal set; }
     public bool IsLinked {get; set; }
     public bool IsAvailable {get; set; }
-    public string ParentGuid {get; set; } = "<None>";
-    public string ChildGuid {get; set; }
+    public string Parent {get; set; } = "<None>";
+    public string Child {get; set; }
 
-    public ~Entity~(string? name, int id, string guid = "")
-    {
-        Name = name;
-        Id = id;
-        DisplayId = Id;
-        if (guid != null && guid.Length > 0)
-        {
-            ~Entity~Guid = guid;
-        }
-        else
-        {
-            ~Entity~Guid = Guid.NewGuid().ToString();
-        }
-    }
+	public ~Entity~(string? name, int id, string guid = "", string parent = "<None>", string child = "<None>")
+	{
+		Name = name;
+		Id = id;
+		DisplayId = Id;
+		if (guid != null && guid.Length > 0)
+		{
+			~Entity~Guid = guid;
+		}
+		else
+		{
+			~Entity~Guid = Guid.NewGuid().ToString();
+		}
+		Parent = parent;
+		Child = child;
+	}
     public void SetDisplayId(int displayId) { DisplayId = displayId; }
     public override string ToString() => $"{DisplayId}) {Name}";
 }

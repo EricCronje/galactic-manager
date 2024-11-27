@@ -8,7 +8,8 @@ namespace ArchCorpUtilities.Utilities
     {
         public override bool AlterCode()
         {
-            return CreateCode(M.CodeTemplateEnum.HelperLink, Entity, BaseFolder);
+            if (BaseFolder == null) { return false; }  
+            return CreateCode(M.CodeTemplateEnum.HelperLink, Entity, BaseFolder, LhLink, RhLink);
         }
     }
 }

@@ -10,7 +10,8 @@
             HelperLink,
             MockRepository,
             POCOHierarchy,
-            HierarchyHelper
+            HierarchyHelper,
+            MockRepositoryHierarchy,
         }
 
         public enum MenuTypeEnum
