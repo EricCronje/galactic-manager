@@ -473,9 +473,8 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void ViewLogic(StringBuilder stringBuilder, string entity)
         {
-            stringBuilder.AppendLine("            var orderedEntities = Repository?.OrderByIndex();");
-            stringBuilder.AppendLine($"            EntitiesOnThePage = U.ViewWithPagination(\"{entity}\", Page, orderedEntities, navigate);");
-            stringBuilder.AppendLine("            return true;");
+            stringBuilder.AppendLine($"            EntitiesOnThePage = U.View(navigate, \"{entity}\", Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);");
+            stringBuilder.AppendLine($"            return true;");
         }
 
         private static void RefreshLogic(StringBuilder stringBuilder, string entity)
@@ -608,7 +607,6 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         {
             stringBuilder.AppendLine("        public bool View(E.Navigation navigate = E.Navigation.FirstPage)");
             ScopeStartLogic(stringBuilder, "\t\t");
-            LoggingLogic(stringBuilder);
             ViewLogic(stringBuilder, entity);
             ScopeEndLogic(stringBuilder, "\t\t");
         }
@@ -647,13 +645,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             stringBuilder.AppendLine($"				while (!(U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid)))");
             stringBuilder.AppendLine($"                {{");
             stringBuilder.AppendLine($"					var LhHelper = AL.{lHLink}Helper;");
+            stringBuilder.AppendLine($"					var RhHelper = AL.{rHLink}Helper;");
             stringBuilder.AppendLine($"					var selectionHeading = \"Select the item from the {lHLink}\";");
             stringBuilder.AppendLine($"					var heading = \"Select the {lHLink} item\";");
             stringBuilder.AppendLine($"                    LhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper)?.{lHLink}Guid;");
-            stringBuilder.AppendLine($"                    if (InputLinks.ToLower() == \"a\") {{ break; }}");
-            stringBuilder.AppendLine($"                    var RhHelper = AL.{rHLink}Helper;");
-            stringBuilder.AppendLine($"                    selectionHeading = \"Select the item from the {rHLink}\";");
-            stringBuilder.AppendLine($"                    heading = \"Select the {rHLink} item\";");
             stringBuilder.AppendLine($"                    RhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper)?.{rHLink}Guid;");
             stringBuilder.AppendLine($"                    if (InputLinks.ToLower() == \"a\") {{ break; }}");
             stringBuilder.AppendLine($"                }}");
@@ -784,7 +779,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
 
         private static void DuplicateFoundLogic(StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"        private bool DuplicateFound(string Input)");
+            stringBuilder.AppendLine($"        public bool DuplicateFound(string Input)");
             stringBuilder.AppendLine($"        {{");
             stringBuilder.AppendLine($"            return Repository?.GetByName(Input)?.Count() > 0;");
             stringBuilder.AppendLine($"        }}");
@@ -901,6 +896,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 }
                 stringBuilder.AppendLine("        Id = id;");
                 stringBuilder.AppendLine("        DisplayId = Id;");
+                stringBuilder.AppendLine("        IsLinked = false;");
                 stringBuilder.AppendLine("        if (guid != null && guid.Length > 0)");
                 stringBuilder.AppendLine("        {");
                 stringBuilder.AppendLine($"            {entity}Guid = guid;");

@@ -28,7 +28,15 @@ public class ~Entity~
 		}
 		Parent = parent;
 		Child = child;
+		IsAvailable = true;
+		IsLinked = false;
 	}
     public void SetDisplayId(int displayId) { DisplayId = displayId; }
-    public override string ToString() => $"{DisplayId}) {Name}";
+    
+	public override string ToString()
+    {
+        var ParentName = AL.BuildingsHelper?.Repository?.GetByGUID(Parent)?.ToList()[0].Name;
+        var ChildName = AL.BuildingsHelper?.Repository?.GetByGUID(Child)?.ToList()[0].Name;
+        return $"{DisplayId}) {Name} - (p) {ParentName} (c) {ChildName}";
+    }
 }

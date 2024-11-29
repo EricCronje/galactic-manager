@@ -138,7 +138,8 @@ namespace ArchCorpUtilities.Models
             }
         }
 
-        static int ShowMenu(int? page, string? menuHeading, int? simChoice = null)
+        //{0EFC2DF7-9635-48A9-8A37-ED03992483F6}
+        public static int ShowMenu(int? page, string? menuHeading, int? simChoice = null)
         {
             CH.Feedback(MH.ShowMenu(menuHeading, page));
 
@@ -150,6 +151,7 @@ namespace ArchCorpUtilities.Models
 
             return simChoice.Value;
         }
+        //{0EFC2DF7-9635-48A9-8A37-ED03992483F6}
 
     }
 }

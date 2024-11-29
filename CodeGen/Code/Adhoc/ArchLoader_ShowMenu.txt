@@ -1,0 +1,13 @@
+        //Generated
+		static int ShowMenu(int? page, string? menuHeading, int? simChoice = null)
+        {
+            CH.Feedback(MH.ShowMenu(menuHeading, page));
+
+            if (simChoice == null)
+            {
+                _ = int.TryParse(CH.GetInput(), out int Choice);
+                simChoice = Choice;
+            }
+
+            return simChoice.Value;
+        }

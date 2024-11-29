@@ -1,3 +1,9 @@
 ﻿using AL = ArchCorpUtilities.Models.ArchLoader;
 
-AL.RunArch();
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        AL.RunArch();
+    }
+}

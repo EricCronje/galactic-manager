@@ -9,6 +9,7 @@ using System.Text;
 using System.Diagnostics;
 using E = EnumLib.EnumLib;
 using ArchCorpUtilities.Models.Helper;
+using ArchCorpUtilities.Models;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -329,6 +330,13 @@ namespace ArchCorpUtilities.Utilities
             }
             return null;
         }
+
+        public static List<T>? View <T>(E.Navigation navigate, string heading, Patina.Patina page, List<T>? orderedEntities, string? name, string? sessionID, bool log = true)
+        {
+            if (sessionID != null) { if (log) { L.Log(name, sessionID); } }
+            return U.ViewWithPagination(heading, page, orderedEntities, navigate);
+        }
+
     }
 }
 

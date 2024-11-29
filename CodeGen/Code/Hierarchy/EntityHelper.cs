@@ -21,9 +21,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 		}
         public bool View(E.Navigation navigate = E.Navigation.FirstPage)
 		{
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            var orderedEntities = Repository?.OrderByIndex();
-            EntitiesOnThePage = U.ViewWithPagination("~Entity~", Page, orderedEntities, navigate);
+            EntitiesOnThePage = U.View(navigate, "~Entity~", Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             return true;
 		}
         public bool Add(int? simChoice = null, string[]? simInput = null)
@@ -50,6 +48,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
                 var InputLinks = "";
 				bool Continue = true;
+                AL.~LhLink~Helper?.ReIndexDisplayId();
                 while (Continue)
                 {
                     var Parent = AL.~LhLink~Helper;
@@ -241,13 +240,13 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 				StringBuilder sb = new();
 				try
 					{
-					sb.AppendLine($"~Entity~Name|~Entity~Guid");
+					sb.AppendLine($"BuidlingTreeName|BuidlingTreeGuid|ParentGuid|ParentName|ChildGuid|ChildName");
 					var OrderedList = Repository.OrderByName();
 					if(OrderedList != null)
 					{
 						foreach (~Entity~ item in OrderedList)
 						{
-							sb.AppendLine($"{ item.Name}|{ item.~Entity~Guid}");
+							sb.AppendLine($"{ item.Name}|{ item.~Entity~Guid}|{item.Parent}|{AL.BuidlingTreeHelper?.GetName(item.Parent)}|{item.Child}|{AL.BuidlingTreeHelper?.GetName(item.Child)}");
 						}
 						if (File.Exists(Path))
 							File.Delete(Path);
@@ -296,6 +295,8 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	                            var Entity = Repository?.GetByGUID(GUID)?.ToList()[0];
 	                            var EntityItem = Repository?.GetByName(Name)?.ToList()[0];
 								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.~Entity~Guid;
+                                var Parent = LineItem[2];
+                                var Child = LineItem[4];
 
 								if (Entity == null)
 								{
@@ -307,8 +308,8 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 									{
 									if (SessionID != null)
 										L.Log($"Item found - {Name}", SessionID);
-									Repository?.Add(new ~Entity~(Name, 0, GUID));
-									CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
+									Repository?.Add(new ~Entity~(Name, 0, GUID, Parent, Child));
+									CH.Feedback($"Item Added - New Item: {Name} - {GUID} - {Parent} - {Child}");
 									ReIndexDisplayId();
 									ResetPageMaxCount();
 									ResetEntitiesOnThePage();
@@ -395,7 +396,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         {
             Repository?.All()?.ToList(); ReIndexDisplayId(); return true;
         }
-        private bool DuplicateFound(string Input)
+        public bool DuplicateFound(string Input)
         {
             return Repository?.GetByName(Input)?.Count() > 0;
         }

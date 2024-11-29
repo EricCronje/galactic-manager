@@ -51,6 +51,9 @@ public static class CodeGenHelper
             CodePartHelperInstance codePartHelperInstance = new("\\Models", "ArchLoader.cs", entity, "{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartHelperInstance);
 
+            CodePartArchShowMenu codePartArchShowMenu = new("\\Models", "ArchLoader.cs", entity, "{0EFC2DF7-9635-48A9-8A37-ED03992483F6}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartArchShowMenu);
+
             CodePartISetInConstructorArch codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{9ED7AF33-DE0E-45C3-821F-4669558AD744}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartISetInConstructorArch);
 

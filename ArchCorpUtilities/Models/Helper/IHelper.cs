@@ -83,6 +83,10 @@ namespace ArchCorpUtilities.Models.Helper
 
         public void ResetPageMaxCount();
 
+        public void ReIndexDisplayId();
+
+        public bool DuplicateFound(string input);       
+
         public T? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
 
         public T? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
@@ -92,5 +96,6 @@ namespace ArchCorpUtilities.Models.Helper
         public void SetLinkItem(string? simInput, T entity, bool linked = true);
 
         public void ResetEntitiesOnThePage();
+
     }
 }
