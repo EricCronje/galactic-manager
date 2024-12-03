@@ -5,18 +5,20 @@ using ArchCorpUtilities.Models.Helper;
 using System.Text;
 using AL = ArchCorpUtilities.Models.ArchLoader;
 using E = EnumLib.EnumLib;
+using ArchCorpUtilities.Models;
+using ArchCorpUtilities.GeneratedModels.~LhLink~Model;
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 {
     public class ~Entity~Helper : IHelper<~Entity~>, IDisposable
 	{
         public string? SessionID { get; set; }
         public List<~Entity~>? EntitiesOnThePage { get; set; }
-        public Patina.Patina Page { get; set; }
-        public ~Entity~MockRepository<~Entity~>? Repository { get; set; }
-        public ~Entity~Helper(string? sessionID)
+        public Patina.Patina? Page { get; set; }
+        public MockRepositoryHierarchy<~Entity~, ~LhLink~>? Repository { get; set; }
+        public ~Entity~Helper(string? sessionID, string postfix = "")
 		{
             SessionID = sessionID;
-            Repository = new();
+            Repository = new(postfix);
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
         public bool View(E.Navigation navigate = E.Navigation.FirstPage)

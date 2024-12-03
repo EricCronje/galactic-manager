@@ -3,7 +3,7 @@ namespace ArchCorpUtilities.Models
 {
     public class MockRepository<T>(string postFix) : IRepository<T>, IDisposable where T : EntityBase, new()
     {
-        private readonly List<T>? Items = [];
+        public readonly List<T>? Items = [];
         string PostFix { get; set; } = postFix;
         public string? SessionId { get; set; }
         public void Add(T? entity)
@@ -17,7 +17,7 @@ namespace ArchCorpUtilities.Models
             {
                 T NewEntity = new()
                 {
-                    Name = $"{item}{PostFix}",
+                    Name = $"{item}-{PostFix}",
                     Id = 0,
                     Index = 0,
                     DisplayId = 0,

@@ -19,11 +19,11 @@ namespace ArchCorpUtilities.Utilities
     {
         public static string? SessionID { get; set; }
 
-        public static List<T>? ViewWithPagination<T>(string heading, Patina.Patina page, List<T>? modelList, E.Navigation navigation = E.Navigation.FirstPage, int GoToPageNumber = -1)
+        public static List<T>? ViewWithPagination<T>(string heading, Patina.Patina? page, List<T>? modelList, E.Navigation navigation = E.Navigation.FirstPage, int GoToPageNumber = -1)
         {
             if (SessionID != null)
                 L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
-
+            if (page == null) return null;
             List<T>? paginated = GetPaginatedList(modelList, navigation, page, GoToPageNumber);
 
             if (paginated != null)
@@ -332,9 +332,10 @@ namespace ArchCorpUtilities.Utilities
             return null;
         }
 
-        public static List<T>? View <T>(E.Navigation navigate, string heading, Patina.Patina page, List<T>? orderedEntities, string? name, string? sessionID, bool log = true)
+        public static List<T>? View <T>(E.Navigation navigate, string heading, Patina.Patina? page, List<T>? orderedEntities, string? name, string? sessionID, bool log = true)
         {
             if (sessionID != null) { if (log) { L.Log(name, sessionID); } }
+            if (page == null) return null;
             return U.ViewWithPagination(heading, page, orderedEntities, navigate);
         }
 
@@ -352,7 +353,7 @@ namespace ArchCorpUtilities.Utilities
 
         internal static string IsValidInput(string input, string InvalidInputMessage)
         {
-            if (!string.IsNullOrWhiteSpace(input)) { return InvalidInputMessage; }
+            if (string.IsNullOrWhiteSpace(input)) { return InvalidInputMessage; }
             return string.Empty;
         }
     }

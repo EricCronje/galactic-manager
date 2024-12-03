@@ -11,7 +11,7 @@ public class CodePartHiddenRules(string baseFolder, string targetFile, string en
         var Tabs = "\t\t\t\t";
         U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
         stringBuilder.AppendLine($"case E.MenuDomain.{Entity}:");
-        stringBuilder.AppendLine($"{Tabs}\tif (A.{Entity}Helper != null && ApplyHiddenRules(A.{Entity}Helper.Page) && doReIndex)");
+        stringBuilder.AppendLine($"{Tabs}\tif (A.{Entity}Helper != null && A.{Entity}Helper.Page != null && ApplyHiddenRules(A.{Entity}Helper.Page) && doReIndex)");
         stringBuilder.AppendLine($"{Tabs}\t{{A.{Entity}Helper.ReIndexDisplayId();}}");
         stringBuilder.AppendLine($"{Tabs}\tbreak;");
         var CodeAltered = stringBuilder.ToString();

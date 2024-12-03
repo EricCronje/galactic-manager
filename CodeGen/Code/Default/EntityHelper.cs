@@ -13,8 +13,8 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	{
         public string? SessionID { get; set; }
         public List<~Entity~>? EntitiesOnThePage { get; set; }
-        public Patina.Patina Page { get; set; }
-        public ~Entity~MockRepository<~Entity~>? Repository { get; set; }
+        public Patina.Patina? Page { get; set; }
+        public MockRepository<~Entity~>? Repository { get; set; }
         public ~Entity~Helper(string? sessionID)
 		{
             SessionID = sessionID;
@@ -32,7 +32,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             string Input = U.GetStringInput("Please provide the item name: ", simInput?[0]);
             string Feedback = U.IsValidInput(Input, "Invalid Name or empty - No item added.");
             Feedback = string.IsNullOrWhiteSpace(Feedback) ? DuplicateFound(Input) ? "Duplicate entry found - operation aborted." : string.Empty : string.Empty;
-            if (!string.IsNullOrWhiteSpace(Feedback))
+            if (string.IsNullOrWhiteSpace(Feedback))
             {
                 Repository?.Add(new(Input, 0));
                 CH.Feedback("Item added.");
