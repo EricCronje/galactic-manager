@@ -3,9 +3,10 @@ using AL = ArchCorpUtilities.Models.ArchLoader;
 using L = Logger.Logger;
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
     {
-        public class ~Entity~MockRepository<T>() : IRepository<~Entity~>, IDisposable
+        public class ~Entity~MockRepository<T>(string postFix) : IRepository<~Entity~>, IDisposable
         {
             private readonly List<~Entity~>? Items = [];
+            string PostFix { get; set; } = postFix;
             public string? SessionId { get; set; }
             public void Add(~Entity~? entity)
             {
@@ -13,13 +14,12 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             }
             public IEnumerable<~Entity~>? All()
             {
-            var ~LhLink~Items = AL.~LhLink~Helper?.Repository?.All()?.ToList();
-            if (~LhLink~Items != null)
-                for (int i = 0; i < ~LhLink~Items.Count; i++)
+                string[] ItemsToAdd = ["Alpha", "Beta", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel"];
+                foreach (var item in ItemsToAdd)
                 {
-                    ~LhLink~Model.~LhLink~? ~LhLink~ = ~LhLink~Items[i];
-                    if (~LhLink~ != null)
-                        Items?.Add(new ~Entity~($"{~LhLink~.Name}", 0, ~LhLink~.Guid_));
+                    ~Entity~ NewEntity = new($"{item}{PostFix}", 0, Guid.NewGuid().ToString());
+                    if (Items != null && GetAllContainingName(NewEntity.Name)?.Count == 0)
+                        Add(NewEntity);
                 }
                 return Items;
             }
@@ -89,6 +89,10 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                         L.Log($"Error in GetAllContainingName - {ex.Message} -- {ex.InnerException?.Message}", SessionId, 9);
                     return null;
                 }
+            }
+            public IEnumerable<~Entity~>? GetLinked()
+            {
+                return All()?.Where(p => p.IsLinked);
             }
         }
     }

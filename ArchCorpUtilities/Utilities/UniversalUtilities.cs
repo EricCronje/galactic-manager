@@ -10,6 +10,7 @@ using System.Diagnostics;
 using E = EnumLib.EnumLib;
 using ArchCorpUtilities.Models.Helper;
 using ArchCorpUtilities.Models;
+using System.Runtime.CompilerServices;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -310,7 +311,7 @@ namespace ArchCorpUtilities.Utilities
             return !string.IsNullOrWhiteSpace(guid);
         }
 
-        internal static string? GetTemplate(string? entity, string? lhLink, string codePath)
+        internal static string? GetTemplate(string? entity, string? lhLink, string? rhLink, string codePath)
         {
             try
             {
@@ -318,7 +319,7 @@ namespace ArchCorpUtilities.Utilities
                 {
                     var Content = File.ReadAllText(codePath);
 
-                    Content = Content.Replace("~Entity~", entity).Replace("~LhLink~", lhLink);
+                    Content = Content.Replace("~Entity~", entity).Replace("~LhLink~", lhLink).Replace("~RhLink~", rhLink);
 
                     return Content;
                 }
@@ -337,6 +338,23 @@ namespace ArchCorpUtilities.Utilities
             return U.ViewWithPagination(heading, page, orderedEntities, navigate);
         }
 
+        internal static void Log(string? sessionID, string? name)
+        {
+            if (sessionID != null) { L.Log(name, sessionID); }
+        }
+
+        internal static string GetStringInput(string caption, string? simInput)
+        {
+            CH.Feedback(caption);
+            var Input = CH.GetInput(simInput);
+            return Input;
+        }
+
+        internal static string IsValidInput(string input, string InvalidInputMessage)
+        {
+            if (!string.IsNullOrWhiteSpace(input)) { return InvalidInputMessage; }
+            return string.Empty;
+        }
     }
 }
 

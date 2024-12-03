@@ -5,7 +5,7 @@ namespace ArchCorpUtilities.Models.Helper
     public interface IHelper<T>
     {
         public string? SessionID { get; set; }
-        Patina.Patina Page { get; set; }
+        Patina.Patina? Page { get; set; }
 
         public bool IsItemsOnThePage();
 

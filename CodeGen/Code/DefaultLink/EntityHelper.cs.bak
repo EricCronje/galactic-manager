@@ -1,10 +1,12 @@
+using ArchCorpUtilities.Models.Helper;
+using ArchCorpUtilities.Models;
+using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
+using E = EnumLib.EnumLib;
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
-using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
-using ArchCorpUtilities.Models.Helper;
 using System.Text;
 using AL = ArchCorpUtilities.Models.ArchLoader;
-using E = EnumLib.EnumLib;
+
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 {
     public class ~Entity~Helper : IHelper<~Entity~>, IDisposable
@@ -16,7 +18,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         public ~Entity~Helper(string? sessionID)
 		{
             SessionID = sessionID;
-            Repository = new();
+            Repository = new("-~Entity~");
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
         public bool View(E.Navigation navigate = E.Navigation.FirstPage)
@@ -27,76 +29,47 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         public bool Add(int? simChoice = null, string[]? simInput = null)
         {
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            CH.Feedback("Please provide the item name: ");
-            var Input = CH.GetInput(simInput?[0]);
-            if(!string.IsNullOrWhiteSpace(Input))
-            {
+			CH.Feedback("Please provide the item name: ");
+			var Input = CH.GetInput(simInput?[0]);
+			if (!string.IsNullOrWhiteSpace(Input))
+			{
+				if (DuplicateFound(Input))
+				{
+					CH.Feedback("Duplicate entry found - operation aborted.");
+					return false;
+				}
 
-                if (DuplicateFound(Input))
-                {
-                    CH.Feedback("Duplicate entry found - operation aborted.");
-                    return false;
-                }
-                if (DuplicateFound(Input))
-                {
-                    CH.Feedback("Duplicate entry found - operation aborted.");
-                    return false;
-                }
+				string? LhGuid = null;
+				string? RhGuid = null;
 
-                string? ParentGuid = null;
-                string? ChildGuid = null;
+				var InputLinks = "";
 
-                var InputLinks = "";
-				bool Continue = true;
-                AL.~LhLink~Helper?.ReIndexDisplayId();
-                while (Continue)
+				while (!(U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid)))
                 {
-                    var Parent = AL.~LhLink~Helper;
-                    var selectionHeading = "Select the first item (Parent) from the ~LhLink~ to be linked.";
-                    var heading = "Select the ~LhLink~ item";
-                    if (AL.~LhLink~Helper?.Repository?.GetLinked()?.Count() == 0)
-                    {
-						//All items,
-						ParentGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Parent)?.Guid_;
-						if (InputLinks.ToLower() == "a") { Continue = false; }
-					}
-					else
-					{
-						//Only what is selected,
-						ParentGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Parent, false)?.Guid_;
-                        if (InputLinks.ToLower() == "a") { Continue = false; }
-                    }
-                    
-                    if (Continue)
-                    {
-                        var Child = AL.~LhLink~Helper;
-                        selectionHeading = "Select the item from the ~LhLink~ (Child) (To link to the first item.)";
-                        heading = "Select the ~LhLink~ item";
-                        ChildGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Child, true)?.Guid_;
-                        if (InputLinks.ToLower() == "a") { Continue = false; }
-                    }
-                    
-                    if (Continue)
-                        Continue = !(U.IsValidGuid(ParentGuid) && U.IsValidGuid(ChildGuid));
+					var LhHelper = AL.~LhLink~Helper;
+					var RhHelper = AL.~RhLink~Helper;
+					var selectionHeading = "Select the item from the ~LhLink~";
+					var heading = "Select the ~LhLink~ item";
+                    LhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper)?.Guid_;
+                    RhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper)?.Guid_;
+                    if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { break; }
                 }
 
-                if (ParentGuid != null && ChildGuid != null && U.IsValidGuid(ParentGuid) && U.IsValidGuid(ChildGuid))
+                if (U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid))
                 {
-                    Repository?.Add(new(Input, 0, "", ParentGuid, ChildGuid));
-                    CH.Feedback("Item added.");
-                    ResetPageMaxCount();
-                    ReIndexDisplayId();
-                    return true;
-                }
-                else
-                    CH.Feedback("Invalid name or empty or invalid links - No item added.");
+					Repository?.Add(new(Input, 0, LhGuid, RhGuid));
+					CH.Feedback("Item added.");
+					ResetPageMaxCount();
+					ReIndexDisplayId();
+					return true;
+				}
+				else
+					CH.Feedback("Invalid name or empty or invalid links - No item added.");
 
-                return false;
-            }
-            else
-                CH.Feedback("Invalid Name or empty - No item added.");
+				return false;
+				}
 
-            return false;
+				return false;
         }
         public void Dispose()
         {
@@ -105,71 +78,66 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         }
         public bool Edit(int? simChoice, string[]? simInput)
         {
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-	        try
-	        {
-	            ~Entity~? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
-	
-	            if (Entity != null)
-	            {
-	                CH.Feedback("Please enter a new name");
-	                var Input = CH.GetInput(simInput?[1]);
-	                if (!string.IsNullOrWhiteSpace(Input))
-	                {
-	                    var NotFound = Repository?.GetByName(Input);
-	                    if (NotFound == null)
-	                    {
-	                        EntitiesOnThePage = [new(Input, 0)];
-	                        Repository?.Add(EntitiesOnThePage[0]);
-	                        if (Entity != null)
-		                      Repository?.Remove(Entity);
-	                        Page = new Patina.Patina(1, 1);
-	                        ResetPageMaxCount();
-	                        ReIndexDisplayId();
-	                        ResetEntitiesOnThePage();
-	                        CH.Feedback("Item was modified");
-	                        return true;
-	                    }
-	                    else
-	                        CH.Feedback("Duplicate entry found - operation aborted.");
-	                }
-	                else
-	                    CH.Feedback("No name entered");
-	            }
-	            else
-	                {
-	                if (EntitiesOnThePage != null)
-	                    CH.Feedback("No Item selected");
-	                }
-	
-	            ResetPageMaxCount();
-	            ReIndexDisplayId();
-	            ResetEntitiesOnThePage();
-	
-	            return false;
-	
-	        }
-	        catch (Exception err)
-	        {
-	            L.Log($"Error - Edit an Item Helper -- {err.Message} --- {err.InnerException?.Message}");
-	            return false;
-	        }
+			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
+            try
+            {
+                ~Entity~? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
+
+                if (Entity != null)
+                {
+                    CH.Feedback("Please enter a new name");
+                    var Input = CH.GetInput(simInput?[1]);
+                    if (!string.IsNullOrWhiteSpace(Input))
+                    {
+                        var NotFound = Repository?.GetByName(Input);
+                        if (NotFound == null)
+                        {
+	                        EntitiesOnThePage = [new(Input, 0, Entity?.LhGuid, Entity?.RhGuid)];
+                            Repository?.Add(EntitiesOnThePage[0]);
+                            if (Entity != null)
+                                Repository?.Remove(Entity);
+                            Page = new Patina.Patina(1, 1);
+                            ResetIndexAndPage(true);
+                            CH.Feedback("Item was modified");
+                            return true;
+                        }
+                        else
+                            CH.Feedback("Duplicate entry found - operation aborted.");
+                    }
+                    else
+                        CH.Feedback("No name entered");
+                }
+                else
+                {
+                    if (EntitiesOnThePage != null)
+                        CH.Feedback("No Item selected");
+                }
+
+                ResetIndexAndPage(true);
+                return false;
+
+            }
+            catch (Exception err)
+            {
+                L.Log($"Error - Edit an Item Helper -- {err.Message} --- {err.InnerException?.Message}");
+                return false;
+            }
         }
         public bool IsItemsOnThePage()
         {
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            return !(EntitiesOnThePage == null || (EntitiesOnThePage != null && EntitiesOnThePage.Count == 0));
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
+            return !(EntitiesOnThePage == null || EntitiesOnThePage != null && EntitiesOnThePage.Count == 0);
         }
         public bool Search(int? simChoice = null, string[]? simInput = null)
-			{
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+        {
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
             CH.Feedback("Enter an item name to search for");
 
             var Input = CH.GetInput(simInput?[0]);
 
             if (string.IsNullOrWhiteSpace(Input))
                 CH.Feedback("No Items Name Was Entered");
-            else 
+            else
             {
                 List<~Entity~>? Entities = Repository?.GetAllContainingName(Input);
                 if (Entities != null && Entities.Count > 0)
@@ -178,32 +146,30 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                     EntitiesOnThePage = U.ViewWithPagination("Search Items", Page, Entities);
                     return true;
                 }
-                else 
+                else
                 {
                     CH.Feedback("No Items Was Found");
-                    EntitiesOnThePage = [new ~Entity~("None", 1)];
+                    EntitiesOnThePage = [new ~Entity~("None", 1, null, null)];
                     Page = new Patina.Patina(1, 1);
                     return false;
                 }
             }
 
-            ReIndexDisplayId();
-            ResetPageMaxCount();
+            ResetIndexAndPage();
 
             return false;
 			}
         public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage)
         {
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            ReIndexDisplayId();
-            ResetPageMaxCount();
+            ResetIndexAndPage();
             var orderedEntities = Repository?.OrderByIndex();
             EntitiesOnThePage = U.ViewWithPagination("~Entity~", Page, orderedEntities, navigate);
             return true;
-        }
+        }        
         public bool Remove(int? simChoice = null, string[]? simInput = null)
-			{
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
+        {
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
 
             //List the items
             var Current~Entity~ = ViewAndSelectItem(simInput?[0], "Select the item to remove");
@@ -212,56 +178,52 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 if (Repository.Remove(Current~Entity~))
                 {
                     CH.Feedback("Item removed.");
-                    ResetPageMaxCount();
-                    ReIndexDisplayId();
-                    ResetEntitiesOnThePage();
+                    ResetIndexAndPage(true);
                     return true;
                 }
                 else
                     CH.Feedback("Item was not removed.");
             else
-                {
+            {
                 if (EntitiesOnThePage != null)
                     CH.Feedback("Nothing selected.");
-                }
+            }
 
-            ReIndexDisplayId();
-            ResetPageMaxCount();
-            ResetEntitiesOnThePage();
+            ResetIndexAndPage(true);
 
             return false;
-			}
+        }       
         public bool Save(int? simChoice = null, string[]? simInput = null)
 		{
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-			var Path = "~Entity~";
-			if (Repository?.Count() > 0)
-			{
-				StringBuilder sb = new();
-				try
-					{
-					sb.AppendLine($"BuidlingTreeName|BuidlingTreeGuid|ParentGuid|ParentName|ChildGuid|ChildName");
-					var OrderedList = Repository.OrderByName();
-					if(OrderedList != null)
-					{
-						foreach (~Entity~ item in OrderedList)
-						{
-							sb.AppendLine($"{ item.Name}|{ item.Guid_}|{item.Parent}|{AL.~Entity~Helper?.GetName(item.Parent)}|{item.Child}|{AL.~Entity~Helper?.GetName(item.Child)}");
-						}
-						if (File.Exists(Path))
-							File.Delete(Path);
-						File.AppendAllText(Path, sb.ToString());
-						CH.Feedback($"Saved the item successfully - {U.GetCurrentDate()}");
-						return true;
-					}
-					return false;
-				}
-				catch (Exception ex)
-				{
-					CH.Feedback($"Items was not saved. - Error {ex.Message}");
-					return false;
-				}
-				finally
+            if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
+            var Path = "~Entity~";
+            if (Repository?.Count() > 0)
+            {
+                StringBuilder sb = new();
+                try
+                {
+					sb.AppendLine($"~Entity~Name|lhLink|rhLink|lhLinkName|rhLinkName|Guid|lhLinkGuid|rhLinkGuid");
+                    var OrderedList = Repository.OrderByName();
+                    if (OrderedList != null)
+                    {
+                        foreach (~Entity~ item in OrderedList)
+                        {
+							sb.AppendLine($"{ item.Name}|~LhLink~|~RhLink~|{AL.~LhLink~Helper?.GetName(item.LhGuid)}|{AL.~RhLink~Helper?.GetName(item.RhGuid)}|{ item.Guid_}|{item.LhGuid}|{item.RhGuid}");
+                        }
+                        if (File.Exists(Path))
+                            File.Delete(Path);
+                        File.AppendAllText(Path, sb.ToString());
+                        CH.Feedback($"Saved the item successfully - {U.GetCurrentDate()}");
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    CH.Feedback($"Items was not saved. - Error {ex.Message}");
+                    return false;
+                }
+                finally
 				{
 					sb?.Clear();
 				}
@@ -291,12 +253,12 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 							if (LineItem.Length > 0 && LineItem.Length > 1)
 	                        {
 	                            string Name = LineItem[0].Trim();
-	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[1].Trim();
+	                            string GUID = CH.IsSimulate ? "<GUID>" : LineItem[5].Trim();
+	                            string lhLinkGuid = LineItem[6].Trim();
+	                            string rhLinkGuid = LineItem[7].Trim();
 	                            var Entity = Repository?.GetByGUID(GUID)?.ToList()[0];
 	                            var EntityItem = Repository?.GetByName(Name)?.ToList()[0];
 								var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.Guid_;
-                                var Parent = LineItem[2];
-                                var Child = LineItem[4];
 
 								if (Entity == null)
 								{
@@ -308,8 +270,8 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 									{
 									if (SessionID != null)
 										L.Log($"Item found - {Name}", SessionID);
-									Repository?.Add(new ~Entity~(Name, 0, GUID, Parent, Child));
-									CH.Feedback($"Item Added - New Item: {Name} - {GUID} - {Parent} - {Child}");
+									Repository?.Add(new ~Entity~(Name, 0, lhLinkGuid, rhLinkGuid, GUID));
+									CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
 									ReIndexDisplayId();
 									ResetPageMaxCount();
 									ResetEntitiesOnThePage();
@@ -322,9 +284,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	                    SkipFirstLine = false;
 	                }
 	
-	                ReIndexDisplayId();
-	                ResetPageMaxCount();
-	                ResetEntitiesOnThePage();
+				 ResetIndexAndPage(true);
                  return true;
 	            }
 	            else
@@ -342,6 +302,15 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	        }
 	        return false;
 		}
+
+        private void ResetIndexAndPage(bool resetEntitiesOnThePage = false)
+        {
+            ReIndexDisplayId();
+            ResetPageMaxCount();
+            if (resetEntitiesOnThePage)
+                ResetEntitiesOnThePage();
+        }
+
         public void ReIndexDisplayId()
         {
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}

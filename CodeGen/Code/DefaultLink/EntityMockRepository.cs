@@ -1,11 +1,14 @@
+// Generated Code - Version: 23.11.25 - 2024/12/02 18:12:55 - {e569b779-37f6-46f8-bae4-dcba0ca645a6}
+
 using ArchCorpUtilities.Models;
 using AL = ArchCorpUtilities.Models.ArchLoader;
 using L = Logger.Logger;
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
     {
-        public class ~Entity~MockRepository<T>() : IRepository<~Entity~>, IDisposable
+        public class ~Entity~MockRepository<T>(string postFix) : IRepository<~Entity~>, IDisposable
         {
             private readonly List<~Entity~>? Items = [];
+            string PostFix { get; set; } = postFix;
             public string? SessionId { get; set; }
             public void Add(~Entity~? entity)
             {
@@ -14,12 +17,13 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             public IEnumerable<~Entity~>? All()
             {
             var ~LhLink~Items = AL.~LhLink~Helper?.Repository?.All()?.ToList();
-            if (~LhLink~Items != null)
+            var ~RhLink~Items = AL.~RhLink~Helper?.Repository?.All()?.ToList();
+            if (~LhLink~Items != null && ~RhLink~Items != null)
                 for (int i = 0; i < ~LhLink~Items.Count; i++)
                 {
                     ~LhLink~Model.~LhLink~? ~LhLink~ = ~LhLink~Items[i];
-                    if (~LhLink~ != null)
-                        Items?.Add(new ~Entity~($"{~LhLink~.Name}", 0, ~LhLink~.Guid_));
+                    ~RhLink~Model.~RhLink~? ~RhLink~ = ~RhLink~Items[i];
+                    Items?.Add(new ~Entity~($"{~RhLink~.Name}-{~LhLink~.Name}", 0, ~RhLink~.Guid_, ~LhLink~.Guid_));
                 }
                 return Items;
             }
@@ -89,6 +93,10 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                         L.Log($"Error in GetAllContainingName - {ex.Message} -- {ex.InnerException?.Message}", SessionId, 9);
                     return null;
                 }
+            }
+            public IEnumerable<~Entity~>? GetLinked()
+            {
+                return All()?.Where(p => p.IsLinked);
             }
         }
     }

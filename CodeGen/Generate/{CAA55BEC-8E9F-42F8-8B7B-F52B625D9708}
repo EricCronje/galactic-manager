@@ -7,4 +7,4 @@ Manage Ships|Ships|Manage|None|None
 Manage ShipTypes|ShipTypes|Manage|None|None
 Link Ships To Ship Types|LinkShipToShipType|Link|Ships|ShipTypes
 Manage Beacons|Beacons|Manage|None|None
-Building Tree|BuidlingTree|Hierarchy|Buildings|None
+Building Hierarchy|BuildingHierarchy|Hierarchy|Buildings|None

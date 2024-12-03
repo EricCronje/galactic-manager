@@ -12,6 +12,7 @@
             POCOHierarchy,
             HierarchyHelper,
             MockRepositoryHierarchy,
+            MockRepositoryLink
         }
 
         public enum MenuTypeEnum
