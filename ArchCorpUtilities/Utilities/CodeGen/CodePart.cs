@@ -24,8 +24,10 @@ namespace ArchCorpUtilities.Utilities.CodeGen
         public static string? SessionID { get; set; }
         public string? LhLink { get; set; }
         public string? RhLink { get; set; }
+        public string? SourcePath { get; set; }
 
-        public CodePart(string? baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID, string? lHLink = null, string? rHLink = null)
+
+        public CodePart(string? baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID, string? lHLink = null, string? rHLink = null, string? sourcePath = null)
         {
             BaseFolder = baseFolder;
             TargetFile = targetFile;
@@ -37,6 +39,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             SessionID = sessionID;
             LhLink = lHLink;
             RhLink = rHLink;
+            SourcePath = sourcePath;
         }
         public virtual bool AlterCode()
         {
@@ -110,9 +113,9 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             return AlteredFile;
         }
 
-        public static bool CreateCode(M.CodeTemplateEnum codeTemplate, string entity, string baseFolder, string? lhLink, string? rhLink)
+        public static bool CreateCode(M.CodeTemplateEnum codeTemplate, string entity, string baseFolder, string? lhLink, string? rhLink, string? sourcePath)
         {
-            var TemplateCode = GenCode(codeTemplate, entity, lhLink, rhLink);
+            var TemplateCode = GenCode(entity, lhLink, rhLink, sourcePath);
             if (TemplateCode != "<NoData>")
             {
                 var EntityFile = GetEntityPath(codeTemplate, entity, baseFolder);
@@ -129,55 +132,21 @@ namespace ArchCorpUtilities.Utilities.CodeGen
                 return false;
         }
 
-        private static string? GetTemplateCode(string entity, M.CodeTemplateEnum name, string? baseFolder,string? lHLink, string? rHLink)
+        private static string? GetTemplateCode(string entity, string? baseFolder,string? lHLink, string? rHLink, string? sourcePath)
         {
-            if (baseFolder == null) { return null; }
-
-            string? code = null;
-            switch (name)
-            {
-                case M.CodeTemplateEnum.Helper:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\EntityHelper.cs");
-                    break;
-                case M.CodeTemplateEnum.HelperLink:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\EntityHelper.cs");
-                    break;
-                case M.CodeTemplateEnum.POCO:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\Entity.cs");
-                    break;
-                case M.CodeTemplateEnum.POCOLink:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\Entity.cs");
-                    break;
-                case M.CodeTemplateEnum.MockRepository:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\EntityMockRepository.cs");
-                    break;
-                case M.CodeTemplateEnum.MockRepositoryLink:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\EntityMockRepository.cs");
-                    break;
-                case M.CodeTemplateEnum.POCOHierarchy:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\Entity.cs");
-                    break;
-                case M.CodeTemplateEnum.HierarchyHelper:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\EntityHelper.cs");
-                    break;
-                case M.CodeTemplateEnum.MockRepositoryHierarchy:
-                    code = U.GetTemplate(entity, lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\EntityMockRepository.cs");
-                    break;
-                default:
-                    break;
-            }
-
-            return code;
+            if (baseFolder == null || sourcePath == null) { return null; }
+            string? Code = U.GetTemplate(entity, lHLink, rHLink, sourcePath);
+            return Code;
         }
 
-        private static string? GetTemplate(M.CodeTemplateEnum name, string entity, string baseFolder, string? lhLink, string? rhLink)
+        private static string? GetTemplate( string entity, string baseFolder, string? lhLink, string? rhLink, string? sourcePath)
         {
             if (lhLink == "None") { lhLink = null; }
             if (rhLink == "None") { rhLink = null; }
-            return GetTemplateCode(entity, name, baseFolder, lhLink, rhLink) ?? "<NoData>";
+            return GetTemplateCode(entity, baseFolder, lhLink, rhLink, sourcePath) ?? "<NoData>";
         }
 
-        private static string? GenCode(M.CodeTemplateEnum name, string entity, string? lhLink, string? rhLink)
+        private static string? GenCode(string entity, string? lhLink, string? rhLink, string? sourcePath)
         {
             #region Log that the GenCode method is running.
             #endregion
@@ -189,7 +158,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             if (Continue)
             {
                 #region Looking for the code in the repository.  Will return the code once found.
-                var Code = GetTemplate(name, entity, $"{entity}Model", lhLink, rhLink);
+                var Code = GetTemplate(entity, $"{entity}Model", lhLink, rhLink, sourcePath);
                 // The template exists - return it
                 if (Code != null && Code != " <NoData>")
                     return Code;

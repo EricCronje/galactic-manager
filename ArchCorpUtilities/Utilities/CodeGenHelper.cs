@@ -111,38 +111,32 @@ public static class CodeGenHelper
 
         if (menuType == M.MenuTypeEnum.Manage)
         {
-            CodePartCreatePogo codePartCreatePogo = new("\\GeneratedModels", $"{entity}.cs", entity, "{2F1F31FC-636B-4FA1-B1F5-BD767B125F0E}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            CodePartCreatePogo codePartCreatePogo = new("\\GeneratedModels", $"{entity}.cs", entity, "{2F1F31FC-636B-4FA1-B1F5-BD767B125F0E}", WorkingFolder, Header, "", SessionID ?? "TBA", null, null, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\Entity.cs");
             codeVault.Add(codePartCreatePogo);
 
-            CodePartCreateHelper codePartCreateHelper = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{20D3B776-48B9-43E0-AE40-F1ABBCC31B90}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            CodePartCreateHelper codePartCreateHelper = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{20D3B776-48B9-43E0-AE40-F1ABBCC31B90}", WorkingFolder, Header, "", SessionID ?? "TBA", null, null, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\EntityHelper.cs");
             codeVault.Add(codePartCreateHelper);
-
-            //CodePartCreateMockRepository codePartCreatMockReposirory = new("\\GeneratedModels", $"{entity}MockRepository.cs", entity, "{0A673A7C-C929-442E-87EE-077C5267B9C3}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
-            //codeVault.Add(codePartCreatMockReposirory);
         }
 
         if (menuType == M.MenuTypeEnum.Link)
         {
-            CodePartCreatePogoLink codePartCreatePogoLink = new("\\GeneratedModels", $"{entity}.cs", entity, "{BC048EB7-5741-4D41-8608-208AEFDE31E1}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            CodePartCreatePogoLink codePartCreatePogoLink = new("\\GeneratedModels", $"{entity}.cs", entity, "{BC048EB7-5741-4D41-8608-208AEFDE31E1}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\Entity.cs");
             codeVault.Add(codePartCreatePogoLink);
 
-            CodePartCreateHelperLink codePartCreateHelperLink = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{40CEF4E7-3F18-41F1-8149-01DF4FFFF9D9}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            CodePartCreateHelperLink codePartCreateHelperLink = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{40CEF4E7-3F18-41F1-8149-01DF4FFFF9D9}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\EntityHelper.cs");
             codeVault.Add(codePartCreateHelperLink);
 
-            CodePartCreateMockRepositoryLink codePartCreatMockReposiroryLink = new("\\GeneratedModels", $"{entity}MockRepository.cs", entity, "{0A673A7C-C929-442E-87EE-077C5267B9C3}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            CodePartCreateMockRepositoryLink codePartCreatMockReposiroryLink = new("\\GeneratedModels", $"{entity}MockRepository.cs", entity, "{0A673A7C-C929-442E-87EE-077C5267B9C3}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\EntityMockRepository.cs");
             codeVault.Add(codePartCreatMockReposiroryLink);
         }
 
         if (menuType == M.MenuTypeEnum.Hierarchy)
         {
-            CodePartCreatePogoHierarchy codePartCreatePogoHierarchy = new("\\GeneratedModels", $"{entity}.cs", entity, "{C04096E3-C167-4249-8E0B-C522CC54AA39}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            CodePartCreatePogoHierarchy codePartCreatePogoHierarchy = new("\\GeneratedModels", $"{entity}.cs", entity, "{C04096E3-C167-4249-8E0B-C522CC54AA39}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\Entity.cs");
             codeVault.Add(codePartCreatePogoHierarchy);
 
-            CodePartCreateHelperHierarchy codePartCreateHelperHierarchy = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{2EA6C196-9480-459B-97F0-6DD08AE62F11}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
+            CodePartCreateHelperHierarchy codePartCreateHelperHierarchy = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{2EA6C196-9480-459B-97F0-6DD08AE62F11}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\EntityHelper.cs");
             codeVault.Add(codePartCreateHelperHierarchy);
-
-            //CodePartCreateMockRepositoryHierarchy codePartCreatMockReposiroryHierarchy = new("\\GeneratedModels", $"{entity}MockRepository.cs", entity, "{0A673A7C-C929-442E-87EE-077C5267B9C3}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink);
-            //codeVault.Add(codePartCreatMockReposiroryHierarchy);
         }
 
         foreach (CodePart item in codeVault)

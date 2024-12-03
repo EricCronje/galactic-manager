@@ -48,7 +48,7 @@ namespace GenCodeLib
 
         }
 
-        private void RollBackCode(string success, string failed)
+        private static void RollBackCode(string success, string failed)
         {
             CH.Feedback("Rolling back the code ...");
             U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\RollbackCode.bat", success, failed);
@@ -59,7 +59,7 @@ namespace GenCodeLib
         {
             bool DeployCode = false;
             RollBackCode("Roll back successful", "Roll back failed.");
-            StringBuilder Summary = new StringBuilder();
+            StringBuilder Summary = new();
 
             if (IsGenerateCode(GuidPath, Action, ref Content, ref SplitItems) && SplitItems != null)
             {

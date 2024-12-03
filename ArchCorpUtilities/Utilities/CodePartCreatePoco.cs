@@ -4,12 +4,12 @@ using M = MenuEnumLib.MenuEnumLib;
 
 namespace ArchCorpUtilities.Utilities
 {
-    internal class CodePartCreatePogo(string? baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID) : CodePart(baseFolder, targetFile, entity, searchString, workingFolder, heading, searchStringPostPart, sessionID)
+    internal class CodePartCreatePogo(string? baseFolder, string targetFile, string entity, string searchString, string workingFolder, string heading, string searchStringPostPart, string sessionID, string? lHLink = null, string? rHLink = null, string? sourcePath = null) : CodePart(baseFolder, targetFile, entity, searchString, workingFolder, heading, searchStringPostPart, sessionID, lHLink, rHLink, sourcePath)
     {
         public override bool AlterCode()
         {
             if (BaseFolder == null) { return false; }
-            return CreateCode(M.CodeTemplateEnum.POCO, Entity, BaseFolder, LhLink, RhLink);
+            return CreateCode(M.CodeTemplateEnum.POCO, Entity, BaseFolder, LhLink, RhLink, SourcePath);
         }
     }
 }

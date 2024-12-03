@@ -237,7 +237,7 @@ namespace ArchCorpUtilities.Utilities
 
         }
 
-        public static void ExecuteCMD(string CMDPath, string success = "Deployed the changes to the code.", string fail = "Could not deploy the changes to the code.")
+        public static string ExecuteCMD(string CMDPath, string success = "Deployed the changes to the code.", string fail = "Could not deploy the changes to the code.")
         {
             try
             {
@@ -245,14 +245,17 @@ namespace ArchCorpUtilities.Utilities
                 {
                     StartInfo = new ProcessStartInfo(CMDPath)
                 };
-                process.Start();
+                process.Start();                  
                 process.WaitForExit();
+                string Output = process.StandardOutput.ReadToEnd();
                 process.Dispose();
                 CH.Feedback(success);
+                return Output;
             }
             catch (Exception)
             {
                 CH.Feedback(fail);
+                return string.Empty;
             }
         }
 
@@ -311,22 +314,20 @@ namespace ArchCorpUtilities.Utilities
             return !string.IsNullOrWhiteSpace(guid);
         }
 
-        internal static string? GetTemplate(string? entity, string? lhLink, string? rhLink, string codePath)
-        {
+        internal static string? GetTemplate(string? entity, string? lhLink, string? rhLink, string sourcePath)
+        {            
             try
             {
-                if (File.Exists(codePath))
+                if (!File.Exists(sourcePath)) { return null; }
+                if (File.Exists(sourcePath))
                 {
-                    var Content = File.ReadAllText(codePath);
-
+                    var Content = File.ReadAllText(sourcePath);
                     Content = Content.Replace("~Entity~", entity).Replace("~LhLink~", lhLink).Replace("~RhLink~", rhLink);
-
                     return Content;
                 }
             }
             catch (Exception)
             {
-
                 return null;
             }
             return null;

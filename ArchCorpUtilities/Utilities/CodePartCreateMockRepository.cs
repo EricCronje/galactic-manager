@@ -9,7 +9,7 @@ namespace ArchCorpUtilities.Utilities
         public override bool AlterCode()
         {
             if (BaseFolder == null) { return false; }
-            return CreateCode(M.CodeTemplateEnum.MockRepository, Entity, BaseFolder, LhLink, RhLink);
+            return CreateCode(M.CodeTemplateEnum.MockRepository, Entity, BaseFolder, LhLink, RhLink, SourcePath);
         }
     }
 }

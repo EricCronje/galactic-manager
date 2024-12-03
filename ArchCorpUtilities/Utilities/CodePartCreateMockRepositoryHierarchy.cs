@@ -7,7 +7,7 @@ namespace ArchCorpUtilities.Utilities
         public override bool AlterCode()
         {
             if (BaseFolder == null) { return false; }
-            return CreateCode(MenuEnumLib.MenuEnumLib.CodeTemplateEnum.MockRepositoryHierarchy, Entity, BaseFolder, LhLink, RhLink);
+            return CreateCode(MenuEnumLib.MenuEnumLib.CodeTemplateEnum.MockRepositoryHierarchy, Entity, BaseFolder, LhLink, RhLink, SourcePath);
         }
 
     }
