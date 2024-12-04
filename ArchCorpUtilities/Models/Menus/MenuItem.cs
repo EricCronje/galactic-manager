@@ -1,5 +1,6 @@
 ﻿using ArchCorpUtilities.Utilities;
 using E = EnumLib.EnumLib;
+using MEL = MenuEnumLib.MenuEnumLib;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -18,21 +19,14 @@ namespace ArchCorpUtilities.Models.Menus
         public string TargetTask { get; }
         public bool IsBack { get; }
         public bool IsDefaultChoice { get; }
-
         public string? HideRule { get; }
-
         public bool IsHidden { get; set; }
         public bool IsPagination { get; set; }
-
         public string? Source { get; set; }
-
         public bool IsStartPage { get; }
-
-
-
         public E.MenuDomain Domain { get; set; }
-
         public int Level { get; set; }
+        public MEL.MenuActionEnum Action { get; set; }
 
         public MenuItem(
             string displayName,

@@ -9,30 +9,30 @@ using AL = ArchCorpUtilities.Models.ArchLoader;
 
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 {
-    public class ~Entity~Helper : IHelper<~Entity~>, IDisposable
+    public class ~Entity~Helper : IHelper<Entity>, IDisposable
 	{
         public string? SessionID { get; set; }
-        public List<~Entity~>? EntitiesOnThePage { get; set; }
-        public Patina.Patina Page { get; set; }
-        public ~Entity~MockRepository<~Entity~>? Repository { get; set; }
-        public ~Entity~Helper(string? sessionID)
+        public List<Entity>? EntitiesOnThePage { get; set; }
+        public Patina.Patina? Page { get; set; }
+        public MockRepository<Entity>? Repository { get; set; }
+        public ~Entity~Helper(string? sessionID, string postFix = "-~Entity~")
 		{
             SessionID = sessionID;
-            Repository = new("-~Entity~");
+            Repository = new(postFix);
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
-        public bool View(E.Navigation navigate = E.Navigation.FirstPage)
+        public bool View(E.Navigation navigate = E.Navigation.FirstPage, string heading = "~Entity~")
 		{
-            EntitiesOnThePage = U.View(navigate, "~Entity~", Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
+            EntitiesOnThePage = U.View(navigate, heading, Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             return true;
 		}
-        public virtual bool Add(int? simChoice = null, string[]? simInput = null)
+        public bool Add(int? simChoice = null, string[]? simInput = null)
         {
             U.Log(SessionID, System.Reflection.MethodBase.GetCurrentMethod()?.Name);
             string Input = U.GetStringInput("Please provide the item name: ", simInput?[0]);
             string Feedback = U.IsValidInput(Input, "Invalid Name or empty - No item added.");
             Feedback = string.IsNullOrWhiteSpace(Feedback) ? DuplicateFound(Input) ? "Duplicate entry found - operation aborted." : string.Empty : string.Empty;
-            if (!string.IsNullOrWhiteSpace(Feedback))
+            if (string.IsNullOrWhiteSpace(Feedback))
             {
                 Repository?.Add(new(Input, 0));
                 CH.Feedback("Item added.");
@@ -54,7 +54,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
             try
             {
-                ~Entity~? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
+                Entity? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
 
                 if (Entity != null)
                 {
@@ -112,7 +112,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 CH.Feedback("No Items Name Was Entered");
             else
             {
-                List<~Entity~>? Entities = Repository?.GetAllContainingName(Input);
+                List<Entity>? Entities = Repository?.GetAllContainingName(Input);
                 if (Entities != null && Entities.Count > 0)
                 {
                     Page = new Patina.Patina(5, Convert.ToUInt32(Entities.Count));
@@ -122,7 +122,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 else
                 {
                     CH.Feedback("No Items Was Found");
-                    EntitiesOnThePage = [new ~Entity~("None", 1)];
+                    EntitiesOnThePage = [new Entity("None", 1)];
                     Page = new Patina.Patina(1, 1);
                     return false;
                 }
@@ -132,10 +132,9 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
             return false;
         }        
-        public bool Load(int? simChoice = null, string[]? simInput = null)
+        public bool Load(int? simChoice = null, string[]? simInput = null, string path = "~Entity~")
         {
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
-            var path = "~Entity~";
             try
             {
                 if (File.Exists(path))
@@ -166,7 +165,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                                     {
                                         if (SessionID != null)
                                             L.Log($"Item found - {Name}", SessionID);
-                                        Repository?.Add(new ~Entity~(Name, 0, GUID));
+                                        Repository?.Add(new Entity(Name, 0, GUID));
                                         CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
                                         ResetIndexAndPage();
                                         ResetEntitiesOnThePage();
@@ -197,12 +196,12 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             }
             return false;
         }
-        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage)
+        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage, string heading = "~Entity~")
         {
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             ResetIndexAndPage();
             var orderedEntities = Repository?.OrderByIndex();
-            EntitiesOnThePage = U.ViewWithPagination("~Entity~", Page, orderedEntities, navigate);
+            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigate);
             return true;
         }        
         public bool Remove(int? simChoice = null, string[]? simInput = null)
@@ -210,10 +209,10 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
 
             //List the items
-            var Current~Entity~ = ViewAndSelectItem(simInput?[0], "Select the item to remove");
+            var Current = ViewAndSelectItem(simInput?[0], "Select the item to remove");
 
-            if (Repository != null && Current~Entity~ != null)
-                if (Repository.Remove(Current~Entity~))
+            if (Repository != null && Current != null)
+                if (Repository.Remove(Current))
                 {
                     CH.Feedback("Item removed.");
                     ResetIndexAndPage(true);
@@ -231,20 +230,19 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
             return false;
         }       
-        public bool Save(int? simChoice = null, string[]? simInput = null)
+        public bool Save(int? simChoice = null, string[]? simInput = null, string Path = "~Entity~")
 		{
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
-            var Path = "~Entity~";
             if (Repository?.Count() > 0)
             {
                 StringBuilder sb = new();
                 try
                 {
-                    sb.AppendLine($"~Entity~Name|Guid_");
+                    sb.AppendLine($"Name|Guid_");
                     var OrderedList = Repository.OrderByName();
                     if (OrderedList != null)
                     {
-                        foreach (~Entity~ item in OrderedList)
+                        foreach (Entity item in OrderedList)
                         {
                             sb.AppendLine($"{item.Name}|{item.Guid_}");
                         }
@@ -273,21 +271,21 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             return false;
         }
         
-        public void SetLinkItem(string? simInput, ~Entity~ entity, bool linked = true)
+        public void SetLinkItem(string? simInput, Entity entity, bool linked = true)
         {
             entity.IsLinked = linked;
         }
-        public ~Entity~? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Entity? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        public ~Entity~? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Entity? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        public ~Entity~? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Entity? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
@@ -310,7 +308,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             if (resetEntitiesOnThePage)
                 ResetEntitiesOnThePage();
         }
-        private ~Entity~? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<~Entity~>? orderedEntities)
+        private Entity? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<Entity>? orderedEntities)
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigation);
@@ -335,7 +333,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             if (OrderedModels != null)
                 for (int i = 0; i < OrderedModels.Count; i++)
                 {
-                    ~Entity~? item = OrderedModels[i];
+                    Entity? item = OrderedModels[i];
                     item.DisplayId = i + 1;
                     item.Id = item.DisplayId;
                     item.Index = item.DisplayId;

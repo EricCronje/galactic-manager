@@ -1,20 +1,18 @@
-// Generated Code - Version: 23.11.25 - 2024/12/02 18:12:55 - {e569b779-37f6-46f8-bae4-dcba0ca645a6}
-
 using ArchCorpUtilities.Models;
 using AL = ArchCorpUtilities.Models.ArchLoader;
 using L = Logger.Logger;
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
-    {
-        public class ~Entity~MockRepository<T>(string postFix) : IRepository<~Entity~>, IDisposable
+{
+    public class ~Entity~MockRepository<T>(string postFix) : IRepository<Link>, IDisposable
         {
-            private readonly List<~Entity~>? Items = [];
+            private readonly List<Link>? Items = [];
             string PostFix { get; set; } = postFix;
             public string? SessionId { get; set; }
-            public void Add(~Entity~? entity)
+            public void Add(Link? entity)
             {
                 if (Items != null && entity != null) { Items?.Add(entity); }
             }
-            public IEnumerable<~Entity~>? All()
+            public IEnumerable<Link>? All()
             {
             var ~LhLink~Items = AL.~LhLink~Helper?.Repository?.All()?.ToList();
             var ~RhLink~Items = AL.~RhLink~Helper?.Repository?.All()?.ToList();
@@ -23,7 +21,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 {
                     ~LhLink~Model.~LhLink~? ~LhLink~ = ~LhLink~Items[i];
                     ~RhLink~Model.~RhLink~? ~RhLink~ = ~RhLink~Items[i];
-                    Items?.Add(new ~Entity~($"{~RhLink~.Name}-{~LhLink~.Name}", 0, ~RhLink~.Guid_, ~LhLink~.Guid_));
+                    Items?.Add(new Link($"{~RhLink~.Name}-{~LhLink~.Name}", 0, ~RhLink~.Guid_, ~LhLink~.Guid_, ~RhLink~.Name, ~LhLink~.Name));
                 }
                 return Items;
             }
@@ -34,7 +32,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 GC.SuppressFinalize(this);
             }
 
-            public IEnumerable<~Entity~>? GetByGUID(string guid)
+            public IEnumerable<Link>? GetByGUID(string guid)
             {
                 if (Items == null) { return null; }
                 var Result = Items.Where(p => p.Guid_ != null && p.Guid_ == guid);
@@ -42,7 +40,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 return Result;
             }
 
-            public IEnumerable<~Entity~>? GetById(int id)
+            public IEnumerable<Link>? GetById(int id)
             {
                 if (Items == null) { return null; }
                 var Result = Items.Where(p => p.Id == id);
@@ -50,7 +48,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 return Result;
             }
 
-            public IEnumerable<~Entity~>? GetByName(string name)
+            public IEnumerable<Link>? GetByName(string name)
             {
                 if (Items == null) { return null; }
                 var Result = Items.Where(p => p.Name != null && p.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
@@ -58,7 +56,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 return Result;
             }
 
-            public bool Remove(~Entity~? entity)
+            public bool Remove(Link? entity)
             {
                 if (Items != null && entity != null) { return Items.Remove(entity); }
                 return false;
@@ -69,15 +67,15 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 return Items == null ? 0 : Items.Count;
             }
 
-            public List<~Entity~>? OrderByIndex()
+            public List<Link>? OrderByIndex()
             {
                 return Items?.OrderBy(p => p.Index).ToList();
             }
-            public List<~Entity~>? OrderByName()
+            public List<Link>? OrderByName()
             {
                 return Items?.OrderBy(p => p.Name).ToList();
             }
-            public List<~Entity~>? GetAllContainingName(string? input)
+            public List<Link>? GetAllContainingName(string? input)
             {
                 if (input == null) return null;
                 if (Items == null) return null;
@@ -94,7 +92,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                     return null;
                 }
             }
-            public IEnumerable<~Entity~>? GetLinked()
+            public IEnumerable<Link>? GetLinked()
             {
                 return All()?.Where(p => p.IsLinked);
             }

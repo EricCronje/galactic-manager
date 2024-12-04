@@ -14,13 +14,13 @@ namespace ArchCorpUtilities.Models.Helper
         /// GenView
         /// </summary>
         /// <param name="navigate"></param>
-        public bool View(E.Navigation navigate = E.Navigation.FirstPage);
+        public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "");
 
         /// <summary>
         /// Refresh on the add, remove, edit, search, view page
         /// can be called from the "DefaultTasks"
         /// </summary>
-        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage);
+        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage, string heading = "");
 
         /// <summary>
         /// Call Add(T)
@@ -66,7 +66,7 @@ namespace ArchCorpUtilities.Models.Helper
         /// <param name="simChoice"></param>
         /// <param name="simInput"></param>
         /// <returns></returns>
-        public bool Load(int? simChoice = null, string[]? simInput = null);
+        public bool Load(int? simChoice = null, string[]? simInput = null, string path = "");
 
         /// <summary>
         /// Save to a file
@@ -74,7 +74,7 @@ namespace ArchCorpUtilities.Models.Helper
         /// <param name="simChoice"></param>
         /// <param name="simInput"></param>
         /// <returns></returns>
-        public bool Save(int? simChoice = null, string[]? simInput = null);
+        public bool Save(int? simChoice = null, string[]? simInput = null, string Path = "");
 
         /// <summary>
         /// Call the Remove<typeparamref name="T"/>

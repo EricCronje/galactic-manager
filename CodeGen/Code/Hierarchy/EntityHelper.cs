@@ -6,24 +6,23 @@ using System.Text;
 using AL = ArchCorpUtilities.Models.ArchLoader;
 using E = EnumLib.EnumLib;
 using ArchCorpUtilities.Models;
-using ArchCorpUtilities.GeneratedModels.~LhLink~Model;
 namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 {
-    public class ~Entity~Helper : IHelper<~Entity~>, IDisposable
+    public class ~Entity~Helper : IHelper<Hierarchy>, IDisposable
 	{
         public string? SessionID { get; set; }
-        public List<~Entity~>? EntitiesOnThePage { get; set; }
+        public List<Hierarchy>? EntitiesOnThePage { get; set; }
         public Patina.Patina? Page { get; set; }
-        public MockRepositoryHierarchy<~Entity~, ~LhLink~>? Repository { get; set; }
+        public MockRepositoryHierarchy<Hierarchy, Entity>? Repository { get; set; }
         public ~Entity~Helper(string? sessionID, string postfix = "")
 		{
             SessionID = sessionID;
             Repository = new(postfix);
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
-        public bool View(E.Navigation navigate = E.Navigation.FirstPage)
+        public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "")
 		{
-            EntitiesOnThePage = U.View(navigate, "~Entity~", Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
+            EntitiesOnThePage = U.View(navigate, postFix , Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             return true;
 		}
         public bool Add(int? simChoice = null, string[]? simInput = null)
@@ -34,11 +33,6 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             if(!string.IsNullOrWhiteSpace(Input))
             {
 
-                if (DuplicateFound(Input))
-                {
-                    CH.Feedback("Duplicate entry found - operation aborted.");
-                    return false;
-                }
                 if (DuplicateFound(Input))
                 {
                     CH.Feedback("Duplicate entry found - operation aborted.");
@@ -84,7 +78,9 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
                 if (ParentGuid != null && ChildGuid != null && U.IsValidGuid(ParentGuid) && U.IsValidGuid(ChildGuid))
                 {
-                    Repository?.Add(new(Input, 0, "", ParentGuid, ChildGuid));
+                    Hierarchy Entity_ = new (Input, 0, "", ParentGuid, ChildGuid);
+                    Entity_.LinkRepository = AL.~LhLink~Helper?.Repository;
+                    Repository?.Add(Entity_);
                     CH.Feedback("Item added.");
                     ResetPageMaxCount();
                     ReIndexDisplayId();
@@ -110,7 +106,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        try
 	        {
-	            ~Entity~? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
+	            Hierarchy? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
 	
 	            if (Entity != null)
 	            {
@@ -173,7 +169,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 CH.Feedback("No Items Name Was Entered");
             else 
             {
-                List<~Entity~>? Entities = Repository?.GetAllContainingName(Input);
+                List<Hierarchy>? Entities = Repository?.GetAllContainingName(Input);
                 if (Entities != null && Entities.Count > 0)
                 {
                     Page = new Patina.Patina(5, Convert.ToUInt32(Entities.Count));
@@ -183,7 +179,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 else 
                 {
                     CH.Feedback("No Items Was Found");
-                    EntitiesOnThePage = [new ~Entity~("None", 1)];
+                    EntitiesOnThePage = [new Hierarchy("None", 1)];
                     Page = new Patina.Patina(1, 1);
                     return false;
                 }
@@ -194,13 +190,13 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
             return false;
 			}
-        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage)
+        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage, string heading = "")
         {
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
             ReIndexDisplayId();
             ResetPageMaxCount();
             var orderedEntities = Repository?.OrderByIndex();
-            EntitiesOnThePage = U.ViewWithPagination("~Entity~", Page, orderedEntities, navigate);
+            EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigate);
             return true;
         }
         public bool Remove(int? simChoice = null, string[]? simInput = null)
@@ -233,10 +229,9 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
             return false;
 			}
-        public bool Save(int? simChoice = null, string[]? simInput = null)
+        public bool Save(int? simChoice = null, string[]? simInput = null, string Path = "~Entity~")
 		{
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-			var Path = "~Entity~";
 			if (Repository?.Count() > 0)
 			{
 				StringBuilder sb = new();
@@ -246,7 +241,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 					var OrderedList = Repository.OrderByName();
 					if(OrderedList != null)
 					{
-						foreach (~Entity~ item in OrderedList)
+						foreach (Hierarchy item in OrderedList)
 						{
 							sb.AppendLine($"{ item.Name}|{ item.Guid_}|{item.Parent}|{AL.~Entity~Helper?.GetName(item.Parent)}|{item.Child}|{AL.~Entity~Helper?.GetName(item.Child)}");
 						}
@@ -274,10 +269,9 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 			}
 			return false;
 		}
-        public bool Load(int? simChoice = null, string[]? simInput = null)
+        public bool Load(int? simChoice = null, string[]? simInput = null, string path = "~Entity~")
 		{
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-	        var path = "~Entity~";
 	        try
 	        {
 	            if (File.Exists(path))
@@ -310,7 +304,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 									{
 									if (SessionID != null)
 										L.Log($"Item found - {Name}", SessionID);
-									Repository?.Add(new ~Entity~(Name, 0, GUID, Parent, Child));
+									Repository?.Add(new Hierarchy(Name, 0, GUID, Parent, Child));
 									CH.Feedback($"Item Added - New Item: {Name} - {GUID} - {Parent} - {Child}");
 									ReIndexDisplayId();
 									ResetPageMaxCount();
@@ -351,7 +345,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             if (OrderedModels != null)
                 for (int i = 0; i < OrderedModels.Count; i++)
                 {
-                    ~Entity~? item = OrderedModels[i];
+                    Hierarchy? item = OrderedModels[i];
                     item.DisplayId = i + 1;
                     item.Id = item.DisplayId;
                     item.Index = item.DisplayId;
@@ -361,12 +355,12 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Repository?.Count()));
         }
-        public ~Entity~? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Hierarchy? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        private ~Entity~? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<~Entity~>? orderedEntities)
+        private Hierarchy? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<Hierarchy>? orderedEntities)
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigation);
@@ -375,17 +369,17 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             _ = Int32.TryParse(CH.GetInput(simInput), out int Choice);
             return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
-        public ~Entity~? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Hierarchy? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        public ~Entity~? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Hierarchy? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        public void SetLinkItem(string? simInput, ~Entity~ entity, bool linked = true)
+        public void SetLinkItem(string? simInput, Hierarchy entity, bool linked = true)
         {
             entity.IsLinked = linked;
         }
@@ -412,5 +406,9 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
             if (name == null) { return null; }
             return Repository?.GetByName(name)?.ToList()[0].Guid_;
         }
+        public void Clear()
+        {
+            Repository?.ClearAll();
+        }        
 	}
 }

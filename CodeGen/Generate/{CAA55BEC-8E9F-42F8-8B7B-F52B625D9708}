@@ -1,10 +1,16 @@
+Manage Planets|Planets|Manage|None|None
 Manage Sites|Sites|Manage|None|None
+Manage Sections|Sections|Manage|None|None
 Manage Buildings|Buildings|Manage|None|None
-Link Buildings To Sites|LinkBuildingToSite|Link|Buildings|Sites
+Link Sites to Planets|LinkSiteToPlanet|Link|Sites|Planets
+Link Sections to Sites|LinkSectionToSite|Link|Sections|Sites
+Link Buildings To Sections|LinkBuildingToSection|Link|Buildings|Sections
 Manage BuildingType|BuildingTypes|Manage|None|None
 Link Buildings To BuildingTypes|LinkBuildingToBuildingsTypes|Link|Buildings|BuildingTypes
 Manage Ships|Ships|Manage|None|None
 Manage ShipTypes|ShipTypes|Manage|None|None
 Link Ships To Ship Types|LinkShipToShipType|Link|Ships|ShipTypes
+Manage Fleets|Fleets|Manage|None|None
+Link Ships To Fleets|LinkShipToFleet|Link|Ships|Fleets
 Manage Beacons|Beacons|Manage|None|None
 Building Hierarchy|BuildingHierarchy|Hierarchy|Buildings|None

@@ -99,5 +99,10 @@ namespace ArchCorpUtilities.Models
         {
             return All()?.Where(p => p.IsLinked);
         }
+
+        public void ClearAll()
+        {
+            Items?.Clear();
+        }
     }
 }

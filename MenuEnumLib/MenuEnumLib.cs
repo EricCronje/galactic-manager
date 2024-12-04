@@ -22,5 +22,19 @@
             Manage,
             Hierarchy
         }
+
+        public enum MenuActionEnum
+        {
+            View,
+            Add,
+            Remove,
+            Edit,
+            Save,
+            Load,
+            back,
+            exit,
+            Search,
+            Clear,
+        }
     }
 }

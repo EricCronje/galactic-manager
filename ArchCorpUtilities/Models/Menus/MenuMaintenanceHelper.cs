@@ -135,7 +135,7 @@ namespace ArchCorpUtilities.Models.Menus
 
                     //Find the Remove menu item - that was created
                     var newRemoveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Remove {ItemName}");
-                    DisplayNamesListView = [$"Remove {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
+                    DisplayNamesListView = [$"Remove {ItemName}", $"Clear All {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
                     CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName);
 
                     //Find the Edit menu item - that was created
@@ -456,7 +456,7 @@ namespace ArchCorpUtilities.Models.Menus
                     {
 
                         DisplayName = $"{subDisplayName} {itemName}";
-                        PageHeading = $"{subDisplayName} {itemName} - Sub Menu";
+                        PageHeading = $"{itemName} - Sub Menu";
                         NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
                         _ = Enum.TryParse(itemName, out MenuDomainOption);
 

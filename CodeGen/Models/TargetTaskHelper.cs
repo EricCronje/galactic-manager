@@ -261,6 +261,18 @@ namespace ArchCorpUtilities.Models
                                 break;
                         }
                         break;
+                        
+					case "Clear":
+                        
+                        switch (MenuItem?.Domain)
+                        {
+                            case E.MenuDomain.Menu: L.Log("Menu-Refresh", SessionID, 1); MMH.Refresh(); break;
+                            //{F85FF648-A0B3-45FA-9784-8E3F1528B870}
+                            //{F85FF648-A0B3-45FA-9784-8E3F1528B870}
+                            default:
+                                break;
+                        }
+                        break;                        
 
                     default:
                         break;
