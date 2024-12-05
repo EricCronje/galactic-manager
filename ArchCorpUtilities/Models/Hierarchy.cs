@@ -1,12 +1,10 @@
 namespace ArchCorpUtilities.Models;
 
-using ArchCorpUtilities.Models.Helper;
-using AL = ArchLoader;
 public class Hierarchy : Entity
 {
     public string? Parent { get; set; }
     public string? Child { get; set; }
-    public MockRepository<Entity>? LinkRepository { get; set; }
+    public EntityRepository<Entity>? LinkRepository { get; set; }
 
     public Hierarchy(string? name, int id, string guid = "", string parent = "<None>", string child = "<None>") : base(name, id, guid)
     {

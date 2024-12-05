@@ -14,10 +14,10 @@ namespace ArchCorpUtilities.Models
         public List<EntityLinkBase>? EntitiesOnThePage { get; set; }
         public Patina.Patina? Page { get; set; }
         public MockRepositoryLink<EntityLinkBase, Q, R>? Repository { get; set; }
-        public EntityLinkBaseHelper(string? sessionID, string postFix = "")
+        public EntityLinkBaseHelper(string? sessionID, string postFix = "", string postFixLhLink = "", string postFixRhLink = "")
         {
             SessionID = sessionID;
-            Repository = new(postFix);
+            Repository = new(postFix, postFixLhLink, postFixRhLink);
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
         }
         public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "EntityLinkBase")

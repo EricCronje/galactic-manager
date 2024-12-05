@@ -126,32 +126,32 @@ namespace ArchCorpUtilities.Models.Menus
                     //Find the view menu - that was created!
                     var NewViewMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"View {ItemName}");
                     string[] DisplayNamesListView = ["Refresh", "Search", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(NewViewMenu, DisplayNamesListView, ItemName);
+                    CreateSubMenuLevel2(NewViewMenu, DisplayNamesListView, ItemName, "View");
 
                     //Find the add menu item - that was created
                     var newAddMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Add {ItemName}");
                     DisplayNamesListView = [$"Add {ItemName}"];
-                    CreateSubMenuLevel2(newAddMenu, DisplayNamesListView, ItemName);
+                    CreateSubMenuLevel2(newAddMenu, DisplayNamesListView, ItemName, "Add");
 
                     //Find the Remove menu item - that was created
                     var newRemoveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Remove {ItemName}");
                     DisplayNamesListView = [$"Remove {ItemName}", $"Clear All {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName);
+                    CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName, "Remove");
 
                     //Find the Edit menu item - that was created
                     var newEditMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Edit {ItemName}");
                     DisplayNamesListView = [$"Edit {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(newEditMenu, DisplayNamesListView, ItemName);
+                    CreateSubMenuLevel2(newEditMenu, DisplayNamesListView, ItemName, "Edit");
 
                     //Find the save menu item - that was created
                     var newSaveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Save {ItemName}");
                     DisplayNamesListView = [$"Save {ItemName} to a file"];
-                    CreateSubMenuLevel2(newSaveMenu, DisplayNamesListView, ItemName);
+                    CreateSubMenuLevel2(newSaveMenu, DisplayNamesListView, ItemName, "Save");
 
                     //Find the load menu item - that was created
                     var newLoadMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Load {ItemName}");
                     DisplayNamesListView = [$"Load {ItemName} from a file"];
-                    CreateSubMenuLevel2(newLoadMenu, DisplayNamesListView, ItemName);
+                    CreateSubMenuLevel2(newLoadMenu, DisplayNamesListView, ItemName, "Load");
                     CH.Feedback(Resource.MenuItemsCreatedSuccess);
                     return true;
                 }
@@ -385,7 +385,7 @@ namespace ArchCorpUtilities.Models.Menus
             return false;
         }
 
-        private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName)
+        private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName, string heading = "x")
         {
             string DisplayName;
             bool IsBack;
@@ -405,7 +405,7 @@ namespace ArchCorpUtilities.Models.Menus
                     DisplayName = item;
                     IsBack = false;
                     Page = NewViewMenu.TargetPage;
-                    PageHeading = $"{DisplayName}";
+                    PageHeading = $"{heading}";
                     IsExitOption = false;
                     NewMenuTargetPage = 0;
 

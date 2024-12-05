@@ -1,3 +1,5 @@
+// Generated Code - Version: 23.11.25 - 2024/12/05 09:16:50 - {51416e24-d3b3-4a06-830c-e11391969cde}
+
 using ArchCorpUtilities.Models.Helper;
 using ArchCorpUtilities.Models;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
@@ -18,7 +20,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         public ~Entity~Helper(string? sessionID, string postFix = "")
 		{
             SessionID = sessionID;
-            Repository = new(postFix);
+            Repository = new(postFix, "~LhLink~", "~RhLink~");
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
 		}
         public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "")
@@ -389,7 +391,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         }
         public void Clear()
         {
-            Repository?.ClearAll();
+            U.ClearRepository(Repository);
         }        
 	}
 }

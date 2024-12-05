@@ -408,7 +408,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         }
         public void Clear()
         {
-            Repository?.ClearAll();
+            U.ClearRepository(Repository);
         }        
 	}
 }

@@ -25,16 +25,17 @@
 
         public enum MenuActionEnum
         {
+            None,
             View,
             Add,
             Remove,
             Edit,
             Save,
             Load,
-            back,
-            exit,
+            Back,
+            Exit,
             Search,
-            Clear,
+            Clear
         }
     }
 }

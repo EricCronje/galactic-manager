@@ -1,9 +1,9 @@
 ﻿namespace ArchCorpUtilities.Models
 {
-    public class EntityBase
+    public class EntityBase : IEntityBase
     {
         public int DisplayId { get; internal set; }
-        public string? Guid_ { get; internal set; }
+        public string? Guid_ { get; set; }
         public int Id { get; set; }
         public int Index { get; set; }
         public bool IsLinked { get; set; } = false;

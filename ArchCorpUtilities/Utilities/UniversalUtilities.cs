@@ -21,6 +21,7 @@ namespace ArchCorpUtilities.Utilities
 
         public static List<T>? ViewWithPagination<T>(string heading, Patina.Patina? page, List<T>? modelList, E.Navigation navigation = E.Navigation.FirstPage, int GoToPageNumber = -1)
         {
+            if (heading.Length == 0) { heading = "List of Items"; }
             if (SessionID != null)
                 L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             if (page == null) return null;
@@ -335,6 +336,7 @@ namespace ArchCorpUtilities.Utilities
 
         public static List<T>? View <T>(E.Navigation navigate, string heading, Patina.Patina? page, List<T>? orderedEntities, string? name, string? sessionID, bool log = true)
         {
+            if (heading.Length == 0) { heading = "List of Items"; }
             if (sessionID != null) { if (log) { L.Log(name, sessionID); } }
             if (page == null) return null;
             return U.ViewWithPagination(heading, page, orderedEntities, navigate);
@@ -356,6 +358,21 @@ namespace ArchCorpUtilities.Utilities
         {
             if (string.IsNullOrWhiteSpace(input)) { return InvalidInputMessage; }
             return string.Empty;
+        }
+
+        internal static void ClearRepository(EntityRepository<Entity>? repository)
+        {
+            CH.Feedback(repository != null && repository.ClearAll() ? "All data removed for this item." : "Failed to remove the data.");
+        }
+
+        internal static void ClearRepository(MockRepositoryHierarchy<Hierarchy, Entity>? repository)
+        {
+            CH.Feedback(repository != null && repository.ClearAll() ? "All data removed for this item (Hierarchy)." : "Failed to remove the data (Hierarchy).");
+        }
+
+        internal static void ClearRepository(MockRepositoryLink<Link, Entity, Entity>? repository)
+        {
+            CH.Feedback(repository != null && repository.ClearAll() ? "All data removed for this item (Link)." : "Failed to remove the data (Link).");
         }
     }
 }

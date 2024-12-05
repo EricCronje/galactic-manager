@@ -10,5 +10,5 @@ public interface IRepository<T>
     public void Add(T? entity);
     public int Count();
     public List<T>? OrderByIndex();
-    public void ClearAll();
+    public bool ClearAll();
 }

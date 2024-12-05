@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArchCorpUtilities.Models
 {
-    public class MockRepositoryHierarchy<T,Q> : MockRepository<T> where T : EntityBase, new() where Q : EntityBase, new()
+    public class MockRepositoryHierarchy<T,Q> : EntityRepository<T> where T : EntityBase, new() where Q : EntityBase, new()
     {
         private readonly List<Q>? EntityLinkList;
 
-        public MockRepositoryHierarchy(string postFix) : base(postFix) { EntityLinkList = new MockRepository<Q>("")?.All()?.ToList(); }
+        public MockRepositoryHierarchy(string postFix) : base(postFix) { EntityLinkList = new EntityRepository<Q>("")?.All()?.ToList(); }
         public override IEnumerable<T>? All()
         {
             if (EntityLinkList != null)

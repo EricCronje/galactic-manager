@@ -27,7 +27,7 @@ namespace ArchCorpUtilities.Models.Menus
         public E.MenuDomain Domain { get; set; }
         public int Level { get; set; }
         public MEL.MenuActionEnum Action { get; set; }
-
+        public bool IsVisible { get; set; } = false;
         public MenuItem(
             string displayName,
             int page,
@@ -43,7 +43,9 @@ namespace ArchCorpUtilities.Models.Menus
             string? idGuidMenu = null,
             E.MenuDomain domain = E.MenuDomain.None,
             bool isStartPage = false,
-            int level = 0
+            int level = 0,
+            MEL.MenuActionEnum action = MEL.MenuActionEnum.None,
+            bool isVisible = false
             )
         {
             if (string.IsNullOrWhiteSpace(idGuidMenu))
@@ -70,6 +72,8 @@ namespace ArchCorpUtilities.Models.Menus
             IsStartPage = isStartPage;
             Domain = domain;
             Level = level;
+            Action = action;
+            IsVisible = isVisible;
         }
 
         public override string ToString()
