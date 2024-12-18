@@ -23,6 +23,7 @@ namespace ArchCorpUtilities.Models.Menus
 
         static MenuMaintenanceHelper()
         {
+            SessionID = Guid.NewGuid().ToString();
             MenuPage = new(40, Convert.ToUInt16(MH.Menu.Count));
         }
 
@@ -104,11 +105,12 @@ namespace ArchCorpUtilities.Models.Menus
                 var Domain = CurrentMenu.Domain;
                 _ = Enum.TryParse(ItemName, out Domain);
 
-                var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, Domain, NewMenuTargetPage, "None", "None", false, isStartPage);
+                var AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, Domain, NewMenuTargetPage, "None", "None", false, isStartPage,M.MenuActionEnum.Manage);
                 //Re-Add it...
                 if (IsExitMenuItem != null)
                 {
                     IsExitMenuItem.Source = "UserAdded";
+                    IsExitMenuItem.Action = M.MenuActionEnum.Exit;
                     MH.Menu.Add(IsExitMenuItem);
                 }
                 if (!AddedMenu)
@@ -117,8 +119,17 @@ namespace ArchCorpUtilities.Models.Menus
                 if (AddedMenu)
                 {
                     string[] DisplayNamesList = ["View", "Add", "Remove", "Edit", "Save", "Load"];
+                    M.MenuActionEnum[] MenuActionList = 
+                        [M.MenuActionEnum.View, 
+                        M.MenuActionEnum.Add, 
+                        M.MenuActionEnum.Remove,
+                        M.MenuActionEnum.Edit,
+                        M.MenuActionEnum.Save,
+                        M.MenuActionEnum.Load
+                        ];
+
                     //Create "View", "Add", "Remove", "Edit", "Save", "Load", Back to Main, Exit                    
-                    var result = CreateSubMenusLevel1(CurrentMenu, ref DisplayName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, ref AddedMenu, DisplayNamesList, ItemName);
+                    var result = CreateSubMenusLevel1(CurrentMenu, ref DisplayName, ref IsBack, ref Page, ref PageHeading, ref ParentPage, ref IsExitOption, ref NewMenuTargetPage, ref AddedMenu, DisplayNamesList, ItemName, MenuActionList);
 
                     if (result == false)
                         CH.Feedback(Resource.NoItemNameProvided);
@@ -126,34 +137,73 @@ namespace ArchCorpUtilities.Models.Menus
                     //Find the view menu - that was created!
                     var NewViewMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"View {ItemName}");
                     string[] DisplayNamesListView = ["Refresh", "Search", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(NewViewMenu, DisplayNamesListView, ItemName, "View");
+                    MenuActionList =
+                        [
+                        M.MenuActionEnum.Refresh,
+                        M.MenuActionEnum.Search,
+                        M.MenuActionEnum.Next,
+                        M.MenuActionEnum.Last,
+                        M.MenuActionEnum.First,
+                        M.MenuActionEnum.Previous
+                        ];
+                    result = CreateSubMenuLevel2(NewViewMenu, DisplayNamesListView, ItemName, "View", MenuActionList);
 
                     //Find the add menu item - that was created
                     var newAddMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Add {ItemName}");
                     DisplayNamesListView = [$"Add {ItemName}"];
-                    CreateSubMenuLevel2(newAddMenu, DisplayNamesListView, ItemName, "Add");
+                    MenuActionList =
+                        [
+                        M.MenuActionEnum.Add
+                        ];
+                    result = CreateSubMenuLevel2(newAddMenu, DisplayNamesListView, ItemName, "Add", MenuActionList);
 
                     //Find the Remove menu item - that was created
                     var newRemoveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Remove {ItemName}");
                     DisplayNamesListView = [$"Remove {ItemName}", $"Clear All {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName, "Remove");
+                    MenuActionList =
+                        [
+                        M.MenuActionEnum.Remove,
+                        M.MenuActionEnum.ClearAll,
+                        M.MenuActionEnum.Next,
+                        M.MenuActionEnum.Last,
+                        M.MenuActionEnum.First,
+                        M.MenuActionEnum.Previous
+                        ];
+                    result = CreateSubMenuLevel2(newRemoveMenu, DisplayNamesListView, ItemName, "Remove", MenuActionList);
 
                     //Find the Edit menu item - that was created
                     var newEditMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Edit {ItemName}");
                     DisplayNamesListView = [$"Edit {ItemName}", "Next Page", "Last Page", "First Page", "Previous Page"];
-                    CreateSubMenuLevel2(newEditMenu, DisplayNamesListView, ItemName, "Edit");
+                    MenuActionList =
+                        [
+                        M.MenuActionEnum.Edit,
+                        M.MenuActionEnum.Next,
+                        M.MenuActionEnum.Last,
+                        M.MenuActionEnum.First,
+                        M.MenuActionEnum.Previous
+                        ];
+
+                    result = CreateSubMenuLevel2(newEditMenu, DisplayNamesListView, ItemName, "Edit", MenuActionList);
 
                     //Find the save menu item - that was created
                     var newSaveMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Save {ItemName}");
                     DisplayNamesListView = [$"Save {ItemName} to a file"];
-                    CreateSubMenuLevel2(newSaveMenu, DisplayNamesListView, ItemName, "Save");
+                    MenuActionList =
+                        [
+                        M.MenuActionEnum.Save
+                        ];
+                    result = CreateSubMenuLevel2(newSaveMenu, DisplayNamesListView, ItemName, "Save", MenuActionList);
 
                     //Find the load menu item - that was created
                     var newLoadMenu = MH.Menu.FirstOrDefault(p => p.DisplayName == $"Load {ItemName}");
                     DisplayNamesListView = [$"Load {ItemName} from a file"];
-                    CreateSubMenuLevel2(newLoadMenu, DisplayNamesListView, ItemName, "Load");
+                    MenuActionList =
+                       [
+                       M.MenuActionEnum.Load
+                       ];
+                    result = CreateSubMenuLevel2(newLoadMenu, DisplayNamesListView, ItemName, "Load", MenuActionList);
                     CH.Feedback(Resource.MenuItemsCreatedSuccess);
-                    return true;
+                    return result;
                 }
                 else
                     if (SessionID != null)
@@ -161,10 +211,10 @@ namespace ArchCorpUtilities.Models.Menus
 
                 return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (SessionID != null)
-                    L.Log("Error - in generate menus.", SessionID, 9);
+                    L.Log($"Error - in generate menus. {ex.Message}", SessionID, 9);
                 return false;
             }
 
@@ -385,7 +435,7 @@ namespace ArchCorpUtilities.Models.Menus
             return false;
         }
 
-        private static void CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName, string heading = "x")
+        private static bool CreateSubMenuLevel2(MenuItem? NewViewMenu, string[] DisplayNamesListView, string itemName, string heading = "x", M.MenuActionEnum[]? menuActionList = null)
         {
             string DisplayName;
             bool IsBack;
@@ -395,13 +445,13 @@ namespace ArchCorpUtilities.Models.Menus
             int NewMenuTargetPage;
             bool IsDefault = false;
             E.MenuDomain menuDomain = E.MenuDomain.None;
+            bool result;
 
             if (NewViewMenu != null)
             {
                 var Counter = 0;
                 foreach (var item in DisplayNamesListView)
-                {
-                    Counter++;
+                {                    
                     DisplayName = item;
                     IsBack = false;
                     Page = NewViewMenu.TargetPage;
@@ -432,14 +482,21 @@ namespace ArchCorpUtilities.Models.Menus
                     _ = Enum.TryParse(itemName, out menuDomain);
                     var TargetTaskSplit = item.Split(' ');
 
-                    AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomain, NewMenuTargetPage, HideRule, TargetTaskSplit[0], IsDefault);
+                    var MenuEnumAction = menuActionList != null ? menuActionList[Counter] : M.MenuActionEnum.None;
+                    result = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomain, NewMenuTargetPage, HideRule, TargetTaskSplit[0], IsDefault, false, MenuEnumAction);
+                    if (!result)
+                    { 
+                        return false; 
+                    }
+                    Counter++;
                 }
                 Page = NewViewMenu.TargetPage;
-                CreateBackAndExitMenuOptions(menuDomain, NewViewMenu, Page);
+                return CreateBackAndExitMenuOptions(menuDomain, NewViewMenu, Page);                
             }
+            return false;
         }
 
-        private static bool CreateSubMenusLevel1(MenuItem? CurrentMenu, ref string DisplayName, ref bool IsBack, ref int Page, ref string PageHeading, ref int ParentPage, ref bool IsExitOption, ref int NewMenuTargetPage, ref bool AddedMenu, string[] DisplayNamesList, string itemName)
+        private static bool CreateSubMenusLevel1(MenuItem? CurrentMenu, ref string DisplayName, ref bool IsBack, ref int Page, ref string PageHeading, ref int ParentPage, ref bool IsExitOption, ref int NewMenuTargetPage, ref bool AddedMenu, string[] DisplayNamesList, string itemName, M.MenuActionEnum[] menuActionList)
         {
             if (itemName != null)
             {
@@ -450,6 +507,7 @@ namespace ArchCorpUtilities.Models.Menus
 
                 E.MenuDomain MenuDomainOption = E.MenuDomain.None;
 
+                int Index = 0;
                 foreach (var subDisplayName in DisplayNamesList)
                 {
                     if (CurrentMenu != null)
@@ -460,7 +518,13 @@ namespace ArchCorpUtilities.Models.Menus
                         NewMenuTargetPage = MH.Menu.Max(p => p.TargetPage) + 1;
                         _ = Enum.TryParse(itemName, out MenuDomainOption);
 
-                        AddedMenu = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, MenuDomainOption, NewMenuTargetPage);
+                        AddedMenu = AddNewMenuItem(DisplayName, IsBack
+                            , Page, PageHeading, IsExitOption
+                            , MenuDomainOption, NewMenuTargetPage,"None"
+                            , "None", false, false
+                            , menuActionList[Index]
+                            );
+                        Index++;
                     }
                 }
 
@@ -471,7 +535,7 @@ namespace ArchCorpUtilities.Models.Menus
                 return false;
         }
 
-        private static void CreateBackAndExitMenuOptions(E.MenuDomain menuDomainOption, MenuItem? CurrentMenu, int Page)
+        private static bool CreateBackAndExitMenuOptions(E.MenuDomain menuDomainOption, MenuItem? CurrentMenu, int Page)
         {
 
             string DisplayName;
@@ -480,24 +544,28 @@ namespace ArchCorpUtilities.Models.Menus
 
             bool IsExitOption = false;
             int NewMenuTargetPage;
+            bool result = false;
 
-            DisplayName = "Back to Main Menu";
-            PageHeading = DisplayName;
             if (CurrentMenu != null)
             {
+                DisplayName = "Back to Main Menu";
+                PageHeading = DisplayName;
                 NewMenuTargetPage = CurrentMenu.Page;
                 IsBack = true;
-                AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomainOption, NewMenuTargetPage);
-
-                DisplayName = "Exit";
-                PageHeading = DisplayName;
-                NewMenuTargetPage = 0;
-                IsExitOption = true;
-                AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomainOption, NewMenuTargetPage);
+                result = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomainOption, NewMenuTargetPage, "None", "None", false, false, M.MenuActionEnum.Back);
+                if (result)
+                {
+                    DisplayName = "Exit";
+                    PageHeading = DisplayName;
+                    NewMenuTargetPage = 0;
+                    IsExitOption = true;
+                    result = AddNewMenuItem(DisplayName, IsBack, Page, PageHeading, IsExitOption, menuDomainOption, NewMenuTargetPage, "None", "None", false, false, M.MenuActionEnum.Exit);
+                }
             }
+            return result;
         }
 
-        private static bool AddNewMenuItem(string displayName, bool isBack, int page, string pageHeading, bool isExitOption, E.MenuDomain domain, int newMenuTargetPage, string hideRule = "None", string targetTask = "None", bool isDefault = false, bool isStartPage = false)
+        private static bool AddNewMenuItem(string displayName, bool isBack, int page, string pageHeading, bool isExitOption, E.MenuDomain domain, int newMenuTargetPage, string hideRule = "None", string targetTask = "None", bool isDefault = false, bool isStartPage = false, M.MenuActionEnum menuActionEnum = default)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
             {
@@ -521,7 +589,11 @@ namespace ArchCorpUtilities.Models.Menus
                 false,
                 "UserAdded",
                 null,
-                domain, isStartPage);
+                domain, 
+                isStartPage
+                , 0
+                , menuActionEnum
+                );
                 // Add the item to the menu structure.
                 MH.Menu.Add(NewMenuItem);
                 return true;

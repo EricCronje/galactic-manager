@@ -11,14 +11,16 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
     public class ~Entity~Helper : IHelper<Hierarchy>, IDisposable
 	{
         public string? SessionID { get; set; }
+        public string? Path { get; set; }
         public List<Hierarchy>? EntitiesOnThePage { get; set; }
         public Patina.Patina? Page { get; set; }
         public MockRepositoryHierarchy<Hierarchy, Entity>? Repository { get; set; }
-        public ~Entity~Helper(string? sessionID, string postfix = "")
+        public ~Entity~Helper(string? sessionID, string postfix = "", string path = "output")
 		{
             SessionID = sessionID;
             Repository = new(postfix);
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
+            Path = path;
 		}
         public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "")
 		{
@@ -44,7 +46,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 
                 var InputLinks = "";
 				bool Continue = true;
-                AL.~LhLink~Helper?.ReIndexDisplayId();
+                U.ReIndexDisplayId(SessionID, Repository);
                 while (Continue)
                 {
                     var Parent = AL.~LhLink~Helper;
@@ -83,7 +85,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                     Repository?.Add(Entity_);
                     CH.Feedback("Item added.");
                     ResetPageMaxCount();
-                    ReIndexDisplayId();
+                    U.ReIndexDisplayId(SessionID, Repository);
                     return true;
                 }
                 else
@@ -123,7 +125,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 		                      Repository?.Remove(Entity);
 	                        Page = new Patina.Patina(1, 1);
 	                        ResetPageMaxCount();
-	                        ReIndexDisplayId();
+	                        U.ReIndexDisplayId(SessionID, Repository);
 	                        ResetEntitiesOnThePage();
 	                        CH.Feedback("Item was modified");
 	                        return true;
@@ -141,7 +143,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	                }
 	
 	            ResetPageMaxCount();
-	            ReIndexDisplayId();
+	            U.ReIndexDisplayId(SessionID, Repository);
 	            ResetEntitiesOnThePage();
 	
 	            return false;
@@ -185,7 +187,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 }
             }
 
-            ReIndexDisplayId();
+            U.ReIndexDisplayId(SessionID, Repository);
             ResetPageMaxCount();
 
             return false;
@@ -193,7 +195,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage, string heading = "")
         {
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            ReIndexDisplayId();
+            U.ReIndexDisplayId(SessionID, Repository);
             ResetPageMaxCount();
             var orderedEntities = Repository?.OrderByIndex();
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigate);
@@ -211,7 +213,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                 {
                     CH.Feedback("Item removed.");
                     ResetPageMaxCount();
-                    ReIndexDisplayId();
+                    U.ReIndexDisplayId(SessionID, Repository);
                     ResetEntitiesOnThePage();
                     return true;
                 }
@@ -223,13 +225,13 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
                     CH.Feedback("Nothing selected.");
                 }
 
-            ReIndexDisplayId();
+            U.ReIndexDisplayId(SessionID, Repository);
             ResetPageMaxCount();
             ResetEntitiesOnThePage();
 
             return false;
 			}
-        public bool Save(int? simChoice = null, string[]? simInput = null, string Path = "~Entity~")
+        public bool Save(int? simChoice = null, string[]? simInput = null)
 		{
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 			if (Repository?.Count() > 0)
@@ -269,15 +271,15 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 			}
 			return false;
 		}
-        public bool Load(int? simChoice = null, string[]? simInput = null, string path = "~Entity~")
+        public bool Load(int? simChoice = null, string[]? simInput = null)
 		{
 			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
 	        try
 	        {
-	            if (File.Exists(path))
+	            if (File.Exists(Path))
 	            {
-	                CH.Feedback($"Items Loaded Successfully {path} - {U.GetCurrentDate()}");
-	                string FileInput = File.ReadAllText(path);
+	                CH.Feedback($"Items Loaded Successfully {Path} - {U.GetCurrentDate()}");
+	                string FileInput = File.ReadAllText(Path);
 	                bool SkipFirstLine = true;
 	                foreach (string line in FileInput.Split("\r\n"))
 	                {
@@ -306,7 +308,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 										L.Log($"Item found - {Name}", SessionID);
 									Repository?.Add(new Hierarchy(Name, 0, GUID, Parent, Child));
 									CH.Feedback($"Item Added - New Item: {Name} - {GUID} - {Parent} - {Child}");
-									ReIndexDisplayId();
+									U.ReIndexDisplayId(SessionID, Repository);
 									ResetPageMaxCount();
 									ResetEntitiesOnThePage();
 									}
@@ -318,7 +320,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	                    SkipFirstLine = false;
 	                }
 	
-	                ReIndexDisplayId();
+	                U.ReIndexDisplayId(SessionID, Repository);
 	                ResetPageMaxCount();
 	                ResetEntitiesOnThePage();
                  return true;
@@ -327,30 +329,17 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
 	            {
                     if (SessionID != null)
 	                    L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - Error - Import file not found", SessionID, 8);
-	                CH.Feedback($"Loading The Items Failed - {path}");
+	                CH.Feedback($"Loading The Items Failed - {Path}");
 	            }
 	        }
 	        catch (Exception ex)
 	        {
                 if (SessionID != null)
 	                L.Log($"{System.Reflection.MethodBase.GetCurrentMethod()?.Name} - Error message - {ex.Message}", SessionID, 9);
-	            CH.Feedback($"Error in the loading of the items {ex.Message} {path}");
+	            CH.Feedback($"Error in the loading of the items {ex.Message} {Path}");
 	        }
 	        return false;
 		}
-        public void ReIndexDisplayId()
-        {
-			if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);}
-            var OrderedModels = Repository?.OrderByName();
-            if (OrderedModels != null)
-                for (int i = 0; i < OrderedModels.Count; i++)
-                {
-                    Hierarchy? item = OrderedModels[i];
-                    item.DisplayId = i + 1;
-                    item.Id = item.DisplayId;
-                    item.Index = item.DisplayId;
-                }
-        }
         public void ResetPageMaxCount()
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Repository?.Count()));
@@ -390,7 +379,7 @@ namespace ArchCorpUtilities.GeneratedModels.~Entity~Model
         }
         public bool LoadDefaults()
         {
-            Repository?.All()?.ToList(); ReIndexDisplayId(); return true;
+            Repository?.All()?.ToList(); U.ReIndexDisplayId(SessionID, Repository); return true;
         }
         public bool DuplicateFound(string Input)
         {

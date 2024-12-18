@@ -1,4 +1,4 @@
-using ArchCorpUtilities.Models.Helper;
+﻿using ArchCorpUtilities.Models.Helper;
 using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using E = EnumLib.EnumLib;
 using L = Logger.Logger;
@@ -8,21 +8,30 @@ using AL = ArchCorpUtilities.Models.ArchLoader;
 
 namespace ArchCorpUtilities.Models
 {
-    public class EntityLinkBaseHelper <T,Q,R> : IHelper<EntityLinkBase>, IDisposable where Q : EntityBase, new() where R : EntityBase, new()
+    public class LinkHelper : IHelper<Link>, IDisposable
     {
         public string? SessionID { get; set; }
         public string Path { get; set; }
-        public List<EntityLinkBase>? EntitiesOnThePage { get; set; }
+        public List<Link>? EntitiesOnThePage { get; set; }
         public Patina.Patina? Page { get; set; }
-        public MockRepositoryLink<EntityLinkBase, Q, R>? Repository { get; set; }
-        public EntityLinkBaseHelper(string? sessionID, string postFix = "", string postFixLhLink = "", string postFixRhLink = "", string path = "output")
+        public DefaultHelper? LhHelper { get; set; }
+        public DefaultHelper? RhHelper { get; set; }
+        public string? LHCaption { get; set; }
+        public string? RHCaption { get; set; }
+        public MockRepositoryLink<Link, Entity, Entity>? Repository { get; set; }
+        public LinkHelper(string? sessionID, string postFix = "", string path = "output", DefaultHelper? lhHelper = default, DefaultHelper? rhHelper = default, string lhCaption = "LH", string rhCaption = "RH")
         {
             SessionID = sessionID;
-            Repository = new(postFix, postFixLhLink, postFixRhLink);
+            Repository = new(postFix, lhCaption, rhCaption);
             Page = new(Convert.ToUInt32(5), Convert.ToUInt32(Repository?.Count()));
             Path = path;
+            if (lhHelper != null && rhHelper != null)
+            {
+                LhHelper = lhHelper;
+                RhHelper = rhHelper;
+            }
         }
-        public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "EntityLinkBase")
+        public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "")
         {
             EntitiesOnThePage = U.View(navigate, postFix, Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
             return true;
@@ -42,22 +51,29 @@ namespace ArchCorpUtilities.Models
 
                 string? LhGuid = null;
                 string? RhGuid = null;
+                string? LhName = null;
+                string? RhName = null;
 
+                var InputLinks = "";
 
                 while (!(U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid)))
                 {
-                    //var LhHelper = AL.BuildingsHelper;
-                    //var RhHelper = AL.BuildingTypesHelper;
-                    //var selectionHeading = "Select the item from the Buildings";
-                    //var heading = "Select the Buildings item";
-                    //LhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper)?.Guid_;
-                    //RhGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper)?.Guid_;
-                    //if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { break; }
+                    var selectionHeading = $"Select the item from the {LHCaption}";
+                    var heading = $"Select the {LHCaption} item";
+                    var Lh = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper);
+                    selectionHeading = $"Select the item from the {RHCaption}";
+                    heading = $"Select the {RHCaption} item";
+                    var Rh = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper);
+                    LhGuid = Lh?.Guid_;
+                    RhGuid = Rh?.Guid_;
+                    LhName = Lh?.Name;
+                    RhName = Rh?.Name;
+                    if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { break; }
                 }
 
                 if (U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid))
                 {
-                    Repository?.Add(new(Input, 0, LhGuid, RhGuid, "", ""));
+                    Repository?.Add(new(Input, 0, LhGuid, RhGuid, RhName, LhName));
                     CH.Feedback("Item added.");
                     ResetPageMaxCount();
                     U.ReIndexDisplayId(SessionID, Repository);
@@ -81,7 +97,7 @@ namespace ArchCorpUtilities.Models
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
             try
             {
-                EntityLinkBase? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
+                Link? Entity = ViewAndSelectItem(simInput?[0], "Select an item to edit");
 
                 if (Entity != null)
                 {
@@ -139,7 +155,7 @@ namespace ArchCorpUtilities.Models
                 CH.Feedback("No Items Name Was Entered");
             else
             {
-                List<EntityLinkBase>? Entities = Repository?.GetAllContainingName(Input);
+                List<Link>? Entities = Repository?.GetAllContainingName(Input);
                 if (Entities != null && Entities.Count > 0)
                 {
                     Page = new Patina.Patina(5, Convert.ToUInt32(Entities.Count));
@@ -149,7 +165,7 @@ namespace ArchCorpUtilities.Models
                 else
                 {
                     CH.Feedback("No Items Was Found");
-                    EntitiesOnThePage = [new EntityLinkBase("None", 1, null, null,null, null)];
+                    EntitiesOnThePage = [new Link("None", 1, null, null, null, null)];
                     Page = new Patina.Patina(1, 1);
                     return false;
                 }
@@ -159,7 +175,7 @@ namespace ArchCorpUtilities.Models
 
             return false;
         }
-        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage, string heading = "EntityLinkBase")
+        public bool Refresh(E.Navigation navigate = E.Navigation.FirstPage, string heading = "")
         {
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
             ResetIndexAndPage();
@@ -172,10 +188,10 @@ namespace ArchCorpUtilities.Models
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
 
             //List the items
-            var CurrentEntityLinkBase = ViewAndSelectItem(simInput?[0], "Select the item to remove");
+            var Current = ViewAndSelectItem(simInput?[0], "Select the item to remove");
 
-            if (Repository != null && CurrentEntityLinkBase != null)
-                if (Repository.Remove(CurrentEntityLinkBase))
+            if (Repository != null && Current != null)
+                if (Repository.Remove(Current))
                 {
                     CH.Feedback("Item removed.");
                     ResetIndexAndPage(true);
@@ -201,13 +217,13 @@ namespace ArchCorpUtilities.Models
                 StringBuilder sb = new();
                 try
                 {
-                    sb.AppendLine($"EntityLinkBaseName|lhLink|rhLink|lhLinkName|rhLinkName|Guid|lhLinkGuid|rhLinkGuid");
+                    sb.AppendLine($"Name|lhLink|rhLink|lhLinkName|rhLinkName|Guid|lhLinkGuid|rhLinkGuid");
                     var OrderedList = Repository.OrderByName();
                     if (OrderedList != null)
                     {
-                        foreach (EntityLinkBase item in OrderedList)
+                        foreach (Link item in OrderedList)
                         {
-                            sb.AppendLine($"{item.Name}|Buildings|BuildingTypes|{item.LhName}|{item.RhName}|{item.Guid_}|{item.LhGuid}|{item.RhGuid}");
+                            sb.AppendLine($"{item.Name}|{LHCaption}|{RHCaption}|{item.LhName}|{item.RhName}|{item.Guid_}|{item.LhGuid}|{item.RhGuid}");
                         }
                         if (File.Exists(Path))
                             File.Delete(Path);
@@ -254,6 +270,8 @@ namespace ArchCorpUtilities.Models
                                 string GUID = CH.IsSimulate ? "<GUID>" : LineItem[5].Trim();
                                 string lhLinkGuid = LineItem[6].Trim();
                                 string rhLinkGuid = LineItem[7].Trim();
+                                string lhName = LineItem[3].Trim(); ;
+                                string rhName = LineItem[4].Trim(); ;
                                 var Entity = Repository?.GetByGUID(GUID)?.ToList()[0];
                                 var EntityItem = Repository?.GetByName(Name)?.ToList()[0];
                                 var OldGUID = CH.IsSimulate ? "<GUID>" : EntityItem?.Guid_;
@@ -268,7 +286,7 @@ namespace ArchCorpUtilities.Models
                                     {
                                         if (SessionID != null)
                                             L.Log($"Item found - {Name}", SessionID);
-                                        Repository?.Add(new EntityLinkBase(Name, 0, lhLinkGuid, rhLinkGuid, "", "",GUID));
+                                        Repository?.Add(new Link(Name, 0, lhLinkGuid, rhLinkGuid, rhName, lhName, GUID));
                                         CH.Feedback($"Item Added - New Item: {Name} - {GUID}");
                                         U.ReIndexDisplayId(SessionID, Repository);
                                         ResetPageMaxCount();
@@ -300,7 +318,6 @@ namespace ArchCorpUtilities.Models
             }
             return false;
         }
-
         private void ResetIndexAndPage(bool resetEntitiesOnThePage = false)
         {
             U.ReIndexDisplayId(SessionID, Repository);
@@ -308,17 +325,16 @@ namespace ArchCorpUtilities.Models
             if (resetEntitiesOnThePage)
                 ResetEntitiesOnThePage();
         }
-
         public void ResetPageMaxCount()
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(Repository?.Count()));
         }
-        public EntityLinkBase? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Link? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        private EntityLinkBase? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<EntityLinkBase>? orderedEntities)
+        private Link? ViewAndSelectInternal(string? simInput, string heading, E.Navigation navigation, List<Link>? orderedEntities)
         {
             Page = new Patina.Patina(5, Convert.ToUInt32(orderedEntities?.Count));
             EntitiesOnThePage = U.ViewWithPagination(heading, Page, orderedEntities, navigation);
@@ -327,17 +343,17 @@ namespace ArchCorpUtilities.Models
             _ = int.TryParse(CH.GetInput(simInput), out int Choice);
             return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
-        public EntityLinkBase? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Link? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        public EntityLinkBase? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public Link? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
-        public void SetLinkItem(string? simInput, EntityLinkBase entity, bool linked = true)
+        public void SetLinkItem(string? simInput, Link entity, bool linked = true)
         {
             entity.IsLinked = linked;
         }
@@ -363,6 +379,10 @@ namespace ArchCorpUtilities.Models
         {
             if (name == null) { return null; }
             return Repository?.GetByName(name)?.ToList()[0].Guid_;
+        }
+        public void Clear()
+        {
+            U.ClearRepository(Repository);
         }
     }
 }

@@ -145,7 +145,11 @@ namespace GenCodeLib
         {
             CH.Feedback("Deploying code ...");
             U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployCode.bat");
-            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployGenMenu.bat");            
+            CH.Feedback("Deploying new menu program ...");
+            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployGenMenu.bat");
+            CH.Feedback("Deploying the latest menu ...");
+            U.ExecuteCMD("C:\\_FLAP03\\GBZZBEBJ\\Working\\dotnet\\galactic-manager\\ArchCorpUtilities\\DeployMenu.bat");
+            CH.Feedback("Deployment Complete ...");
         }
 
         private static bool IsGenerateCode(string GuidPath, string Action, ref string Content, ref string[]? SplitItems)

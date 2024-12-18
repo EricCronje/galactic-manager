@@ -35,7 +35,17 @@
             Back,
             Exit,
             Search,
-            Clear
+            Clear,
+            Manage,
+            Link,
+            Hierarchy,
+            Main,
+            Refresh,
+            Next,
+            Last,
+            First,
+            Previous,
+            ClearAll
         }
     }
 }

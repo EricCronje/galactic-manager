@@ -7,6 +7,7 @@ Dotnet clean
 echo Building the project
 Dotnet build
 Dotnet build -c Release
+Dotnet test
 rem echo Copy EnumLib.dll to menuGen
 rem del C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\GenMenu\bin\Debug\net8.0\EnumLib.dll /Q /S
 rem del C:\_FLAP03\GBZZBEBJ\Working\dotnet\galactic-manager\GenMenu\bin\Debug\net8.0\EnumLib.pdb /Q /S

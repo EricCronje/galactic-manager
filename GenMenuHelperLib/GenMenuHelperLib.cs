@@ -11,7 +11,7 @@
 
     public class GenMenuHelperLib : IDisposable
     {
-        static string? SessionId { get; set; }
+
         private static F? Feedback { get; set; }
 
 
@@ -24,7 +24,6 @@
 
         public static void ProcessArgs(string[] args, string[]? simulate)
         {
-            SessionId = Guid.NewGuid().ToString();
             CH.IsSimulate = (simulate != null);
             F.AddArgsReceivedToFeedback(simulate ?? args);
 
@@ -33,8 +32,6 @@
             var SplitResult = Result.Split('|');
             string? GuidPath = SplitResult[2];
             string Action = SplitResult[1];
-            string? Content = string.Empty;
-
             if (Action == "GenerateMenu")
             { 
                 if(MMH.GenerateDefaultMenus(GuidPath, simulate))

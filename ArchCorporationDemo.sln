@@ -35,8 +35,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenMenuHelperLib", "GenMenu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenMenu", "GenMenu\GenMenu.csproj", "{2347A68E-1779-4926-8B56-67BDD6557DF6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{AD88102E-F6F4-4E22-A592-BEB03814795A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{40101D06-45E7-4F2D-A070-D9C8174B7FCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ad_hoc_Tests", "Ad_hoc_Tests\Ad_hoc_Tests.csproj", "{0F1E14AC-E9B7-4459-846C-164CFEBBF9FD}"

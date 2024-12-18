@@ -4,6 +4,7 @@ using CH = ArchCorpUtilities.Utilities.ConsoleHelper;
 using L = Logger.Logger;
 using U = ArchCorpUtilities.Utilities.UniversalUtilities;
 using E = EnumLib.EnumLib;
+using M = MenuEnumLib.MenuEnumLib;
 
 namespace ArchCorpUtilities.Models.Menus
 {
@@ -41,6 +42,10 @@ namespace ArchCorpUtilities.Models.Menus
                     $"IsBack" + "|" +
                     $"Domain" + "|" +
                     $"IsStartPage" + "|" +
+                    $"Action" + "|" +
+                    $"IsVisible" + "|" +
+                    $"Tag" + "|" +
+                    $"Level" +
                     Environment.NewLine
                     );
 
@@ -64,7 +69,11 @@ namespace ArchCorpUtilities.Models.Menus
                         $"{item.PageHeading}" + "|" +
                         $"{item.IsBack}" + "|" +
                         $"{item.Domain}" + "|" +
-                        $"{item.IsStartPage}" +
+                        $"{item.IsStartPage}|" +
+                        $"{item.Action}|" +
+                        $"{item.IsVisible}|" +
+                        $"{item.Tag}|" +
+                        $"{item.Level}" +
                         Environment.NewLine
                         );
                 }
@@ -217,13 +226,15 @@ namespace ArchCorpUtilities.Models.Menus
                 using StreamReader read = new(path);
                 menuItems = [];
                 string? linesb;
+                bool IsStartPage = false;
+                M.MenuActionEnum Action_ = M.MenuActionEnum.None;
                 while ((linesb = read.ReadLine()) != null)
                 {
                     var Line = linesb.Trim();
                     var LineParts = Line.Split('|');
                     if (LineParts.Length > 0)
                     {
-                        if (LineParts.Length == 13 || LineParts.Length == 12)
+                        if (LineParts.Length == 17 || LineParts.Length == 12)
                         {
                             string IDGUIDMenu = LineParts[0];
                             if (IDGUIDMenu != "IDGUIDMenu")
@@ -239,13 +250,18 @@ namespace ArchCorpUtilities.Models.Menus
                                 string PageHeading = LineParts[9];
                                 _ = bool.TryParse(LineParts[10], out bool IsBack);
                                 _ = Enum.TryParse(LineParts[11], out E.MenuDomain Domain);
-                                bool IsStartPage = false;
-
+                                
+                                
+                                bool IsVisible = false;
+                                string Tag = "";
                                 if (LineParts.Length > 12)
+                                {
                                     _ = bool.TryParse(LineParts[12], out IsStartPage);
-
+                                    _ = Enum.TryParse(LineParts[13], out Action_);
+                                    Tag = LineParts[15];
+                                }
                                 string Source = "Import";
-                                menuItem = new(DisplayName, Page, PageHeading, IsExitOption, TargetPage, TargetTask, IsBack, IsDefaultChoice, HideRule, IsHidden, Source, IDGUIDMenu, Domain, IsStartPage);
+                                menuItem = new(DisplayName, Page, PageHeading, IsExitOption, TargetPage, TargetTask, IsBack, IsDefaultChoice, HideRule, IsHidden, Source, IDGUIDMenu, Domain, IsStartPage, 0 , Action_, IsVisible, Tag);
                                 menuItems?.Add(menuItem);
                             }
                         }

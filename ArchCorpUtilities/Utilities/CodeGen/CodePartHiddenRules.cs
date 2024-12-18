@@ -12,7 +12,7 @@ public class CodePartHiddenRules(string baseFolder, string targetFile, string en
         U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
         stringBuilder.AppendLine($"case E.MenuDomain.{Entity}:");
         stringBuilder.AppendLine($"{Tabs}\tif (A.{Entity}Helper != null && A.{Entity}Helper.Page != null && ApplyHiddenRules(A.{Entity}Helper.Page) && doReIndex)");
-        stringBuilder.AppendLine($"{Tabs}\t{{A.{Entity}Helper.ReIndexDisplayId();}}");
+        stringBuilder.AppendLine($"{Tabs}\t{{U.ReIndexDisplayId(SessionID, A.{Entity}Helper.Repository);}}");
         stringBuilder.AppendLine($"{Tabs}\tbreak;");
         var CodeAltered = stringBuilder.ToString();
         stringBuilder.Clear();

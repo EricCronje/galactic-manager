@@ -248,10 +248,11 @@ namespace ArchCorpUtilities.Utilities
                 };
                 process.Start();                  
                 process.WaitForExit();
-                string Output = process.StandardOutput.ReadToEnd();
+                //string Output = process.StandardOutput.ReadToEnd();
                 process.Dispose();
                 CH.Feedback(success);
-                return Output;
+                //return Output;
+                return string.Empty;
             }
             catch (Exception)
             {
@@ -354,9 +355,12 @@ namespace ArchCorpUtilities.Utilities
             return Input;
         }
 
-        internal static string IsValidInput(string input, string InvalidInputMessage)
-        {
+        internal static string IsValidInput(string input, string InvalidInputMessage, bool isDuplicate, string invalidDuplicateMessage)
+        {            
+            if (string.IsNullOrWhiteSpace(InvalidInputMessage)) { return string.Empty; }
+            if (string.IsNullOrWhiteSpace(invalidDuplicateMessage)) { return string.Empty; }
             if (string.IsNullOrWhiteSpace(input)) { return InvalidInputMessage; }
+            if (isDuplicate) { return invalidDuplicateMessage; }
             return string.Empty;
         }
 
@@ -373,6 +377,83 @@ namespace ArchCorpUtilities.Utilities
         internal static void ClearRepository(MockRepositoryLink<Link, Entity, Entity>? repository)
         {
             CH.Feedback(repository != null && repository.ClearAll() ? "All data removed for this item (Link)." : "Failed to remove the data (Link).");
+        }
+
+        internal static void ReIndexDisplayId(string? sessionID, MockRepository<Entity>? repository)
+        {
+            if (sessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, sessionID); }
+            var OrderedModels = repository?.OrderByName();
+            if (OrderedModels != null)
+                for (int i = 0; i < OrderedModels.Count; i++)
+                {
+                    Entity? item = OrderedModels[i];
+                    item.DisplayId = i + 1;
+                    item.Id = item.DisplayId;
+                    item.Index = item.DisplayId;
+                }
+        }
+
+        internal static void ReIndexDisplayId(string? sessionID, MockRepositoryLink<Link, Entity, Entity>? repository)
+        {
+            if (sessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, sessionID); }
+            var OrderedModels = repository?.OrderByName();
+            if (OrderedModels != null)
+                for (int i = 0; i < OrderedModels.Count; i++)
+                {
+                    EntityLinkBase? item = OrderedModels[i];
+                    item.DisplayId = i + 1;
+                    item.Id = item.DisplayId;
+                    item.Index = item.DisplayId;
+                }
+        }
+
+        internal static void ReIndexDisplayId(string? sessionID, MockRepositoryHierarchy<Hierarchy, Entity>? repository)
+        {
+            if (sessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, sessionID); }
+            var OrderedModels = repository?.OrderByName();
+            if (OrderedModels != null)
+                for (int i = 0; i < OrderedModels.Count; i++)
+                {
+                    Entity? item = OrderedModels[i];
+                    item.DisplayId = i + 1;
+                    item.Id = item.DisplayId;
+                    item.Index = item.DisplayId;
+                }
+        }
+
+        internal static void ReIndexDisplayId<Q, R>(string? sessionID, MockRepositoryLink<EntityLinkBase, Q, R>? repository)
+            where Q : EntityBase, new()
+            where R : EntityBase, new()
+        {
+            if (sessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, sessionID); }
+            var OrderedModels = repository?.OrderByName();
+            if (OrderedModels != null)
+                for (int i = 0; i < OrderedModels.Count; i++)
+                {
+                    EntityLinkBase? item = OrderedModels[i];
+                    item.DisplayId = i + 1;
+                    item.Id = item.DisplayId;
+                    item.Index = item.DisplayId;
+                }
+        }
+
+        internal static void ResetPageMaxCount(Patina.Patina? page, int totalCount)
+        {
+            page?.SetTotalCount(totalCount);
+            page?.CalculateTotalPages();
+        }
+
+        internal static List<Entity>? ResetIndexAndPage(bool resetEntitiesOnThePage, string? sessionID, MockRepository<Entity>? repository, Patina.Patina? page, List<Entity>? entitiesOnThePage)
+        {
+            ReIndexDisplayId(sessionID, repository);
+            if (repository != null) { ResetPageMaxCount(page, repository.Count()); }
+            if (resetEntitiesOnThePage) { return null; }
+            return entitiesOnThePage;
+        }
+
+        internal static bool DuplicateFound(MockRepository<Entity>? repository, string input)
+        {
+            return repository?.GetByName(input)?.Count() > 0;
         }
     }
 }

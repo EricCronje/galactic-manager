@@ -66,7 +66,7 @@ namespace ArchCorpUtilities.Models.Helper
         /// <param name="simChoice"></param>
         /// <param name="simInput"></param>
         /// <returns></returns>
-        public bool Load(int? simChoice = null, string[]? simInput = null, string path = "");
+        public bool Load(int? simChoice = null, string[]? simInput = null);
 
         /// <summary>
         /// Save to a file
@@ -74,7 +74,7 @@ namespace ArchCorpUtilities.Models.Helper
         /// <param name="simChoice"></param>
         /// <param name="simInput"></param>
         /// <returns></returns>
-        public bool Save(int? simChoice = null, string[]? simInput = null, string Path = "");
+        public bool Save(int? simChoice = null, string[]? simInput = null);
 
         /// <summary>
         /// Call the Remove<typeparamref name="T"/>
@@ -82,8 +82,6 @@ namespace ArchCorpUtilities.Models.Helper
         public bool Remove(int? simChoice = null, string[]? simInput = null);
 
         public void ResetPageMaxCount();
-
-        public void ReIndexDisplayId();
 
         public bool DuplicateFound(string input);       
 
@@ -96,6 +94,8 @@ namespace ArchCorpUtilities.Models.Helper
         public void SetLinkItem(string? simInput, T entity, bool linked = true);
 
         public void ResetEntitiesOnThePage();
+
+        public bool LoadDefaults();
 
     }
 }

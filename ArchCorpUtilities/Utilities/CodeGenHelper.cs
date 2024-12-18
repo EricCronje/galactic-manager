@@ -40,22 +40,38 @@ public static class CodeGenHelper
         List<CodePart> codeVault = [];
         var Header = U.GetGeneratedCodeHeader();
 
+        if (menuType == M.MenuTypeEnum.Hierarchy)
+        {
+            CodePartGenUsingHierarchy codePart = new("\\Models", "ArchLoader.cs", entity, "{5334A0BE-D696-4065-B673-A2113B7907A9}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePart);
+            CodePartISetInConstructorArchHierarchy codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{12C91723-1389-4BCC-866B-FB3E3C50D267}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA", lHLink);
+            codeVault.Add(codePartISetInConstructorArch);
+        }
+        if (menuType == M.MenuTypeEnum.Link)
+        {
+            CodePartGenUsingLink codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePart);
+            CodePartISetInConstructorArchLink codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{298F4945-829B-4881-AF7C-9427FB5FCC59}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA", lHLink, rHLink);
+            codeVault.Add(codePartISetInConstructorArch);
+        }
+        if (menuType == M.MenuTypeEnum.Manage)
+        {
+            CodePartGenUsingDefault codePart = new("\\Models", "ArchLoader.cs", entity, "{99B979B3-BA78-4173-959C-1F116C96BB04}", WorkingFolder, Header, "", SessionID ?? "TBA");
+            codeVault.Add(codePart);
+            CodePartISetInConstructorArch codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{9ED7AF33-DE0E-45C3-821F-4669558AD744}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
+            codeVault.Add(codePartISetInConstructorArch);
+        }
+
         if (menuType == M.MenuTypeEnum.Manage || menuType == M.MenuTypeEnum.Link || menuType == M.MenuTypeEnum.Hierarchy)
         {
             CodePartMenuEnum codePartMenuEnum = new("", "EnumLib.cs", entity, "{F8FE36D7-3F08-48BA-9CAB-FBAA102C8149}", WorkingFolder, Header, "\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartMenuEnum);
-
-            CodePartGenUsing codePart = new("\\Models", "ArchLoader.cs", entity, "{0ACDC688-3120-452F-94AE-2DD1771A9991}", WorkingFolder, Header, "", SessionID ?? "TBA");
-            codeVault.Add(codePart);
 
             CodePartHelperInstance codePartHelperInstance = new("\\Models", "ArchLoader.cs", entity, "{048A4DD6-2F1B-4178-A732-E3B50D3F0791}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartHelperInstance);
 
             CodePartArchShowMenu codePartArchShowMenu = new("\\Models", "ArchLoader.cs", entity, "{0EFC2DF7-9635-48A9-8A37-ED03992483F6}", WorkingFolder, "", "\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartArchShowMenu);
-
-            CodePartISetInConstructorArch codePartISetInConstructorArch = new("\\Models", "ArchLoader.cs", entity, "{9ED7AF33-DE0E-45C3-821F-4669558AD744}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
-            codeVault.Add(codePartISetInConstructorArch);
 
             CodePartTargetTaskHelperUsing codePartTargetTaskHelperUsing = new("\\Models", "TargetTaskHelper.cs", entity, "{24D86755-6962-4074-BD9F-73E8FE0A5F68}", WorkingFolder, Header, "", SessionID ?? "TBA");
             codeVault.Add(codePartTargetTaskHelperUsing);
@@ -110,30 +126,6 @@ public static class CodeGenHelper
 
             CodePartLoadDefaults codePartLoadDefaults = new("\\Models", "ArchLoader.cs", entity, "{E4C217C0-AC0D-4571-95E4-16CE056F35A5}", WorkingFolder, "", "\t\t\t", SessionID ?? "TBA");
             codeVault.Add(codePartLoadDefaults);
-        }
-
-        if (menuType == M.MenuTypeEnum.Manage)
-        {
-            //CodePartCreatePogo codePartCreatePogo = new("\\GeneratedModels", $"{entity}.cs", entity, "{2F1F31FC-636B-4FA1-B1F5-BD767B125F0E}", WorkingFolder, Header, "", SessionID ?? "TBA", null, null, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\Entity.cs");
-            //codeVault.Add(codePartCreatePogo);
-
-            CodePartCreateHelper codePartCreateHelper = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{20D3B776-48B9-43E0-AE40-F1ABBCC31B90}", WorkingFolder, Header, "", SessionID ?? "TBA", null, null, $"{CodeGenHelper.WorkingFolder}\\Code\\Default\\EntityHelper.cs");
-            codeVault.Add(codePartCreateHelper);
-        }
-
-        if (menuType == M.MenuTypeEnum.Link)
-        {
-            CodePartCreateHelperLink codePartCreateHelperLink = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{40CEF4E7-3F18-41F1-8149-01DF4FFFF9D9}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\DefaultLink\\EntityHelper.cs");
-            codeVault.Add(codePartCreateHelperLink);
-        }
-
-        if (menuType == M.MenuTypeEnum.Hierarchy)
-        {
-            //CodePartCreatePogoHierarchy codePartCreatePogoHierarchy = new("\\GeneratedModels", $"{entity}.cs", entity, "{C04096E3-C167-4249-8E0B-C522CC54AA39}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\Entity.cs");
-            //codeVault.Add(codePartCreatePogoHierarchy);
-
-            CodePartCreateHelperHierarchy codePartCreateHelperHierarchy = new("\\GeneratedModels", $"{entity}Helper.cs", entity, "{2EA6C196-9480-459B-97F0-6DD08AE62F11}", WorkingFolder, Header, "", SessionID ?? "TBA", lHLink, rHLink, $"{CodeGenHelper.WorkingFolder}\\Code\\Hierarchy\\EntityHelper.cs");
-            codeVault.Add(codePartCreateHelperHierarchy);
         }
 
         foreach (CodePart item in codeVault)

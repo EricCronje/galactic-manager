@@ -28,6 +28,7 @@ namespace ArchCorpUtilities.Models.Menus
         public int Level { get; set; }
         public MEL.MenuActionEnum Action { get; set; }
         public bool IsVisible { get; set; } = false;
+        public string? Tag { get; set; } = string.Empty;
         public MenuItem(
             string displayName,
             int page,
@@ -45,7 +46,8 @@ namespace ArchCorpUtilities.Models.Menus
             bool isStartPage = false,
             int level = 0,
             MEL.MenuActionEnum action = MEL.MenuActionEnum.None,
-            bool isVisible = false
+            bool isVisible = false,
+            string? tag = ""
             )
         {
             if (string.IsNullOrWhiteSpace(idGuidMenu))
@@ -74,6 +76,7 @@ namespace ArchCorpUtilities.Models.Menus
             Level = level;
             Action = action;
             IsVisible = isVisible;
+            Tag = tag;
         }
 
         public override string ToString()

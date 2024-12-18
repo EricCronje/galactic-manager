@@ -13,7 +13,7 @@ namespace ArchCorpUtilities.Utilities.CodeGen
             StringBuilder stringBuilder = new();
             var CodeToAlterLineFeedsAtTheEnd = CodeToAlter.Replace("\r\n", "").Replace(";", ";\r\n");
             stringBuilder.Append(CodeToAlterLineFeedsAtTheEnd);
-            stringBuilder.AppendLine($"{Entity}Helper = new(SessionID, \"{Entity}\");");
+            stringBuilder.AppendLine($"{Entity}Helper = new(SessionID, \"{Entity}\", \"{Entity}\");");
             var CodeAltered = stringBuilder.ToString();
             stringBuilder.Clear();
             return CodeAltered;
