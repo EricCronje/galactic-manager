@@ -459,8 +459,8 @@ namespace ArchCorpUtilities.Models.Menus
                     IsExitOption = false;
                     NewMenuTargetPage = 0;
 
-                    if (Counter == 1)
-                        IsDefault = true;
+                    //if (Counter == 1)
+                    //    IsDefault = true;
 
                     string HideRule = "None";
 
