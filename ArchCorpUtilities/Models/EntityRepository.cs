@@ -12,7 +12,7 @@ namespace ArchCorpUtilities.Models
 
 
         public EntityRepository() { PostFix = ""; }
-        string PostFix { get; set; }
+        public string PostFix { get; set; }
         public string? SessionId { get; set; }
         public void Add(T? entity)
         {
@@ -59,7 +59,7 @@ namespace ArchCorpUtilities.Models
             return Result;
         }
 
-        public IEnumerable<T>? GetByName(string name)
+        public virtual IEnumerable<T>? GetByName(string name)
         {
             if (Items == null) { return null; }
             var Result = Items.Where(p => p.Name != null && p.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
@@ -82,11 +82,11 @@ namespace ArchCorpUtilities.Models
         {
             return Items?.OrderBy(p => p.Index).ToList();
         }
-        public List<T>? OrderByName()
+        public virtual List<T>? OrderByName()
         {
             return Items?.OrderBy(p => p.Name).ToList();
         }
-        public List<T>? GetAllContainingName(string? input)
+        public virtual List<T>? GetAllContainingName(string? input)
         {
             if (input == null) return null;
             if (Items == null) return null;

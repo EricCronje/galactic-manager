@@ -2,7 +2,7 @@
 {
     public class EntityBase : IEntityBase
     {
-        public int DisplayId { get; internal set; }
+        public int DisplayId { get; set; }
         public string? Guid_ { get; set; }
         public int Id { get; set; }
         public int Index { get; set; }

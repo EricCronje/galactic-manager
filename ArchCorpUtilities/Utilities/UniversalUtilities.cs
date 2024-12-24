@@ -11,6 +11,7 @@ using E = EnumLib.EnumLib;
 using ArchCorpUtilities.Models.Helper;
 using ArchCorpUtilities.Models;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace ArchCorpUtilities.Utilities
 {
@@ -454,6 +455,25 @@ namespace ArchCorpUtilities.Utilities
         internal static bool DuplicateFound(MockRepository<Entity>? repository, string input)
         {
             return repository?.GetByName(input)?.Count() > 0;
+        }
+
+        public static string? Encrypt(string context)
+        {
+            string? Result = default;
+            try
+            {
+                Result = RSA.Create().Encrypt(Encoding.UTF8.GetBytes(context), RSAEncryptionPadding.OaepSHA256).ToString();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return Result;
+        }
+
+        public static string? Decrypt(string context)
+        {
+            return RSA.Create().Decrypt(Encoding.UTF8.GetBytes(context), RSAEncryptionPadding.OaepSHA256).ToString();
         }
     }
 }
