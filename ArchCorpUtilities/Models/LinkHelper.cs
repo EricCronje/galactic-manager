@@ -31,6 +31,7 @@ namespace ArchCorpUtilities.Models
                 RhHelper = rhHelper;
             }
         }
+
         public bool View(E.Navigation navigate = E.Navigation.FirstPage, string postFix = "")
         {
             EntitiesOnThePage = U.View(navigate, postFix, Page, Repository?.OrderByIndex(), System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID);
@@ -58,16 +59,7 @@ namespace ArchCorpUtilities.Models
 
                 while (!(U.IsValidGuid(LhGuid) && U.IsValidGuid(RhGuid)))
                 {
-                    var selectionHeading = $"Select the item from the {LHCaption}";
-                    var heading = $"Select the {LHCaption} item";
-                    var Lh = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper);
-                    selectionHeading = $"Select the item from the {RHCaption}";
-                    heading = $"Select the {RHCaption} item";
-                    var Rh = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, RhHelper);
-                    LhGuid = Lh?.Guid_;
-                    RhGuid = Rh?.Guid_;
-                    LhName = Lh?.Name;
-                    RhName = Rh?.Name;
+                    InputLinks = AddInternal(simInput, out LhGuid, out RhGuid, out LhName, out RhName, InputLinks);
                     if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { break; }
                 }
 
@@ -87,6 +79,29 @@ namespace ArchCorpUtilities.Models
 
             return false;
         }
+
+        public string AddInternal(string[]? simInput, out string? LhGuid, out string? RhGuid, out string? LhName, out string? RhName, string InputLinks)
+        {
+            var selectionHeading = $"Select the item from the {LHCaption}";
+            var heading = $"Select the {LHCaption} item";
+            var Lh = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, LhHelper);
+
+            InputLinks = AddInternalHelper(simInput, InputLinks, $"Select the item from the {RHCaption}", $"Select the {RHCaption} item", out Entity? Rh, RhHelper);
+
+            LhGuid = Lh?.Guid_;
+            RhGuid = Rh?.Guid_;
+            LhName = Lh?.Name;
+            RhName = Rh?.Name;
+
+            return InputLinks;
+        }
+
+        public virtual string AddInternalHelper(string[]? simInput, string InputLinks, string selectionHeading, string heading, out Entity? entity, DefaultHelper? helper)
+        {
+            entity = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, helper);
+            return InputLinks;
+        }
+
         public void Dispose()
         {
             if (SessionID != null) { L.Log(System.Reflection.MethodBase.GetCurrentMethod()?.Name, SessionID); }
@@ -343,7 +358,12 @@ namespace ArchCorpUtilities.Models
             _ = int.TryParse(CH.GetInput(simInput), out int Choice);
             return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
-        public Link? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public virtual Link? ViewAndSelectAllItems(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        {
+            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.ToList();
+            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
+        }
+        public virtual Link? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);

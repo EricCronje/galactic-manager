@@ -5,6 +5,7 @@ using ArchCorpUtilities.Models.Helper;
 using System.Text;
 using AL = ArchCorpUtilities.Models.ArchLoader;
 using E = EnumLib.EnumLib;
+
 namespace ArchCorpUtilities.Models
 {
     public class HierarchyHelper : IHelper<Hierarchy>, IDisposable
@@ -59,13 +60,13 @@ namespace ArchCorpUtilities.Models
                     {
                         //All items,
                         ParentGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Parent)?.Guid_;
-                        if (InputLinks.ToLower() == "a") { Continue = false; }
+                        if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { Continue = false; }
                     }
                     else
                     {
                         //Only what is selected,
                         ParentGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Parent, false)?.Guid_;
-                        if (InputLinks.ToLower() == "a") { Continue = false; }
+                        if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { Continue = false; }
                     }
 
                     if (Continue)
@@ -74,7 +75,7 @@ namespace ArchCorpUtilities.Models
                         selectionHeading = $"Select the item from the {LhLinkCaption} (Child) (To link to the first item.)";
                         heading = $"Select the {LhLinkCaption} item";
                         ChildGuid = U.SelectEntityFromTheList(simInput, ref InputLinks, heading, selectionHeading, Child, true)?.Guid_;
-                        if (InputLinks.ToLower() == "a") { Continue = false; }
+                        if (InputLinks.Equals("a", StringComparison.CurrentCultureIgnoreCase)) { Continue = false; }
                     }
 
                     if (Continue)
@@ -83,8 +84,10 @@ namespace ArchCorpUtilities.Models
 
                 if (ParentGuid != null && ChildGuid != null && U.IsValidGuid(ParentGuid) && U.IsValidGuid(ChildGuid))
                 {
-                    Hierarchy Entity_ = new(Input, 0, "", ParentGuid, ChildGuid);
-                    Entity_.LinkRepository = LhLink?.Repository;
+                    Hierarchy Entity_ = new(Input, 0, "", ParentGuid, ChildGuid)
+                    {
+                        LinkRepository = LhLink?.Repository
+                    };
                     Repository?.Add(Entity_);
                     CH.Feedback("Item added.");
                     ResetPageMaxCount();
@@ -401,6 +404,12 @@ namespace ArchCorpUtilities.Models
         public void Clear()
         {
             U.ClearRepository(Repository);
+        }
+
+        public Hierarchy? ViewAndSelectAllItems(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        {
+            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.ToList();
+            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
     }
 }

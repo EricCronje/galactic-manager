@@ -176,7 +176,7 @@ namespace ArchCorpUtilities.Models
                         }
                         SkipFirstLine = false;
                     }
-                    U.ResetIndexAndPage(true, SessionID, Repository, Page, EntitiesOnThePage);
+                    EntitiesOnThePage = U.ResetIndexAndPage(true, SessionID, Repository, Page, EntitiesOnThePage);
                     return true;
                 }
                 else
@@ -328,6 +328,12 @@ namespace ArchCorpUtilities.Models
         public void Clear()
         {
             U.ClearRepository(Repository);
+        }
+
+        public Entity? ViewAndSelectAllItems(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        {
+            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.ToList();
+            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
     }
 }

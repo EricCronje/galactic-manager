@@ -88,6 +88,7 @@ namespace ArchCorpUtilities.Models.Helper
         public T? ViewAndSelectItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
 
         public T? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
+        public T? ViewAndSelectAllItems(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
 
         public T? ViewAndSelectLinkedItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage);
 

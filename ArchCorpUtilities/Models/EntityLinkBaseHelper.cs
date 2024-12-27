@@ -327,7 +327,7 @@ namespace ArchCorpUtilities.Models
             _ = int.TryParse(CH.GetInput(simInput), out int Choice);
             return EntitiesOnThePage?.FirstOrDefault(p => p.DisplayId == Choice);
         }
-        public EntityLinkBase? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        public virtual EntityLinkBase? ViewAndSelectLinkItem(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
         {
             var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.Where(p => !p.IsLinked).ToList();
             return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
@@ -363,6 +363,12 @@ namespace ArchCorpUtilities.Models
         {
             if (name == null) { return null; }
             return Repository?.GetByName(name)?.ToList()[0].Guid_;
+        }
+
+        public EntityLinkBase? ViewAndSelectAllItems(string? simInput, string heading, E.Navigation navigation = E.Navigation.FirstPage)
+        {
+            var orderedEntities = EntitiesOnThePage ?? Repository?.OrderByIndex()?.ToList();
+            return ViewAndSelectInternal(simInput, heading, navigation, orderedEntities);
         }
     }
 }

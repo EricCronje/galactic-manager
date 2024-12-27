@@ -10,7 +10,7 @@ namespace ArchCorpUtilities.Utilities
         {
             StringBuilder stringBuilder = new();
             U.RemoveFirstLineFeed(CodeToAlter, stringBuilder);
-            stringBuilder.AppendLine($"{Entity}Helper?.LoadDefaults();");
+            stringBuilder.AppendLine($"if ({Entity}Helper?.Load() == false) {Entity}Helper?.LoadDefaults();");
             var AlteredCode = stringBuilder.ToString();
             stringBuilder.Clear();
             return AlteredCode;

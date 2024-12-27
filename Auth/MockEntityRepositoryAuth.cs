@@ -26,11 +26,11 @@ namespace Auth
 
                 if (Items.Length > 0)
                 {
-
+                    var Pass = U.Encrypt(Items[1]) ?? "";
                     T NewEntity = new()
                     {
                         UserName = Items[0],
-                        PassWord = U.Encrypt(Items[1]),
+                        PassWord = Pass,
                         Level = Convert.ToInt32(Items[2]),
                         Name = Items[3],
                         Surname = Items[4],

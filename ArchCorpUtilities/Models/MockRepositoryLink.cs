@@ -1,6 +1,6 @@
 ﻿namespace ArchCorpUtilities.Models
 {
-    public class MockRepositoryLink<T,Q,R> : EntityRepository<T> where T : EntityLinkBase, new() where Q : EntityBase, new() where R: EntityBase, new()  
+    public class MockRepositoryLink<T,Q,R> : EntityRepository<T> where T : EntityLinkBase, new() where Q : EntityBase, new() where R : EntityBase, new()
     {
         private List<Q>? LhLinkList;
         private List<R>? RhLinkList;

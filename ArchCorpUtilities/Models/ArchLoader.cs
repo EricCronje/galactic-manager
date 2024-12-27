@@ -1,4 +1,4 @@
-// Generated Code - Version: 23.11.25 - 2024/12/20 10:23:21 - {036a8fdd-83de-482b-afab-5b22c429f43e}
+// Generated Code - Version: 23.11.25 - 2024/12/25 13:29:24 - {bf9f5b57-365e-45ad-b5ab-ad7a7ee3c33e}
 
 using ArchCorpUtilities.Utilities;
 using MH = ArchCorpUtilities.Models.Menus.MenuHelper;
@@ -11,7 +11,7 @@ using CodeGen = ArchCorpUtilities.Utilities.CodeGenHelper;
 
 //{0ACDC688-3120-452F-94AE-2DD1771A9991}
 using LinkSiteToPlanetHelper = ArchCorpUtilities.Models.LinkHelper;
-using LinkSectionToSiteHelper = ArchCorpUtilities.Models.LinkHelper;
+using LinkSectionToSiteHelper = ArchCorpUtilities.Models.LinkOneToManyRHHelper;
 using LinkBuildingToSectionHelper = ArchCorpUtilities.Models.LinkHelper;
 using LinkBuildingToBuildingsTypesHelper = ArchCorpUtilities.Models.LinkHelper;
 using LinkShipToShipTypeHelper = ArchCorpUtilities.Models.LinkHelper;
@@ -102,22 +102,22 @@ namespace ArchCorpUtilities.Models
             }
 
             //{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
-			PlanetsHelper?.LoadDefaults();
-			SitesHelper?.LoadDefaults();
-			SectionsHelper?.LoadDefaults();
-			BuildingsHelper?.LoadDefaults();
-			LinkSiteToPlanetHelper?.LoadDefaults();
-			LinkSectionToSiteHelper?.LoadDefaults();
-			LinkBuildingToSectionHelper?.LoadDefaults();
-			BuildingTypesHelper?.LoadDefaults();
-			LinkBuildingToBuildingsTypesHelper?.LoadDefaults();
-			ShipsHelper?.LoadDefaults();
-			ShipTypesHelper?.LoadDefaults();
-			LinkShipToShipTypeHelper?.LoadDefaults();
-			FleetsHelper?.LoadDefaults();
-			LinkShipToFleetHelper?.LoadDefaults();
-			BeaconsHelper?.LoadDefaults();
-			BuildingHierarchyHelper?.LoadDefaults();
+			if (PlanetsHelper?.Load() == false) PlanetsHelper?.LoadDefaults();
+			if (SitesHelper?.Load() == false) SitesHelper?.LoadDefaults();
+			if (SectionsHelper?.Load() == false) SectionsHelper?.LoadDefaults();
+			if (BuildingsHelper?.Load() == false) BuildingsHelper?.LoadDefaults();
+			if (LinkSiteToPlanetHelper?.Load() == false) LinkSiteToPlanetHelper?.LoadDefaults();
+			if (LinkSectionToSiteHelper?.Load() == false) LinkSectionToSiteHelper?.LoadDefaults();
+			if (LinkBuildingToSectionHelper?.Load() == false) LinkBuildingToSectionHelper?.LoadDefaults();
+			if (BuildingTypesHelper?.Load() == false) BuildingTypesHelper?.LoadDefaults();
+			if (LinkBuildingToBuildingsTypesHelper?.Load() == false) LinkBuildingToBuildingsTypesHelper?.LoadDefaults();
+			if (ShipsHelper?.Load() == false) ShipsHelper?.LoadDefaults();
+			if (ShipTypesHelper?.Load() == false) ShipTypesHelper?.LoadDefaults();
+			if (LinkShipToShipTypeHelper?.Load() == false) LinkShipToShipTypeHelper?.LoadDefaults();
+			if (FleetsHelper?.Load() == false) FleetsHelper?.LoadDefaults();
+			if (LinkShipToFleetHelper?.Load() == false) LinkShipToFleetHelper?.LoadDefaults();
+			if (BeaconsHelper?.Load() == false) BeaconsHelper?.LoadDefaults();
+			if (BuildingHierarchyHelper?.Load() == false) BuildingHierarchyHelper?.LoadDefaults();
 			//{E4C217C0-AC0D-4571-95E4-16CE056F35A5}
 
             if (File.Exists(CodeGenHelper.CurrentGuid))
@@ -211,7 +211,7 @@ namespace ArchCorpUtilities.Models
         }
 
         //{0EFC2DF7-9635-48A9-8A37-ED03992483F6}
-		//Generated - 2024/12/20 10:23:21 - 036a8fdd-83de-482b-afab-5b22c429f43e
+		//Generated - 2024/12/25 13:29:24 - bf9f5b57-365e-45ad-b5ab-ad7a7ee3c33e
 		public static int ShowMenu(int? page, string? menuHeading, int? simChoice = null)
 		{
 			CH.Feedback(MH.ShowMenu(menuHeading, page));
